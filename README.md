@@ -20,7 +20,7 @@ machine:
 
 1. Checkout the project code locally
 2. Run `yarn` to install project dependencies
-3. Check the [`.env`](./.env.example) file to update any values specific to your
+3. Check the [`.env`](./.example.env) file to update any values specific to your
    environment (e.g. `AWS_PROFILE`)
 
 ## Development
