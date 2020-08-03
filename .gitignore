@@ -1,0 +1,14 @@
+# NodeJS
+node_modules
+dist
+# we will use yarn.lock instead
+package-lock.json
+coverage
+
+# Litter
+*.log
+template.packaged.yaml
+.aws-sam
+
+# Sensitive files
+.env

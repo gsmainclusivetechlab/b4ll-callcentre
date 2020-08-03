@@ -1,0 +1,6 @@
+{
+    "GreetingFunction": {
+        "TABLE_NAME": "Table0",
+        "DYNAMO_HOST": "http://dynamodb:8000"
+    }
+}

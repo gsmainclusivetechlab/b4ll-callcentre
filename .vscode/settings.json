@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        ".aws-sam": true,
+        ".eslintignore": true,
+        ".eslintrc.js": true,
+        ".gitignore": true,
+        ".prettierignore": true,
+        ".prettierrc": true,
+        ".vscode": true,
+        "dist": true,
+        "tsconfig.json": true,
+        "yarn.lock": true
+    }
+}

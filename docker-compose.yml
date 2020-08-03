@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  dynamodb:
+    container_name: dynamodb
+    image: amazon/dynamodb-local
+    ports:
+      - '${DDB_PORT:-8000}:8000'
+    entrypoint: java
+    command: '-jar DynamoDBLocal.jar -sharedDb'
+    networks:
+      local-ddb:
+  
+  # we don't run this through docker-compose, but including it here makes it easy to pre-pull the image
+  lambda:
+    image: lambci/lambda:nodejs12.x
+
+networks:
+  local-ddb:
+    name: local-ddb
