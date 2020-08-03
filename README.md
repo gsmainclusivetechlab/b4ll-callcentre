@@ -44,4 +44,15 @@ machine:
 
 ### Cleanup
 
-1. Run `yarn deploy:clean` to remove the whole AWS stack 
+1. Run `yarn deploy:clean` to remove the whole AWS stack
+
+## Twilio Setup
+
+1. Buy a virtual phone number on Twilio
+2. Obtain webhook URL
+    - If local development, start the server then use ngrok to make it globally
+      accessible
+    - If deployed version, copy the API server url from the CloudFormation
+      Output
+3. Change the "A Call Comes In" webhook URL on the Twilio dashboard
+4. Dial the virtual number and test your application

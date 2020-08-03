@@ -10,5 +10,9 @@
         "dist": true,
         "tsconfig.json": true,
         "yarn.lock": true
-    }
+    },
+    "cSpell.words": [
+        "twilio",
+        "twiml"
+    ]
 }
