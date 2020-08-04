@@ -19,7 +19,7 @@ export async function setupLocalDDB(): Promise<void> {
             (await db.listTables().promise()).TableNames || [];
         await Promise.all(
             tables.map(async (t, i) => {
-                const TableName = t.Properties.TableName || `Table${i}`
+                const TableName = t.Properties.TableName || `Table${i}`;
                 if (currentTables.indexOf(TableName) >= 0) {
                     // table was already created - let's remove it to start afresh
                     await db
@@ -28,7 +28,7 @@ export async function setupLocalDDB(): Promise<void> {
                         })
                         .promise();
                 }
-                return db.createTable({...t.Properties, TableName}).promise();
+                return db.createTable({ ...t.Properties, TableName }).promise();
             })
         );
         console.log('[Done]');

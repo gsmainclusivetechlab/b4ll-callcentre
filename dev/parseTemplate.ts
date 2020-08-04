@@ -96,14 +96,14 @@ export function getTemplate(templatePath: string): CloudFormationTemplate {
             // ignore validation errors for now (TODO: nicer errors)
             (e) => {
                 console.error(e);
-                return []
+                return [];
             }
         ),
         either.chain(CloudFormationSchema.decode)
     );
 
     if (either.isLeft(parseResult)) {
-        console.log(parseResult.left)
+        console.log(parseResult.left);
         throw new Error('Unable to parse yaml');
     }
     return parseResult.right;

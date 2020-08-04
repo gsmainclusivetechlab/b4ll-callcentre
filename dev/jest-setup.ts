@@ -1,4 +1,4 @@
-import "./jest-env";
+import './jest-env';
 import { setupLocalDDB } from './setupLocalDB';
 
 module.exports = async () => {

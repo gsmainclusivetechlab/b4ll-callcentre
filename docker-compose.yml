@@ -10,7 +10,7 @@ services:
     command: '-jar DynamoDBLocal.jar -sharedDb'
     networks:
       local-ddb:
-  
+
   # we don't run this through docker-compose, but including it here makes it easy to pre-pull the image
   lambda:
     image: lambci/lambda:nodejs12.x
