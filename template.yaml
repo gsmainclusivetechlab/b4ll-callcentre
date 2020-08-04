@@ -21,7 +21,7 @@ Resources:
         APIWithName:
           Type: Api
           Properties:
-            Path: /
+            Path: /{lang}
             Method: get
             RestApiId:
               Ref: ApiGatewayApi
@@ -74,6 +74,4 @@ Resources:
 Outputs:
   APIEndpoint:
     Description: 'API Endpoint'
-    Value: !Sub 'https://${ApiGatewayApi}.execute-api.${AWS::Region}.amazonaws.com/dev'
-
- 
+    Value: !Sub 'https://${ApiGatewayApi}.execute-api.${AWS::Region}.amazonaws.com/dev/fr-FR'

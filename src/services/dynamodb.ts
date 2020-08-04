@@ -1,42 +1,36 @@
 import AWS from 'aws-sdk';
 
-const { DYNAMO_HOST, TABLE_NAME, AWS_REGION } = process.env;
-
-const client = new AWS.DynamoDB.DocumentClient({
-    endpoint: DYNAMO_HOST,
-    region: AWS_REGION || 'eu-west-2',
-});
-
-const table = TABLE_NAME || '';
+const getClient = () =>
+    new AWS.DynamoDB.DocumentClient({
+        endpoint: process.env.DYNAMO_HOST,
+        region: process.env.AWS_REGION || 'eu-west-2',
+    });
 
 export async function getItem(
     id: string
-): Promise<AWS.DynamoDB.DocumentClient.GetItemOutput> {
-    const result = await client
+): Promise<AWS.DynamoDB.DocumentClient.AttributeMap> {
+    return getClient()
         .get({
-            TableName: table,
+            TableName: process.env.TABLE_NAME || '',
             Key: {
                 id,
             },
         })
-        .promise();
-    if (!result.$response.data) throw result.$response.error;
-    return result.$response.data;
+        .promise()
+        .then(({ Item }) => Item || {});
 }
 
 export async function putItem(
     id: string,
     count: number
 ): Promise<AWS.DynamoDB.DocumentClient.PutItemOutput> {
-    const result = await client
+    return getClient()
         .put({
-            TableName: table,
+            TableName: process.env.TABLE_NAME || '',
             Item: {
                 id,
                 count: count,
             },
         })
         .promise();
-    if (!result.$response.data) throw result.$response.error;
-    return result.$response.data;
 }

@@ -1,28 +1,39 @@
-import { APIGatewayProxyHandlerV2 } from 'aws-lambda';
 import { getItem, putItem } from '../../services/dynamodb';
 import { twiml } from 'twilio';
+import {
+    getVoiceParams,
+    __,
+    isSupportedLanguage,
+} from '../../services/strings';
+import { safeHandle } from '../../services/errors';
 
-export const handler: APIGatewayProxyHandlerV2 = async () => {
-    const response = new twiml.VoiceResponse();
-
-    try {
-        const name = "twilio";
-        const getResult = await getItem(name);
-        const count = (getResult.Item?.count || 0) + 1;
-        await putItem(name, count);
-        response.say(`Hello there! You are caller number ${count}`);
-
-        return {
-            statusCode: 200,
-            headers: {
-                'Content-Type': 'text/xml'
-            },
-            body: response.toString(),
-        };
-    } catch (err) {
-        return {
-            statusCode: 500,
-            body: JSON.stringify(err, null, 2),
-        };
+export const handler = safeHandle(async (e) => {
+    // parse input
+    const name = 'twilio';
+    const language = e.pathParameters?.lang;
+    if (!isSupportedLanguage(language)) {
+        throw new Error('Unsupported language');
     }
-};
+
+    // business logic - get/update DB
+    const getResult = await getItem(name);
+    const count = (getResult.count || 0) + 1;
+    await putItem(name, count);
+
+    // prepare response
+    const response = new twiml.VoiceResponse();
+    response.say(getVoiceParams(language), __('welcome', language));
+    response.say(
+        getVoiceParams(language),
+        __('caller-count', { count }, language)
+    );
+
+    // return answer
+    return {
+        statusCode: 200,
+        headers: {
+            'Content-Type': 'text/xml',
+        },
+        body: response.toString(),
+    };
+});

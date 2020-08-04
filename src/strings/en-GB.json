@@ -1,0 +1,5 @@
+{
+    "welcome": "Hello there!",
+    "caller-count": "You are the {count, selectordinal, one{#st} two{#nd} few{#rd} other{#th}} caller.",
+    "error": "An error occurred. {message}"
+}

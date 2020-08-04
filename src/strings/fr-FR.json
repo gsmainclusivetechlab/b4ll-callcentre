@@ -1,0 +1,5 @@
+{
+    "welcome": "Bonjour!",
+    "caller-count": "Vous etes le {count, selectordinal, one{#er} other{#ème}} appeleur.",
+    "error": "Une erreur s'est produite. {message}"
+}
