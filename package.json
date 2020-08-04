@@ -5,7 +5,7 @@
     "license": "MIT",
     "scripts": {
         "build:clean": "rm -rf -v dist/*",
-        "build": "NODE_ENV=${NODE_ENV:-production} webpack",
+        "build": "NODE_ENV=${NODE_ENV:-production} webpack --progress",
         "deploy:clean": "env-cmd dev/scripts/clean-deployment.sh",
         "deploy:logs": "env-cmd dev/scripts/logs.sh",
         "deploy": "env-cmd dev/scripts/deploy.sh",

@@ -1,6 +1,7 @@
 import * as path from 'path';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import { getTemplate, ServerlessFunctionTemplate } from './dev/parseTemplate';
+import { Configuration } from 'webpack';
 
 const conf = {
     prodMode: process.env.NODE_ENV === 'production',
@@ -10,7 +11,7 @@ const cfn = getTemplate(conf.templatePath);
 
 console.log(`Building for ${conf.prodMode ? 'production' : 'development'}...`);
 
-module.exports = {
+const config: Configuration = {
     target: 'node',
     mode: conf.prodMode ? 'production' : 'development',
 
@@ -59,14 +60,18 @@ module.exports = {
         filename: '[name].js',
         libraryTarget: 'commonjs2',
     },
-    devtool: 'source-map',
-    plugins: conf.prodMode
-        ? [
-              new UglifyJsPlugin({
-                  parallel: true,
-                  extractComments: true,
-                  sourceMap: true,
-              }),
-          ]
-        : [],
+    devtool: 'cheap-source-map',
+    optimization: {
+        minimizer: conf.prodMode
+            ? [
+                  new UglifyJsPlugin({
+                      parallel: true,
+                      extractComments: true,
+                      sourceMap: false,
+                  }),
+              ]
+            : [],
+    },
 };
+
+export default config;
