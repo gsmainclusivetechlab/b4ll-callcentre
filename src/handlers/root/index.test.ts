@@ -1,48 +1,52 @@
-import { handler as orig } from './hello';
-import { wrapHandlerFn } from '../dev/wrapHandlerFn';
+import { handler as orig } from '.';
+import { mockHandlerFn } from '../../../dev/mockHandlerFn';
+import { APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
-const handler = wrapHandlerFn(orig);
-
-describe('Hello handler', () => {
-    it('should greet user', async () => {
-        let result = await handler({ pathParameters: { name: 'James' } });
-        expect(result).toEqual({
-            statusCode: 200,
-            body: JSON.stringify({
-                message: 'Hello James',
-                count: 1,
-            }),
-        });
-        result = await handler({ pathParameters: { name: 'James' } });
-        expect(result).toEqual({
-            statusCode: 200,
-            body: JSON.stringify({
-                message: 'Hello James',
-                count: 2,
-            }),
-        });
-    });
-
-    it('should greet unknown users', async () => {
-        const result = await handler({});
-        expect(result).toEqual({
-            statusCode: 200,
-            body: JSON.stringify({
-                message: 'Hello World',
-                count: 1,
-            }),
-        });
-    });
-
-    it('should handle errors', async () => {
-        const result = await handler({
-            pathParameters: { name: (15 as unknown) as string },
-        });
+const handler = mockHandlerFn(orig);
+describe('Greeting message', () => {
+    it('should return well-formed XML', async () => {
+        const result = (await handler({
+            pathParameters: { lang: 'fr-FR' },
+        })) as APIGatewayProxyStructuredResultV2;
         expect(result).toMatchObject({
-            statusCode: 500,
-            body: expect.stringContaining(
-                'One or more parameter values were invalid'
-            ),
+            statusCode: 200,
+            headers: {
+                'Content-Type': 'text/xml',
+            },
+            body: expect.any(String),
         });
+        expect(result.body).toMatchInlineSnapshot(`
+            <?xml version="1.0" encoding="UTF-8"?>
+            <Response>
+                <Say language="fr-FR" voice="Polly.Celine">
+                    Bonjour!
+                </Say>
+                <Say language="fr-FR" voice="Polly.Celine">
+                    Vous etes le 1er appeleur.
+                </Say>
+            </Response>
+        `);
+    });
+
+    it('should increment caller count', async () => {
+        const result = (await handler({
+            pathParameters: { lang: 'en-GB' },
+        })) as APIGatewayProxyStructuredResultV2;
+        expect(result).toMatchObject({
+            statusCode: 200,
+            body: expect.stringContaining('You are the 2nd caller.'),
+        });
+    });
+
+    it('should gracefully reject unknown languages', async () => {
+        const result = (await handler({})) as APIGatewayProxyStructuredResultV2;
+        expect(result.body).toMatchInlineSnapshot(`
+            <?xml version="1.0" encoding="UTF-8"?>
+            <Response>
+                <Say language="en-GB" voice="Polly.Amy">
+                    An error occurred. Unsupported language
+                </Say>
+            </Response>
+        `);
     });
 });
