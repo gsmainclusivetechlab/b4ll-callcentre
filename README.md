@@ -1,5 +1,8 @@
-# Account Management PoC using Voice Biometrics 
+# Account Management PoC using Voice Biometrics
+
 ## Part of the Biometrics In Low-Tech Environments project)
+
+[![codecov](https://codecov.io/gh/gsmainclusivetechlab/bilt-voice/branch/develop/graph/badge.svg?token=CKB8C9RSXR)](https://codecov.io/gh/gsmainclusivetechlab/bilt-voice)
 
 ## Setup Guide
 
