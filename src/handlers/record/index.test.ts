@@ -22,6 +22,10 @@ describe('Recording', () => {
     });
 
     it('should return well-formed XML to subsequent response', async () => {
+        const initialItem = await getItem('+7777777');
+        expect(initialItem.recordingUrl).not.toEqual(
+            'https://my-file-server/voice.wav'
+        );
         const result = await handler({
             pathParameters: { lang: 'en-GB' },
             body: qs.stringify({
