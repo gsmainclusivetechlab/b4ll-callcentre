@@ -48,30 +48,13 @@ describe('Recording', () => {
         );
     });
 
-    test.each([
-        {
-            data: {},
-            error: 'Unable to identify caller',
-        },
-        {
-            data: { queryStringParameters: { Caller: '+1' } },
-            error: 'Unable to identify caller',
-        },
-        {
-            data: { queryStringParameters: { Caller: '+7777777' } },
-            error: 'Unsupported language',
-        },
-        {
-            data: {
-                pathParameters: { lang: 'en-GB' },
-                body: qs.stringify({
-                    Caller: '+7777777',
-                }),
-                httpMethod: 'POST',
-            },
-            error: 'Could not retrieve recording URL.',
-        },
-    ])('should gracefully reject: $error', async ({ data }) => {
+    test.each`
+        error                                  | data
+        ${'Unable to identify caller'}         | ${{}}
+        ${'Unable to identify caller'}         | ${{ queryStringParameters: { Caller: '+1' } }}
+        ${'Unsupported language'}              | ${{ queryStringParameters: { Caller: '+7777777' } }}
+        ${'Could not retrieve recording URL.'} | ${{ pathParameters: { lang: 'en-GB' }, body: qs.stringify({ Caller: '+7777777' }), httpMethod: 'POST' }}
+    `('should gracefully reject: $error', async ({ data }) => {
         const result = await handler(data);
         expect(result.body).toMatchSnapshot();
     });
