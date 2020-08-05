@@ -23,15 +23,20 @@ export const handler = safeHandle(async (e) => {
 
     const response = new twiml.VoiceResponse();
 
-    switch (e.requestContext.http.method.toUpperCase()) {
+    switch (e.httpMethod.toUpperCase()) {
         case 'GET':
+        default:
             response.say(
                 getVoiceParams(language),
                 __('recording-request', language)
             );
             response.record({
-                // uses same URL by default
+                // default action is to submit to same URL as current request
                 method: 'POST',
+                finishOnKey: '#',
+                playBeep: true,
+                trim: 'trim-silence',
+                maxLength: 5,
             });
 
             break;

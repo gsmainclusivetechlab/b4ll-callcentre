@@ -1,21 +1,16 @@
 import { handler as orig } from '.';
 import qs from 'querystring';
 import { mockHandlerFn } from '../../../dev/mockHandlerFn';
-import { APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 import { getItem } from '../../services/dynamodb';
 
 const handler = mockHandlerFn(orig);
 describe('Recording', () => {
     it('should return well-formed XML to initial request', async () => {
-        const result = (await handler({
+        const result = await handler({
             pathParameters: { lang: 'en-GB' },
             queryStringParameters: { Caller: '+7777777' },
-            requestContext: {
-                http: {
-                    method: 'GET',
-                },
-            },
-        })) as APIGatewayProxyStructuredResultV2;
+            httpMethod: 'GET',
+        });
         expect(result).toMatchObject({
             statusCode: 200,
             headers: {
@@ -27,18 +22,14 @@ describe('Recording', () => {
     });
 
     it('should return well-formed XML to subsequent response', async () => {
-        const result = (await handler({
+        const result = await handler({
             pathParameters: { lang: 'en-GB' },
             body: qs.stringify({
                 Caller: '+7777777',
                 RecordingUrl: 'https://my-file-server/voice.wav',
             }),
-            requestContext: {
-                http: {
-                    method: 'POST',
-                },
-            },
-        })) as APIGatewayProxyStructuredResultV2;
+            httpMethod: 'POST',
+        });
         expect(result).toMatchObject({
             statusCode: 200,
             headers: {
@@ -72,18 +63,12 @@ describe('Recording', () => {
                 body: qs.stringify({
                     Caller: '+7777777',
                 }),
-                requestContext: {
-                    http: {
-                        method: 'POST',
-                    },
-                },
+                httpMethod: 'POST',
             },
             error: 'Could not retrieve recording URL.',
         },
     ])('should gracefully reject: $error', async ({ data }) => {
-        const result = (await handler(
-            data
-        )) as APIGatewayProxyStructuredResultV2;
+        const result = await handler(data);
         expect(result.body).toMatchSnapshot();
     });
 });

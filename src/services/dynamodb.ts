@@ -22,7 +22,7 @@ export async function getItem(
             },
         })
         .promise()
-        .then(({ Item }) => Item || {});
+        .then(({ Item }): RecordType => Item || {});
 }
 
 export async function putItem(

@@ -36,18 +36,18 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Events:
-        HTTPPost:
-          Type: Api
-          Properties:
-            Path: /{lang}/record
-            Method: POST
-            RestApiId:
-              Ref: ApiGatewayApi
         HTTPGet:
           Type: Api
           Properties:
             Path: /{lang}/record
             Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+        HTTPPost:
+          Type: Api
+          Properties:
+            Path: /{lang}/record
+            Method: POST
             RestApiId:
               Ref: ApiGatewayApi
       Handler: index.handler
