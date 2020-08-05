@@ -1,5 +1,10 @@
 import AWS from 'aws-sdk';
 
+export interface RecordType {
+    count?: number;
+    recordingUrl?: string;
+}
+
 const getClient = () =>
     new AWS.DynamoDB.DocumentClient({
         endpoint: process.env.DYNAMO_HOST,
@@ -22,14 +27,14 @@ export async function getItem(
 
 export async function putItem(
     id: string,
-    count: number
+    data: RecordType
 ): Promise<AWS.DynamoDB.DocumentClient.PutItemOutput> {
     return getClient()
         .put({
             TableName: process.env.TABLE_NAME || '',
             Item: {
                 id,
-                count: count,
+                ...data,
             },
         })
         .promise();

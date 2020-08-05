@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Recording should gracefully reject: $error 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Amy">
+        An error occurred. Unable to identify caller
+    </Say>
+</Response>
+`;
+
+exports[`Recording should gracefully reject: $error 2`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Amy">
+        An error occurred. Unable to identify caller
+    </Say>
+</Response>
+`;
+
+exports[`Recording should gracefully reject: $error 3`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Amy">
+        An error occurred. Unsupported language
+    </Say>
+</Response>
+`;
+
+exports[`Recording should gracefully reject: $error 4`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Amy">
+        An error occurred. Could not retrieve recording URL.
+    </Say>
+</Response>
+`;
+
+exports[`Recording should return well-formed XML to initial request 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Amy">
+        Please record your message, then press the hash key.
+    </Say>
+    <Record method="POST"/>
+</Response>
+`;
+
+exports[`Recording should return well-formed XML to subsequent response 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Amy">
+        Awesome! Here's what you sounded like:
+    </Say>
+    <Play>
+        https://my-file-server/voice.wav
+    </Play>
+</Response>
+`;
