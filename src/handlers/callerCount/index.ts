@@ -9,7 +9,10 @@ import { safeHandle } from '../../services/errors';
 
 export const handler = safeHandle(async (e) => {
     // parse input
-    const name = 'twilio';
+    const name = e.queryStringParameters?.Caller;
+    if (name === undefined || name.length < 3) {
+        throw new Error('Unable to identify caller');
+    }
     const language = e.pathParameters?.lang;
     if (!isSupportedLanguage(language)) {
         throw new Error('Unsupported language');

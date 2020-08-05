@@ -1,6 +1,6 @@
 {
     "welcome": "Hello there!",
-    "caller-count": "You are the {count, selectordinal, one{#st} two{#nd} few{#rd} other{#th}} caller.",
+    "caller-count": "This is the {count, selectordinal, one{#st} two{#nd} few{#rd} other{#th}} time you've called.",
     "recording-request": "Please record your message, then press the hash key.",
     "recording-confirmation": "Awesome! Here's what you sounded like:",
     "error": "An error occurred. {message}"
