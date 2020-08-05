@@ -14,8 +14,9 @@ machine:
 
 -   Node
 -   Git
--   Yarn (optional, recommended)
--   AWS CLI
+-   [Yarn Classic](https://classic.yarnpkg.com/en/docs/install#debian-stable)
+    (optional, recommended)
+-   [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 -   Docker
 -   Docker Compose
 -   AWS SAM
@@ -60,3 +61,22 @@ machine:
       Output
 3. Change the "A Call Comes In" webhook URL on the Twilio dashboard
 4. Dial the virtual number and test your application
+
+## Troubleshooting
+
+#### `Error: EACCES: permission denied, open '{...}/dist/handlers/{someFunction}/index.js`
+
+This error sometimes occurs when running `yarn dev`. The command does two
+things: creates some docker containers to run our functions, and starts webpack
+in watch mode to compile our code. Ideally, webpack compiles the code first to
+create the correct directory structure. Sometimes though, the docker containers
+are created first, and they implicitly create a volume (owned by `root`) where
+our code should go. To resolve this, you can `chown -R` the `dist` directory to
+give webpack permission to write there again.
+
+#### The security token included in the request is invalid.
+
+This is an error normally caused when a function can't find the DynamoDB table.
+Generally this is caused when the `TABLE_NAME` variable is incorrectly set -
+check [`dev/envVars.json`](./dev/envVars.json) to ensure your function is
+receiving it correctly.
