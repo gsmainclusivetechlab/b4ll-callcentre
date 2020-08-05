@@ -18,7 +18,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Events:
-        APIWithName:
+        HTTPGet:
           Type: Api
           Properties:
             Path: /{lang}
@@ -33,7 +33,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Events:
-        APIWithName:
+        HTTPGet:
           Type: Api
           Properties:
             Path: /{lang}/count

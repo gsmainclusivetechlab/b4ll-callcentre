@@ -14,28 +14,11 @@ describe('Greeting message', () => {
             },
             body: expect.any(String),
         });
-        expect(result.body).toMatchInlineSnapshot(`
-            <?xml version="1.0" encoding="UTF-8"?>
-            <Response>
-                <Say language="fr-FR" voice="Polly.Celine">
-                    Bonjour!
-                </Say>
-                <Redirect method="GET">
-                    ./fr-FR/count
-                </Redirect>
-            </Response>
-        `);
+        expect(result.body).toMatchSnapshot();
     });
 
     it('should gracefully reject unknown languages', async () => {
-        const result = await handler({});
-        expect(result.body).toMatchInlineSnapshot(`
-            <?xml version="1.0" encoding="UTF-8"?>
-            <Response>
-                <Say language="en-GB" voice="Polly.Amy">
-                    An error occurred. Unsupported language
-                </Say>
-            </Response>
-        `);
+        const result = (await handler({}));
+        expect(result.body).toMatchSnapshot();
     });
 });

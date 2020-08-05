@@ -23,15 +23,15 @@ describe('i18n', () => {
 
     test.each`
         count  | lang       | expected
-        ${1}   | ${'fr-FR'} | ${'Vous etes le 1er appeleur.'}
-        ${2}   | ${'fr-FR'} | ${'Vous etes le 2ème appeleur.'}
-        ${105} | ${'fr-FR'} | ${'Vous etes le 105ème appeleur.'}
-        ${1}   | ${'en-GB'} | ${'You are the 1st caller.'}
-        ${2}   | ${'en-GB'} | ${'You are the 2nd caller.'}
-        ${3}   | ${'en-GB'} | ${'You are the 3rd caller.'}
-        ${4}   | ${'en-GB'} | ${'You are the 4th caller.'}
-        ${200} | ${'en-GB'} | ${'You are the 200th caller.'}
-        ${201} | ${'en-GB'} | ${'You are the 201st caller.'}
+        ${1}   | ${'fr-FR'} | ${"C'est la première fois que vous appelez."}
+        ${2}   | ${'fr-FR'} | ${"C'est la 2ème fois que vous appelez."}
+        ${105} | ${'fr-FR'} | ${"C'est la 105ème fois que vous appelez."}
+        ${1}   | ${'en-GB'} | ${"This is the 1st time you've called."}
+        ${2}   | ${'en-GB'} | ${"This is the 2nd time you've called."}
+        ${3}   | ${'en-GB'} | ${"This is the 3rd time you've called."}
+        ${4}   | ${'en-GB'} | ${"This is the 4th time you've called."}
+        ${200} | ${'en-GB'} | ${"This is the 200th time you've called."}
+        ${201} | ${'en-GB'} | ${"This is the 201st time you've called."}
     `(
         'handles the $count-th ordinal in $lang',
         async ({ count, lang, expected }) => {

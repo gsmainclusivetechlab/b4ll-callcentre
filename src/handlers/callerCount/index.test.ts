@@ -1,13 +1,13 @@
 import { handler as orig } from '.';
 import { mockHandlerFn } from '../../../dev/mockHandlerFn';
-import { APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
 const handler = mockHandlerFn(orig);
-describe('Greeting message', () => {
+describe('Caller count', () => {
     it('should return well-formed XML', async () => {
         const result = (await handler({
-            pathParameters: { lang: 'fr-FR' },
-        })) as APIGatewayProxyStructuredResultV2;
+            pathParameters: { lang: 'en-GB' },
+            queryStringParameters: { Caller: '+7777777' },
+        }));
         expect(result).toMatchObject({
             statusCode: 200,
             headers: {
@@ -15,38 +15,30 @@ describe('Greeting message', () => {
             },
             body: expect.any(String),
         });
-        expect(result.body).toMatchInlineSnapshot(`
-            <?xml version="1.0" encoding="UTF-8"?>
-            <Response>
-                <Say language="fr-FR" voice="Polly.Celine">
-                    Vous etes le 1er appeleur.
-                </Say>
-                <Redirect method="GET">
-                    ./record
-                </Redirect>
-            </Response>
-        `);
+        expect(result.body).toMatchSnapshot();
     });
 
     it('should increment caller count', async () => {
         const result = (await handler({
             pathParameters: { lang: 'en-GB' },
-        })) as APIGatewayProxyStructuredResultV2;
+            queryStringParameters: { Caller: '+7777777' },
+        }));
         expect(result).toMatchObject({
             statusCode: 200,
-            body: expect.stringContaining('You are the 2nd caller.'),
+            body: expect.stringContaining(
+                "This is the 2nd time you've called."
+            ),
         });
     });
-
-    it('should gracefully reject unknown languages', async () => {
-        const result = (await handler({})) as APIGatewayProxyStructuredResultV2;
-        expect(result.body).toMatchInlineSnapshot(`
-            <?xml version="1.0" encoding="UTF-8"?>
-            <Response>
-                <Say language="en-GB" voice="Polly.Amy">
-                    An error occurred. Unsupported language
-                </Say>
-            </Response>
-        `);
+    test.each`
+        error                          | data
+        ${'Unable to identify caller'} | ${{}}
+        ${'Unable to identify caller'} | ${{ queryStringParameters: { Caller: '+1' } }}
+        ${'Unsupported language'}      | ${{ queryStringParameters: { Caller: '+7777777' } }}
+    `('should gracefully reject: $error', async ({ data }) => {
+        const result = (await handler(
+            data
+        ));
+        expect(result.body).toMatchSnapshot();
     });
 });
