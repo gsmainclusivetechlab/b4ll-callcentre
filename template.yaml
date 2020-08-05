@@ -22,11 +22,26 @@ Resources:
           Type: Api
           Properties:
             Path: /{lang}
-            Method: get
+            Method: GET
             RestApiId:
               Ref: ApiGatewayApi
       Handler: index.handler
       CodeUri: ./dist/handlers/root
+      Role: !GetAtt LambdaRole.Arn
+
+  CallerCountFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Events:
+        APIWithName:
+          Type: Api
+          Properties:
+            Path: /{lang}/count
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+      Handler: index.handler
+      CodeUri: ./dist/handlers/callerCount
       Environment:
         Variables:
           TABLE_NAME: !Ref AccountsTable
