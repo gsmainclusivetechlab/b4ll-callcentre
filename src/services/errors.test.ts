@@ -1,6 +1,5 @@
 import { safeHandle } from './errors';
 import { mockHandlerFn } from '../../dev/mockHandlerFn';
-import { APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
 describe('safeHandle', () => {
     test.each`
@@ -14,9 +13,9 @@ describe('safeHandle', () => {
             throw error;
         });
 
-        const result = (await mockHandlerFn(wrapped)({
+        const result = await mockHandlerFn(wrapped)({
             pathParameters: lang ? { lang } : undefined,
-        })) as APIGatewayProxyStructuredResultV2;
+        });
         expect(result).toMatchObject({
             statusCode: 500,
             headers: {

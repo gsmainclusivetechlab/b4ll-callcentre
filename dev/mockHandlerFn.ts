@@ -1,15 +1,28 @@
+/* istanbul ignore file */
+
 import {
-    APIGatewayProxyHandlerV2,
-    APIGatewayProxyEventV2,
-    APIGatewayProxyResultV2,
     Context,
+    APIGatewayProxyEvent,
+    APIGatewayProxyResult,
+    APIGatewayProxyHandler,
 } from 'aws-lambda';
 
+type DeepPartial<T> = {
+    [P in keyof T]?: DeepPartial<T[P]>;
+};
+
 export function mockHandlerFn(
-    handler: APIGatewayProxyHandlerV2
+    handler: APIGatewayProxyHandler
 ): (
-    props: Partial<APIGatewayProxyEventV2>
-) => void | Promise<APIGatewayProxyResultV2> {
-    return (props) =>
-        handler(props as APIGatewayProxyEventV2, {} as Context, jest.fn());
+    props: DeepPartial<APIGatewayProxyEvent>
+) => Promise<APIGatewayProxyResult> {
+    return (props) => {
+        const result = handler(
+            props as APIGatewayProxyEvent,
+            {} as Context,
+            jest.fn()
+        );
+        if (!result) throw new Error('Unexpected void result');
+        return result;
+    };
 }

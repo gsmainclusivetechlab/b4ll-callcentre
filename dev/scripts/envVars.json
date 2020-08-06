@@ -2,5 +2,9 @@
     "GreetingFunction": {
         "TABLE_NAME": "Table0",
         "DYNAMO_HOST": "http://dynamodb:8000"
+    },
+    "RecordMessageFunction_1": {
+        "TABLE_NAME": "Table0",
+        "DYNAMO_HOST": "http://dynamodb:8000"
     }
 }

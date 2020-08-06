@@ -14,7 +14,7 @@
         "dev:run": "env-cmd dev/scripts/dev.sh",
         "dev": "concurrently \"npm:dev:build\" \"npm:dev:run\"",
         "env": "cp -n .example.env .env",
-        "lint": "prettier --staged && eslint --fix .",
+        "lint": "prettier --write . && eslint --fix .",
         "postinstall": "yarn env",
         "test": "yarn dev:clean && jest"
     },
@@ -54,7 +54,7 @@
         "@types/webpack": "^4.41.21",
         "@typescript-eslint/eslint-plugin": "^3.7.0",
         "@typescript-eslint/parser": "^3.7.0",
-        "aws-sam-api-proxy": "^0.0.6",
+        "aws-sam-api-proxy": "^0.0.8",
         "aws-sdk": "^2.234.1",
         "concurrently": "^5.2.0",
         "docker-compose": "^0.23.5",

@@ -1,14 +1,14 @@
 import {
-    APIGatewayProxyHandlerV2,
-    APIGatewayProxyEventV2,
-    APIGatewayProxyStructuredResultV2,
+    APIGatewayProxyHandler,
+    APIGatewayProxyEvent,
+    APIGatewayProxyResult,
 } from 'aws-lambda';
 import { getVoiceParams, __, isSupportedLanguage } from './strings';
 import { twiml } from 'twilio';
 
 export const safeHandle = (
-    f: (e: APIGatewayProxyEventV2) => Promise<APIGatewayProxyStructuredResultV2>
-): APIGatewayProxyHandlerV2 => (e) =>
+    f: (e: APIGatewayProxyEvent) => Promise<APIGatewayProxyResult>
+): APIGatewayProxyHandler => (e) =>
     f(e).catch((err) => {
         const maybeLang = e.pathParameters?.lang;
         const language = isSupportedLanguage(maybeLang) ? maybeLang : 'en-GB';

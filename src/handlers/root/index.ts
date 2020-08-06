@@ -18,7 +18,7 @@ export const handler = safeHandle(async (e) => {
     // business logic - get/update DB
     const getResult = await getItem(name);
     const count = (getResult.count || 0) + 1;
-    await putItem(name, count);
+    await putItem(name, { count });
 
     // prepare response
     const response = new twiml.VoiceResponse();
@@ -27,6 +27,7 @@ export const handler = safeHandle(async (e) => {
         getVoiceParams(language),
         __('caller-count', { count }, language)
     );
+    response.redirect({ method: 'GET' }, `./${language}/record`);
 
     // return answer
     return {

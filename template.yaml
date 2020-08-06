@@ -32,6 +32,31 @@ Resources:
           TABLE_NAME: !Ref AccountsTable
       Role: !GetAtt LambdaRole.Arn
 
+  RecordMessageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Events:
+        HTTPGet:
+          Type: Api
+          Properties:
+            Path: /{lang}/record
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+        HTTPPost:
+          Type: Api
+          Properties:
+            Path: /{lang}/record
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      Handler: index.handler
+      CodeUri: ./dist/handlers/record
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref AccountsTable
+      Role: !GetAtt LambdaRole.Arn
+
   AccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:
