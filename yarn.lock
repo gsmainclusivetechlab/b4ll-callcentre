@@ -1212,10 +1212,10 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-aws-sam-api-proxy@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/aws-sam-api-proxy/-/aws-sam-api-proxy-0.0.7.tgz#9ea38d9e19df55edc774a8411010d97cebfadb09"
-  integrity sha512-/NJRd3hXxES6Lu1AQoxOkfNsW9MciaA7wAkU8B394hF3/0/V+pBde/zLRTdbRD60BiCN6+/0y5qprUUzt156IQ==
+aws-sam-api-proxy@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/aws-sam-api-proxy/-/aws-sam-api-proxy-0.0.8.tgz#d52b2a18e8736efc2415d18aa3c3d56e1e6a53c4"
+  integrity sha512-3e2TDp96DA78NPnJgJxZkbS0d6I6BJdANB13ZvRHA/cWavfCRDP54ww1q6NE8UVTxmt+VQrknotsc/Per/sV6w==
   dependencies:
     commander "^5.1.0"
     dockerode "^3.2.0"

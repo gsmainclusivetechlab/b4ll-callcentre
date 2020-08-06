@@ -24,7 +24,7 @@ describe('Greeting message', () => {
                     Vous etes le 1er appeleur.
                 </Say>
                 <Redirect method="GET">
-                    /fr-FR/record
+                    ./fr-FR/record
                 </Redirect>
             </Response>
         `);

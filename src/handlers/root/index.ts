@@ -27,7 +27,7 @@ export const handler = safeHandle(async (e) => {
         getVoiceParams(language),
         __('caller-count', { count }, language)
     );
-    response.redirect({ method: 'GET' }, `/${language}/record`);
+    response.redirect({ method: 'GET' }, `./${language}/record`);
 
     // return answer
     return {
