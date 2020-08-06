@@ -42,6 +42,8 @@ machine:
 -   Run `yarn dev:clean` to remove any conflicting containers from a previous
     session
 
+    If necessary, run aws config to insert your information.
+
 ## Deployment
 
 1. Run `yarn build` to build the latest code
@@ -53,14 +55,19 @@ machine:
 
 ## Twilio Setup
 
-1. Buy a virtual phone number on Twilio
+1. Buy a virtual phone number on Twilio If you are in the trial account and if
+   it is necessary, release your current trial number:
+   https://www.twilio.com/console/phone-numbers/incoming Then, buy a local
+   number using the same link.
 2. Obtain webhook URL
     - If local development, start the server then use ngrok to make it globally
-      accessible
+      accessible (npx ngrok http 3000)
     - If deployed version, copy the API server url from the CloudFormation
       Output
-3. Change the "A Call Comes In" webhook URL on the Twilio dashboard
-4. Dial the virtual number and test your application
+3. Change the "A Call Comes In" webhook URL on the Twilio dashboard for your
+   Webhook URL
+4. Select HTTP GET method
+5. Dial the virtual number and test your application
 
 ## Troubleshooting
 
