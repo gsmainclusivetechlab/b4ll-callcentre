@@ -1,6 +1,6 @@
 {
     "welcome": "Bonjour!",
-    "caller-count": "Vous etes le {count, selectordinal, one{#er} other{#ème}} appeleur.",
+    "caller-count": "C'est la {count, selectordinal, one{première} other{#ème}} fois que vous appelez.",
     "recording-request": "Veuillez enregistrer votre message, puis appuyez sur la touche dièse.",
     "recording-confirmation": "Super! Voila comment ça sonne:",
     "error": "Une erreur s'est produite. {message}"

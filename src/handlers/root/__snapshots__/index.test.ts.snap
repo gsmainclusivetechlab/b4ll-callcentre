@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Greeting message should gracefully reject unknown languages 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Amy">
+        An error occurred. Unsupported language
+    </Say>
+</Response>
+`;
+
+exports[`Greeting message should return well-formed XML 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="fr-FR" voice="Polly.Celine">
+        Bonjour!
+    </Say>
+    <Redirect method="GET">
+        ./fr-FR/count
+    </Redirect>
+</Response>
+`;
