@@ -1,4 +1,5 @@
 {
+    "test": "Hello there!",
     "welcome": "Hello there!",
     "caller-count": "This is the {count, selectordinal, one{#st} two{#nd} few{#rd} other{#th}} time you've called.",
     "recording-request": "Please record your message, then press the hash key.",

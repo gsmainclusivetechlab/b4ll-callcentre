@@ -1,4 +1,4 @@
-import { isSupportedLanguage, __ } from './strings';
+import { isSupportedLanguage, __, getVoiceParams } from './strings';
 
 describe('isSupportedLangage', () => {
     it.each`
@@ -14,11 +14,22 @@ describe('isSupportedLangage', () => {
     );
 });
 
+describe('voiceParams', () => {
+    test.each`
+        language     | voice
+        ${undefined} | ${'Polly.Amy'}
+        ${'fr-FR'}   | ${'Polly.Celine'}
+        ${'en-GB'}   | ${'Polly.Amy'}
+    `('picks the right voice for $lang', async ({ language, voice }) => {
+        expect(getVoiceParams(language)).toEqual({ language, voice });
+    });
+});
+
 describe('i18n', () => {
     test('translates without data', () => {
-        expect(__('welcome', 'en-GB')).toEqual('Hello there!');
-        expect(__('welcome', 'fr-FR')).toEqual('Bonjour!');
-        expect(__('welcome', 'pt-BR')).toEqual('Hello there!');
+        expect(__('test', 'en-GB')).toEqual('Hello there!');
+        expect(__('test', 'fr-FR')).toEqual('Bonjour!');
+        expect(__('test', 'pt-BR')).toEqual('Hello there!');
     });
 
     test.each`

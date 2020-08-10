@@ -87,3 +87,10 @@ This is an error normally caused when a function can't find the DynamoDB table.
 Generally this is caused when the `TABLE_NAME` variable is incorrectly set -
 check [`dev/envVars.json`](./dev/envVars.json) to ensure your function is
 receiving it correctly.
+
+#### Missing credentials in config, if using AWS_CONFIG_FILE, set AWS_SDK_LOAD_CONFIG=1
+
+The AWS SDK is unable to authenticate you. This is normally caused by a similar
+error as above (`TABLE_NAME` incorrectly set). Add `AWS_ACCESS_KEY_ID` and
+`AWS_SECRET_ACCESS_KEY` and `AWS_REGION` to `dev/envVars.json` for your
+function.

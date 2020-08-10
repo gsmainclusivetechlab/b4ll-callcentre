@@ -1,28 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Caller count should gracefully reject: Unable to identify caller 1`] = `
+exports[`Caller count should increment caller count 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Say language="en-GB" voice="Polly.Amy">
-        An error occurred. Unable to identify caller
-    </Say>
-</Response>
-`;
-
-exports[`Caller count should gracefully reject: Unable to identify caller 2`] = `
-<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Say language="en-GB" voice="Polly.Amy">
-        An error occurred. Unable to identify caller
-    </Say>
-</Response>
-`;
-
-exports[`Caller count should gracefully reject: Unsupported language 1`] = `
-<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Say language="en-GB" voice="Polly.Amy">
-        An error occurred. Unsupported language
+        This is the 2nd time you've called.
     </Say>
 </Response>
 `;
@@ -33,8 +15,5 @@ exports[`Caller count should return well-formed XML 1`] = `
     <Say language="en-GB" voice="Polly.Amy">
         This is the 1st time you've called.
     </Say>
-    <Redirect method="GET">
-        ./record
-    </Redirect>
 </Response>
 `;

@@ -1,28 +1,33 @@
 /* istanbul ignore file */
 
-import {
-    Context,
-    APIGatewayProxyEvent,
-    APIGatewayProxyResult,
-    APIGatewayProxyHandler,
-} from 'aws-lambda';
+import { safeHandle, ParsedRequest } from '../src/services/errors';
 
 type DeepPartial<T> = {
     [P in keyof T]?: DeepPartial<T[P]>;
 };
+type Handler = Parameters<typeof safeHandle>[0];
+type TestInput = Omit<ParsedRequest, 'event'> & {
+    event?: DeepPartial<ParsedRequest['event']>;
+};
+type HandlerResult = ReturnType<Handler>;
 
+/**
+ * Undoes the effect of the `safeHandle` function, and mocks the event parameter
+ * @param handler
+ */
 export function mockHandlerFn(
-    handler: APIGatewayProxyHandler
-): (
-    props: DeepPartial<APIGatewayProxyEvent>
-) => Promise<APIGatewayProxyResult> {
-    return (props) => {
-        const result = handler(
-            props as APIGatewayProxyEvent,
-            {} as Context,
-            jest.fn()
-        );
-        if (!result) throw new Error('Unexpected void result');
-        return result;
-    };
+    handler: unknown
+): (input: TestInput) => HandlerResult {
+    if (
+        typeof handler === 'function' &&
+        handler.name === 'safelyHandledFunction' &&
+        'orig' in handler
+    ) {
+        const orig = (handler as Record<string, unknown>)['orig'];
+        if (typeof orig === 'function') {
+            return ({ event, ...params }) =>
+                orig({ ...params, event: event || {} });
+        }
+    }
+    throw new Error("Can't mock handlers which are not safely handled");
 }

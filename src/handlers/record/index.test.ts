@@ -1,61 +1,47 @@
-import { handler as orig } from '.';
-import qs from 'querystring';
 import { mockHandlerFn } from '../../../dev/mockHandlerFn';
+import * as orig from '.';
+import qs from 'querystring';
 import { getItem } from '../../services/dynamodb';
 
-const handler = mockHandlerFn(orig);
+const get = mockHandlerFn(orig.get);
+const post = mockHandlerFn(orig.post);
+
 describe('Recording', () => {
     it('should return well-formed XML to initial request', async () => {
-        const result = await handler({
-            pathParameters: { lang: 'en-GB' },
-            queryStringParameters: { Caller: '+7777777' },
-            httpMethod: 'GET',
+        const result = await get({
+            language: 'en-GB',
+            user: { id: '+77-record-test' },
         });
-        expect(result).toMatchObject({
-            statusCode: 200,
-            headers: {
-                'Content-Type': 'text/xml',
-            },
-            body: expect.any(String),
-        });
-        expect(result.body).toMatchSnapshot();
+        expect(result.toString()).toMatchSnapshot();
     });
 
     it('should return well-formed XML to subsequent response', async () => {
-        const initialItem = await getItem('+7777777');
+        const initialItem = await getItem('+77-record-test');
         expect(initialItem.recordingUrl).not.toEqual(
             'https://my-file-server/voice.wav'
         );
-        const result = await handler({
-            pathParameters: { lang: 'en-GB' },
-            body: qs.stringify({
-                Caller: '+7777777',
-                RecordingUrl: 'https://my-file-server/voice.wav',
-            }),
-            httpMethod: 'POST',
-        });
-        expect(result).toMatchObject({
-            statusCode: 200,
-            headers: {
-                'Content-Type': 'text/xml',
+        const result = await post({
+            language: 'en-GB',
+            user: { id: '+77-record-test' },
+            event: {
+                body: qs.stringify({
+                    RecordingUrl: 'https://my-file-server/voice.wav',
+                }),
             },
-            body: expect.any(String),
         });
-        expect(result.body).toMatchSnapshot();
-        const savedItem = await getItem('+7777777');
+        expect(result.toString()).toMatchSnapshot();
+        const savedItem = await getItem('+77-record-test');
         expect(savedItem.recordingUrl).toEqual(
             'https://my-file-server/voice.wav'
         );
     });
 
-    test.each`
-        error                                  | data
-        ${'Unable to identify caller'}         | ${{}}
-        ${'Unable to identify caller'}         | ${{ queryStringParameters: { Caller: '+1' } }}
-        ${'Unsupported language'}              | ${{ queryStringParameters: { Caller: '+7777777' } }}
-        ${'Could not retrieve recording URL.'} | ${{ pathParameters: { lang: 'en-GB' }, body: qs.stringify({ Caller: '+7777777' }), httpMethod: 'POST' }}
-    `('should gracefully reject: $error', async ({ data }) => {
-        const result = await handler(data);
-        expect(result.body).toMatchSnapshot();
+    it('should gracefully handle unexpected requests', async () => {
+        expect(
+            post({
+                language: 'en-GB',
+                user: { id: '+77-record-test' },
+            })
+        ).rejects.toThrow('Could not retrieve recording URL.');
     });
 });

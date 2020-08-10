@@ -1,4 +1,4 @@
-import { getItem, putItem } from './dynamodb';
+import { getItem, putItem, RecordType } from './dynamodb';
 
 describe('dynamodb', () => {
     const OLD_ENV = process.env;
@@ -13,8 +13,11 @@ describe('dynamodb', () => {
     });
 
     test('fetches items correctly', async () => {
-        await expect(getItem('foo')).resolves.toEqual({});
-        await expect(putItem('foo', { count: 12 })).resolves.toEqual({});
+        await expect(getItem('foo')).resolves.toEqual({ id: 'foo' });
+        await expect(putItem({ id: 'foo', count: 12 })).resolves.toEqual({
+            id: 'foo',
+            count: 12,
+        });
         await expect(getItem('foo')).resolves.toEqual({ id: 'foo', count: 12 });
     });
 
@@ -23,8 +26,15 @@ describe('dynamodb', () => {
         await expect(getItem('foo')).rejects.toMatchObject({
             message: expect.stringContaining('Invalid table/index name.'),
         });
-        await expect(putItem('foo', { count: 12 })).rejects.toMatchObject({
+        await expect(putItem({ id: 'foo', count: 12 })).rejects.toMatchObject({
             message: expect.stringContaining('Invalid table/index name.'),
         });
+    });
+
+    test('rejects invalid items', async () => {
+        process.env.TABLE_NAME = undefined;
+        await expect(
+            putItem(({ id: 'foo', count: 'fourteen' } as unknown) as RecordType)
+        ).rejects.toMatchInlineSnapshot(`[Error: Invalid record structure]`);
     });
 });
