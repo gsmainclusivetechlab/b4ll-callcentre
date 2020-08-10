@@ -7,6 +7,9 @@ Globals:
     Runtime: nodejs12.x
     Timeout: 180
     Tracing: Active
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref AccountsTable
 
 Resources:
   ApiGatewayApi:
@@ -14,63 +17,65 @@ Resources:
     Properties:
       StageName: dev
 
-  GreetingFunction:
+  RootWelcome:
     Type: AWS::Serverless::Function
     Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/root
+      Role: !GetAtt LambdaRole.Arn
       Events:
-        HTTPGet:
+        HTTP:
           Type: Api
           Properties:
             Path: /{lang}
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
-      Handler: index.handler
-      CodeUri: ./dist/handlers/root
-      Role: !GetAtt LambdaRole.Arn
 
   CallerCountFunction:
     Type: AWS::Serverless::Function
     Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/callerCount
+      Role: !GetAtt LambdaRole.Arn
       Events:
-        HTTPGet:
+        HTTP:
           Type: Api
           Properties:
             Path: /{lang}/count
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
-      Handler: index.handler
-      CodeUri: ./dist/handlers/callerCount
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref AccountsTable
-      Role: !GetAtt LambdaRole.Arn
 
-  RecordMessageFunction:
+  RecordMessageWelcome:
     Type: AWS::Serverless::Function
     Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/record
+      Role: !GetAtt LambdaRole.Arn
       Events:
-        HTTPGet:
+        HTTP:
           Type: Api
           Properties:
             Path: /{lang}/record
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
-        HTTPPost:
+
+  RecordMessageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/record
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
           Type: Api
           Properties:
             Path: /{lang}/record
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi
-      Handler: index.handler
-      CodeUri: ./dist/handlers/record
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref AccountsTable
-      Role: !GetAtt LambdaRole.Arn
 
   AccountsTable:
     Type: AWS::DynamoDB::Table

@@ -1,41 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Recording should gracefully reject: Could not retrieve recording URL. 1`] = `
-<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Say language="en-GB" voice="Polly.Amy">
-        An error occurred. Could not retrieve recording URL.
-    </Say>
-</Response>
-`;
-
-exports[`Recording should gracefully reject: Unable to identify caller 1`] = `
-<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Say language="en-GB" voice="Polly.Amy">
-        An error occurred. Unable to identify caller
-    </Say>
-</Response>
-`;
-
-exports[`Recording should gracefully reject: Unable to identify caller 2`] = `
-<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Say language="en-GB" voice="Polly.Amy">
-        An error occurred. Unable to identify caller
-    </Say>
-</Response>
-`;
-
-exports[`Recording should gracefully reject: Unsupported language 1`] = `
-<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Say language="en-GB" voice="Polly.Amy">
-        An error occurred. Unsupported language
-    </Say>
-</Response>
-`;
-
 exports[`Recording should return well-formed XML to initial request 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
@@ -55,5 +19,8 @@ exports[`Recording should return well-formed XML to subsequent response 1`] = `
     <Play>
         https://my-file-server/voice.wav
     </Play>
+    <Redirect method="GET">
+        ./count
+    </Redirect>
 </Response>
 `;

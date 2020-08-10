@@ -1,44 +1,22 @@
-import { handler as orig } from '.';
+import * as orig from '.';
 import { mockHandlerFn } from '../../../dev/mockHandlerFn';
 
-const handler = mockHandlerFn(orig);
+const get = mockHandlerFn(orig.get);
+
 describe('Caller count', () => {
     it('should return well-formed XML', async () => {
-        const result = (await handler({
-            pathParameters: { lang: 'en-GB' },
-            queryStringParameters: { Caller: '+7777777' },
-        }));
-        expect(result).toMatchObject({
-            statusCode: 200,
-            headers: {
-                'Content-Type': 'text/xml',
-            },
-            body: expect.any(String),
+        const result = await get({
+            language: 'en-GB',
+            user: { id: '+77-caller-test' },
         });
-        expect(result.body).toMatchSnapshot();
+        expect(result.toString()).toMatchSnapshot();
     });
 
     it('should increment caller count', async () => {
-        const result = (await handler({
-            pathParameters: { lang: 'en-GB' },
-            queryStringParameters: { Caller: '+7777777' },
-        }));
-        expect(result).toMatchObject({
-            statusCode: 200,
-            body: expect.stringContaining(
-                "This is the 2nd time you've called."
-            ),
+        const result = await get({
+            language: 'en-GB',
+            user: { id: '+77-caller-test', count: 1 },
         });
-    });
-    test.each`
-        error                          | data
-        ${'Unable to identify caller'} | ${{}}
-        ${'Unable to identify caller'} | ${{ queryStringParameters: { Caller: '+1' } }}
-        ${'Unsupported language'}      | ${{ queryStringParameters: { Caller: '+7777777' } }}
-    `('should gracefully reject: $error', async ({ data }) => {
-        const result = (await handler(
-            data
-        ));
-        expect(result.body).toMatchSnapshot();
+        expect(result.toString()).toMatchSnapshot();
     });
 });

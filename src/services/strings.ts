@@ -7,7 +7,7 @@ formatMessage.setup({
     missingTranslation: 'error', // don't console.warn or throw an error when a translation is missing
 });
 
-type SupportedLanguage = 'en-GB' | 'fr-FR';
+export type SupportedLanguage = 'en-GB' | 'fr-FR';
 
 export function isSupportedLanguage(
     language: unknown
@@ -20,6 +20,7 @@ export function getVoiceParams(language: SupportedLanguage): SayAttributes {
     // voice list: https://docs.aws.amazon.com/polly/latest/dg/voicelist.html
     switch (language) {
         case 'en-GB':
+        default:
             return {
                 language,
                 voice: 'Polly.Amy',

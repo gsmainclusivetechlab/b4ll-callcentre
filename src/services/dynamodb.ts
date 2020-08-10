@@ -1,9 +1,20 @@
 import AWS from 'aws-sdk';
+import * as t from 'io-ts';
+import { either } from 'fp-ts';
+import { pipe } from 'fp-ts/lib/function';
 
-export interface RecordType {
-    count?: number;
-    recordingUrl?: string;
-}
+const RecordType = t.intersection([
+    // required properties
+    t.type({
+        id: t.string,
+    }),
+    // optional properties
+    t.partial({
+        count: t.number,
+        recordingUrl: t.string,
+    }),
+]);
+export type RecordType = t.TypeOf<typeof RecordType>;
 
 const getClient = () =>
     new AWS.DynamoDB.DocumentClient({
@@ -11,9 +22,7 @@ const getClient = () =>
         region: process.env.AWS_REGION || 'eu-west-2',
     });
 
-export async function getItem(
-    id: string
-): Promise<AWS.DynamoDB.DocumentClient.AttributeMap> {
+export function getItem(id: string): Promise<RecordType> {
     return getClient()
         .get({
             TableName: process.env.TABLE_NAME || '',
@@ -22,20 +31,25 @@ export async function getItem(
             },
         })
         .promise()
-        .then(({ Item }): RecordType => Item || {});
+        .then(({ Item }) =>
+            pipe(
+                Item,
+                RecordType.decode,
+                // TODO: for now, I'm ignoring decoding errors on the assumption it's just an empty record
+                either.getOrElse(() => ({ id }))
+            )
+        );
 }
 
-export async function putItem(
-    id: string,
-    data: RecordType
-): Promise<AWS.DynamoDB.DocumentClient.PutItemOutput> {
-    return getClient()
-        .put({
-            TableName: process.env.TABLE_NAME || '',
-            Item: {
-                id,
-                ...data,
-            },
-        })
-        .promise();
+export async function putItem(Item: RecordType): Promise<RecordType> {
+    if (RecordType.is(Item)) {
+        await getClient()
+            .put({
+                Item,
+                TableName: process.env.TABLE_NAME || '',
+            })
+            .promise();
+        return Item;
+    }
+    return Promise.reject(new Error('Invalid record structure'));
 }

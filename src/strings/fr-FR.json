@@ -1,4 +1,5 @@
 {
+    "test": "Bonjour!",
     "welcome": "Bonjour!",
     "caller-count": "C'est la {count, selectordinal, one{première} other{#ème}} fois que vous appelez.",
     "recording-request": "Veuillez enregistrer votre message, puis appuyez sur la touche dièse.",

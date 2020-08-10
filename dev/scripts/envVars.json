@@ -1,10 +1,26 @@
 {
+    "RootWelcome": {
+        "TABLE_NAME": "Table0",
+        "DYNAMO_HOST": "http://dynamodb:8000",
+        "AWS_ACCESS_KEY_ID": "FakeID",
+        "AWS_SECRET_ACCESS_KEY": "1234"
+    },
     "CallerCountFunction": {
         "TABLE_NAME": "Table0",
-        "DYNAMO_HOST": "http://dynamodb:8000"
+        "DYNAMO_HOST": "http://dynamodb:8000",
+        "AWS_ACCESS_KEY_ID": "FakeID",
+        "AWS_SECRET_ACCESS_KEY": "1234"
     },
-    "RecordMessageFunction_1": {
+    "RecordMessageWelcome": {
         "TABLE_NAME": "Table0",
-        "DYNAMO_HOST": "http://dynamodb:8000"
+        "DYNAMO_HOST": "http://dynamodb:8000",
+        "AWS_ACCESS_KEY_ID": "FakeID",
+        "AWS_SECRET_ACCESS_KEY": "1234"
+    },
+    "RecordMessageFunction": {
+        "TABLE_NAME": "Table0",
+        "DYNAMO_HOST": "http://dynamodb:8000",
+        "AWS_ACCESS_KEY_ID": "FakeID",
+        "AWS_SECRET_ACCESS_KEY": "1234"
     }
 }
