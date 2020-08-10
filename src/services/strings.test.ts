@@ -33,20 +33,20 @@ describe('i18n', () => {
     });
 
     test.each`
-        count  | lang       | expected
-        ${1}   | ${'fr-FR'} | ${"C'est la première fois que vous appelez."}
-        ${2}   | ${'fr-FR'} | ${"C'est la 2ème fois que vous appelez."}
-        ${105} | ${'fr-FR'} | ${"C'est la 105ème fois que vous appelez."}
-        ${1}   | ${'en-GB'} | ${"This is the 1st time you've called."}
-        ${2}   | ${'en-GB'} | ${"This is the 2nd time you've called."}
-        ${3}   | ${'en-GB'} | ${"This is the 3rd time you've called."}
-        ${4}   | ${'en-GB'} | ${"This is the 4th time you've called."}
-        ${200} | ${'en-GB'} | ${"This is the 200th time you've called."}
-        ${201} | ${'en-GB'} | ${"This is the 201st time you've called."}
+        count  | lang       | ordinal
+        ${1}   | ${'fr-FR'} | ${'première'}
+        ${2}   | ${'fr-FR'} | ${'2ème'}
+        ${105} | ${'fr-FR'} | ${'105ème'}
+        ${1}   | ${'en-GB'} | ${'1st'}
+        ${2}   | ${'en-GB'} | ${'2nd'}
+        ${3}   | ${'en-GB'} | ${'3rd'}
+        ${4}   | ${'en-GB'} | ${'4th'}
+        ${200} | ${'en-GB'} | ${'200th'}
+        ${201} | ${'en-GB'} | ${'201st'}
     `(
         'handles the $count-th ordinal in $lang',
-        async ({ count, lang, expected }) => {
-            expect(__('caller-count', { count }, lang)).toEqual(expected);
+        async ({ count, lang, ordinal }) => {
+            expect(__('caller-count', { count }, lang)).toContain(ordinal);
         }
     );
 });
