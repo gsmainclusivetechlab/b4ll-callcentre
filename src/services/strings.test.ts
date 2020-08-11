@@ -17,9 +17,9 @@ describe('isSupportedLangage', () => {
 describe('voiceParams', () => {
     test.each`
         language     | voice
-        ${undefined} | ${'Polly.Amy'}
+        ${undefined} | ${'Polly.Emma-Neural'}
         ${'fr-FR'}   | ${'Polly.Celine'}
-        ${'en-GB'}   | ${'Polly.Amy'}
+        ${'en-GB'}   | ${'Polly.Emma-Neural'}
     `('picks the right voice for $lang', async ({ language, voice }) => {
         expect(getVoiceParams(language)).toEqual({ language, voice });
     });

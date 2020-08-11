@@ -23,7 +23,7 @@ export function getVoiceParams(language: SupportedLanguage): SayAttributes {
         default:
             return {
                 language,
-                voice: 'Polly.Amy',
+                voice: 'Polly.Emma-Neural',
             };
         case 'fr-FR':
             return {
