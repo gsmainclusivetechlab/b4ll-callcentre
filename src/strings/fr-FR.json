@@ -1,7 +1,9 @@
 {
     "test": "Bonjour!",
-    "welcome": "Bonjour!",
-    "caller-count": "C'est la {count, selectordinal, one{première} other{#ème}} fois que vous appelez.",
+    "welcome-stranger": "Bonjour. Il semble que vous ne soyez pas encore inscrit. Appuyez sur 1 pour vous inscrire ou dites \"inscription \". Sinon, veuillez patienter.",
+    "welcome-known": "Rebonjour. Veuillez dire le nom du service que vous recherchez ou écoutez au noms des options disponibles. Si vous souhaitez enregistrer un message, appuyez sur 1. Si vous souhaitez écouter votre message enregistré, appuyez sur 2. Sinon, veuillez patienter.",
+    "did-not-understand": "Désolé, je n'ai pas compris.",
+    "caller-count": "Merci d'avoir appelé. C'était la {count, selectordinal, one{première} other{#ème}} fois que vous appelez.",
     "recording-request": "Veuillez enregistrer votre message, puis appuyez sur la touche dièse.",
     "recording-confirmation": "Super! Voila comment ça sonne:",
     "error": "Une erreur s'est produite. {message}"

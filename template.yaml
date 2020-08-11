@@ -31,6 +31,20 @@ Resources:
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
+  RootFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/root
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
 
   CallerCountFunction:
     Type: AWS::Serverless::Function

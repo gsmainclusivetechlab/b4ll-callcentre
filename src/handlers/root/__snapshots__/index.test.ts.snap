@@ -1,13 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Greeting message should return well-formed XML 1`] = `
+exports[`Greeting message should greet enrolled users 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Say language="fr-FR" voice="Polly.Celine">
-        Bonjour!
+    <Gather input="dtmf speech" method="POST" language="en-GB" hints="record,sign up,enrol,one,1,hear,listen,two,2" speechTimeout="auto" numDigits="1" timeout="5" speechModel="default">
+        <Say language="en-GB" voice="Polly.Amy">
+            Hello again. Please say the name of the service you're looking for, or listen to the options available. If you would like to record a message, press 1. If you'd like to hear your recorded message, press 2. Otherwise, please hold.
+        </Say>
+    </Gather>
+    <Redirect method="GET">
+        ./en-GB/count
+    </Redirect>
+</Response>
+`;
+
+exports[`Greeting message should greet strangers 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Gather input="dtmf speech" method="POST" language="en-GB" hints="record,sign up,enrol,one,1,hear,listen,two,2" speechTimeout="auto" numDigits="1" timeout="5" speechModel="default">
+        <Say language="en-GB" voice="Polly.Amy">
+            Hello. It looks like you're not yet signed up. Press 1 to do so, or say "sign up". Otherwise, please hold.
+        </Say>
+    </Gather>
+    <Redirect method="GET">
+        ./en-GB/count
+    </Redirect>
+</Response>
+`;
+
+exports[`Greeting message should process answer {"Digits": "1"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Redirect method="GET">
+        ./en-GB/record
+    </Redirect>
+</Response>
+`;
+
+exports[`Greeting message should process answer {"Digits": "2"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Redirect method="GET">
+        ./en-GB/count
+    </Redirect>
+</Response>
+`;
+
+exports[`Greeting message should process answer {"Digits": "4"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Amy">
+        Sorry, I didn't get that.
     </Say>
     <Redirect method="GET">
-        ./fr-FR/count
+        ./en-GB
+    </Redirect>
+</Response>
+`;
+
+exports[`Greeting message should process answer {"SpeechResult": "listen"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Play>
+        voice.wav
+    </Play>
+    <Redirect method="GET">
+        ./en-GB/count
+    </Redirect>
+</Response>
+`;
+
+exports[`Greeting message should process answer {"SpeechResult": "record"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Redirect method="GET">
+        ./en-GB/record
+    </Redirect>
+</Response>
+`;
+
+exports[`Greeting message should process answer {"SpeechResult": "swimming pool"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Amy">
+        Sorry, I didn't get that.
+    </Say>
+    <Redirect method="GET">
+        ./en-GB
+    </Redirect>
+</Response>
+`;
+
+exports[`Greeting message should process answer null 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Amy">
+        Sorry, I didn't get that.
+    </Say>
+    <Redirect method="GET">
+        ./en-GB
     </Redirect>
 </Response>
 `;
