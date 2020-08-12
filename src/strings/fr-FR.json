@@ -1,7 +1,10 @@
 {
     "test": "Bonjour!",
-    "welcome-stranger": "Bonjour. Il semble que vous ne soyez pas encore inscrit. Appuyez sur 1 pour vous inscrire ou dites \"inscription \". Sinon, veuillez patienter.",
-    "welcome-known": "Rebonjour. Veuillez dire le nom du service que vous recherchez ou écoutez au noms des options disponibles. Si vous souhaitez enregistrer un message, appuyez sur 1. Si vous souhaitez écouter votre message enregistré, appuyez sur 2. Sinon, veuillez patienter.",
+    "record-message-prompt": "Pour enregistrer un message, appuyez sur {index}.",
+    "hear-message-prompt": "Pour écouter votre message enregistré, appuyez sur {index}.",
+    "call-count-prompt": "Pour vérifier combien de fois vous avez deja appelé, appuyez sur {index}.",
+    "welcome-stranger": "Bonjour. Il semble que vous n'avez pas de message enregistré.",
+    "welcome-known": "Rebonjour.",
     "did-not-understand": "Désolé, je n'ai pas compris.",
     "caller-count": "Merci d'avoir appelé. C'était la {count, selectordinal, one{première} other{#ème}} fois que vous appelez.",
     "recording-request": "Veuillez enregistrer votre message, puis appuyez sur la touche dièse.",
