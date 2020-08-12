@@ -1,4 +1,3 @@
-import { putItem } from '../../services/dynamodb';
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle } from '../../services/errors';

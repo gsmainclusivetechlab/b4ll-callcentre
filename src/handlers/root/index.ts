@@ -1,8 +1,15 @@
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
-import { safeHandle } from '../../services/errors';
+import { safeHandle, ParsedRequest } from '../../services/errors';
 import { MenuOption, menuToHandler, menuToGather } from '../../services/menu';
 import { putItem } from '../../services/dynamodb';
+
+async function notImplementedHandler({ language }: ParsedRequest) {
+    const response = new twiml.VoiceResponse();
+    response.say(getVoiceParams(language), __('not-implemented', language));
+    response.redirect({ method: 'GET' }, `./${language}`);
+    return response;
+}
 
 const fullMenu: MenuOption[] = [
     {
@@ -27,14 +34,29 @@ const fullMenu: MenuOption[] = [
         },
     },
     {
-        triggers: ['count'],
-        description: 'call-count-prompt',
-        handler: async ({ language }) => {
-            const response = new twiml.VoiceResponse();
-            response.redirect({ method: 'GET' }, `./${language}/count`);
-            return response;
-        },
+        triggers: ['mobile money', 'money'],
+        description: 'mobile-money-prompt',
+        handler: notImplementedHandler,
     },
+    {
+        triggers: ['bill', 'pay', 'pay bill'],
+        description: 'bill-prompt',
+        handler: notImplementedHandler,
+    },
+    {
+        triggers: ['update', 'account', 'update account'],
+        description: 'account-prompt',
+        handler: notImplementedHandler,
+    },
+    // {
+    //     triggers: ['count'],
+    //     description: 'call-count-prompt',
+    //     handler: async ({ language }) => {
+    //         const response = new twiml.VoiceResponse();
+    //         response.redirect({ method: 'GET' }, `./${language}/count`);
+    //         return response;
+    //     },
+    // },
 ];
 
 const unauthedMenu = fullMenu.filter(
