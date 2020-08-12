@@ -30,10 +30,11 @@ export const post = safeHandle(async ({ language, user, event }) => {
 
 export const get = safeHandle(async ({ language, user }) => {
     const response = new twiml.VoiceResponse();
+    const voice = getVoiceParams(language);
     const gather = response.gather({
         input: ['dtmf', 'speech'],
         method: 'POST',
-        language,
+        language: voice.language,
         hints: recordOptions.concat(listenOptions).join(','),
         speechTimeout: 'auto',
         numDigits: 1,
@@ -41,9 +42,9 @@ export const get = safeHandle(async ({ language, user }) => {
         speechModel: 'default',
     });
     if (user && user.recordingUrl) {
-        gather.say(getVoiceParams(language), __('welcome-known', language));
+        gather.say(voice, __('welcome-known', language));
     } else {
-        gather.say(getVoiceParams(language), __('welcome-stranger', language));
+        gather.say(voice, __('welcome-stranger', language));
     }
 
     // if the gather doesn't detect anything, we fall back on this next instruction:

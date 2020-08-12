@@ -13,7 +13,7 @@ exports[`Caller count should return well-formed XML 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Say language="en-GB" voice="Polly.Emma-Neural">
-        Thanks for calling. This was the 1st time you've called.
+        caller-count
     </Say>
 </Response>
 `;
