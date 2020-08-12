@@ -287,7 +287,10 @@ declare module 'voiceit2-nodejs' {
             // Zulu (South Africa)
             | 'zu-ZA';
 
-        export type ContentLanguage = BasicLanguage | PremiumLanguage;
+        export type ContentLanguage =
+            | BasicLanguage
+            | PremiumLanguage
+            | 'en-DEV';
 
         export type Response<T> = T & {
             message: string;

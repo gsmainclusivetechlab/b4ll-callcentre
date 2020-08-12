@@ -12,6 +12,12 @@ export const AVAILABLE_VOICEPRINTS = {
         Zoo: 'Zoos are filled with small and large animals',
         Telecom: 'please log in to my telecom services account',
     },
+    'en-DEV': {
+        // These will get mocked anyway so we can use whatever
+        Tomorrow: 'Never forget tomorrow is a new day',
+        Zoo: 'Zoos are filled with small and large animals',
+        Telecom: 'please log in to my telecom services account',
+    },
     'fr-FR': {
         //  TODO: add voiceprints after they are set up in VoiceIt
     },

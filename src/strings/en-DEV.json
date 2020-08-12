@@ -1,0 +1,17 @@
+{
+    "test": "test",
+    "record-message-prompt": "record-message-prompt",
+    "hear-message-prompt": "hear-message-prompt",
+    "call-count-prompt": "call-count-prompt",
+    "mobile-money-prompt": "mobile-money-prompt",
+    "bill-prompt": "bill-prompt",
+    "account-prompt": "account-prompt",
+    "not-implemented": "not-implemented",
+    "welcome-stranger": "welcome-stranger",
+    "welcome-known": "welcome-known",
+    "did-not-understand": "did-not-understand",
+    "caller-count": "caller-count",
+    "recording-request": "recording-request",
+    "recording-confirmation": "recording-confirmation",
+    "error": "error"
+}

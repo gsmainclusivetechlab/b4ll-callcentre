@@ -7,14 +7,15 @@ const post = mockHandlerFn(orig.post);
 
 describe('Greeting message', () => {
     test.each`
-        type                | user
-        ${'strangers'}      | ${{}}
-        ${'enrolled users'} | ${{ recordingUrl: 'hello.wav' }}
-    `('should greet $type', async ({ user }) => {
+        type                | user                             | message
+        ${'strangers'}      | ${{}}                            | ${'welcome-stranger'}
+        ${'enrolled users'} | ${{ recordingUrl: 'hello.wav' }} | ${'welcome-known'}
+    `('should greet $type', async ({ user, message }) => {
         const result = await get({
-            language: 'en-GB',
+            language: 'en-DEV',
             user: { id: '+77-root-test', ...user },
         });
+        expect(result.toString()).toContain(message);
         expect(result.toString()).toMatchSnapshot();
     });
 

@@ -16,13 +16,20 @@ describe('isSupportedLangage', () => {
 
 describe('voiceParams', () => {
     test.each`
-        language     | voice
-        ${undefined} | ${'Polly.Emma-Neural'}
-        ${'fr-FR'}   | ${'Polly.Celine'}
-        ${'en-GB'}   | ${'Polly.Emma-Neural'}
-    `('picks the right voice for $lang', async ({ language, voice }) => {
-        expect(getVoiceParams(language)).toEqual({ language, voice });
-    });
+        language     | expected   | voice
+        ${undefined} | ${'en-GB'} | ${'Polly.Emma-Neural'}
+        ${'en-DEV'}  | ${'en-GB'} | ${'Polly.Emma-Neural'}
+        ${'fr-FR'}   | ${'fr-FR'} | ${'Polly.Celine'}
+        ${'en-GB'}   | ${'en-GB'} | ${'Polly.Emma-Neural'}
+    `(
+        'picks the right voice for $language',
+        async ({ language, voice, expected }) => {
+            expect(getVoiceParams(language)).toEqual({
+                language: expected,
+                voice,
+            });
+        }
+    );
 });
 
 describe('i18n', () => {
