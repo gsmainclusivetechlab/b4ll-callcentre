@@ -6,7 +6,7 @@ export const get = safeHandle(async ({ language, user }) => {
     const response = new twiml.VoiceResponse();
     response.say(
         getVoiceParams(language),
-        __('caller-count', { count: user.count }, language)
+        __('caller-count', { count: user.count || 1 }, language)
     );
 
     return response;

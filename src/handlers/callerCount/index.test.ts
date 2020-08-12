@@ -11,12 +11,4 @@ describe('Caller count', () => {
         });
         expect(result.toString()).toMatchSnapshot();
     });
-
-    it('should increment caller count', async () => {
-        const result = await get({
-            language: 'en-GB',
-            user: { id: '+77-caller-test', count: 1 },
-        });
-        expect(result.toString()).toMatchSnapshot();
-    });
 });

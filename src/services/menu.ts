@@ -52,7 +52,8 @@ export async function menuToGather(
         speechModel: 'numbers_and_commands',
     });
 
-    for (let i = 0; i < Math.min(menu.length, 10); i++) {
+    // TODO: consider better behaviour in empty menu case and > 9 items case
+    for (let i = 0; i < Math.min(menu.length, 9); i++) {
         const { description: maybeDesc } = menu[i];
         const description: MessageId =
             typeof maybeDesc === 'string'

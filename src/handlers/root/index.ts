@@ -26,9 +26,7 @@ const fullMenu: MenuOption[] = [
         description: 'hear-message-prompt',
         handler: async ({ user, language }) => {
             const response = new twiml.VoiceResponse();
-            if (user.recordingUrl) {
-                response.play(user.recordingUrl);
-            }
+            response.play(user.recordingUrl);
             response.redirect({ method: 'GET' }, `./${language}/count`);
             return response;
         },
@@ -63,13 +61,6 @@ const unauthedMenu = fullMenu.filter(
     (o) => o.description !== 'hear-message-prompt'
 );
 
-export const post = safeHandle(async (request) => {
-    const { language, user } = request;
-    const menu = user && user.recordingUrl ? fullMenu : unauthedMenu;
-
-    return menuToHandler(menu, request, `./${language}`);
-});
-
 export const get = safeHandle(async (request) => {
     const { language, user } = request;
 
@@ -95,4 +86,11 @@ export const get = safeHandle(async (request) => {
     response.say(getVoiceParams(language), __('did-not-understand', language));
     response.redirect({ method: 'GET' }, `./${language}`);
     return response;
+});
+
+export const post = safeHandle(async (request) => {
+    const { language, user } = request;
+    const menu = user && user.recordingUrl ? fullMenu : unauthedMenu;
+
+    return menuToHandler(menu, request, `./${language}`);
 });

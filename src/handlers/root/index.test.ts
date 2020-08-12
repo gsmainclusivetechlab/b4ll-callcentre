@@ -20,24 +20,27 @@ describe('Greeting message', () => {
     });
 
     test.each`
-        answer                               | redirect            | user
-        ${{ Digits: '1' }}                   | ${'./en-GB/record'} | ${{}}
-        ${{ Digits: '2' }}                   | ${'./en-GB/count'}  | ${{}}
-        ${{ Digits: '4' }}                   | ${null}             | ${{}}
-        ${{ SpeechResult: 'record' }}        | ${'./en-GB/record'} | ${{}}
-        ${{ SpeechResult: 'listen' }}        | ${'voice.wav'}      | ${{ recordingUrl: 'voice.wav' }}
-        ${{ SpeechResult: 'swimming pool' }} | ${null}             | ${{}}
-        ${null}                              | ${null}             | ${{}}
-    `('should process answer $answer', async ({ answer, redirect, user }) => {
+        answer                               | message                 | user
+        ${{ Digits: '1' }}                   | ${'./en-DEV/record'}    | ${{}}
+        ${{ Digits: '2' }}                   | ${'not-implemented'}    | ${{}}
+        ${{ Digits: '3' }}                   | ${'not-implemented'}    | ${{}}
+        ${{ Digits: '4' }}                   | ${'not-implemented'}    | ${{}}
+        ${{ Digits: '5' }}                   | ${'did-not-understand'} | ${{}}
+        ${{ Digits: '2' }}                   | ${'voice.wav'}          | ${{ recordingUrl: 'voice.wav' }}
+        ${{ SpeechResult: 'record' }}        | ${'./en-DEV/record'}    | ${{}}
+        ${{ SpeechResult: 'listen' }}        | ${'voice.wav'}          | ${{ recordingUrl: 'voice.wav' }}
+        ${{ SpeechResult: 'swimming pool' }} | ${'did-not-understand'} | ${{}}
+        ${null}                              | ${'did-not-understand'} | ${{}}
+    `('should process answer $answer', async ({ answer, message, user }) => {
         const result = await post({
-            language: 'en-GB',
+            language: 'en-DEV',
             user: { id: '+77-root-test', ...user },
             event: {
                 body: answer && qs.stringify(answer),
             },
         });
-        if (redirect !== null) {
-            expect(result.toString()).toContain(redirect);
+        if (message !== null) {
+            expect(result.toString()).toContain(message);
         }
         expect(result.toString()).toMatchSnapshot();
     });

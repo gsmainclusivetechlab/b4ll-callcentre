@@ -3,13 +3,31 @@
 exports[`Greeting message should greet enrolled users 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Gather input="dtmf speech" method="POST" language="en-GB" hints="record,sign up,enrol,one,1,hear,listen,two,2" speechTimeout="auto" numDigits="1" timeout="5" speechModel="default">
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        welcome-known
+    </Say>
+    <Gather input="dtmf speech" method="POST" language="en-GB" hints="record,sign up,enrol,hear,listen,mobile money,money,bill,pay,pay bill,update,account,update account" speechTimeout="auto" numDigits="1" timeout="5" speechModel="numbers_and_commands">
         <Say language="en-GB" voice="Polly.Emma-Neural">
-            welcome-known
+            record-message-prompt-1
+        </Say>
+        <Say language="en-GB" voice="Polly.Emma-Neural">
+            hear-message-prompt
+        </Say>
+        <Say language="en-GB" voice="Polly.Emma-Neural">
+            mobile-money-prompt
+        </Say>
+        <Say language="en-GB" voice="Polly.Emma-Neural">
+            bill-prompt
+        </Say>
+        <Say language="en-GB" voice="Polly.Emma-Neural">
+            account-prompt
         </Say>
     </Gather>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        did-not-understand
+    </Say>
     <Redirect method="GET">
-        ./en-DEV/count
+        ./en-DEV
     </Redirect>
 </Response>
 `;
@@ -17,13 +35,28 @@ exports[`Greeting message should greet enrolled users 1`] = `
 exports[`Greeting message should greet strangers 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Gather input="dtmf speech" method="POST" language="en-GB" hints="record,sign up,enrol,one,1,hear,listen,two,2" speechTimeout="auto" numDigits="1" timeout="5" speechModel="default">
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        welcome-stranger
+    </Say>
+    <Gather input="dtmf speech" method="POST" language="en-GB" hints="record,sign up,enrol,mobile money,money,bill,pay,pay bill,update,account,update account" speechTimeout="auto" numDigits="1" timeout="5" speechModel="numbers_and_commands">
         <Say language="en-GB" voice="Polly.Emma-Neural">
-            welcome-stranger
+            record-message-prompt-1
+        </Say>
+        <Say language="en-GB" voice="Polly.Emma-Neural">
+            mobile-money-prompt
+        </Say>
+        <Say language="en-GB" voice="Polly.Emma-Neural">
+            bill-prompt
+        </Say>
+        <Say language="en-GB" voice="Polly.Emma-Neural">
+            account-prompt
         </Say>
     </Gather>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        did-not-understand
+    </Say>
     <Redirect method="GET">
-        ./en-DEV/count
+        ./en-DEV
     </Redirect>
 </Response>
 `;
@@ -32,7 +65,7 @@ exports[`Greeting message should process answer {"Digits": "1"} 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Redirect method="GET">
-        ./en-GB/record
+        ./en-DEV/record
     </Redirect>
 </Response>
 `;
@@ -40,8 +73,35 @@ exports[`Greeting message should process answer {"Digits": "1"} 1`] = `
 exports[`Greeting message should process answer {"Digits": "2"} 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        not-implemented
+    </Say>
     <Redirect method="GET">
-        ./en-GB/count
+        ./en-DEV
+    </Redirect>
+</Response>
+`;
+
+exports[`Greeting message should process answer {"Digits": "2"} 2`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Play>
+        voice.wav
+    </Play>
+    <Redirect method="GET">
+        ./en-DEV/count
+    </Redirect>
+</Response>
+`;
+
+exports[`Greeting message should process answer {"Digits": "3"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        not-implemented
+    </Say>
+    <Redirect method="GET">
+        ./en-DEV
     </Redirect>
 </Response>
 `;
@@ -50,10 +110,22 @@ exports[`Greeting message should process answer {"Digits": "4"} 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Say language="en-GB" voice="Polly.Emma-Neural">
-        Sorry, I didn't get that.
+        not-implemented
     </Say>
     <Redirect method="GET">
-        ./en-GB
+        ./en-DEV
+    </Redirect>
+</Response>
+`;
+
+exports[`Greeting message should process answer {"Digits": "5"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        did-not-understand
+    </Say>
+    <Redirect method="GET">
+        ./en-DEV
     </Redirect>
 </Response>
 `;
@@ -65,7 +137,7 @@ exports[`Greeting message should process answer {"SpeechResult": "listen"} 1`] =
         voice.wav
     </Play>
     <Redirect method="GET">
-        ./en-GB/count
+        ./en-DEV/count
     </Redirect>
 </Response>
 `;
@@ -74,7 +146,7 @@ exports[`Greeting message should process answer {"SpeechResult": "record"} 1`] =
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Redirect method="GET">
-        ./en-GB/record
+        ./en-DEV/record
     </Redirect>
 </Response>
 `;
@@ -83,10 +155,10 @@ exports[`Greeting message should process answer {"SpeechResult": "swimming pool"
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Say language="en-GB" voice="Polly.Emma-Neural">
-        Sorry, I didn't get that.
+        did-not-understand
     </Say>
     <Redirect method="GET">
-        ./en-GB
+        ./en-DEV
     </Redirect>
 </Response>
 `;
@@ -95,10 +167,10 @@ exports[`Greeting message should process answer null 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Say language="en-GB" voice="Polly.Emma-Neural">
-        Sorry, I didn't get that.
+        did-not-understand
     </Say>
     <Redirect method="GET">
-        ./en-GB
+        ./en-DEV
     </Redirect>
 </Response>
 `;

@@ -1,6 +1,6 @@
 {
     "test": "test",
-    "record-message-prompt": "record-message-prompt",
+    "record-message-prompt": "record-message-prompt-{index}",
     "hear-message-prompt": "hear-message-prompt",
     "call-count-prompt": "call-count-prompt",
     "mobile-money-prompt": "mobile-money-prompt",
