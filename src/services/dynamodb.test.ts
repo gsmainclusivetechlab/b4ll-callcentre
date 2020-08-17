@@ -14,7 +14,7 @@ describe('dynamodb', () => {
 
     test('fetches items correctly', async () => {
         await expect(getItem('foo')).resolves.toEqual({ id: 'foo' });
-        await expect(putItem({ id: 'foo', count: 12 })).resolves.toEqual({
+        await expect(putItem({ id: 'foo' })).resolves.toEqual({
             id: 'foo',
             count: 12,
         });
@@ -26,7 +26,7 @@ describe('dynamodb', () => {
         await expect(getItem('foo')).rejects.toMatchObject({
             message: expect.stringContaining('Invalid table/index name.'),
         });
-        await expect(putItem({ id: 'foo', count: 12 })).rejects.toMatchObject({
+        await expect(putItem({ id: 'foo' })).rejects.toMatchObject({
             message: expect.stringContaining('Invalid table/index name.'),
         });
     });

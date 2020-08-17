@@ -10,8 +10,9 @@ const RecordType = t.intersection([
     }),
     // optional properties
     t.partial({
-        count: t.number,
-        recordingUrl: t.string,
+        voiceItId: t.string,
+        enrolments: t.record(t.string, t.number),
+        isEnrolled: t.boolean,
     }),
 ]);
 export type RecordType = t.TypeOf<typeof RecordType>;

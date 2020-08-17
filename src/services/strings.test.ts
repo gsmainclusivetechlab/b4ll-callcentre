@@ -53,7 +53,7 @@ describe('i18n', () => {
     `(
         'handles the $count-th ordinal in $lang',
         async ({ count, lang, ordinal }) => {
-            expect(__('caller-count', { count }, lang)).toContain(ordinal);
+            expect(__('test-indexed', { count }, lang)).toContain(ordinal);
         }
     );
 });

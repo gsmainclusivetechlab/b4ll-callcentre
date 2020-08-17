@@ -1,8 +1,6 @@
 {
     "test": "test",
-    "record-message-prompt": "record-message-prompt-{index}",
-    "hear-message-prompt": "hear-message-prompt",
-    "call-count-prompt": "call-count-prompt",
+    "test-indexed": "test-{index}",
     "mobile-money-prompt": "mobile-money-prompt",
     "bill-prompt": "bill-prompt",
     "account-prompt": "account-prompt",
@@ -10,8 +8,11 @@
     "welcome-stranger": "welcome-stranger",
     "welcome-known": "welcome-known",
     "did-not-understand": "did-not-understand",
-    "caller-count": "caller-count",
-    "recording-request": "recording-request",
-    "recording-confirmation": "recording-confirmation",
+    "enrol-message": "enrol-message",
+    "enrol-confirmation": "enrol-confirmation",
+    "enrolment-complete": "enrolment-complete",
+    "verification-request": "verification-request",
+    "verification-confirmation": "verification-confirmation",
+    "verification-failed": "verification-failed",
     "error": "error"
 }

@@ -21,14 +21,13 @@ describe('Greeting message', () => {
 
     test.each`
         answer                               | message                 | user
-        ${{ Digits: '1' }}                   | ${'./en-DEV/record'}    | ${{}}
+        ${{ Digits: '1' }}                   | ${'./en-DEV/enrol'}     | ${{}}
         ${{ Digits: '2' }}                   | ${'not-implemented'}    | ${{}}
         ${{ Digits: '3' }}                   | ${'not-implemented'}    | ${{}}
         ${{ Digits: '4' }}                   | ${'not-implemented'}    | ${{}}
+        ${{ Digits: '4' }}                   | ${'did-not-understand'} | ${{ recordingUrl: 'voice.wav' }}
         ${{ Digits: '5' }}                   | ${'did-not-understand'} | ${{}}
-        ${{ Digits: '2' }}                   | ${'voice.wav'}          | ${{ recordingUrl: 'voice.wav' }}
-        ${{ SpeechResult: 'record' }}        | ${'./en-DEV/record'}    | ${{}}
-        ${{ SpeechResult: 'listen' }}        | ${'voice.wav'}          | ${{ recordingUrl: 'voice.wav' }}
+        ${{ SpeechResult: 'sign up' }}       | ${'./en-DEV/enrol'}     | ${{}}
         ${{ SpeechResult: 'swimming pool' }} | ${'did-not-understand'} | ${{}}
         ${null}                              | ${'did-not-understand'} | ${{}}
     `('should process answer $answer', async ({ answer, message, user }) => {

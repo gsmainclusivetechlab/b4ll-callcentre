@@ -2,7 +2,7 @@ import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle, ParsedRequest } from '../../services/errors';
 import { MenuOption, menuToHandler, menuToGather } from '../../services/menu';
-import { putItem } from '../../services/dynamodb';
+import { putItem, RecordType } from '../../services/dynamodb';
 
 async function notImplementedHandler({ language }: ParsedRequest) {
     const response = new twiml.VoiceResponse();
@@ -14,20 +14,10 @@ async function notImplementedHandler({ language }: ParsedRequest) {
 const fullMenu: MenuOption[] = [
     {
         triggers: ['record', 'sign up', 'enrol'],
-        description: 'record-message-prompt',
+        description: 'create-account-prompt',
         handler: async ({ language }) => {
             const response = new twiml.VoiceResponse();
-            response.redirect({ method: 'GET' }, `./${language}/record`);
-            return response;
-        },
-    },
-    {
-        triggers: ['hear', 'listen'],
-        description: 'hear-message-prompt',
-        handler: async ({ user, language }) => {
-            const response = new twiml.VoiceResponse();
-            response.play(user.recordingUrl);
-            response.redirect({ method: 'GET' }, `./${language}/count`);
+            response.redirect({ method: 'GET' }, `./${language}/enrol`);
             return response;
         },
     },
@@ -57,9 +47,13 @@ const fullMenu: MenuOption[] = [
     // },
 ];
 
-const unauthedMenu = fullMenu.filter(
-    (o) => o.description !== 'hear-message-prompt'
+const authedMenu = fullMenu.filter(
+    (o) => o.description !== 'create-account-prompt'
 );
+
+function getMenu(user: RecordType) {
+    return user.recordingUrl ? authedMenu : fullMenu;
+}
 
 export const get = safeHandle(async (request) => {
     const { language, user } = request;
@@ -68,12 +62,10 @@ export const get = safeHandle(async (request) => {
     await putItem({ ...user, count: (user.count || 0) + 1 });
 
     const response = new twiml.VoiceResponse();
-    let menu;
-    if (user && user.recordingUrl) {
-        menu = fullMenu;
+    const menu = getMenu(user);
+    if (user.recordingUrl) {
         response.say(getVoiceParams(language), __('welcome-known', language));
     } else {
-        menu = unauthedMenu;
         response.say(
             getVoiceParams(language),
             __('welcome-stranger', language)
@@ -90,7 +82,7 @@ export const get = safeHandle(async (request) => {
 
 export const post = safeHandle(async (request) => {
     const { language, user } = request;
-    const menu = user && user.recordingUrl ? fullMenu : unauthedMenu;
+    const menu = getMenu(user);
 
     return menuToHandler(menu, request, `./${language}`);
 });

@@ -326,7 +326,7 @@ declare module 'voiceit2-nodejs' {
         /**
          * Retrieve all voice enrolments for a user
          */
-        getAllVoiceEnrolments(
+        getAllVoiceEnrollments(
             input: { userId: string },
             callback: (
                 result: VoiceIt.Response<{
@@ -340,7 +340,7 @@ declare module 'voiceit2-nodejs' {
          * Create voice enrolment for a given user.
          *  Audio files should have a fixed length of 5 seconds, with the user beginning to speak after 500 milliseconds. This is used to capture background noise from the beginning and end of the audio clip that is utilized for noise profiling.
          */
-        createVoiceEnrolmentByUrl(
+        createVoiceEnrollmentByUrl(
             input: {
                 userId: string;
                 contentLanguage: VoiceIt.ContentLanguage;

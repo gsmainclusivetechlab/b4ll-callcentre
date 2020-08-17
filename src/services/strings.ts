@@ -1,5 +1,4 @@
 import {
-    SayAttributes,
     SayLanguage,
     GatherLanguage,
     SayVoice,
@@ -17,7 +16,7 @@ const supportedLanguages = [
     'fr-FR' as const,
     'en-DEV' as const,
 ];
-export type SupportedLanguage = typeof supportedLanguages[0];
+export type SupportedLanguage = typeof supportedLanguages[number];
 
 export function isSupportedLanguage(
     language: unknown
@@ -35,13 +34,23 @@ export function getVoiceParams(
         default:
             return {
                 language: 'en-GB',
-                voice: 'Polly.Emma-Neural',
+                voice: 'Polly.Emma',
             };
         case 'fr-FR':
             return {
                 language,
                 voice: 'Polly.Celine',
             };
+        // case 'pt-BR':
+        //     return {
+        //         language,
+        //         voice: 'Polly.Vitoria',
+        //     };
+        // case 'es-ES':
+        //     return {
+        //         language,
+        //         voice: 'Polly.Lucia',
+        //     };
     }
 }
 
