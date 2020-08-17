@@ -1,4 +1,9 @@
-import { SayAttributes } from 'twilio/lib/twiml/VoiceResponse';
+import {
+    SayAttributes,
+    SayLanguage,
+    GatherLanguage,
+    SayVoice,
+} from 'twilio/lib/twiml/VoiceResponse';
 import { translations, MessageId } from '../strings';
 import formatMessage from 'format-message';
 
@@ -7,22 +12,29 @@ formatMessage.setup({
     missingTranslation: 'error', // don't console.warn or throw an error when a translation is missing
 });
 
-export type SupportedLanguage = 'en-GB' | 'fr-FR';
+const supportedLanguages = [
+    'en-GB' as const,
+    'fr-FR' as const,
+    'en-DEV' as const,
+];
+export type SupportedLanguage = typeof supportedLanguages[0];
 
 export function isSupportedLanguage(
     language: unknown
 ): language is SupportedLanguage {
-    if (typeof language !== 'string') return false;
-    return ['en-GB', 'fr-FR'].indexOf(language) >= 0;
+    return supportedLanguages.some((l) => l === language);
 }
 
-export function getVoiceParams(language: SupportedLanguage): SayAttributes {
+export function getVoiceParams(
+    language: SupportedLanguage
+): { language: SayLanguage & GatherLanguage; voice: SayVoice } {
     // voice list: https://docs.aws.amazon.com/polly/latest/dg/voicelist.html
     switch (language) {
         case 'en-GB':
+        case 'en-DEV':
         default:
             return {
-                language,
+                language: 'en-GB',
                 voice: 'Polly.Emma-Neural',
             };
         case 'fr-FR':
