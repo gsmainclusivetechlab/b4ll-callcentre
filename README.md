@@ -98,3 +98,9 @@ The AWS SDK is unable to authenticate you. This is normally caused by a similar
 error as above (`TABLE_NAME` incorrectly set). Add `AWS_ACCESS_KEY_ID` and
 `AWS_SECRET_ACCESS_KEY` and `AWS_REGION` to `dev/envVars.json` for your
 function.
+
+#### `Lambda responded with undefined status code` or `index.get is undefined or not exported`
+
+This is normally a sign that the lambda function has not been built correctly.
+Try running `yarn build` before `yarn dev` again. This will often be related to
+the `Error: EACCES: permission denied` error above.
