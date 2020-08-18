@@ -55,6 +55,6 @@ export const post = safeHandle(async ({ language, user, event }) => {
         }
     }
 
-    response.redirect({ method: 'GET' }, `./count`);
+    response.redirect({ method: 'GET' }, `../verify`);
     return response;
 });

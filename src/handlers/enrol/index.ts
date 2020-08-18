@@ -109,7 +109,7 @@ export const post = safeHandle(async ({ language, user, event }) => {
         getVoiceParams(language),
         __('enrolment-complete', { phrase }, language)
     );
-    response.redirect({ method: 'GET' }, `/${language}`);
+    response.redirect({ method: 'GET' }, `../menu`);
 
     return response;
 });
