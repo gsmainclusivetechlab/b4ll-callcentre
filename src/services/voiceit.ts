@@ -1,4 +1,4 @@
-import VoiceIt2, { VoiceIt } from 'voiceit2-nodejs';
+import { VoiceIt } from 'voiceit2-nodejs';
 import axios from 'axios';
 import { SupportedLanguage } from './strings';
 
@@ -6,8 +6,10 @@ const auth = {
     username: process.env.VOICEIT_API_KEY || '',
     password: process.env.VOICEIT_API_TOKEN || '',
 };
-
-const voiceIt = new VoiceIt2(auth.username, auth.password);
+const api = axios.create({
+    baseURL: 'https://api.voiceit.io/',
+    auth,
+});
 
 export const AVAILABLE_VOICEPRINTS = {
     'en-GB': {
@@ -25,104 +27,64 @@ export const AVAILABLE_VOICEPRINTS = {
         Tomorrow: "N'oubliez jamais que demain est un nouveau jour",
         //  TODO: add voiceprints after they are set up in VoiceIt
     },
-    'pt-BR': {
-        //  TODO: add voiceprints after they are set up in VoiceIt
-    },
-    'es-ES': {
-        //  TODO: add voiceprints after they are set up in VoiceIt
-    },
 };
+
+export type LegalVoicePrint<
+    L extends SupportedLanguage
+> = keyof typeof AVAILABLE_VOICEPRINTS[L];
 
 export function isLegalPhraseKey<L extends SupportedLanguage>(
     language: L,
     phraseKey: unknown
-): phraseKey is keyof typeof AVAILABLE_VOICEPRINTS[L] {
+): phraseKey is LegalVoicePrint<L> {
     if (typeof phraseKey !== 'string') return false;
     return phraseKey in AVAILABLE_VOICEPRINTS[language];
 }
 
-export function createUser(): Promise<VoiceIt.Response<VoiceIt.User>> {
-    return new Promise((resolve, reject) => {
-        try {
-            voiceIt.createUser((x) => {
-                if (x.responseCode === 'SUCC') {
-                    return resolve(x);
-                }
-                return reject(x);
-            });
-        } catch (e) {
-            reject(e);
-        }
-    });
+export async function createUser(): Promise<VoiceIt.Response<VoiceIt.User>> {
+    const result = await api.post('/users');
+    return result.data;
 }
 
-export const enrolUser = async <L extends SupportedLanguage>(
+export async function enrolUser<L extends SupportedLanguage>(
     userId: string,
     language: L,
     enrolment: {
         phrase: keyof typeof AVAILABLE_VOICEPRINTS[L];
         recordingUrl: string;
     }
-): Promise<VoiceIt.Response<VoiceIt.VoiceEnrolment>> => {
+): Promise<VoiceIt.Response<VoiceIt.VoiceEnrolment>> {
     const matches = AVAILABLE_VOICEPRINTS[language] as Record<string, string>;
     const phrase = matches[enrolment.phrase as string];
-    console.log('Input', {
+    const result = await api.post('/enrollments/voice/byUrl', {
         userId,
         phrase,
-        audioFileUrl: enrolment.recordingUrl,
+        fileUrl: enrolment.recordingUrl,
         contentLanguage: 'en-US',
+        // TODO: Restore language when we've got a full account
         // contentLanguage: language,
     });
-    const result = await axios.post(
-        'https://api.voiceit.io/enrollments/voice/byUrl',
-        {
-            userId,
-            phrase,
-            fileUrl: enrolment.recordingUrl,
-            contentLanguage: 'en-US',
-            // TODO: Restore language when we've got a full account
-            // contentLanguage: language,
-        },
-        {
-            auth,
-        }
-    );
-    console.log(result);
     return result.data;
-};
+}
 
-export const verifyUser = <L extends SupportedLanguage>(
+export async function verifyUser<L extends SupportedLanguage>(
     userId: string,
     language: L,
     enrolment: {
         phrase: keyof typeof AVAILABLE_VOICEPRINTS[L];
         recordingUrl: string;
     }
-): Promise<VoiceIt.Response<{ confidence: number }>> =>
-    new Promise((resolve, reject) => {
-        try {
-            const matches = AVAILABLE_VOICEPRINTS[language] as Record<
-                string,
-                string
-            >;
-            const phrase = matches[enrolment.phrase as string];
-            voiceIt.voiceVerificationByUrl(
-                {
-                    userId,
-                    phrase,
-                    audioFileUrl: enrolment.recordingUrl,
-                    contentLanguage: 'en-US',
-                    // TODO: Restore language when we've got a full account
-                    // contentLanguage: language,
-                },
-                (x) => {
-                    if (x.responseCode === 'SUCC') {
-                        return resolve(x);
-                    }
-                    return reject(x);
-                }
-            );
-        } catch (e) {
-            reject(e);
-        }
+): Promise<VoiceIt.Response<{ confidence: number }>> {
+    const matches = AVAILABLE_VOICEPRINTS[language] as Record<string, string>;
+    const phrase = matches[enrolment.phrase as string];
+    const result = await api.post('/verification/voice/byUrl', {
+        userId,
+        phrase,
+        fileUrl: enrolment.recordingUrl,
+        contentLanguage: 'en-US',
+        // TODO: Restore language when we've got a full account
+        // contentLanguage: language,
     });
+    console.log(result);
+    return result.data;
+}

@@ -6,8 +6,8 @@ const get = mockHandlerFn(orig.get);
 describe('Greeting message', () => {
     test.each`
         type                | user                    | message               | redirect
-        ${'strangers'}      | ${{}}                   | ${'welcome-stranger'} | ${'./en-GB/enrol'}
-        ${'enrolled users'} | ${{ isEnrolled: true }} | ${'welcome-known'}    | ${'./en-GB/verify'}
+        ${'strangers'}      | ${{}}                   | ${'welcome-stranger'} | ${'./en-DEV/enrol'}
+        ${'enrolled users'} | ${{ isEnrolled: true }} | ${'welcome-known'}    | ${'./en-DEV/verify'}
     `('should greet $type', async ({ user, message, redirect }) => {
         const result = await get({
             language: 'en-DEV',

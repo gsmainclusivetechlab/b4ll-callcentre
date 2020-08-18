@@ -34,7 +34,7 @@ describe('menuToGather', () => {
     test('should crop after 9 items', async () => {
         const response = new twiml.VoiceResponse();
         menuToGather(response, request, new Array(12).fill(mock));
-        expect(response.toString().match(/create-account-prompt-\d/g)).toEqual([
+        expect(response.toString().match(/test-\d/g)).toEqual([
             'test-1',
             'test-2',
             'test-3',

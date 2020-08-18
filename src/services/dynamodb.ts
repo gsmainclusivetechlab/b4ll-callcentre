@@ -17,11 +17,18 @@ const RecordType = t.intersection([
 ]);
 export type RecordType = t.TypeOf<typeof RecordType>;
 
-const getClient = () =>
-    new AWS.DynamoDB.DocumentClient({
-        endpoint: process.env.DYNAMO_HOST,
-        region: process.env.AWS_REGION || 'eu-west-2',
-    });
+export const getClient = (): AWS.DynamoDB.DocumentClient =>
+    new AWS.DynamoDB.DocumentClient(
+        process.env.DYNAMO_HOST
+            ? {
+                  // we only provide a host on a local dynamodb, and it needs _something_ as access key
+                  endpoint: process.env.DYNAMO_HOST,
+                  accessKeyId: 'fake-id',
+                  secretAccessKey: 'fake-key',
+                  region: 'eu-west-2',
+              }
+            : {}
+    );
 
 export function getItem(id: string): Promise<RecordType> {
     return getClient()

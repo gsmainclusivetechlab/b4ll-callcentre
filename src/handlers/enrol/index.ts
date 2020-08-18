@@ -10,7 +10,7 @@ import {
     isLegalPhraseKey,
 } from '../../services/voiceit';
 
-const REQUIRED_ENROLMENTS = 3;
+export const REQUIRED_ENROLMENTS = 3;
 
 export const get = safeHandle(async ({ language, user }) => {
     const response = new twiml.VoiceResponse();

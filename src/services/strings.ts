@@ -34,7 +34,7 @@ export function getVoiceParams(
         default:
             return {
                 language: 'en-GB',
-                voice: 'Polly.Emma',
+                voice: 'Polly.Emma-Neural',
             };
         case 'fr-FR':
             return {
