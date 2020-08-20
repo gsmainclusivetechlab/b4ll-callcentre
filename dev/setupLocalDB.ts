@@ -5,9 +5,18 @@ import { getTemplate, DynamoDBTableTemplate } from './parseTemplate';
 export async function setupLocalDDB(): Promise<void> {
     const ddbPromise = upOne('dynamodb', { cwd: __dirname });
     const cfn = getTemplate(__dirname + '/../template.yaml');
-    const tables = Object.values(cfn.Resources).filter(
-        (r): r is DynamoDBTableTemplate => r.Type === 'AWS::DynamoDB::Table'
-    );
+    const tables = Object.keys(cfn.Resources)
+        .filter((k) => cfn.Resources[k].Type === 'AWS::DynamoDB::Table')
+        .map((name) => {
+            const r = cfn.Resources[name] as DynamoDBTableTemplate;
+            return {
+                ...r,
+                Properties: {
+                    ...r.Properties,
+                    TableName: r.Properties.TableName || name,
+                },
+            };
+        });
     await ddbPromise.then(async () => {
         process.stdout.write('\nSetting up test tables... ');
         const db = new AWS.DynamoDB({

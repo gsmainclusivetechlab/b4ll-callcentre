@@ -2,6 +2,16 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
+Parameters:
+  VoiceItAPIToken:
+    Type: String
+  VoiceItAPIKey:
+    Type: String
+  # Variables below should be blank in real deployments, but are used locally in dev
+  DynamoHost:
+    Type: String
+    Default: ''
+
 Globals:
   Function:
     Runtime: nodejs12.x
@@ -10,6 +20,9 @@ Globals:
     Environment:
       Variables:
         TABLE_NAME: !Ref AccountsTable
+        DYNAMO_HOST: !Ref DynamoHost
+        VOICEIT_API_KEY: !Ref VoiceItAPIKey
+        VOICEIT_API_TOKEN: !Ref VoiceItAPIToken
 
 Resources:
   ApiGatewayApi:
@@ -31,62 +44,90 @@ Resources:
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
-  RootFunction:
+
+  MenuWelcome:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.post
-      CodeUri: ./dist/handlers/root
+      Handler: index.get
+      CodeUri: ./dist/handlers/menu
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}
+            Path: /{lang}/menu
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+  MenuFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/menu
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/menu
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi
 
-  CallerCountFunction:
+  EnrolWelcome:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.get
-      CodeUri: ./dist/handlers/callerCount
+      CodeUri: ./dist/handlers/enrol
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/count
+            Path: /{lang}/enrol
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
-
-  RecordMessageWelcome:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.get
-      CodeUri: ./dist/handlers/record
-      Role: !GetAtt LambdaRole.Arn
-      Events:
-        HTTP:
-          Type: Api
-          Properties:
-            Path: /{lang}/record
-            Method: GET
-            RestApiId:
-              Ref: ApiGatewayApi
-
-  RecordMessageFunction:
+  EnrolFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.post
-      CodeUri: ./dist/handlers/record
+      CodeUri: ./dist/handlers/enrol
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/record
+            Path: /{lang}/enrol/{phraseKey}
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  VerificationWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/verify
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/verify
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+  VerificationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/verify
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/verify/{phraseKey}
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi
@@ -107,6 +148,9 @@ Resources:
   LambdaRole:
     Type: AWS::IAM::Role
     Properties:
+      Tags:
+        - Key: project
+          Value: bilt
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -129,6 +173,7 @@ Resources:
                   - 'dynamodb:PutItem'
                   - 'dynamodb:UpdateItem'
                 Resource: !GetAtt AccountsTable.Arn
+      PermissionsBoundary: arn:aws:iam::736485099071:policy/LambdaRoleBoundaries
 
 Outputs:
   APIEndpoint:

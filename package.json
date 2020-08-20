@@ -54,7 +54,7 @@
         "@types/webpack": "^4.41.21",
         "@typescript-eslint/eslint-plugin": "^3.7.0",
         "@typescript-eslint/parser": "^3.7.0",
-        "aws-sam-api-proxy": "^0.0.8",
+        "aws-sam-api-proxy": "https://github.com/cjol/aws-sam-api-proxy#npm",
         "aws-sdk": "^2.234.1",
         "concurrently": "^5.2.0",
         "docker-compose": "^0.23.5",
@@ -87,6 +87,6 @@
     },
     "lint-staged": {
         "*.ts": "eslint --cache --fix --max-warnings=1",
-        "*.{ts,json,md,sh,yml,yaml}": "prettier --write"
+        "*.{ts,json,md,yml,yaml}": "prettier --write"
     }
 }

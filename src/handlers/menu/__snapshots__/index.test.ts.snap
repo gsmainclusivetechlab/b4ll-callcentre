@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`menu should list correct options 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Gather input="dtmf speech" method="POST" language="en-GB" hints="mobile money,money,bill,pay,pay bill,update,account,update account" speechTimeout="auto" numDigits="1" timeout="5" speechModel="numbers_and_commands">
+        <Say language="en-GB" voice="Polly.Emma-Neural">
+            mobile-money-prompt
+        </Say>
+        <Say language="en-GB" voice="Polly.Emma-Neural">
+            bill-prompt
+        </Say>
+        <Say language="en-GB" voice="Polly.Emma-Neural">
+            account-prompt
+        </Say>
+    </Gather>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        did-not-understand
+    </Say>
+    <Redirect method="GET">
+        ./menu
+    </Redirect>
+</Response>
+`;
+
+exports[`menu should respond to {"Digits": "1"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        not-implemented
+    </Say>
+    <Redirect method="GET">
+        ./menu
+    </Redirect>
+</Response>
+`;
+
+exports[`menu should respond to {"Digits": "2"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        not-implemented
+    </Say>
+    <Redirect method="GET">
+        ./menu
+    </Redirect>
+</Response>
+`;
+
+exports[`menu should respond to {"Digits": "3"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        not-implemented
+    </Say>
+    <Redirect method="GET">
+        ./menu
+    </Redirect>
+</Response>
+`;
+
+exports[`menu should respond to {"SpeechResult": "go swimming"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        did-not-understand
+    </Say>
+    <Redirect method="GET">
+        ./menu
+    </Redirect>
+</Response>
+`;
+
+exports[`menu should respond to {"SpeechResult": "mobile money"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        not-implemented
+    </Say>
+    <Redirect method="GET">
+        ./menu
+    </Redirect>
+</Response>
+`;
+
+exports[`menu should respond to {"SpeechResult": "pay bill"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        not-implemented
+    </Say>
+    <Redirect method="GET">
+        ./menu
+    </Redirect>
+</Response>
+`;
+
+exports[`menu should respond to {"SpeechResult": "update account"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Say language="en-GB" voice="Polly.Emma-Neural">
+        not-implemented
+    </Say>
+    <Redirect method="GET">
+        ./menu
+    </Redirect>
+</Response>
+`;

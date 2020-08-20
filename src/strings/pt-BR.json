@@ -1,0 +1,12 @@
+{
+    "test": "Olá!",
+    "welcome-stranger": "Olá, parece que você ainda não está cadastrado. Pressione 1 ou fale a palavra cadastrar, ou, se preferir aguarde que te direcionamos ao cadastro.",
+    "welcome-known": "Olá de novo! Por favor diga o nome do serviço que você deseja ou escute as opções disponíveis. Se você deseja gravar uma mensagem, pressione 1. Se você deseja ouvir a sua gravação, pressione 2. Ou, espere.",
+    "did-not-understand": "Desculpe, não entendi",
+    "caller-count": "Thanks for calling. This was the {count, selectordinal, one{#st} two{#nd} few{#rd} other{#th}} time you've called.",
+    "recording-request": "Por favor, grave sua mensagem e pressione cerquilha",
+    "verification-request": "Por favor, repita sua frase chave:",
+    "recording-confirmation": "Que legal! Veja como ficou a sua gravação:",
+    "verification-confirmation": "'Ótimo'! A sua frase chave foi validada com sucesso",
+    "error": "Tivemos um erro. {message}"
+}

@@ -1,19 +1,18 @@
 import { menuToGather, MenuOption, menuToHandler } from './menu';
 import { twiml } from 'twilio';
 import qs from 'querystring';
-import { ParsedRequest } from './errors';
 
 const mock: MenuOption = {
     triggers: ['record', 'sign up', 'enrol'],
-    description: 'record-message-prompt',
+    description: 'test-indexed',
     handler: async () => {
         const response = new twiml.VoiceResponse();
         response.say('menu-selected');
         return response;
     },
 };
-const descriptionFunction = async ({ user }: ParsedRequest) =>
-    user.recordingUrl ? 'welcome-known' : 'welcome-stranger';
+const descriptionFunction = async () => 'test';
+
 const request = {
     language: 'en-DEV' as const,
     user: { id: '234' },
@@ -25,7 +24,7 @@ describe('menuToGather', () => {
         case                      | menu                                               | expectation
         ${'empty menu'}           | ${[]}                                              | ${expect.not.stringContaining('Say')}
         ${'empty triggers'}       | ${[{ ...mock, triggers: [] }]}                     | ${expect.stringContaining('hints=""')}
-        ${'description function'} | ${[{ ...mock, description: descriptionFunction }]} | ${expect.stringContaining('welcome-stranger')}
+        ${'description function'} | ${[{ ...mock, description: descriptionFunction }]} | ${expect.stringContaining('test')}
     `('should handle $case', async ({ menu, expectation }) => {
         const response = new twiml.VoiceResponse();
         await menuToGather(response, request, menu);
@@ -35,16 +34,16 @@ describe('menuToGather', () => {
     test('should crop after 9 items', async () => {
         const response = new twiml.VoiceResponse();
         menuToGather(response, request, new Array(12).fill(mock));
-        expect(response.toString().match(/record-message-prompt-\d/g)).toEqual([
-            'record-message-prompt-1',
-            'record-message-prompt-2',
-            'record-message-prompt-3',
-            'record-message-prompt-4',
-            'record-message-prompt-5',
-            'record-message-prompt-6',
-            'record-message-prompt-7',
-            'record-message-prompt-8',
-            'record-message-prompt-9',
+        expect(response.toString().match(/test-\d/g)).toEqual([
+            'test-1',
+            'test-2',
+            'test-3',
+            'test-4',
+            'test-5',
+            'test-6',
+            'test-7',
+            'test-8',
+            'test-9',
         ]);
     });
 });

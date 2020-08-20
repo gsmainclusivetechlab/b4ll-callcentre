@@ -11,5 +11,5 @@
         "tsconfig.json": true,
         "yarn.lock": true
     },
-    "cSpell.words": ["twilio", "twiml"]
+    "cSpell.words": ["SUCC", "twilio", "twiml", "voiceit"]
 }

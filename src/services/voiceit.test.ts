@@ -1,134 +1,85 @@
-import VoiceIt from 'voiceit2-nodejs';
-jest.mock('voiceit2-nodejs');
-import { createUser, enrolUser, verifyUser } from './voiceit';
-const MockedVoiceIt = (VoiceIt as unknown) as jest.Mock;
+import axios from 'axios';
+jest.mock('axios');
+const mockAxios = axios as jest.Mocked<typeof axios>;
+mockAxios.create.mockReturnValue(mockAxios);
+import { isLegalPhraseKey, createUser, enrolUser, verifyUser } from './voiceit';
 
 describe('voiceIt service', () => {
-    const voiceIt = MockedVoiceIt.mock.instances[0];
-
-    test('should call sdk createUser', async () => {
-        voiceIt.createUser = jest.fn(function (cb) {
-            cb({
-                responseCode: 'SUCC',
-                createdAt: 0,
-                userId: '123',
-            });
-        });
-        expect(createUser()).resolves.toMatchObject({ userId: '123' });
-    });
-    test('createUser should handle failures', async () => {
-        voiceIt.createUser = jest.fn(function (cb) {
-            cb({
-                responseCode: 'FAIL',
-                message: 'Something went wrong',
-            });
-        });
-        expect(createUser()).rejects.toMatchObject({
-            message: 'Something went wrong',
-        });
-    });
-    test('createUser should handle errors', async () => {
-        voiceIt.createUser = jest.fn(function () {
-            throw new Error('invalid implementation');
-        });
-        expect(createUser()).rejects.toThrow('invalid implementation');
+    beforeEach(() => {
+        mockAxios.post.mockClear();
+        mockAxios.get.mockClear();
     });
 
-    test('should call sdk enrolUser', async () => {
-        voiceIt.createVoiceEnrolmentByUrl = jest.fn(function (input, cb) {
-            cb({
-                responseCode: 'SUCC',
-                textConfidence: 0.9,
-            });
+    test('isLegalPhraseKey', async () => {
+        expect(isLegalPhraseKey('en-DEV', 'bad')).toBeFalsy();
+        expect(isLegalPhraseKey('en-DEV', 'Zoo')).toBeTruthy();
+        expect(isLegalPhraseKey('en-DEV', 0)).toBeFalsy();
+        expect(isLegalPhraseKey('en-DEV', { phraseKey: 'Zoo' })).toBeFalsy();
+        expect(isLegalPhraseKey('fr-FR', 'Zoo')).toBeFalsy();
+    });
+
+    test('createUser should call api', async () => {
+        mockAxios.post.mockResolvedValueOnce({ data: { resultCode: 'SUCC' } });
+        const result = await createUser();
+        expect(mockAxios.post).toHaveBeenCalledWith('/users');
+        expect(result).toEqual({ resultCode: 'SUCC' });
+    });
+
+    test('enrolUser should call api', async () => {
+        mockAxios.post.mockResolvedValueOnce({ data: { resultCode: 'SUCC' } });
+        const result = await enrolUser('user_abc', 'en-DEV', {
+            phrase: 'Zoo',
+            recordingUrl: 'file.wav',
         });
-        expect(
-            enrolUser('234', 'en-GB', {
-                phrase: 'Tomorrow',
-                recordingUrl: '../voice.wav',
-            })
-        ).resolves.toMatchObject({ textConfidence: 0.9 });
-        expect(voiceIt.createVoiceEnrolmentByUrl).toHaveBeenCalledWith(
+        expect(mockAxios.post).toHaveBeenCalledWith(
+            '/enrollments/voice/byUrl',
             {
-                userId: '234',
-                phrase: 'Never forget tomorrow is a new day',
-                audioFileUrl: '../voice.wav',
-                contentLanguage: 'en-GB',
-            },
-            expect.any(Function)
+                userId: 'user_abc',
+                phrase: 'zoo-phrase',
+                fileUrl: 'file.wav',
+                contentLanguage: 'en-US',
+            }
         );
-    });
-    test('enrolUser should handle failures', async () => {
-        voiceIt.createVoiceEnrolmentByUrl = jest.fn(function (input, cb) {
-            cb({
-                responseCode: 'FAIL',
-                textConfidence: 0.1,
-            });
-        });
-        expect(
-            enrolUser('234', 'en-GB', {
-                phrase: 'Tomorrow',
-                recordingUrl: '../voice.wav',
-            })
-        ).rejects.toMatchObject({ textConfidence: 0.1 });
-    });
-    test('enrolUser should handle failures', async () => {
-        voiceIt.createVoiceEnrolmentByUrl = jest.fn(function () {
-            throw new Error('A problem occurred');
-        });
-        expect(
-            enrolUser('234', 'en-GB', {
-                phrase: 'Tomorrow',
-                recordingUrl: '../voice.wav',
-            })
-        ).rejects.toThrow('A problem occurred');
+        expect(result).toEqual({ resultCode: 'SUCC' });
     });
 
-    test('should call sdk verifyUser', async () => {
-        voiceIt.voiceVerificationByUrl = jest.fn(function (input, cb) {
-            cb({
-                responseCode: 'SUCC',
-                confidence: 0.85,
-            });
+    test('verifyUser should call api', async () => {
+        mockAxios.post.mockResolvedValueOnce({ data: { resultCode: 'SUCC' } });
+        const result = await verifyUser('user_abc', 'en-DEV', {
+            phrase: 'Zoo',
+            recordingUrl: 'file.wav',
         });
-        expect(
-            verifyUser('234', 'en-GB', {
-                phrase: 'Tomorrow',
-                recordingUrl: '../voice.wav',
-            })
-        ).resolves.toMatchObject({ confidence: 0.85 });
-        expect(voiceIt.createVoiceEnrolmentByUrl).toHaveBeenCalledWith(
+        expect(mockAxios.post).toHaveBeenCalledWith(
+            '/verification/voice/byUrl',
             {
-                userId: '234',
-                phrase: 'Never forget tomorrow is a new day',
-                audioFileUrl: '../voice.wav',
-                contentLanguage: 'en-GB',
-            },
-            expect.any(Function)
+                userId: 'user_abc',
+                phrase: 'zoo-phrase',
+                fileUrl: 'file.wav',
+                contentLanguage: 'en-US',
+            }
         );
+        expect(result).toEqual({ resultCode: 'SUCC' });
     });
-    test('enrolUser should handle failures', async () => {
-        voiceIt.voiceVerificationByUrl = jest.fn(function (input, cb) {
-            cb({
-                responseCode: 'FAIL',
-                textConfidence: 0.1,
-            });
+
+    test('constructs auth from env', () => {
+        const OLD_ENV = process.env;
+        require('./voiceit');
+        expect(mockAxios.create).toHaveBeenCalledWith({
+            baseURL: 'https://api.voiceit.io/',
+            auth: {
+                username: 'key_voiceit',
+                password: 'tok_voiceit',
+            },
         });
-        expect(
-            verifyUser('234', 'en-GB', {
-                phrase: 'Tomorrow',
-                recordingUrl: '../voice.wav',
-            })
-        ).rejects.toMatchObject({ textConfidence: 0.1 });
-    });
-    test('enrolUser should handle failures', async () => {
-        voiceIt.voiceVerificationByUrl = jest.fn(function () {
-            throw new Error('A problem occurred');
-        });
-        expect(
-            verifyUser('234', 'en-GB', {
-                phrase: 'Tomorrow',
-                recordingUrl: '../voice.wav',
-            })
-        ).rejects.toThrow('A problem occurred');
+
+        jest.resetModules();
+        process.env = {
+            ...OLD_ENV,
+            VOICEIT_API_KEY: undefined,
+            VOICEIT_API_TOKEN: undefined,
+        };
+
+        require('./voiceit');
+        process.env = OLD_ENV; // restore old env
     });
 });
