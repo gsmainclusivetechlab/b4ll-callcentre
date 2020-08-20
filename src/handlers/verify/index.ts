@@ -67,10 +67,11 @@ export const post = safeHandle(async ({ language, user, event }) => {
 
     if (verification.responseCode === 'SUCC') {
         // successfully authenticated
+        const { confidence } = verification;
         const response = new twiml.VoiceResponse();
         response.say(
             getVoiceParams(language),
-            __('verification-confirmation', language)
+            __('verification-confirmation', { confidence }, language)
         );
         response.redirect({ method: 'GET' }, '../menu');
         return response;

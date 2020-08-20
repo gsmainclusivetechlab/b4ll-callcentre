@@ -12,7 +12,7 @@
     "enrol-confirmation": "Great. To complete your registration, we need {remaining, plural, one {# more enrolment} other {# more enrolments}}.",
     "enrolment-complete": "Thanks. Your voice is now registered.",
     "verification-request": "To access your account, please repeat the following phrase:",
-    "verification-confirmation": "Great! Your passphrase has been validated",
+    "verification-confirmation": "Great! Your passphrase has been validated with {confidence}% confidence.",
     "verification-failed": "We were not able to verify your voice. Please try again.",
     "error": "An error occurred. {message}"
 }
