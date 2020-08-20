@@ -57,14 +57,14 @@ export const safeHandle = (
             const language = isSupportedLanguage(maybeLang)
                 ? maybeLang
                 : 'en-GB';
-            const response_1 = new twiml.VoiceResponse();
+            const response = new twiml.VoiceResponse();
             const message =
                 typeof err === 'string'
                     ? err
                     : typeof err.message === 'string'
                     ? err.message
                     : '';
-            response_1.say(
+            response.say(
                 getVoiceParams(language),
                 __('error', { message }, language)
             );
@@ -73,7 +73,7 @@ export const safeHandle = (
                 headers: {
                     'Content-Type': 'text/xml',
                 },
-                body: response_1.toString(),
+                body: response.toString(),
             };
         }
     };

@@ -85,6 +85,5 @@ export async function verifyUser<L extends SupportedLanguage>(
         // TODO: Restore language when we've got a full account
         // contentLanguage: language,
     });
-    console.log(result);
     return result.data;
 }

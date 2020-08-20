@@ -2,6 +2,16 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
+Parameters:
+  VoiceItAPIToken:
+    Type: String
+  VoiceItAPIKey:
+    Type: String
+  # Variables below should be blank in real deployments, but are used locally in dev
+  DynamoHost:
+    Type: String
+    Default: ''
+
 Globals:
   Function:
     Runtime: nodejs12.x
@@ -10,6 +20,9 @@ Globals:
     Environment:
       Variables:
         TABLE_NAME: !Ref AccountsTable
+        DYNAMO_HOST: !Ref DynamoHost
+        VOICEIT_API_KEY: !Ref VoiceItAPIKey
+        VOICEIT_API_TOKEN: !Ref VoiceItAPIToken
 
 Resources:
   ApiGatewayApi:
@@ -135,6 +148,9 @@ Resources:
   LambdaRole:
     Type: AWS::IAM::Role
     Properties:
+      Tags:
+        - Key: project
+          Value: bilt
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -157,6 +173,7 @@ Resources:
                   - 'dynamodb:PutItem'
                   - 'dynamodb:UpdateItem'
                 Resource: !GetAtt AccountsTable.Arn
+      PermissionsBoundary: arn:aws:iam::736485099071:policy/LambdaRoleBoundaries
 
 Outputs:
   APIEndpoint:

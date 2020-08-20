@@ -87,6 +87,6 @@
     },
     "lint-staged": {
         "*.ts": "eslint --cache --fix --max-warnings=1",
-        "*.{ts,json,md,sh,yml,yaml}": "prettier --write"
+        "*.{ts,json,md,yml,yaml}": "prettier --write"
     }
 }
