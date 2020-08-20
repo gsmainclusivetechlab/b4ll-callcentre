@@ -1,7 +1,7 @@
-import * as orig from '.';
+import * as handler from '.';
 import { mockHandlerFn } from '../../../dev/mockHandlerFn';
 
-const get = mockHandlerFn(orig.get);
+const get = mockHandlerFn(handler.get);
 
 describe('Greeting message', () => {
     test.each`

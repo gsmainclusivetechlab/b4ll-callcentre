@@ -74,17 +74,17 @@ export const post = safeHandle(async ({ language, user, event }) => {
     // update our database
     const prevEnrolments = user.enrolments || {};
     const enrolmentCount = (prevEnrolments[phraseKey] || 0) + 1;
+    const remaining = REQUIRED_ENROLMENTS - enrolmentCount;
     await putItem({
         ...user,
         enrolments: {
             ...prevEnrolments,
             [phraseKey]: enrolmentCount,
         },
-        isEnrolled: user.isEnrolled || enrolmentCount >= REQUIRED_ENROLMENTS,
+        isEnrolled: user.isEnrolled || remaining <= 0,
     });
 
     const response = new twiml.VoiceResponse();
-    const remaining = REQUIRED_ENROLMENTS - enrolmentCount;
     if (remaining > 0) {
         // repeat to record another enrolment
         response.say(
@@ -105,10 +105,7 @@ export const post = safeHandle(async ({ language, user, event }) => {
     }
 
     // made all enrolments, now return to main menu
-    response.say(
-        getVoiceParams(language),
-        __('enrolment-complete', { phrase }, language)
-    );
+    response.say(getVoiceParams(language), __('enrolment-complete', language));
     response.redirect({ method: 'GET' }, `../menu`);
 
     return response;

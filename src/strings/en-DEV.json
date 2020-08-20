@@ -9,10 +9,10 @@
     "welcome-known": "welcome-known",
     "did-not-understand": "did-not-understand",
     "enrol-message": "enrol-message",
-    "enrol-confirmation": "enrol-confirmation",
+    "enrol-confirmation": "enrol-confirmation: {remaining} remaining",
     "enrolment-complete": "enrolment-complete",
     "verification-request": "verification-request",
-    "verification-confirmation": "verification-confirmation",
+    "verification-confirmation": "verification-confirmation: confidence {confidence}%",
     "verification-failed": "verification-failed",
     "error": "error"
 }

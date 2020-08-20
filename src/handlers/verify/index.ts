@@ -11,9 +11,7 @@ import { REQUIRED_ENROLMENTS } from '../enrol';
 
 export const get = safeHandle(async ({ language, user }) => {
     if (!user.isEnrolled) {
-        throw new Error(
-            'You must be enrolled before signing in. ' + JSON.stringify(user)
-        );
+        throw new Error('You must be enrolled before signing in.');
     }
     const { enrolments = {} } = user;
     const phraseKeys = Object.keys(enrolments).filter(
@@ -32,7 +30,7 @@ export const get = safeHandle(async ({ language, user }) => {
         getVoiceParams(language),
         __('verification-request', language)
     );
-    response.pause({ length: 0.5 });
+    response.pause({ length: 1 });
     response.say(getVoiceParams(language), phrase);
     response.record({
         action: `./verify/${phraseKey}`,
@@ -57,7 +55,7 @@ export const post = safeHandle(async ({ language, user, event }) => {
         throw new Error('Could not retrieve recording URL.');
     }
     if (!voiceItId) {
-        throw new Error('Voice IT user does not exist');
+        throw new Error('VoiceIT user does not exist');
     }
 
     const verification = await verifyUser(voiceItId, language, {
@@ -65,10 +63,10 @@ export const post = safeHandle(async ({ language, user, event }) => {
         recordingUrl: RecordingUrl,
     });
 
+    const response = new twiml.VoiceResponse();
     if (verification.responseCode === 'SUCC') {
         // successfully authenticated
         const { confidence } = verification;
-        const response = new twiml.VoiceResponse();
         response.say(
             getVoiceParams(language),
             __('verification-confirmation', { confidence }, language)
@@ -76,7 +74,6 @@ export const post = safeHandle(async ({ language, user, event }) => {
         response.redirect({ method: 'GET' }, '../menu');
         return response;
     }
-    const response = new twiml.VoiceResponse();
     response.say(getVoiceParams(language), __('verification-failed', language));
     response.redirect({ method: 'GET' }, `../verify`);
     return response;

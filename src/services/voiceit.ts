@@ -18,10 +18,9 @@ export const AVAILABLE_VOICEPRINTS = {
         Telecom: 'please log in to my telecom services account',
     },
     'en-DEV': {
-        // These will get mocked anyway so we can use whatever
-        Tomorrow: 'Never forget tomorrow is a new day',
-        Zoo: 'Zoos are filled with small and large animals',
-        Telecom: 'please log in to my telecom services account',
+        Tomorrow: 'tomorrow-phrase',
+        Zoo: 'zoo-phrase',
+        Telecom: 'telecom-phrase',
     },
     'fr-FR': {
         Tomorrow: "N'oubliez jamais que demain est un nouveau jour",
