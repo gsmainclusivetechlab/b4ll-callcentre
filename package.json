@@ -4,15 +4,18 @@
     "description": "A PoC of an account management helpline using voice biometrics",
     "license": "MIT",
     "scripts": {
+        "build:docs": "docusaurus build",
         "build:clean": "rm -rf -v dist/*",
         "build": "NODE_ENV=${NODE_ENV:-production} webpack --progress",
+        "deploy:docs": "docusaurus deploy",
         "deploy:clean": "env-cmd dev/scripts/clean-deployment.sh",
         "deploy:logs": "env-cmd dev/scripts/logs.sh",
         "deploy": "env-cmd dev/scripts/deploy.sh",
+        "dev:docs": "docusaurus start",
         "dev:build": "webpack -w",
         "dev:clean": "sam-proxy teardown $npm_package_name && docker-compose down",
         "dev:run": "env-cmd dev/scripts/dev.sh",
-        "dev": "concurrently \"npm:dev:build\" \"npm:dev:run\"",
+        "dev": "concurrently \"npm:dev:build\" \"npm:dev:run\" \"npm:dev:docs\"",
         "env": "cp -n .example.env .env",
         "lint": "prettier --write . && eslint --fix .",
         "postinstall": "yarn env",
@@ -90,7 +93,15 @@
         "*.{ts,json,md,yml,yaml}": "prettier --write"
     },
     "dependencies": {
+        "@docusaurus/core": "2.0.0-alpha.63",
+        "@docusaurus/preset-classic": "2.0.0-alpha.63",
+        "@mdx-js/react": "^1.5.8",
         "@types/jsonwebtoken": "^8.5.0",
-        "jsonwebtoken": "^8.5.1"
+        "axios": "^0.20.0",
+        "clsx": "^1.1.1",
+        "dotenv-webpack": "2",
+        "jsonwebtoken": "^8.5.1",
+        "react": "^16.8.4",
+        "react-dom": "^16.8.4"
     }
 }
