@@ -9,6 +9,7 @@ const params = {
     queryStringParameters: {
         Caller: '+123456789',
     },
+    headers: {},
 };
 
 const postParams = {

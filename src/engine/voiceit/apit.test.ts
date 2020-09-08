@@ -20,7 +20,7 @@ describe('voiceIt service', () => {
     test('enrolUser should call api', async () => {
         mockAxios.post.mockResolvedValueOnce({ data: { resultCode: 'SUCC' } });
         const result = await enrolUser('user_abc', 'en-DEV', {
-            phrase: 'Zoo',
+            phrase: 'zoo-phrase',
             recordingUrl: 'file.wav',
         });
         expect(mockAxios.post).toHaveBeenCalledWith(
@@ -29,7 +29,7 @@ describe('voiceIt service', () => {
                 userId: 'user_abc',
                 phrase: 'zoo-phrase',
                 fileUrl: 'file.wav',
-                contentLanguage: 'en-US',
+                contentLanguage: 'en-DEV',
             }
         );
         expect(result).toEqual({ resultCode: 'SUCC' });
@@ -37,7 +37,7 @@ describe('voiceIt service', () => {
 
     test('constructs auth from env', () => {
         const OLD_ENV = process.env;
-        require('./voiceit');
+        require('./api');
         expect(mockAxios.create).toHaveBeenCalledWith({
             baseURL: 'https://api.voiceit.io/',
             auth: {
@@ -53,7 +53,7 @@ describe('voiceIt service', () => {
             VOICEIT_API_TOKEN: undefined,
         };
 
-        require('./voiceit');
+        require('./api');
         process.env = OLD_ENV; // restore old env
     });
 });
