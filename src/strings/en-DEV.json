@@ -1,5 +1,6 @@
 {
     "test": "test",
+    "unauthorised": "unauthorised",
     "test-indexed": "test-{index}",
     "mobile-money-prompt": "mobile-money-prompt",
     "bill-prompt": "bill-prompt",
