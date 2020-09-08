@@ -77,64 +77,6 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
-  EnrolWelcome:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.get
-      CodeUri: ./dist/handlers/enrol
-      Role: !GetAtt LambdaRole.Arn
-      Events:
-        HTTP:
-          Type: Api
-          Properties:
-            Path: /{lang}/enrol
-            Method: GET
-            RestApiId:
-              Ref: ApiGatewayApi
-  EnrolFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.post
-      CodeUri: ./dist/handlers/enrol
-      Role: !GetAtt LambdaRole.Arn
-      Events:
-        HTTP:
-          Type: Api
-          Properties:
-            Path: /{lang}/enrol/{phraseKey}
-            Method: POST
-            RestApiId:
-              Ref: ApiGatewayApi
-
-  VerificationWelcome:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.get
-      CodeUri: ./dist/handlers/verify
-      Role: !GetAtt LambdaRole.Arn
-      Events:
-        HTTP:
-          Type: Api
-          Properties:
-            Path: /{lang}/verify
-            Method: GET
-            RestApiId:
-              Ref: ApiGatewayApi
-  VerificationFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.post
-      CodeUri: ./dist/handlers/verify
-      Role: !GetAtt LambdaRole.Arn
-      Events:
-        HTTP:
-          Type: Api
-          Properties:
-            Path: /{lang}/verify/{phraseKey}
-            Method: POST
-            RestApiId:
-              Ref: ApiGatewayApi
-
   AccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:
