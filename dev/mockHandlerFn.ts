@@ -1,13 +1,14 @@
 /* istanbul ignore file */
 
-import { safeHandle, ParsedRequest } from '../src/services/errors';
+import { safeHandle, ParsedRequest } from '../src/services/safeHandle';
 
 type DeepPartial<T> = {
     [P in keyof T]?: DeepPartial<T[P]>;
 };
 type Handler = Parameters<typeof safeHandle>[0];
-type TestInput = Omit<ParsedRequest, 'event'> & {
+type TestInput = Omit<ParsedRequest, 'event' | 'auth'> & {
     event?: DeepPartial<ParsedRequest['event']>;
+    auth?: ParsedRequest['auth'];
 };
 type HandlerResult = ReturnType<Handler>;
 

@@ -1,6 +1,6 @@
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
-import { safeHandle } from '../../services/errors';
+import { safeHandle } from '../../services/safeHandle';
 
 export const get = safeHandle(async (request) => {
     const { language } = request;

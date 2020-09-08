@@ -16,6 +16,7 @@ const descriptionFunction = async () => 'test';
 const request = {
     language: 'en-DEV' as const,
     user: { id: '234' },
+    auth: {} as never,
     event: {} as never,
 };
 
