@@ -7,6 +7,8 @@ Parameters:
     Type: String
   VoiceItAPIKey:
     Type: String
+  JWTKey:
+    Type: String
   # Variables below should be blank in real deployments, but are used locally in dev
   DynamoHost:
     Type: String
@@ -23,6 +25,7 @@ Globals:
         DYNAMO_HOST: !Ref DynamoHost
         VOICEIT_API_KEY: !Ref VoiceItAPIKey
         VOICEIT_API_TOKEN: !Ref VoiceItAPIToken
+        JWT_KEY: !Ref JWTKey
 
 Resources:
   ApiGatewayApi:

@@ -88,5 +88,9 @@
     "lint-staged": {
         "*.ts": "eslint --cache --fix --max-warnings=1",
         "*.{ts,json,md,yml,yaml}": "prettier --write"
+    },
+    "dependencies": {
+        "@types/jsonwebtoken": "^8.5.0",
+        "jsonwebtoken": "^8.5.1"
     }
 }
