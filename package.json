@@ -11,7 +11,7 @@
         "deploy:clean": "env-cmd dev/scripts/clean-deployment.sh",
         "deploy:logs": "env-cmd dev/scripts/logs.sh",
         "deploy": "env-cmd dev/scripts/deploy.sh",
-        "dev:docs": "docusaurus start",
+        "dev:docs": "docusaurus start --port=9000",
         "dev:build": "webpack -w",
         "dev:clean": "sam-proxy teardown $npm_package_name && docker-compose down",
         "dev:run": "env-cmd dev/scripts/dev.sh",

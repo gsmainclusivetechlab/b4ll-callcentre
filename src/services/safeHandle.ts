@@ -1,4 +1,8 @@
-import { APIGatewayProxyHandler, APIGatewayProxyEvent } from 'aws-lambda';
+import {
+    APIGatewayProxyHandler,
+    APIGatewayProxyEvent,
+    APIGatewayProxyResult,
+} from 'aws-lambda';
 import {
     getVoiceParams,
     __,
@@ -26,12 +30,18 @@ export interface ParsedRequest {
 async function parseRequest(
     event: APIGatewayProxyEvent
 ): Promise<ParsedRequest> {
+    console.log('parsing', event);
     const language = event.pathParameters?.lang;
     if (!isSupportedLanguage(language)) {
         throw new Error('Unsupported language');
     }
     const body = qs.parse(event.body || '');
-    const Caller = body.Caller || event.queryStringParameters?.Caller;
+    const callerKey =
+        body.Direction === 'outbound-api' ||
+        event.queryStringParameters?.Direction === 'outbount-api'
+            ? 'Called'
+            : 'Caller';
+    const Caller = body[callerKey] || event.queryStringParameters?.[callerKey];
     if (typeof Caller !== 'string' || Caller.length < 3) {
         throw new Error('Unable to identify caller');
     }
@@ -59,6 +69,14 @@ async function parseRequest(
             // ignore the failure and treat this as an unauthorized user
         }
     }
+    console.log('parse result ', { language, user, event, auth });
+
+    // normalise event path
+    if (event.requestContext) {
+        event.path = event.requestContext.path;
+        (event as any).domainName = event.requestContext.domainName;
+    }
+
     return {
         language,
         user,
@@ -82,18 +100,15 @@ export const safeHandle = (
             }
 
             const response = await f(request);
-            return {
-                statusCode: 200,
-                headers: {
-                    'Content-Type': 'text/xml',
-                },
-                body: response.toString(),
-            };
+            return serialise(response, 200);
         } catch (err) {
             const maybeLang = e.pathParameters?.lang;
             const language = isSupportedLanguage(maybeLang)
                 ? maybeLang
                 : 'en-GB';
+            if (typeof err === 'object') {
+                return serialise(err, err.statusCode || 500);
+            }
             const response = new twiml.VoiceResponse();
             const message =
                 typeof err === 'string'
@@ -105,15 +120,32 @@ export const safeHandle = (
                 getVoiceParams(language),
                 __('error', { message }, language)
             );
-            return {
-                statusCode: 500,
-                headers: {
-                    'Content-Type': 'text/xml',
-                },
-                body: response.toString(),
-            };
+            return serialise(response, 500);
         }
     };
     safeHandler.orig = f;
     return safeHandler;
 };
+
+function serialise(r: unknown, statusCode: number): APIGatewayProxyResult {
+    console.log('Returning ', r);
+    if (typeof r === 'object' && r !== null) {
+        if (r instanceof twiml.VoiceResponse) {
+            return {
+                statusCode,
+                headers: {
+                    'Content-Type': 'text/xml',
+                },
+                body: r.toString(),
+            };
+        }
+    }
+    return {
+        statusCode,
+        headers: {
+            'Content-Type': 'text/json',
+            'access-control-allow-origin': '*',
+        },
+        body: JSON.stringify(r),
+    };
+}

@@ -7,7 +7,13 @@ Parameters:
     Type: String
   VoiceItAPIKey:
     Type: String
+  TwilioAccountSid:
+    Type: String
+  TwilioAuthToken:
+    Type: String
   JWTKey:
+    Type: String
+  APIHost:
     Type: String
   # Variables below should be blank in real deployments, but are used locally in dev
   DynamoHost:
@@ -25,7 +31,12 @@ Globals:
         DYNAMO_HOST: !Ref DynamoHost
         VOICEIT_API_KEY: !Ref VoiceItAPIKey
         VOICEIT_API_TOKEN: !Ref VoiceItAPIToken
+        TWILIO_ACCOUNT_SID: !Ref TwilioAccountSid
+        TWILIO_AUTH_TOKEN: !Ref TwilioAuthToken
         JWT_KEY: !Ref JWTKey
+        # TODO: Automatically inject this URL 'https://${ApiGatewayApi}.execute-api.${AWS::Region}.amazonaws.com/dev/en-GB'
+        # The problem is getting a single template to work both in dev and live
+        API_HOST: !Ref APIHost
 
 Resources:
   ApiGatewayApi:
@@ -212,6 +223,35 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  CallbackWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/callback
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/callback
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+  CallbackFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/callback
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/callback
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
   AccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -240,6 +280,7 @@ Resources:
             Action: 'sts:AssumeRole'
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AWSXrayWriteOnlyAccess
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
       Policies:
         - PolicyName: LambdaAccessDynamo
           PolicyDocument:
