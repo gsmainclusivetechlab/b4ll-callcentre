@@ -48,11 +48,8 @@ describe('dynamodb', () => {
 
     test('rejects invalid items', async () => {
         process.env.TABLE_NAME = undefined;
-        await expect(
-            putItem(({
-                id: 'foo',
-                enrolments: 'fourteen',
-            } as unknown) as RecordType)
-        ).rejects.toThrow(`Invalid record structure`);
+        await expect(putItem(({} as unknown) as RecordType)).rejects.toThrow(
+            `Invalid record structure`
+        );
     });
 });

@@ -2,20 +2,12 @@ import axios from 'axios';
 jest.mock('axios');
 const mockAxios = axios as jest.Mocked<typeof axios>;
 mockAxios.create.mockReturnValue(mockAxios);
-import { isLegalPhraseKey, createUser, enrolUser, verifyUser } from './voiceit';
+import { createUser, enrolUser } from './api';
 
 describe('voiceIt service', () => {
     beforeEach(() => {
         mockAxios.post.mockClear();
         mockAxios.get.mockClear();
-    });
-
-    test('isLegalPhraseKey', async () => {
-        expect(isLegalPhraseKey('en-DEV', 'bad')).toBeFalsy();
-        expect(isLegalPhraseKey('en-DEV', 'Zoo')).toBeTruthy();
-        expect(isLegalPhraseKey('en-DEV', 0)).toBeFalsy();
-        expect(isLegalPhraseKey('en-DEV', { phraseKey: 'Zoo' })).toBeFalsy();
-        expect(isLegalPhraseKey('fr-FR', 'Zoo')).toBeFalsy();
     });
 
     test('createUser should call api', async () => {
@@ -28,7 +20,7 @@ describe('voiceIt service', () => {
     test('enrolUser should call api', async () => {
         mockAxios.post.mockResolvedValueOnce({ data: { resultCode: 'SUCC' } });
         const result = await enrolUser('user_abc', 'en-DEV', {
-            phrase: 'Zoo',
+            phrase: 'zoo-phrase',
             recordingUrl: 'file.wav',
         });
         expect(mockAxios.post).toHaveBeenCalledWith(
@@ -37,25 +29,7 @@ describe('voiceIt service', () => {
                 userId: 'user_abc',
                 phrase: 'zoo-phrase',
                 fileUrl: 'file.wav',
-                contentLanguage: 'en-US',
-            }
-        );
-        expect(result).toEqual({ resultCode: 'SUCC' });
-    });
-
-    test('verifyUser should call api', async () => {
-        mockAxios.post.mockResolvedValueOnce({ data: { resultCode: 'SUCC' } });
-        const result = await verifyUser('user_abc', 'en-DEV', {
-            phrase: 'Zoo',
-            recordingUrl: 'file.wav',
-        });
-        expect(mockAxios.post).toHaveBeenCalledWith(
-            '/verification/voice/byUrl',
-            {
-                userId: 'user_abc',
-                phrase: 'zoo-phrase',
-                fileUrl: 'file.wav',
-                contentLanguage: 'en-US',
+                contentLanguage: 'en-DEV',
             }
         );
         expect(result).toEqual({ resultCode: 'SUCC' });
@@ -63,7 +37,7 @@ describe('voiceIt service', () => {
 
     test('constructs auth from env', () => {
         const OLD_ENV = process.env;
-        require('./voiceit');
+        require('./api');
         expect(mockAxios.create).toHaveBeenCalledWith({
             baseURL: 'https://api.voiceit.io/',
             auth: {
@@ -79,7 +53,7 @@ describe('voiceIt service', () => {
             VOICEIT_API_TOKEN: undefined,
         };
 
-        require('./voiceit');
+        require('./api');
         process.env = OLD_ENV; // restore old env
     });
 });

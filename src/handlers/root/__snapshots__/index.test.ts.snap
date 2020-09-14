@@ -1,25 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Greeting message should greet enrolled users 1`] = `
+exports[`Greeting message should greet users 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Say language="en-GB" voice="Polly.Emma-Neural">
         welcome-known
     </Say>
     <Redirect method="GET">
-        ./en-DEV/verify
-    </Redirect>
-</Response>
-`;
-
-exports[`Greeting message should greet strangers 1`] = `
-<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Say language="en-GB" voice="Polly.Emma-Neural">
-        welcome-stranger
-    </Say>
-    <Redirect method="GET">
-        ./en-DEV/enrol
+        ./en-DEV/menu
     </Redirect>
 </Response>
 `;

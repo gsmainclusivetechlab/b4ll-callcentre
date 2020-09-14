@@ -7,4 +7,5 @@ sam deploy \
 	--no-fail-on-empty-changeset \
 		--parameter-overrides \
 		VoiceItAPIKey=$VOICEIT_API_KEY \
-		VoiceItAPIToken=$VOICEIT_API_TOKEN
+		VoiceItAPIToken=$VOICEIT_API_TOKEN \
+		JWTKey=$JWT_KEY

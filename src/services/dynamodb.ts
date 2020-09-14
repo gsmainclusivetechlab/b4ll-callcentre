@@ -11,7 +11,6 @@ const RecordType = t.intersection([
     // optional properties
     t.partial({
         voiceItId: t.string,
-        enrolments: t.record(t.string, t.number),
         isEnrolled: t.boolean,
     }),
 ]);

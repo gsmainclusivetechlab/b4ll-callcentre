@@ -7,6 +7,8 @@ Parameters:
     Type: String
   VoiceItAPIKey:
     Type: String
+  JWTKey:
+    Type: String
   # Variables below should be blank in real deployments, but are used locally in dev
   DynamoHost:
     Type: String
@@ -23,6 +25,7 @@ Globals:
         DYNAMO_HOST: !Ref DynamoHost
         VOICEIT_API_KEY: !Ref VoiceItAPIKey
         VOICEIT_API_TOKEN: !Ref VoiceItAPIToken
+        JWT_KEY: !Ref JWTKey
 
 Resources:
   ApiGatewayApi:
@@ -70,64 +73,6 @@ Resources:
           Type: Api
           Properties:
             Path: /{lang}/menu
-            Method: POST
-            RestApiId:
-              Ref: ApiGatewayApi
-
-  EnrolWelcome:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.get
-      CodeUri: ./dist/handlers/enrol
-      Role: !GetAtt LambdaRole.Arn
-      Events:
-        HTTP:
-          Type: Api
-          Properties:
-            Path: /{lang}/enrol
-            Method: GET
-            RestApiId:
-              Ref: ApiGatewayApi
-  EnrolFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.post
-      CodeUri: ./dist/handlers/enrol
-      Role: !GetAtt LambdaRole.Arn
-      Events:
-        HTTP:
-          Type: Api
-          Properties:
-            Path: /{lang}/enrol/{phraseKey}
-            Method: POST
-            RestApiId:
-              Ref: ApiGatewayApi
-
-  VerificationWelcome:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.get
-      CodeUri: ./dist/handlers/verify
-      Role: !GetAtt LambdaRole.Arn
-      Events:
-        HTTP:
-          Type: Api
-          Properties:
-            Path: /{lang}/verify
-            Method: GET
-            RestApiId:
-              Ref: ApiGatewayApi
-  VerificationFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.post
-      CodeUri: ./dist/handlers/verify
-      Role: !GetAtt LambdaRole.Arn
-      Events:
-        HTTP:
-          Type: Api
-          Properties:
-            Path: /{lang}/verify/{phraseKey}
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi

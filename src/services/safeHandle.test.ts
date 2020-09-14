@@ -1,4 +1,4 @@
-import { safeHandle } from './errors';
+import { safeHandle } from './safeHandle';
 import VoiceResponse from 'twilio/lib/twiml/VoiceResponse';
 import qs from 'querystring';
 
@@ -9,6 +9,7 @@ const params = {
     queryStringParameters: {
         Caller: '+123456789',
     },
+    headers: {},
 };
 
 const postParams = {

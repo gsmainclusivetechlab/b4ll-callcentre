@@ -307,8 +307,13 @@ declare module 'voiceit2-nodejs' {
         export interface VoiceEnrolment {
             createdAt: number;
             contentLanguage: string;
-            voiceEnrolmentId: string;
+            voiceEnrolmentId: number;
             text: string;
+        }
+
+        export interface Phrase {
+            text: string;
+            contentLanguage: string;
         }
     }
 

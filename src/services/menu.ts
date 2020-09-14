@@ -1,6 +1,6 @@
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from './strings';
-import { ParsedRequest } from './errors';
+import { ParsedRequest } from './safeHandle';
 import querystring from 'querystring';
 import { MessageId } from '../strings';
 import VoiceResponse from 'twilio/lib/twiml/VoiceResponse';
@@ -13,7 +13,7 @@ export interface MenuOption {
 
 export async function menuToHandler(
     menu: MenuOption[],
-    { event, language, user }: ParsedRequest,
+    { event, language, user, auth }: ParsedRequest,
     redirect?: string
 ): Promise<VoiceResponse> {
     const { Digits, SpeechResult } = querystring.parse(event.body || '');
@@ -24,7 +24,7 @@ export async function menuToHandler(
                 answer === '' + (i + 1) || option.triggers.indexOf(answer) >= 0
         );
         if (selected) {
-            return selected.handler({ language, user, event });
+            return selected.handler({ language, user, event, auth });
         }
     }
 
