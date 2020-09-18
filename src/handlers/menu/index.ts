@@ -22,6 +22,11 @@ const menu: MenuOption[] = [
         handler: notImplementedHandler,
     },
     {
+        triggers: ['new voice', 'new passphrase', 'passphrase'],
+        description: 'passphrase-manager',
+        handler: notImplementedHandler,
+    },
+    {
         triggers: [
             'deactivate',
             'deactivate account',

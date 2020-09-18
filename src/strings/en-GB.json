@@ -28,6 +28,7 @@
     "pay-bill": "To pay a bill, press {index}.",
     "transfer": "To make a transfer, press {index}.",
     "alert": "To simulate an alert, press {index}.",
+    "passphrase-manager": "To record new verification phrases, press {index}",
     "deactivate": "To deactivate your account, press {index}",
 
     "bill-payment-message": "Please insert the payment number",
