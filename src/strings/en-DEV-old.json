@@ -1,0 +1,19 @@
+{
+    "test": "test",
+    "unauthorised": "unauthorised",
+    "test-indexed": "test-{index}",
+    "mobile-money-prompt": "mobile-money-prompt",
+    "bill-prompt": "bill-prompt",
+    "account-prompt": "account-prompt",
+    "not-implemented": "not-implemented",
+    "welcome-stranger": "welcome-stranger",
+    "welcome-known": "welcome-known",
+    "did-not-understand": "did-not-understand",
+    "enrol-message": "enrol-message",
+    "enrol-confirmation": "enrol-confirmation: {remaining} remaining",
+    "enrolment-complete": "enrolment-complete",
+    "verification-request": "verification-request",
+    "verification-confirmation": "verification-confirmation: confidence {confidence}%",
+    "verification-failed": "verification-failed",
+    "error": "error"
+}

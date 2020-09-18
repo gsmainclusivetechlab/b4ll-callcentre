@@ -13,17 +13,22 @@ async function notImplementedHandler({ language }: ParsedRequest) {
 const menu: MenuOption[] = [
     {
         triggers: ['mobile money', 'money'],
-        description: 'mobile-money-prompt',
+        description: 'mobile-money',
         handler: notImplementedHandler,
     },
     {
-        triggers: ['bill', 'pay', 'pay bill'],
-        description: 'bill-prompt',
+        triggers: ['alert simulation', 'simulation', 'alert'],
+        description: 'alert',
         handler: notImplementedHandler,
     },
     {
-        triggers: ['update', 'account', 'update account'],
-        description: 'account-prompt',
+        triggers: [
+            'deactivate',
+            'deactivate account',
+            'account deactivation',
+            'deactivation',
+        ],
+        description: 'deactivate',
         handler: notImplementedHandler,
     },
 ];
