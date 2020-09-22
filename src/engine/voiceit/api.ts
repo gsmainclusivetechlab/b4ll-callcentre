@@ -1,5 +1,4 @@
-import VoiceIt2 from 'voiceit2-nodejs';
-import { VoiceIt } from 'voiceit2-nodejs';
+import VoiceIt2, { VoiceIt } from 'voiceit2-nodejs';
 
 export const REQUIRED_ENROLMENTS = 3;
 
@@ -51,31 +50,13 @@ export async function getEnrolledPhrases(
     userId: string,
     language: string
 ): Promise<Record<string, number>> {
-    let results = {
-        message:
-            'Successfully got all voice enrollments for user with userId : usr_feb6d1fcd80448628db8ec6a7ddb6322',
-        count: 2,
-        status: 200,
-        timeTaken: '0.079s',
-        voiceEnrollments: [
-            {
-                createdAt: 1487026658003,
-                contentLanguage: 'en-US',
-                voiceEnrollmentId: 73,
-                text: 'never forget tomorrow is a new day',
-            },
-        ],
-        responseCode: 'SUCC',
-    };
-
     return new Promise<Record<string, number>>((resolve) => {
         myVoiceIt.getAllVoiceEnrollments(
             {
                 userId: userId,
             },
             (callback) => {
-                results = callback;
-                const phrases = ((results.voiceEnrollments as unknown) as ArrayEnrolment[])
+                const phrases = ((callback.voiceEnrollments as unknown) as ArrayEnrolment[])
                     .map(
                         ([
                             id,
