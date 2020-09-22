@@ -1,15 +1,11 @@
 import { twiml } from 'twilio';
-import { getVoiceParams, __ } from '../../../services/strings';
-import { safeHandle } from '../../../services/safeHandle';
-import {
-    MenuOption,
-    menuToHandler,
-    menuToGather,
-} from '../../../services/menu';
+import { getVoiceParams, __ } from '../../services/strings';
+import { safeHandle } from '../../services/safeHandle';
+import { MenuOption, menuToHandler, menuToGather } from '../../services/menu';
 
 async function accountInformationHandler() {
     const response = new twiml.VoiceResponse();
-    response.redirect({ method: 'GET' }, `../mobilemoney/account-info`);
+    response.redirect({ method: 'GET' }, `./mobilemoney/account-info`);
     return response;
 }
 
@@ -64,7 +60,7 @@ export const get = safeHandle(
 
 export const post = safeHandle(
     async (request) => {
-        return menuToHandler(mobileMoneyMenu, request, `./menu`);
+        return menuToHandler(mobileMoneyMenu, request, `./mobilemoney`);
     },
     {
         requireVerification: false,

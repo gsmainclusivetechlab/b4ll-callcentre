@@ -15,6 +15,6 @@ export const get = safeHandle(async (request) => {
     gatherNode.say(voice, 'bill-payment-message');
 
     // If the user doesn't enter input, loop
-    response.redirect('/mobilemoney/pay-bill');
+    response.redirect('./pay-bill');
     return response;
 });

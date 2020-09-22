@@ -81,13 +81,13 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.get
-      CodeUri: ./dist/handlers/menu/mobilemoney
+      CodeUri: ./dist/handlers/mobilemoney
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/menu/mobilemoney
+            Path: /{lang}/mobilemoney
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
@@ -96,13 +96,13 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.post
-      CodeUri: ./dist/handlers/menu/mobilemoney
+      CodeUri: ./dist/handlers/mobilemoney
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/menu/mobilemoney
+            Path: /{lang}/mobilemoney
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi
@@ -118,6 +118,21 @@ Resources:
           Type: Api
           Properties:
             Path: /{lang}/mobilemoney/account-info
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  PayABillFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/mobilemoney/pay-bill
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/mobilemoney/pay-bill
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi

@@ -12,7 +12,7 @@ async function notImplementedHandler({ language }: ParsedRequest) {
 
 async function mobileMoneyHandler() {
     const response = new twiml.VoiceResponse();
-    response.redirect({ method: 'GET' }, './menu/mobilemoney');
+    response.redirect({ method: 'GET' }, './mobilemoney');
     return response;
 }
 
