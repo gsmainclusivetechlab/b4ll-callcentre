@@ -25,6 +25,7 @@
     "reactivation-confirmation": "Great. Your number is reactivated.",
 
     "mobile-money": "To access your mobile money account, press {index}.",
+    "mobile-money-balance": "To check your mobile money balance, press {index}.",
     "pay-bill": "To pay a bill, press {index}.",
     "transfer": "To make a transfer, press {index}.",
     "alert": "To simulate an alert, press {index}.",
