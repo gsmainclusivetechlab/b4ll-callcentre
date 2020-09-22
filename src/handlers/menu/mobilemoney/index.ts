@@ -1,28 +1,27 @@
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../services/strings';
-import { safeHandle, ParsedRequest } from '../../../services/safeHandle';
+import { safeHandle } from '../../../services/safeHandle';
 import {
     MenuOption,
     menuToHandler,
     menuToGather,
 } from '../../../services/menu';
 
-async function accountInformationHandler({ language }: ParsedRequest) {
+async function accountInformationHandler() {
     const response = new twiml.VoiceResponse();
-    response.say(getVoiceParams(language), __('not-implemented', language));
-    response.redirect({ method: 'GET' }, `./menu/mobilemoney`);
+    response.redirect({ method: 'GET' }, `./mobilemoney/account-info`);
     return response;
 }
 
 async function payBillHandler() {
     const response = new twiml.VoiceResponse();
-    response.redirect({ method: 'GET' }, './menu/mobilemoney/');
+    response.redirect({ method: 'GET' }, './mobilemoney/pay-bill');
     return response;
 }
 
 async function transferHandler() {
     const response = new twiml.VoiceResponse();
-    response.redirect({ method: 'GET' }, './menu/mobilemoney');
+    response.redirect({ method: 'GET' }, './mobilemoney');
     return response;
 }
 
@@ -57,7 +56,7 @@ export const get = safeHandle(
             getVoiceParams(language),
             __('did-not-understand', language)
         );
-        response.redirect({ method: 'GET' }, `./menu/mobilemoney`);
+        response.redirect({ method: 'GET' }, `./mobilemoney`);
         return response;
     },
     { requireVerification: false }
@@ -65,10 +64,9 @@ export const get = safeHandle(
 
 export const post = safeHandle(
     async (request) => {
-        return menuToHandler(mobileMoneyMenu, request, `./menu/mobilemoney`);
+        return menuToHandler(mobileMoneyMenu, request, `./mobilemoney`);
     },
     {
         requireVerification: false,
-        loginRedirect: { method: 'GET', target: './menu/mobilemoney' },
     }
 );

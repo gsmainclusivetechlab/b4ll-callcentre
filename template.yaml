@@ -107,6 +107,21 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  AccountInformationFuction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/mobilemoney/account-info
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/mobilemoney/account-info
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
   AccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:

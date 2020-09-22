@@ -13,3 +13,6 @@ template.packaged.yaml
 
 # Sensitive files
 .env
+
+# Cache
+.DS_Store
