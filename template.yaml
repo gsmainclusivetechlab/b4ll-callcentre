@@ -95,7 +95,7 @@ Resources:
   MobileMoneyMenuFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.get
+      Handler: index.post
       CodeUri: ./dist/handlers/menu/mobilemoney
       Role: !GetAtt LambdaRole.Arn
       Events:
