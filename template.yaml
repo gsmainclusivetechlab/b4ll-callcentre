@@ -77,6 +77,36 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  MobileMoneyMenuWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/menu/mobilemoney
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/menu/mobilemoney
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  MobileMoneyMenuFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/menu/mobilemoney
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/menu/mobilemoney
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
   AccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:

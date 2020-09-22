@@ -10,11 +10,17 @@ async function notImplementedHandler({ language }: ParsedRequest) {
     return response;
 }
 
+async function mobileMoneyHandler() {
+    const response = new twiml.VoiceResponse();
+    response.redirect({ method: 'GET' }, './menu/mobilemoney');
+    return response;
+}
+
 const menu: MenuOption[] = [
     {
         triggers: ['mobile money', 'money'],
         description: 'mobile-money',
-        handler: notImplementedHandler,
+        handler: mobileMoneyHandler,
     },
     {
         triggers: ['alert simulation', 'simulation', 'alert'],
