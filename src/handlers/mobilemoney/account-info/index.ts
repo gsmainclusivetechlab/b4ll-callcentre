@@ -3,7 +3,7 @@ import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';
 
 export const get = safeHandle(async ({ language }) => {
-    const balance = '$10.00';
+    const balance = '$100.00';
 
     const response = new twiml.VoiceResponse();
     response.say(
@@ -11,6 +11,6 @@ export const get = safeHandle(async ({ language }) => {
         __('mobile-money-info', { balance }, language)
     );
 
-    response.redirect({ method: 'GET' }, `./return`);
+    response.redirect({ method: 'GET' }, `../return`);
     return response;
 });

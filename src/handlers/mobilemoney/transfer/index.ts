@@ -11,17 +11,18 @@ export const get = safeHandle(async (request) => {
 
     const gatherNode = response.gather({
         numDigits: 6,
-        input: ['dtmf'],
+        method: 'POST',
+        language: voice.language,
+        speechTimeout: 'auto',
     });
+    gatherNode.say(voice, __('transfer-message', language));
 
     if (request.event.body) {
         response.say(getVoiceParams(language), request.event.body);
     }
 
-    gatherNode.say(voice, __('bill-payment-message', language));
-
     // If the user doesn't enter input, loop
-    response.redirect('./pay-bill');
+    response.redirect('./transfer');
     return response;
 });
 

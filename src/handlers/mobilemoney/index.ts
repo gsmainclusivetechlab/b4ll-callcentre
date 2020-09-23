@@ -17,7 +17,7 @@ async function payBillHandler() {
 
 async function transferHandler() {
     const response = new twiml.VoiceResponse();
-    response.redirect({ method: 'GET' }, './mobilemoney');
+    response.redirect({ method: 'GET' }, './mobilemoney/transfer');
     return response;
 }
 
