@@ -122,7 +122,7 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
-  PayABillFunction:
+  PayABillWelcome:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.get
@@ -134,6 +134,21 @@ Resources:
           Properties:
             Path: /{lang}/mobilemoney/pay-bill
             Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  PayABillFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/mobilemoney/pay-bill
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/mobilemoney/pay-bill
+            Method: POST
             RestApiId:
               Ref: ApiGatewayApi
 
