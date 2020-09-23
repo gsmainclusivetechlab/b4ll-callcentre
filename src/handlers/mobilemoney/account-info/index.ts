@@ -11,7 +11,6 @@ export const get = safeHandle(async ({ language }) => {
         __('mobile-money-info', { balance }, language)
     );
 
-    response.redirect({ method: 'GET' }, './');
-
+    response.redirect({ method: 'GET' }, `./return`);
     return response;
 });

@@ -24,7 +24,7 @@ async function transferHandler() {
 const mobileMoneyMenu: MenuOption[] = [
     {
         triggers: ['account information', 'account', 'information'],
-        description: 'mobile-money-prompt',
+        description: 'mobile-money-balance',
         handler: accountInformationHandler,
     },
     {

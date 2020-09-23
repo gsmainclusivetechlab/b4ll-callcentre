@@ -58,5 +58,9 @@
     "survey-question-02": "Do you think the menu flow was easy to understand? Press a number from 1 to 5 where 1 means very poor and 5 means excellent",
 
     "did-not-understand": "Sorry, I didn't get that.",
-    "error": "An error occurred. {message}"
+    "error": "An error occurred. {message}",
+
+    "return-menu": "To return to the main menu, press {index}",
+    "end-call": "To end this call, press {index}",
+    "good-bye": "Thank you for using Biometrics For All, Good bye!"
 }
