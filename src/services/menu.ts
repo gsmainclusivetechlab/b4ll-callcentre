@@ -11,25 +11,6 @@ export interface MenuOption {
     handler: (r: ParsedRequest) => Promise<VoiceResponse>;
 }
 
-export async function inputValidation(
-    { event, language }: ParsedRequest,
-    redirect?: string
-): Promise<VoiceResponse> {
-    const response = new twiml.VoiceResponse();
-    const { Digits } = querystring.parse(event.body || '');
-    const answer = Digits;
-    if (typeof answer === 'string') {
-        response.say(
-            getVoiceParams(language),
-            __('bill-payment-number', { answer }, language)
-        );
-    }
-
-    // redirect to root and we can try again
-    if (redirect) response.redirect({ method: 'GET' }, redirect);
-    return response;
-}
-
 export async function menuToHandler(
     menu: MenuOption[],
     { event, language, user, auth }: ParsedRequest,

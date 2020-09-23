@@ -46,3 +46,12 @@ export const get = safeHandle(
     },
     { requireVerification: false }
 );
+
+export const post = safeHandle(
+    async (request) => {
+        return menuToHandler(returnMenu, request, `./return`);
+    },
+    {
+        requireVerification: false,
+    }
+);
