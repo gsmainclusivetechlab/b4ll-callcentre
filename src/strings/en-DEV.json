@@ -43,6 +43,7 @@
     "transfer-account-number": "transfer-account-number",
     "transfer-account-error": "transfer-account-error",
     "transfer-account-value": "transfer-account-value",
+    "transfer-account-invalid-value": "transfer-account-invalid-value",
     "transfer-account-confirmation": "transfer-account-confirmation",
     "transfer-approved": "transfer-approved",
     "transfer-declined": "transfer-declined",

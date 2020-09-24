@@ -40,10 +40,11 @@
     "bill-payment-declined": "Your payment was declined by {payment-error}",
 
     "transfer-message": "Please insert the payee's account number",
-    "transfer-account-number": "The account number you entered is {transfer-account}",
+    "transfer-account-number": "The account number you entered is {account}",
     "transfer-account-error": "Sorry, the account number you entered is not valid",
-    "transfer-account-value": "Please enter the value you want to transfer",
-    "transfer-account-confirmation": "You are transferring {transfer-value} to {transfer-account}, press 1 if you want to proceed or 2 to cancel",
+    "transfer-account-value": "Please enter the value you want to transfer.",
+    "transfer-account-invalid-value": "Sorry, you do not have the required funds in your account to make this transaction.",
+    "transfer-account-confirmation": "You are transferring ${value} to {account}, press 1 if you want to proceed or 2 to cancel",
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was declined by {error}",
 

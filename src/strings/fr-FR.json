@@ -43,6 +43,7 @@
     "transfer-account-number": "The account number you entered is {transfer-account}",
     "transfer-account-error": "Sorry, the account number you entered is not valid",
     "transfer-account-value": "Please enter the value you want to transfer",
+    "transfer-account-invalid-value": "Sorry, you do not have the required funds in your account to make this transaction.",
     "transfer-account-confirmation": "You are transferring {transfer-value} to {tranfer-account}, press 1 if you want to proceed or 2 to cancel",
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was declined by {transfer-error}",
