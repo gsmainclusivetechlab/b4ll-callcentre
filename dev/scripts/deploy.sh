@@ -8,4 +8,7 @@ sam deploy \
 		--parameter-overrides \
 		VoiceItAPIKey=$VOICEIT_API_KEY \
 		VoiceItAPIToken=$VOICEIT_API_TOKEN \
+		TwilioAccountSid=$TWILIO_ACCOUNT_SID \
+		TwilioAuthToken=$TWILIO_AUTH_TOKEN \
+		APIHost=$API_HOST \
 		JWTKey=$JWT_KEY

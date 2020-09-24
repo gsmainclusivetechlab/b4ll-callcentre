@@ -13,11 +13,11 @@ import {
 } from '../../engine/voiceit/provider';
 
 export enum VerificationState {
-    NOT_ENROLLED,
-    ENROLMENT_REQUESTED,
-    REGISTERED,
-    AUTHENTICATION_REQUESTED,
-    AUTHENTICATED,
+    NOT_ENROLLED = 0,
+    ENROLMENT_REQUESTED = 1,
+    REGISTERED = 2,
+    AUTHENTICATION_REQUESTED = 3,
+    AUTHENTICATED = 4,
 }
 interface BaseCookie {
     /** caller phone number */
@@ -66,6 +66,7 @@ export async function handleVerification(
     params: HandlerParams
 ): Promise<null | APIGatewayProxyResult> {
     const { auth, language } = request;
+    console.log('Verifying, user is in state ', auth);
     switch (auth?.state) {
         default:
         case VerificationState.NOT_ENROLLED:

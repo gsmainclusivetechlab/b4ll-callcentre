@@ -1,0 +1,37 @@
+.input {
+  padding: var(--ifm-global-spacing);
+  border: none;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  font-size: 1.1em;
+  margin-right: 10px;
+}
+.input:hover,
+.input:active {
+  border-bottom: 1px solid var(--ifm-color-emphasis-600);
+}
+
+.button {
+  padding: var(--ifm-global-spacing);
+  color: var(--ifm-color-primary);
+  background: white;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 1.1em;
+  border-color: var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-pagination-nav-border-radius);
+  cursor: pointer;
+  font-family: var(--ifm-font-family-base);
+  font-size: 1rem;
+  font-size: var(--ifm-h4-font-size);
+  line-height: 1.25;
+  line-height: var(--ifm-heading-line-height);
+  font-weight: 700;
+  font-weight: var(--ifm-heading-font-weight);
+  margin-bottom: 0;
+  margin-top: 0;
+  word-break: break-word;
+}
+
+.button:hover {
+  border-color: var(--ifm-color-primary);
+}
