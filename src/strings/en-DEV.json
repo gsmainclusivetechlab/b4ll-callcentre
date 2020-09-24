@@ -1,19 +1,66 @@
 {
-    "test": "test",
-    "unauthorised": "unauthorised",
-    "test-indexed": "test-{index}",
-    "mobile-money-prompt": "mobile-money-prompt",
-    "bill-prompt": "bill-prompt",
-    "account-prompt": "account-prompt",
-    "not-implemented": "not-implemented",
-    "welcome-stranger": "welcome-stranger",
-    "welcome-known": "welcome-known",
-    "did-not-understand": "did-not-understand",
-    "enrol-message": "enrol-message",
-    "enrol-confirmation": "enrol-confirmation: {remaining} remaining",
-    "enrolment-complete": "enrolment-complete",
-    "verification-request": "verification-request",
-    "verification-confirmation": "verification-confirmation: confidence {confidence}%",
-    "verification-failed": "verification-failed",
-    "error": "error"
+    "test": "Hello there!",
+    "unauthorised": "You are not authorised to access this resource",
+    "test-indexed": "Number: {count, selectordinal, one{#st} two{#nd} few{#rd} other{#th}}",
+    "mobile-money-prompt": "To access your mobile money account information, press {index}.",
+    "bill-prompt": "To pay a bill, press {index}.",
+    "account-prompt": "To update your account details, press {index}.",
+    "not-implemented": "Sorry, that service has not been implemented yet. I'll take you back to the main menu so you can make another choice.",
+    "welcome-stranger": "It looks like you don't have an account. Let's set one up now.",
+    "welcome-known": "Hello and welcome to our biometrics demo system.",
+
+    "welcome": "Hello again. Welcome to the Biometrics for All",
+    "verification-request": "To access your account, please repeat the following phrase:",
+    "verification-confirmation": "Great! Your passphrase has been validated with {confidence}% confidence.",
+    "verification-failed": "We were not able to verify your voice. Please try again.",
+    "verification-error": "Sorry, you have reached the limit of attempts",
+
+    "enrol-welcome": "Hello. It looks like you don't have an account. In way to proceed with your registration you must record your voice.",
+    "enrol-message": "Please repeat the following phrase:",
+    "enrol-confirmation": "Great. To complete your registration, we need {remaining, plural, one {# more enrolment} other {# more enrolments}}.",
+    "enrolment-complete": "Thanks. Your voice is now registered.",
+
+    "reactivation-welcome": "Hello. It looks like your number is deactivated. In way to proceed with your reactivation you must verify your voice.",
+    "reactivation-message": "Please repeat the following phrase:",
+    "reactivation-confirmation": "Great. Your number is reactivated.",
+
+    "mobile-money": "To access your mobile money account, press {index}.",
+    "mobile-money-balance": "To check your mobile money balance, press {index}.",
+    "pay-bill": "To pay a bill, press {index}.",
+    "transfer": "To make a transfer, press {index}.",
+    "alert": "To simulate an alert, press {index}.",
+    "passphrase-manager": "To record new verification phrases, press {index}",
+    "deactivate": "To deactivate your account, press {index}",
+
+    "bill-payment-message": "Please insert the payment number",
+    "bill-payment-number": "The payment number you entered is {payment}",
+    "bill-payment-error": "Sorry, the payment number you entered is not valid",
+    "bill-payment-value": "The payment will cost you {paymentValue}, press 1 if you want to proceed or 2 to cancel the payment",
+    "bill-payment-approved": "Your payment was authorised successfully",
+    "bill-payment-declined": "Your payment was declined by {payment-error}",
+
+    "transfer-message": "Please insert the payee's account number",
+    "transfer-account-number": "The account number you entered is {transfer-account}",
+    "transfer-account-error": "Sorry, the account number you entered is not valid",
+    "transfer-account-value": "Please enter the value you want to transfer",
+    "transfer-account-confirmation": "You are transferring {transfer-value} to {tranfer-account}, press 1 if you want to proceed or 2 to cancel",
+    "transfer-approved": "Your transfer was authorised successfully",
+    "transfer-declined": "Your transfer was declined by {transfer-error}",
+
+    "mobile-money-info": "Your account balance is: {balance}",
+
+    "validation": "In way to verify your identity, please repeat the following phrase:",
+
+    "alert-message": "Hello! This is an alert simulation. The alerts can be related to overdraft, fees or fraud detection. Thank you for trying the Project Biometrics For All.",
+
+    "survey-welcome": "Thank you for evaluating the Biometrics For All. If you could please take our feedback survey, just wait, it won't take longer than one minute!",
+    "survey-question-01": "How would you evaluate the voice verification process? Press a number from 1 to 5 where 1 means very poor and 5 means excellent",
+    "survey-question-02": "Do you think the menu flow was easy to understand? Press a number from 1 to 5 where 1 means very poor and 5 means excellent",
+
+    "did-not-understand": "Sorry, I didn't get that.",
+    "error": "An error occurred. {message}",
+
+    "return-menu": "To return to the main menu, press {index}",
+    "end-call": "To end this call, press {index}",
+    "good-bye": "Thank you for using Biometrics For All, Good bye!"
 }
