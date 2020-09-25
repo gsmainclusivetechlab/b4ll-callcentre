@@ -58,12 +58,22 @@ export const post = safeHandle(
                     )
                 );
             }
-        } else {
+        } else if (
+            typeof answer === 'string' &&
+            answer.length === 1 &&
+            answer === '1'
+        ) {
             response.say(
                 getVoiceParams(request.language),
                 __('bill-payment-invalid-value', request.language)
             );
-            response.redirect({ method: 'GET' }, `/${language}/return`);
+            response.redirect({ method: 'GET' }, `../../return`);
+        } else {
+            response.say(
+                getVoiceParams(request.language),
+                __('bill-payment-error', request.language)
+            );
+            response.redirect({ method: 'GET' }, `../../return`);
         }
         return response;
     },
