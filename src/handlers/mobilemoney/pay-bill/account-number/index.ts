@@ -36,7 +36,11 @@ export const post = safeHandle(
                 });
                 gather.say(
                     getVoiceParams(request.language),
-                    __('bill-payment-value', { paymentValue }, request.language)
+                    __(
+                        'bill-payment-value',
+                        { paymentValue: paymentValue },
+                        request.language
+                    )
                 );
             }
             if (answer === '54321') {
@@ -49,7 +53,7 @@ export const post = safeHandle(
                     getVoiceParams(request.language),
                     __(
                         'bill-payment-value',
-                        { paymentValue2 },
+                        { paymentValue: paymentValue2 },
                         request.language
                     )
                 );
