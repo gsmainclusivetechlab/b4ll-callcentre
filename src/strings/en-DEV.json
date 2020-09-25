@@ -36,6 +36,8 @@
     "bill-payment-number": "bill-payment-number",
     "bill-payment-error": "bill-payment-error",
     "bill-payment-value": "bill-payment-value",
+    "bill-payment-invalid-value": "bill-payment-invalid-value",
+
     "bill-payment-approved": "bill-payment-approved",
     "bill-payment-declined": "bill-payment-declined",
 

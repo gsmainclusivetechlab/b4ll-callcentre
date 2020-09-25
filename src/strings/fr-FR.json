@@ -36,6 +36,7 @@
     "bill-payment-number": "The payment number you entered is {payment}",
     "bill-payment-error": "Sorry, the payment number you entered is not valid",
     "bill-payment-value": "The payment will cost you {paymentValue}, press 1 if you want to proceed or 2 to cancel the payment",
+    "bill-payment-invalid-value": "Sorry, you do not have the required funds in your account to make this transaction.",
     "bill-payment-approved": "Your payment was authorised successfully",
     "bill-payment-declined": "Your payment was declined by {payment-error}",
 

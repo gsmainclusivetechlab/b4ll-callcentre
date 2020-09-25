@@ -5,6 +5,7 @@ import querystring from 'querystring';
 
 export const post = safeHandle(
     async (request) => {
+        const { language } = request;
         const paymentValue = '$50';
         const paymentValue2 = '$150';
         const response = new twiml.VoiceResponse();
@@ -47,7 +48,6 @@ export const post = safeHandle(
                 const gather = response.gather({
                     input: ['dtmf'],
                     numDigits: 1,
-                    action: 'account-number/confirmation',
                 });
                 gather.say(
                     getVoiceParams(request.language),
@@ -58,6 +58,12 @@ export const post = safeHandle(
                     )
                 );
             }
+        } else {
+            response.say(
+                getVoiceParams(request.language),
+                __('bill-payment-invalid-value', request.language)
+            );
+            response.redirect({ method: 'GET' }, `/${language}/return`);
         }
         return response;
     },
