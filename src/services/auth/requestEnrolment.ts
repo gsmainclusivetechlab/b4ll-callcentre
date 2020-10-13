@@ -23,7 +23,11 @@ export async function requestEnrolment(
     }
     // save the voiceIT user id so we can retry if it fails first time
     if (!user.voiceItId) {
-        user = { ...user, voiceItId: enrolmentReq.request.userId };
+        user = {
+            ...user,
+            voiceItId: enrolmentReq.request.userId,
+            balanceAmount: '100',
+        };
         await putItem(user);
     }
 
