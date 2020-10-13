@@ -2,16 +2,19 @@ import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';
 
-export const get = safeHandle(async (request) => {
-    const { language } = request;
-    const balance = request.user.balanceAmount;
+export const get = safeHandle(
+    async (request) => {
+        const { language } = request;
+        const balance = request.user.balanceAmount;
 
-    const response = new twiml.VoiceResponse();
-    response.say(
-        getVoiceParams(language),
-        __('mobile-money-info', { balance }, language)
-    );
+        const response = new twiml.VoiceResponse();
+        response.say(
+            getVoiceParams(language),
+            __('mobile-money-info', { balance }, language)
+        );
 
-    response.redirect({ method: 'GET' }, `../return`);
-    return response;
-});
+        response.redirect({ method: 'GET' }, `../return`);
+        return response;
+    },
+    { requireVerification: true }
+);
