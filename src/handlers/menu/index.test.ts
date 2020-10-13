@@ -11,20 +11,23 @@ describe('menu', () => {
             language: 'en-DEV',
             user: { id: '+77-menu-test' },
         });
-        expect(result.toString()).toContain('mobile-money-prompt');
-        expect(result.toString()).toContain('bill-prompt');
-        expect(result.toString()).toContain('account-prompt');
+        expect(result.toString()).toContain('mobile-money');
+        expect(result.toString()).toContain('alert');
+        expect(result.toString()).toContain('passphrase-manager');
+        expect(result.toString()).toContain('deactivate');
         expect(result.toString()).toMatchSnapshot();
     });
     test.each`
-        option                                | result
-        ${{ Digits: '1' }}                    | ${'not-implemented'}
-        ${{ Digits: '2' }}                    | ${'not-implemented'}
-        ${{ Digits: '3' }}                    | ${'not-implemented'}
-        ${{ SpeechResult: 'mobile money' }}   | ${'not-implemented'}
-        ${{ SpeechResult: 'pay bill' }}       | ${'not-implemented'}
-        ${{ SpeechResult: 'update account' }} | ${'not-implemented'}
-        ${{ SpeechResult: 'go swimming' }}    | ${'did-not-understand'}
+        option                                    | result
+        ${{ Digits: '1' }}                        | ${'./mobilemoney'}
+        ${{ Digits: '2' }}                        | ${'not-implemented'}
+        ${{ Digits: '3' }}                        | ${'not-implemented'}
+        ${{ Digits: '4' }}                        | ${'not-implemented'}
+        ${{ SpeechResult: 'mobile money' }}       | ${'./mobilemoney'}
+        ${{ SpeechResult: 'alert simulation' }}   | ${'not-implemented'}
+        ${{ SpeechResult: 'new voice' }}          | ${'not-implemented'}
+        ${{ SpeechResult: 'deactivate account' }} | ${'not-implemented'}
+        ${{ SpeechResult: 'go swimming' }}        | ${'did-not-understand'}
     `('should respond to $option', async ({ option, result }) => {
         const response = await post({
             language: 'en-DEV',
