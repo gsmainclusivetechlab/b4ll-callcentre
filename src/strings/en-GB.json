@@ -49,7 +49,7 @@
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was declined by {error}",
 
-    "mobile-money-info": "Your account balance is: {balance}",
+    "mobile-money-info": "Your account balance is: ${balance}",
 
     "validation": "In way to verify your identity, please repeat the following phrase:",
 

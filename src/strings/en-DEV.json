@@ -50,7 +50,7 @@
     "transfer-approved": "transfer-approved",
     "transfer-declined": "transfer-declined",
 
-    "mobile-money-info": "mobile-money-info",
+    "mobile-money-info": "mobile-money-info {balance}",
 
     "validation": "validation",
 

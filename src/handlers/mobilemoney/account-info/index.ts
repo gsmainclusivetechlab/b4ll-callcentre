@@ -2,8 +2,9 @@ import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';
 
-export const get = safeHandle(async ({ language }) => {
-    const balance = '$100.00';
+export const get = safeHandle(async (request) => {
+    const { language } = request;
+    const balance = request.user.balanceAmount;
 
     const response = new twiml.VoiceResponse();
     response.say(
