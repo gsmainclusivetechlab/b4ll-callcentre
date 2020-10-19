@@ -26,7 +26,7 @@ export async function requestEnrolment(
         user = {
             ...user,
             voiceItId: enrolmentReq.request.userId,
-            balanceAmount: '100',
+            balanceAmount: 100,
         };
         await putItem(user);
     }

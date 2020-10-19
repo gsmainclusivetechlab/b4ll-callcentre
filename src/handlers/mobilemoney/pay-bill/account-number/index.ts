@@ -5,9 +5,8 @@ import querystring from 'querystring';
 
 export const post = safeHandle(
     async (request) => {
-        const { language } = request;
-        const paymentValue = '$50';
-        const paymentValue2 = '$150';
+        const paymentValue = 50;
+        const paymentValue2 = 150;
         const response = new twiml.VoiceResponse();
         const { Digits } = querystring.parse(request.event.body || '');
         const answer = Digits || null;
@@ -29,6 +28,7 @@ export const post = safeHandle(
                 );
                 response.redirect({ method: 'GET' }, `../../return`);
             }
+            // 12345 = happy flow
             if (answer === '12345') {
                 const gather = response.gather({
                     input: ['dtmf'],
@@ -44,6 +44,7 @@ export const post = safeHandle(
                     )
                 );
             }
+            // 54321 = unhappy flow
             if (answer === '54321') {
                 const gather = response.gather({
                     input: ['dtmf'],
