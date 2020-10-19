@@ -6,17 +6,39 @@ import querystring from 'querystring';
 export const post = safeHandle(
     async (request) => {
         const response = new twiml.VoiceResponse();
-        const { language } = request;
+        const { language, user } = request;
         const { Digits } = querystring.parse(request.event.body || '');
         const answer = Digits || null;
 
         if (typeof answer === 'string' && answer.length === 1) {
             switch (answer) {
                 case '1': {
-                    response.say(
-                        getVoiceParams(request.language),
-                        __('bill-payment-approved', request.language)
-                    );
+                    if (user.balanceAmount) {
+                        if (user.balanceAmount > 50) {
+                            user.balanceAmount -= 50;
+                            response.say(
+                                getVoiceParams(request.language),
+                                __('bill-payment-approved', request.language)
+                            );
+                        } else {
+                            response.say(
+                                getVoiceParams(request.language),
+                                __(
+                                    'bill-payment-invalid-value',
+                                    request.language
+                                )
+                            );
+                        }
+                    } else {
+                        response.say(
+                            getVoiceParams(request.language),
+                            __(
+                                'error',
+                                { error: 'user has no balance' },
+                                request.language
+                            )
+                        );
+                    }
                     response.redirect({ method: 'GET' }, `/${language}/return`);
                     break;
                 }
