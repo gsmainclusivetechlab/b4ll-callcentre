@@ -36,6 +36,8 @@
     "bill-payment-number": "bill-payment-number",
     "bill-payment-error": "bill-payment-error",
     "bill-payment-value": "bill-payment-value",
+    "bill-payment-invalid-value": "bill-payment-invalid-value",
+
     "bill-payment-approved": "bill-payment-approved",
     "bill-payment-declined": "bill-payment-declined",
 
@@ -43,11 +45,13 @@
     "transfer-account-number": "transfer-account-number",
     "transfer-account-error": "transfer-account-error",
     "transfer-account-value": "transfer-account-value",
+    "transfer-account-invalid-value": "transfer-account-invalid-value",
     "transfer-account-confirmation": "transfer-account-confirmation",
     "transfer-approved": "transfer-approved",
     "transfer-declined": "transfer-declined",
 
-    "mobile-money-info": "mobile-money-info",
+    "mobile-money-info": "mobile-money-info {balance}",
+    "balance-reset": "balance-reset",
 
     "validation": "validation",
 

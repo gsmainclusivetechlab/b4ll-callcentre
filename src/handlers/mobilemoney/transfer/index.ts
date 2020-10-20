@@ -1,25 +1,25 @@
 import { twiml } from 'twilio';
-import { __, getVoiceParams } from '../../../services/strings';
+import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';
 
-export const get = safeHandle(async (request) => {
-    const { language } = request;
+export const get = safeHandle(
+    async (request) => {
+        const { language } = request;
 
-    const response = new twiml.VoiceResponse();
-    const voice = getVoiceParams(language);
+        const response = new twiml.VoiceResponse();
+        const voice = getVoiceParams(language);
 
-    response.say(voice, __('transfer-message', language));
+        const gather = response.gather({
+            input: ['dtmf'],
+            numDigits: 6,
+            action: `transfer/account-number`,
+        });
 
-    // If the user doesn't enter input, loop
-    response.redirect('../return');
-    return response;
-});
+        gather.say(voice, __('transfer-message', language));
 
-export const post = safeHandle(
-    async () => {
-        return new twiml.VoiceResponse();
+        // If the user doesn't enter input, loop
+        response.redirect('../return');
+        return response;
     },
-    {
-        requireVerification: false,
-    }
+    { requireVerification: true }
 );

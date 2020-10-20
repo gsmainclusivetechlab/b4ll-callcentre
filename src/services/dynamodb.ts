@@ -12,6 +12,7 @@ const RecordType = t.intersection([
     t.partial({
         voiceItId: t.string,
         isEnrolled: t.boolean,
+        balanceAmount: t.number,
     }),
 ]);
 export type RecordType = t.TypeOf<typeof RecordType>;

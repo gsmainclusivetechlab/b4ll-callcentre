@@ -148,17 +148,32 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
-  PayABillFunction:
+  PayABillAccountFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.post
-      CodeUri: ./dist/handlers/mobilemoney/pay-bill
+      CodeUri: ./dist/handlers/mobilemoney/pay-bill/account-number
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/mobilemoney/pay-bill
+            Path: /{lang}/mobilemoney/pay-bill/account-number
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  PayABillConfirmationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/mobilemoney/pay-bill/account-number/confirmation
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/mobilemoney/pay-bill/account-number/confirmation
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi
@@ -208,17 +223,47 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
-  TransferFunction:
+  TransferAccountNumberFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.post
-      CodeUri: ./dist/handlers/mobilemoney/transfer
+      CodeUri: ./dist/handlers/mobilemoney/transfer/account-number
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/mobilemoney/transfer
+            Path: /{lang}/mobilemoney/transfer/account-number
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  TransferAmountFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/mobilemoney/transfer/account-number/amount
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/mobilemoney/transfer/account-number/amount
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  TransferConfirmationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/mobilemoney/transfer/account-number/amount/confirmation
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/mobilemoney/transfer/account-number/amount/confirmation
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi
