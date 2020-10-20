@@ -16,6 +16,12 @@ async function mobileMoneyHandler() {
     return response;
 }
 
+async function passphraseHandler() {
+    const response = new twiml.VoiceResponse();
+    response.redirect({ method: 'GET' }, './passphrase');
+    return response;
+}
+
 const menu: MenuOption[] = [
     {
         triggers: ['mobile money', 'money'],
@@ -30,7 +36,7 @@ const menu: MenuOption[] = [
     {
         triggers: ['new voice', 'new passphrase', 'passphrase'],
         description: 'passphrase-manager',
-        handler: notImplementedHandler,
+        handler: passphraseHandler,
     },
     {
         triggers: [

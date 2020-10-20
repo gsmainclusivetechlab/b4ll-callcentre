@@ -49,6 +49,8 @@
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was declined by {transfer-error}",
 
+    "passphrase-welcome": "passphrase-welcome",
+
     "mobile-money-info": "Your account balance is: {balance}",
     "balance-reset": "balance-reset",
 
