@@ -14,6 +14,7 @@ const RecordType = t.intersection([
         isEnrolled: t.boolean,
         balanceAmount: t.number,
         enrolmentRequest: t.UnknownRecord,
+        //isActive: t.boolean,
     }),
 ]);
 export type RecordType = t.TypeOf<typeof RecordType>;
