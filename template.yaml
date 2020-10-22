@@ -178,6 +178,21 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  DeactivationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/deactivation
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/deactivation
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
   ReturnWelcome:
     Type: AWS::Serverless::Function
     Properties:
@@ -282,6 +297,7 @@ Resources:
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
+
   CallbackFunction:
     Type: AWS::Serverless::Function
     Properties:
