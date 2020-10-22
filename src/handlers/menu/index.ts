@@ -10,6 +10,12 @@ async function notImplementedHandler({ language }: ParsedRequest) {
     return response;
 }
 
+async function deactivationHandler({ language }: ParsedRequest) {
+    const response = new twiml.VoiceResponse();
+    response.redirect({ method: 'GET' }, `./deactivation`);
+    return response;
+}
+
 async function mobileMoneyHandler() {
     const response = new twiml.VoiceResponse();
     response.redirect({ method: 'GET' }, './mobilemoney');
@@ -40,7 +46,7 @@ const menu: MenuOption[] = [
             'deactivation',
         ],
         description: 'deactivate',
-        handler: notImplementedHandler,
+        handler: deactivationHandler,
     },
 ];
 
