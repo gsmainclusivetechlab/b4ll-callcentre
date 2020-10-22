@@ -50,6 +50,8 @@
     "transfer-approved": "transfer-approved",
     "transfer-declined": "transfer-declined",
 
+    "deactivate-account": "It is a pity that you are leaving us, but remember that you can use your voice to reactivate your account whenever you wish. Your account has been successfully deactivated. Thank you.",
+
     "mobile-money-info": "mobile-money-info {balance}",
     "balance-reset": "balance-reset",
 
