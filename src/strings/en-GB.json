@@ -51,6 +51,8 @@
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was declined by {error}",
 
+    "deactivate-account": "It is a pity that you are leaving us, but remember that you can use your voice to reactivate your account whenever you wish. Your account has been successfully deactivated. Thank you.",
+
     "mobile-money-info": "Your account balance is: ${balance}",
     "balance-reset": "Your account balance is $0, for the purposes of this demo it has been reset to $100.",
 
