@@ -20,7 +20,7 @@
     "enrol-confirmation": "Great. To complete your registration, we need {remaining, plural, one {# more enrolment} other {# more enrolments}}.",
     "enrolment-complete": "Thanks. Your voice is now registered.",
 
-    "reactivation-welcome": "It looks like your account is deactivated. In way to proceed with your reactivation we must verify your voice.",
+    "reactivation-welcome": "It looks like your account is deactivated. In way to proceed with your reactivation we must verify your voice. Please repeat the following phrase:",
     "reactivation-message": "Please repeat the following phrase:",
     "reactivation-confirmation": "Great. Your account is reactivated.",
 
