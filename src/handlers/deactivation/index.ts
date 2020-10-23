@@ -7,29 +7,22 @@ export const post = safeHandle(
     async (request) => {
         const { language, user } = request;
         const response = new twiml.VoiceResponse();
-        const active = user.isActive;
 
-        // if (!user.isActive) {
-        //     throw new Error('You must be active before trying to deactivate your account');
-        // }
-        // else{
+        if (user.isDeactivated) {
+            response.say(getVoiceParams(language), __('error', language));
+            response.redirect({ method: 'GET' }, `./menu`);
+        } else {
+            await putItem({
+                ...user,
+                isDeactivated: true,
+            });
+            response.say(
+                getVoiceParams(language),
+                __('deactivate-account', language)
+            );
+            response.hangup();
+        }
 
-        // }
-
-        await putItem({
-            ...user,
-            isActive: false,
-        });
-
-        response.say(
-            getVoiceParams(language),
-            __('deactivate-account', { active }, language)
-        );
-        response.redirect({ method: 'GET' }, `./menu`);
-
-        //user.isActive = false;
-
-        //response.hangup();
         return response;
     },
     { requireVerification: true }
