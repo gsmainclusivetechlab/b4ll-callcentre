@@ -27,7 +27,7 @@ export async function requestEnrolment(
             ...user,
             voiceItId: enrolmentReq.request.userId,
             balanceAmount: 100,
-            isActive: true,
+            isDeactivated: false,
         };
         await putItem(user);
     }

@@ -18,6 +18,7 @@ export enum VerificationState {
     REGISTERED = 2,
     AUTHENTICATION_REQUESTED = 3,
     AUTHENTICATED = 4,
+    DEACTIVATED = 5,
 }
 interface BaseCookie {
     /** caller phone number */
@@ -28,7 +29,8 @@ interface PlainCookie extends BaseCookie {
     state:
         | VerificationState.AUTHENTICATED
         | VerificationState.NOT_ENROLLED
-        | VerificationState.REGISTERED;
+        | VerificationState.REGISTERED
+        | VerificationState.DEACTIVATED;
 }
 interface EnrolmentRequestedCookie extends BaseCookie {
     state: VerificationState.ENROLMENT_REQUESTED;
@@ -58,6 +60,7 @@ export function makeCookieHeader(cookie: AuthCookie): Record<string, string> {
 export interface HandlerParams {
     requireVerification?: boolean;
     allowEnrolment?: boolean;
+    allowDeactivated?: boolean;
     loginRedirect?: { method: string; target: string };
 }
 
@@ -80,6 +83,9 @@ export async function handleVerification(
             return checkVerification(request, params.loginRedirect);
         case VerificationState.AUTHENTICATED:
             return null;
+        case VerificationState.DEACTIVATED:
+            if (params.allowDeactivated === true) return null; // proceed to the original function handler
+            break; // proceed to the unauthorised handler below
     }
 
     // currently the only way to arrive here is if enrolment is required but not allowed on the handler
