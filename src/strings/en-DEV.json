@@ -50,7 +50,7 @@
     "transfer-approved": "transfer-approved",
     "transfer-declined": "transfer-declined",
 
-    "passphrase-welcome": "passphrase-welcome",
+    "passphrase-add": "passphrase-add",
 
     "mobile-money-info": "mobile-money-info {balance}",
     "balance-reset": "balance-reset",

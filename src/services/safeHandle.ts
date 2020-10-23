@@ -94,7 +94,7 @@ export const safeHandle = (
     ) {
         try {
             const request = await parseRequest(e);
-            if (params.requireVerification) {
+            if (params.requireVerification || params.addVerification) {
                 const result = await handleVerification(request, params);
                 if (result) return result;
             }

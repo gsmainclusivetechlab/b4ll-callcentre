@@ -5,7 +5,7 @@ import { MenuOption, menuToGather, menuToHandler } from '../../services/menu';
 
 async function addPassphraseHandler() {
     const response = new twiml.VoiceResponse();
-    response.redirect({ method: 'GET' }, `./passphrase`);
+    response.redirect({ method: 'GET' }, `./passphrase/add`);
     return response;
 }
 
@@ -18,7 +18,7 @@ async function returnHandler() {
 const passphraseMenu: MenuOption[] = [
     {
         triggers: ['add', 'additional', 'add phrase'],
-        description: 'passphrase-welcome',
+        description: 'passphrase-add',
         handler: addPassphraseHandler,
     },
     {
@@ -53,6 +53,5 @@ export const post = safeHandle(
     },
     {
         requireVerification: false,
-        loginRedirect: { method: 'GET', target: './passphrase' },
     }
 );

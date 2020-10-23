@@ -6,10 +6,11 @@ import { APIGatewayProxyResult } from 'aws-lambda';
 import { BiometricType } from '../../engine/BiometricsProvider';
 import { provider } from '../../engine/voiceit/provider';
 import { putItem } from '../dynamodb';
-import { VerificationState, makeCookieHeader } from '.';
+import { VerificationState, makeCookieHeader, HandlerParams } from '.';
 
 export async function handleEnrolment(
     input: ParsedRequest,
+    param: HandlerParams,
     redirect?: { method: string; target: string }
 ): Promise<APIGatewayProxyResult> {
     console.log('Handling enrolment');
@@ -58,6 +59,8 @@ export async function handleEnrolment(
             { method: redirect?.method || event.httpMethod },
             redirect?.target || event.path
         );
+
+        param.addVerification = false;
 
         return {
             statusCode: 200,

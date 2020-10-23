@@ -32,7 +32,12 @@ export async function requestEnrolment(
     }
 
     const { phrase } = enrolmentReq;
-    response.say(getVoiceParams(language), __('welcome-stranger', language));
+    if (VerificationState.NOT_ENROLLED) {
+        response.say(
+            getVoiceParams(language),
+            __('welcome-stranger', language)
+        );
+    }
     response.say(getVoiceParams(language), __('enrol-message', language));
     response.pause({ length: 1 });
     response.say(getVoiceParams(language), enrolmentReq.phrase);

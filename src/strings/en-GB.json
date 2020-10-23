@@ -32,7 +32,7 @@
     "passphrase-manager": "To record new verification phrases, press {index}",
     "deactivate": "To deactivate your account, press {index}",
 
-    "passphrase-welcome": "You currently have {count} phrases in your account. To add an additional one, press {index}",
+    "passphrase-add": "To add a new passphrase, press {index}",
 
     "bill-payment-message": "Please insert the payment number",
     "bill-payment-number": "The payment number you entered is {payment}",
