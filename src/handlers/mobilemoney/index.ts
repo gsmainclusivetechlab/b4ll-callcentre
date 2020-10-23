@@ -55,7 +55,7 @@ export const get = safeHandle(
         response.redirect({ method: 'GET' }, `./mobilemoney`);
         return response;
     },
-    { requireVerification: false }
+    { requireVerification: true }
 );
 
 export const post = safeHandle(
@@ -63,6 +63,6 @@ export const post = safeHandle(
         return menuToHandler(mobileMoneyMenu, request, `./mobilemoney`);
     },
     {
-        requireVerification: false,
+        requireVerification: true,
     }
 );
