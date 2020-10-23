@@ -12,7 +12,7 @@ async function notImplementedHandler({ language }: ParsedRequest) {
 
 async function deactivationHandler({ language }: ParsedRequest) {
     const response = new twiml.VoiceResponse();
-    response.redirect({ method: 'GET' }, `./deactivation`);
+    response.redirect({ method: 'POST' }, `./deactivation`);
     return response;
 }
 

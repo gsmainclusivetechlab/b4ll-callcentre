@@ -181,7 +181,7 @@ Resources:
   DeactivationFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.get
+      Handler: index.post
       CodeUri: ./dist/handlers/deactivation
       Role: !GetAtt LambdaRole.Arn
       Events:
@@ -189,7 +189,7 @@ Resources:
           Type: Api
           Properties:
             Path: /{lang}/deactivation
-            Method: GET
+            Method: POST
             RestApiId:
               Ref: ApiGatewayApi
 
