@@ -1,27 +1,35 @@
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle } from '../../services/safeHandle';
+import { putItem } from '../../services/dynamodb';
 
-// Create a variable to indicate the account statuts
-
-export const get = safeHandle(
+export const post = safeHandle(
     async (request) => {
-        const response = new twiml.VoiceResponse();
         const { language, user } = request;
-        const active = request.user.isActive;
+        const response = new twiml.VoiceResponse();
+        const active = user.isActive;
 
-        if (active) {
-            //Verification
-            (user.isActive = false),
-                response.say(
-                    getVoiceParams(language),
-                    __('deactivate-account', language)
-                );
-        } else {
-            //Insert a message if for any reason the flow gets here and the account is deactivated
-        }
+        // if (!user.isActive) {
+        //     throw new Error('You must be active before trying to deactivate your account');
+        // }
+        // else{
 
-        response.hangup();
+        // }
+
+        await putItem({
+            ...user,
+            isActive: false,
+        });
+
+        response.say(
+            getVoiceParams(language),
+            __('deactivate-account', { active }, language)
+        );
+        response.redirect({ method: 'GET' }, `./menu`);
+
+        //user.isActive = false;
+
+        //response.hangup();
         return response;
     },
     { requireVerification: true }
