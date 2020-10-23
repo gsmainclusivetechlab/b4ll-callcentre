@@ -5,7 +5,6 @@ import { APIGatewayProxyResult } from 'aws-lambda';
 import { BiometricType } from '../../engine/BiometricsProvider';
 import { provider } from '../../engine/voiceit/provider';
 import { makeCookieHeader, VerificationState } from '.';
-import { putItem } from '../../services/dynamodb';
 
 export async function requestVerification(
     input: ParsedRequest
@@ -35,10 +34,6 @@ export async function requestVerification(
             getVoiceParams(language),
             __('reactivation-welcome', language)
         );
-        await putItem({
-            ...user,
-            isDeactivated: false,
-        });
     } else {
         response.say(
             getVoiceParams(language),

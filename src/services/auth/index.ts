@@ -84,9 +84,9 @@ export async function handleVerification(
         case VerificationState.AUTHENTICATED:
             return null;
         case VerificationState.DEACTIVATED:
-            return requestVerification(request);
-        // if (params.allowDeactivated === true) return null; // proceed to the original function handler
-        // break // proceed to the unauthorised handler below
+            if (params.allowDeactivated === true)
+                return requestVerification(request); // proceed to the verification function handler
+            break; // proceed to the unauthorised handler below
     }
 
     // currently the only way to arrive here is if enrolment is required but not allowed on the handler
