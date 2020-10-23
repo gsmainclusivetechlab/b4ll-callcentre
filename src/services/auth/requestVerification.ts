@@ -5,6 +5,7 @@ import { APIGatewayProxyResult } from 'aws-lambda';
 import { BiometricType } from '../../engine/BiometricsProvider';
 import { provider } from '../../engine/voiceit/provider';
 import { makeCookieHeader, VerificationState } from '.';
+import { putItem } from '../../services/dynamodb';
 
 export async function requestVerification(
     input: ParsedRequest
@@ -28,10 +29,23 @@ export async function requestVerification(
 
     // construct a request for the user to provide the information provided by the biometrics engine
     const response = new twiml.VoiceResponse();
-    response.say(
-        getVoiceParams(language),
-        __('verification-request', language)
-    );
+
+    if (user.isDeactivated) {
+        response.say(
+            getVoiceParams(language),
+            __('reactivation-welcome', language)
+        );
+        await putItem({
+            ...user,
+            isDeactivated: false,
+        });
+    } else {
+        response.say(
+            getVoiceParams(language),
+            __('verification-request', language)
+        );
+    }
+
     response.pause({ length: 1 });
     response.say(getVoiceParams(language), request.phrase);
     response.record({
