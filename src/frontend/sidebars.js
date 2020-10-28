@@ -4,13 +4,17 @@ module.exports = {
         'Architecture': ['architecture/structure'],
         'Voice Biometric': [
             'voice-biometric/intro',
-            'voice-biometric/mobilemoneyvoice',
+            'voice-biometric/flow',
+            'voice-biometric/usecases',
             'voice-biometric/alerts',
         ],
         'User Manuals': ['manual/quickguide'],
         "Contributor's Guide": [
             'contributors-guide/contributing',
             'contributors-guide/reportingbugs',
+        ],
+        "Next Steps": [
+            'nextsteps',
         ],
     },
 };

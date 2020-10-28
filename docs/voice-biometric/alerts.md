@@ -1,6 +1,6 @@
 ---
 title: Alerts
-sidebar_label: Alerts
+sidebar_label: Alerts (Temporary)
 ---
 
 To demonstrate the ability to verify a user's identity on inbound calls, we have
