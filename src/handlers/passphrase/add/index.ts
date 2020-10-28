@@ -3,12 +3,12 @@ import { safeHandle } from '../../../services/safeHandle';
 
 export const get = safeHandle(
     async (request) => {
-        const { language } = request;
-
         const response = new twiml.VoiceResponse();
-        response.redirect({ method: 'GET' }, `/${language}/menu`);
-
+        response.redirect({ method: 'GET' }, `../passphrase`);
         return response;
     },
-    { addVerification: true }
+    {
+        addVerification: true,
+        loginRedirect: { method: 'GET', target: './add' },
+    }
 );

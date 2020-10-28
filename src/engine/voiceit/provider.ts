@@ -11,7 +11,6 @@ import {
     enrolUser,
     verifyUser,
 } from './api';
-import { VerificationState } from '../../services/auth';
 
 interface Params {
     userId: string;
@@ -64,7 +63,7 @@ export const provider: VoiceItProvider = {
         );
 
         let phrase: string, recordingsRequired: number;
-        if (unfinishedPhrase.phrase && VerificationState.NOT_ENROLLED) {
+        if (unfinishedPhrase.phrase && unfinishedPhrase.count < 3) {
             phrase = unfinishedPhrase.phrase;
             recordingsRequired = Math.max(
                 1,

@@ -28,30 +28,19 @@ const passphraseMenu: MenuOption[] = [
     },
 ];
 
-export const get = safeHandle(
-    async (request) => {
-        const { language } = request;
+export const get = safeHandle(async (request) => {
+    const { language } = request;
 
-        const response = new twiml.VoiceResponse();
+    const response = new twiml.VoiceResponse();
 
-        menuToGather(response, request, passphraseMenu);
+    menuToGather(response, request, passphraseMenu);
 
-        // if the gather doesn't detect anything, we fall back on this next instruction:
-        response.say(
-            getVoiceParams(language),
-            __('did-not-understand', language)
-        );
-        response.redirect({ method: 'GET' }, `./passphrase`);
-        return response;
-    },
-    { requireVerification: false }
-);
+    // if the gather doesn't detect anything, we fall back on this next instruction:
+    response.say(getVoiceParams(language), __('did-not-understand', language));
+    response.redirect({ method: 'GET' }, `./passphrase`);
+    return response;
+});
 
-export const post = safeHandle(
-    async (request) => {
-        return menuToHandler(passphraseMenu, request, `./passphrase`);
-    },
-    {
-        requireVerification: false,
-    }
-);
+export const post = safeHandle(async (request) => {
+    return menuToHandler(passphraseMenu, request, `./passphrase`);
+});

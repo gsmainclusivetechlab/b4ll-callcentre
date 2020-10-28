@@ -60,8 +60,6 @@ export async function handleEnrolment(
             redirect?.target || event.path
         );
 
-        param.addVerification = false;
-
         return {
             statusCode: 200,
             headers: {
