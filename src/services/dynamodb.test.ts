@@ -37,7 +37,7 @@ describe('dynamodb', () => {
     });
 
     test('reads table name from environment', async () => {
-        process.env.TABLE_NAME = undefined;
+        process.env.TABLE_ACCOUNTS = undefined;
         await expect(getItem('foo')).rejects.toMatchObject({
             message: expect.stringContaining('Invalid table/index name.'),
         });
@@ -47,7 +47,7 @@ describe('dynamodb', () => {
     });
 
     test('rejects invalid items', async () => {
-        process.env.TABLE_NAME = undefined;
+        process.env.TABLE_ACCOUNTS = undefined;
         await expect(putItem(({} as unknown) as RecordType)).rejects.toThrow(
             `Invalid record structure`
         );

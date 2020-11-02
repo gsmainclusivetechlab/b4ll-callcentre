@@ -45,7 +45,7 @@ async function parseRequest(
     if (typeof Caller !== 'string' || Caller.length < 3) {
         throw new Error('Unable to identify caller');
     }
-    const user = await getItem(Caller);
+    const user = await getItem(Caller, process.env.TABLE_ACCOUNTS || '');
 
     // By default, the user is unauthenticated
     let auth: AuthCookie = {

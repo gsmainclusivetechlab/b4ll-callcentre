@@ -27,7 +27,8 @@ Globals:
     Tracing: Active
     Environment:
       Variables:
-        TABLE_NAME: !Ref AccountsTable
+        TABLE_ACCOUNTS: !Ref AccountsTable
+        TABLE_SURVEY: !Red SurveyTable
         DYNAMO_HOST: !Ref DynamoHost
         VOICEIT_API_KEY: !Ref VoiceItAPIKey
         VOICEIT_API_TOKEN: !Ref VoiceItAPIToken
@@ -298,6 +299,19 @@ Resources:
               Ref: ApiGatewayApi
 
   AccountsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+  SurveyTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
