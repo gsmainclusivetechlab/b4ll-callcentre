@@ -38,7 +38,7 @@ async function parseRequest(
     const body = qs.parse(event.body || '');
     const callerKey =
         body.Direction === 'outbound-api' ||
-        event.queryStringParameters?.Direction === 'outbount-api'
+        event.queryStringParameters?.Direction === 'outbound-api'
             ? 'Called'
             : 'Caller';
     const Caller = body[callerKey] || event.queryStringParameters?.[callerKey];
