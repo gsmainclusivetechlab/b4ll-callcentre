@@ -6,11 +6,10 @@ import { APIGatewayProxyResult } from 'aws-lambda';
 import { BiometricType } from '../../engine/BiometricsProvider';
 import { provider } from '../../engine/voiceit/provider';
 import { putItem } from '../dynamodb';
-import { VerificationState, makeCookieHeader, HandlerParams } from '.';
+import { VerificationState, makeCookieHeader } from '.';
 
 export async function handleEnrolment(
     input: ParsedRequest,
-    param: HandlerParams,
     redirect?: { method: string; target: string }
 ): Promise<APIGatewayProxyResult> {
     console.log('Handling enrolment');
@@ -75,6 +74,7 @@ export async function handleEnrolment(
 
     if (!success) {
         // TODO: warn the user that something went wrong, before triggering a retry
+        response.say(getVoiceParams(language), __('error', language));
     }
 
     if (next) {

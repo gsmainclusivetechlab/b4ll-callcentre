@@ -66,7 +66,7 @@ export const get = safeHandle(
         response.redirect({ method: 'GET' }, `./menu`);
         return response;
     },
-    { requireVerification: true }
+    { requireVerification: false }
 );
 
 export const post = safeHandle(
@@ -74,7 +74,7 @@ export const post = safeHandle(
         return menuToHandler(menu, request, `./menu`);
     },
     {
-        requireVerification: true,
+        requireVerification: false,
         loginRedirect: { method: 'GET', target: './menu' },
     }
 );

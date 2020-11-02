@@ -1,4 +1,4 @@
-import { getVoiceParams, __ } from '../strings';
+import { __, getVoiceParams } from '../strings';
 import { twiml } from 'twilio';
 import { ParsedRequest } from '../safeHandle';
 import { APIGatewayProxyResult } from 'aws-lambda';
@@ -32,12 +32,7 @@ export async function requestEnrolment(
     }
 
     const { phrase } = enrolmentReq;
-    if (VerificationState.NOT_ENROLLED) {
-        response.say(
-            getVoiceParams(language),
-            __('welcome-stranger', language)
-        );
-    }
+    response.say(getVoiceParams(language), __('welcome-stranger', language));
     response.say(getVoiceParams(language), __('enrol-message', language));
     response.pause({ length: 1 });
     response.say(getVoiceParams(language), enrolmentReq.phrase);

@@ -59,7 +59,7 @@ export interface HandlerParams {
     requireVerification?: boolean;
     allowEnrolment?: boolean;
     loginRedirect?: { method: string; target: string };
-    addVerification?: boolean;
+    addPassphrase?: boolean;
 }
 
 export async function handleVerification(
@@ -74,13 +74,9 @@ export async function handleVerification(
             if (params.allowEnrolment === false) break;
             return requestEnrolment(request);
         case VerificationState.ENROLMENT_REQUESTED:
-            return handleEnrolment(request, params, params.loginRedirect);
+            return handleEnrolment(request, params.loginRedirect);
         case VerificationState.REGISTERED:
-            if (params.addVerification) {
-                return requestEnrolment(request);
-            } else {
-                return requestVerification(request);
-            }
+            return requestVerification(request);
         case VerificationState.AUTHENTICATION_REQUESTED:
             return checkVerification(request, params.loginRedirect);
         case VerificationState.AUTHENTICATED:

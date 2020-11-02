@@ -1,11 +1,11 @@
 import {
-    APIGatewayProxyHandler,
     APIGatewayProxyEvent,
+    APIGatewayProxyHandler,
     APIGatewayProxyResult,
 } from 'aws-lambda';
 import {
-    getVoiceParams,
     __,
+    getVoiceParams,
     isSupportedLanguage,
     SupportedLanguage,
 } from './strings';
@@ -14,9 +14,9 @@ import { getItem, RecordType } from './dynamodb';
 import qs from 'querystring';
 import * as jwt from 'jsonwebtoken';
 import {
+    AuthCookie,
     HandlerParams,
     handleVerification,
-    AuthCookie,
     VerificationState,
 } from './auth';
 
@@ -94,7 +94,7 @@ export const safeHandle = (
     ) {
         try {
             const request = await parseRequest(e);
-            if (params.requireVerification || params.addVerification) {
+            if (params.requireVerification) {
                 const result = await handleVerification(request, params);
                 if (result) return result;
             }
@@ -127,6 +127,48 @@ export const safeHandle = (
     return safeHandler;
 };
 
+export const safeHandle_test = (
+    f: (e: ParsedRequest) => Promise<{ toString: () => string }>,
+    params: HandlerParams = {}
+): APIGatewayProxyHandler => {
+    const safeHandler = async function safelyHandledFunction(
+        e: APIGatewayProxyEvent
+    ) {
+        try {
+            const request = await parseRequest(e);
+            if (params.addPassphrase) {
+                const result = await handleVerification(request, params);
+                if (result) return result;
+            }
+
+            const response = await f(request);
+            return serialise2(response, 200);
+        } catch (err) {
+            const maybeLang = e.pathParameters?.lang;
+            const language = isSupportedLanguage(maybeLang)
+                ? maybeLang
+                : 'en-GB';
+            if (typeof err === 'object') {
+                return serialise2(err, err.statusCode || 500);
+            }
+            const response = new twiml.VoiceResponse();
+            const message =
+                typeof err === 'string'
+                    ? err
+                    : typeof err.message === 'string'
+                    ? err.message
+                    : '';
+            response.say(
+                getVoiceParams(language),
+                __('error', { message }, language)
+            );
+            return serialise2(response, 500);
+        }
+    };
+    safeHandler.orig = f;
+    return safeHandler;
+};
+
 function serialise(r: unknown, statusCode: number): APIGatewayProxyResult {
     console.log('Returning ', r);
     if (typeof r === 'object' && r !== null) {
@@ -138,6 +180,31 @@ function serialise(r: unknown, statusCode: number): APIGatewayProxyResult {
                 },
                 body: r.toString(),
             };
+        }
+    }
+    return {
+        statusCode,
+        headers: {
+            'Content-Type': 'text/json',
+            'access-control-allow-origin': '*',
+        },
+        body: JSON.stringify(r),
+    };
+}
+
+function serialise2(r: unknown, statusCode: number): APIGatewayProxyResult {
+    console.log('Returning ', r);
+    if (typeof r === 'object' && r !== null) {
+        if (r instanceof twiml.VoiceResponse) {
+            return {
+                statusCode,
+                headers: {
+                    'Content-Type': 'text/xml',
+                },
+                body: r.toString(),
+            };
+        } else {
+            return <APIGatewayProxyResult>r;
         }
     }
     return {

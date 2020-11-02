@@ -342,6 +342,21 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  AddPassphraseFinalWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/passphrase/add/final
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/passphrase/add/final
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
   AccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:
