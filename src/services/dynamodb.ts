@@ -30,10 +30,10 @@ export const getClient = (): AWS.DynamoDB.DocumentClient =>
             : {}
     );
 
-export function getItem(id: string, tableName: string): Promise<RecordType> {
+export function getAccountItem(id: string): Promise<RecordType> {
     return getClient()
         .get({
-            TableName: tableName,
+            TableName: process.env.TABLE_ACCOUNTS || '',
             Key: {
                 id,
             },
@@ -49,7 +49,7 @@ export function getItem(id: string, tableName: string): Promise<RecordType> {
         );
 }
 
-export async function putItem(Item: RecordType): Promise<RecordType> {
+export async function putAccountItem(Item: RecordType): Promise<RecordType> {
     if (RecordType.is(Item)) {
         await getClient()
             .put({

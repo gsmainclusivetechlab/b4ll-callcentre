@@ -66,6 +66,7 @@
     "error": "Une erreur s'est produite. {message}",
 
     "return-menu": "To return to the main menu, press {index}",
+    "survey-option": "To answer our short survey, press {index}",
     "end-call": "To end this call, press {index}",
     "good-bye": "Thank you for using Biometrics For All, Good bye!"
 }

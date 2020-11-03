@@ -67,6 +67,7 @@
     "error": "error",
 
     "return-menu": "return-menu",
+    "survey-option": "To answer our short survey, press {index}",
     "end-call": "end-call",
     "good-bye": "good-bye"
 }

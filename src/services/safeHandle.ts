@@ -10,7 +10,7 @@ import {
     SupportedLanguage,
 } from './strings';
 import { twiml } from 'twilio';
-import { getItem, RecordType } from './dynamodb';
+import { getAccountItem, RecordType } from './dynamodb';
 import qs from 'querystring';
 import * as jwt from 'jsonwebtoken';
 import {
@@ -45,7 +45,7 @@ async function parseRequest(
     if (typeof Caller !== 'string' || Caller.length < 3) {
         throw new Error('Unable to identify caller');
     }
-    const user = await getItem(Caller, process.env.TABLE_ACCOUNTS || '');
+    const user = await getAccountItem(Caller);
 
     // By default, the user is unauthenticated
     let auth: AuthCookie = {

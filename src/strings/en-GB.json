@@ -58,7 +58,7 @@
     "alert-message": "Thank you for verifying your identity. The transaction has been authorised.",
     "alert-unregistered": "This phone number has not yet enrolled for voice verification.",
 
-    "survey-welcome": "Thank you for evaluating the Biometrics For All. If you could please take our feedback survey, just wait, it won't take longer than one minute!",
+    "survey-welcome": "Thank you for evaluating the Biometrics For All. Please answer the next few questions from 1 to 5 where 1 means very poor and 5 means excellent. You can use the keypad or your voice to answer each question.",
     "survey-question-01": "How would you evaluate the voice verification process? Press a number from 1 to 5 where 1 means very poor and 5 means excellent",
     "survey-question-02": "Do you think the menu flow was easy to understand? Press a number from 1 to 5 where 1 means very poor and 5 means excellent",
 
@@ -66,6 +66,7 @@
     "error": "An error occurred. {message}",
 
     "return-menu": "To return to the main menu, press {index}",
+    "survey-option": "To answer our short survey, press {index}",
     "end-call": "To end this call, press {index}",
     "good-bye": "Thank you for using Biometrics For All, Good bye!"
 }
