@@ -3,11 +3,12 @@ title: Next Project Steps
 sidebar_label: Next Project Steps
 ---
 
-O próximo passo de nosso projeto é a criação de uma aplicação que proporcione as
-operadoras um ambiente showcase para experienciar diversos casos de uso para
-diferentes tipos de biometria. Além disso, a aplicação possibilita ... com
-diferentes fornecedores de biometria, permitindo uma comparação entre diferentes
-soluções e algoritmos disponíveis no mercado.
+O próximo passo de nosso projeto é a criação de uma
+
+aplicação que proporcione as operadoras um ambiente showcase para experienciar
+diversos casos de uso para diferentes tipos de biometria. Além disso, a
+aplicação possibilita ... com diferentes fornecedores de biometria, permitindo
+uma comparação entre diferentes soluções e algoritmos disponíveis no mercado.
 
 A figura a seguir mostra um caso de uso genérico de como a aplicação funcionará.
 Os usuários utilizam o aplicativo para entender melhor o funcionamento do tipo
