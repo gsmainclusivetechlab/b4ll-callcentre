@@ -10,10 +10,9 @@ export const get = safeHandle(async (request) => {
     response.say(getVoiceParams(language), __('survey-question-01', language));
     response.gather({
         input: ['dtmf', 'speech'],
+        action: 'question-2',
         numDigits: 1,
     });
-
-    response.redirect({ method: 'GET' }, `./${language}/menu`);
 
     return response;
 });

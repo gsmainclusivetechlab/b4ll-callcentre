@@ -28,7 +28,7 @@ Globals:
     Environment:
       Variables:
         TABLE_ACCOUNTS: !Ref AccountsTable
-        TABLE_SURVEY: !Red SurveyTable
+        TABLE_SURVEY: !Ref SurveyTable
         DYNAMO_HOST: !Ref DynamoHost
         VOICEIT_API_KEY: !Ref VoiceItAPIKey
         VOICEIT_API_TOKEN: !Ref VoiceItAPIToken
@@ -236,6 +236,36 @@ Resources:
           Properties:
             Path: /{lang}/survey/question-1
             Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SurveyQuestion2:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/survey/question-2
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/survey/question-2
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SurveyFinal:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/survey/final
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/survey/final
+            Method: POST
             RestApiId:
               Ref: ApiGatewayApi
 

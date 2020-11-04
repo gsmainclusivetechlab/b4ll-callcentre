@@ -13,8 +13,12 @@ const RecordType = t.intersection([
         voiceItId: t.string,
         isEnrolled: t.boolean,
         balanceAmount: t.number,
+        questionOne: t.number,
+        questionTwo: t.number,
+        countryCode: t.string,
     }),
 ]);
+
 export type RecordType = t.TypeOf<typeof RecordType>;
 
 export const getClient = (): AWS.DynamoDB.DocumentClient =>
@@ -55,6 +59,38 @@ export async function putAccountItem(Item: RecordType): Promise<RecordType> {
             .put({
                 Item,
                 TableName: process.env.TABLE_ACCOUNTS || '',
+            })
+            .promise();
+        return Item;
+    }
+    return Promise.reject(new Error('Invalid record structure'));
+}
+
+export function getSurveyItem(id: string): Promise<RecordType> {
+    return getClient()
+        .get({
+            TableName: process.env.TABLE_SURVEY || '',
+            Key: {
+                id,
+            },
+        })
+        .promise()
+        .then(({ Item }) =>
+            pipe(
+                Item,
+                RecordType.decode,
+                // TODO: for now, I'm ignoring decoding errors on the assumption it's just an empty record
+                either.getOrElse(() => ({ id }))
+            )
+        );
+}
+
+export async function putSurveyItem(Item: RecordType): Promise<RecordType> {
+    if (RecordType.is(Item)) {
+        await getClient()
+            .put({
+                Item,
+                TableName: process.env.TABLE_SURVEY || '',
             })
             .promise();
         return Item;

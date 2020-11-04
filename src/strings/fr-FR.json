@@ -61,6 +61,7 @@
     "survey-welcome": "Thank you for evaluating the Biometrics For All. If you could please take our feedback survey, just wait, it won't take longer than one minute!",
     "survey-question-01": "How would you evaluate the voice verification process? Press a number from 1 to 5 where 1 means very poor and 5 means excellent",
     "survey-question-02": "Do you think the menu flow was easy to understand? Press a number from 1 to 5 where 1 means very poor and 5 means excellent",
+    "survey-finish": "Thank you. Your answers have been recorded.",
 
     "did-not-understand": "Désolé, je n'ai pas compris.",
     "error": "Une erreur s'est produite. {message}",
