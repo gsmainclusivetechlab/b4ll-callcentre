@@ -59,7 +59,6 @@ export interface HandlerParams {
     requireVerification?: boolean;
     allowEnrolment?: boolean;
     loginRedirect?: { method: string; target: string };
-    addPassphrase?: boolean;
 }
 
 export async function handleVerification(

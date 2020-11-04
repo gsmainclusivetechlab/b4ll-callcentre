@@ -15,6 +15,12 @@ async function returnHandler() {
     return response;
 }
 
+/*
+TODO: I'm not sure if this additional level of menu is useful? If I'm understanding right, 
+we are offering the choice to either continue doing what they asked, or go back to the previous menu.
+I would think that we could trust the user when they pressed "add passphrase" in the previous menu,
+and proceed straight onwards to the actual handler instead of adding this interim menu.
+*/
 const passphraseMenu: MenuOption[] = [
     {
         triggers: ['add', 'additional', 'add phrase'],
