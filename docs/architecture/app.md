@@ -14,9 +14,9 @@ application.
 
 ### Call Centre
 
-O call centre é executado independentemente do aplicativo móvel e utiliza o
-Twilio como provedor de comunicação. As conexões entre io engine e o Twilio são
-realizadas atraves de Twilio Markup Language (TwiML).
+The call center is executed independently of the mobile application and uses
+Twilio as a communication provider. The connections between the engine and
+Twilio are made through Twilio Markup Language (TwiML).
 
 <div style={{textAlign: 'center'}}>
 <img alt="Docusaurus with Keytar" src={useBaseUrl('img/CallCentreTwilio.svg')} />

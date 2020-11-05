@@ -18,8 +18,7 @@ be found in the following sections
 1. **Landing page:** B4LL project page containing relevant information for a
    better understanding of the use of biometrics and how the B4ll project can
    support mobile operators in the implementation of biometric technologies. The
-   landing page can be accessed here:
-   [B4ll Project - TEMP](https://www.gsma.com/lab).
+   landing page can be accessed here: [B4ll Project](https://www.gsma.com/lab).
 
 2. **Communication Channels:** The communication channels are responsible for
    the communication interface between the user and the b4ll system. The main
@@ -33,7 +32,8 @@ be found in the following sections
     biometrics.
 
 3. **Engine:** This part orchestrates the connection between the other parts of
-   the architecture.
+   the architecture handling the data received from the communication channels
+   and providing it to the engine.
 
 4. **Biometric Suppliers:** Biometric solutions available on the market. The
    connection with the suppliers takes place through an SDK or API and allows
@@ -41,13 +41,13 @@ be found in the following sections
 
 ### Architectural Parts
 
-**Figure:** Main components of the architecture and their connexions.
+**Figure:** Main components of the architecture.
 
 <div style={{textAlign: 'center'}}>
 <img alt="B4ll architetcure" src={useBaseUrl('img/ArchitectureParts.svg')}/>
 </div>
 
-### Main Connexions
+### Connexions
 
 -   The elements of the communication channel are responsible for requests and
     responses to the engine of the system.
@@ -56,35 +56,52 @@ be found in the following sections
 -   The connection between the engine and the supplier is made using AWS lambda
     functions and the API or SDK provided by the supplier.
 
-**Figure:** Architecture main connexions. (CHange the figure and insert the
-names of the connections - also change to the nam Engine)
+When using B4LL, the user activates one of the communication providers that will
+intermediate data capture through the user interface. In this case, the channel
+can be the mobile application, or another one that is necessary. The
+architecture is prepared to accept extra communication providers and integrates
+them with the engine. The call center is an example of this situation. In this
+case a component to connects the call center to the engine was created.
+
+The business logic of the communication channel integrates the communication
+between the communication provider and the engine, allowing data capture,
+processing and when necessary storage. Then the biometric data is passed to the
+engine.
+
+The engine logic handle the data received from the communication channels and
+provide it to the Biometric Suppliers in an acceptable format. The
+request/response connextion between engine and biometric supplier is done using
+the supplier's API (or SDK) and the engine handler functions.
+
+**Figure:** Architecture components and its relations.
 
 <div style={{textAlign: 'center'}}>
-<img alt="B4ll architetcure" src={useBaseUrl('img/ArchLevel0.png')}/>
+<img alt="B4ll architetcure" src={useBaseUrl('img/ArchitectureConnexions.svg')}/>
 </div>
 
-Ao utilizar o show case, o usuário ativa um dos provedores de comunicação que
-intermediará a captura de dados através da interface com o usuário. Neste caso,
-o canal pode ser o aplicativo móvel, ou um outro que se faça necessário. In this
-case our architecture is prepared to accept this extra components and integrates
-it with the engine. The call centre is an example of this situation. In this
-case a component to connects the call centre to the engine was created.
+:::info Data Storage It is important to mention here that the biometric data is
+only stored on the biometri suppliers side. :::
 
-The communication channel uses an API Gateway to have access to the engine
-business logic, including the Lambda stack...
+### Detailed View
 
-The engine logic manages the the data received from the communication channels
-and send it to the Biometric Suppliers. The request/response connextion between
-engine and biometri supplier is done using the supplier's API (or SDK) and the
-engine handler functions.
+The diagram below sketches out a microservice-based serverless architecture.
+Embracing a microservice architecture will make it more straightforward to add
+new biometrics types or providers in future through the creation of new
+connections for the new components.
 
-The following figure shows the architecture with the communication channels.
+**Figure:** Detailed architectural diagram.
 
-### Detailed Architecture
+<div style={{textAlign: 'center'}}>
+<img alt="B4ll architetcure" src={useBaseUrl('img/B4llArchitecture.svg')}/>
+</div>
 
-INSERIR AQUI A ARQUITETURA GERAL
-
-A figura a seguir mostra a arquitetura de maneira mais detalhada.
+Other services can also be used to enhance the user experience – for example
+DynamoDB may be used to store user data and preferences within the communication
+channel business logic – or for other technical reasons, such as using an S3
+bucket in the biometrics engine to store image data prior to biometric
+verification. Also shown is a simple deployment for the landing page. The
+content of this landing page will be static, so an object storage-based
+deployment is appropriate.
 
 ### Technological Considerations
 
