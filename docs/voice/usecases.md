@@ -4,12 +4,21 @@ sidebar_label: Use Cases
 ---
 
 For the voice biometrics showcase it is possible to have access to the use cases
-described below. These use cases aim to address different possibilities that can
-be approached with the use of voice verification. However, depending on the
-operator's needs, these solutions can be changed and adapted to simulate other
-everyday situations.
+in the following table and described below. These use cases aim to address
+different possibilities that can be approached with the use of voice
+verification. However, depending on the operator's needs, these solutions can be
+changed and adapted to simulate other everyday situations.
 
-## User Checking
+|                        Use Case                         |                                                                      Description                                                                       |
+| :-----------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------: |
+|         [User Verification](#user-verification)         |          Verifies user when calling the call centre, it can take the user to three different flows: enrolment, verification and reactivation           |
+| [Mobile Money Transactions](#mobile-money-transactions) | Allow the user to simulate the access to mobile money functionalities suce as: check the balance, simulating a bill payment or a mobile money transfer |
+|            [Simulate Alert](#simulate-alert)            |                                                 call back the user to simulate alert and notifications                                                 |
+|        [Manage Passphrases](#manage-passphrase)         |                       Register diferent passphrases to the user to show the possibilities of multiple passphrases when necessary                       |
+|        [Deactivate Account](#deactivate-account)        |                           Deactivate the user account to approach the possibility of new use cases, such as SIM reactivation                           |
+|                   [Surveys](#surveys)                   |                            Used to receive user's feedback and highlight the possibilities of using surveys in call centres                            |
+
+## User Verification
 
 When calling the call centre the user pass through a checking phase which
 determine the status of the user as being **not enrolled**, **enrolled and
