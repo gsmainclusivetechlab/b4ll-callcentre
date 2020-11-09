@@ -51,7 +51,7 @@
     "transfer-declined": "transfer-declined",
 
     "passphrase-add": "passphrase-add",
-    "deactivate-account": "Your account has been successfully deactivated. We hope to see you soon! Thank you.",
+    "deactivate-account": "deactivate-account",
 
     "mobile-money-info": "mobile-money-info {balance}",
     "balance-reset": "balance-reset",
