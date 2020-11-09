@@ -8,11 +8,11 @@ import { provider } from '../../engine/voiceit/provider';
 import { VerificationState, makeCookieHeader } from '.';
 import { putItem } from '../dynamodb';
 
-export const checkVerification = async (
+export const checkReactivation = async (
     { language, user, event, auth }: ParsedRequest,
     redirect?: { method: string; target: string }
 ): Promise<APIGatewayProxyResult> => {
-    if (auth.state !== VerificationState.AUTHENTICATION_REQUESTED) {
+    if (auth.state !== VerificationState.REACTIVATION_REQUESTED) {
         throw new Error('Unexpected verification state');
     }
     const body = qs.parse(event.body || '');
@@ -47,16 +47,21 @@ export const checkVerification = async (
     const response = new twiml.VoiceResponse();
 
     // Statement to define if the verification is a normal login or an account reactivation
+
     response.say(
         getVoiceParams(language),
         complete
             ? __(
-                  'verification-confirmation',
+                  'reactivation-message',
                   { confidence: Math.round(confidence) },
                   language
               )
             : __('verification-failed', language)
     );
+    await putItem({
+        ...user,
+        isDeactivated: false,
+    });
 
     // send the user to the resource they originally tried to access
     response.redirect(
