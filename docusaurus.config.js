@@ -29,8 +29,8 @@ module.exports = {
                 docs: {
                     sidebarPath: require.resolve('./src/frontend/sidebars.js'),
                     routeBasePath: '/',
-                    editUrl:
-                        'https://github.com/gsmainclusivetechlab/bilt-voice/tree/docs',
+                    // editUrl:
+                    //     'https://github.com/gsmainclusivetechlab/bilt-voice/tree/docs',
                 },
                 theme: {
                     customCss: require.resolve('./src/frontend/custom.css'),
