@@ -10,6 +10,13 @@ async function notImplementedHandler({ language }: ParsedRequest) {
     return response;
 }
 
+async function tempAlertHandler({ language }: ParsedRequest) {
+    const response = new twiml.VoiceResponse();
+    response.say(getVoiceParams(language), __('alert-message', language));
+    response.redirect({ method: 'GET' }, `./return`);
+    return response;
+}
+
 async function deactivationHandler({ language }: ParsedRequest) {
     const response = new twiml.VoiceResponse();
     response.redirect({ method: 'POST' }, `./deactivation`);
@@ -31,7 +38,7 @@ const menu: MenuOption[] = [
     {
         triggers: ['alert simulation', 'simulation', 'alert'],
         description: 'alert',
-        handler: notImplementedHandler,
+        handler: tempAlertHandler,
     },
     {
         triggers: ['new voice', 'new passphrase', 'passphrase'],
