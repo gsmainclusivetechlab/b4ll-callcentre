@@ -28,7 +28,7 @@
     "mobile-money-balance": "To check your mobile money balance, press {index}.",
     "pay-bill": "To pay a bill, press {index}.",
     "transfer": "To make a transfer, press {index}.",
-    "alert": "To simulate an alert, please visit our webpage!",
+    "alert": "To simulate an alert, press {index}.",
     "passphrase-manager": "To record new verification phrases, press {index}",
     "deactivate": "To deactivate your account, press {index}",
 
@@ -59,7 +59,7 @@
     "validation": "In way to verify your identity, please repeat the following phrase:",
 
     "alert-welcome": "Hello. This is a demo call from the \"Biometrics For All\" project. Some suspicious activity has been flagged on your account. Please verify your identity to authorise this transaction.",
-    "alert-message": "Thank you for verifying your identity. The transaction has been authorised.",
+    "alert-message": "To simulate an Alert, please visit our web page and follow the instructions.",
     "alert-unregistered": "This phone number has not yet enrolled for voice verification.",
 
     "survey-welcome": "Thank you for evaluating the Biometrics For All. If you could please take our feedback survey, just wait, it won't take longer than one minute!",
