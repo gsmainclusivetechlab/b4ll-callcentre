@@ -10,7 +10,7 @@
     "welcome-known": "Hello and welcome to our biometrics showcase.",
 
     "welcome": "Hello again. Welcome to the Biometrics Showcase",
-    "verification-request": "To access your account, please repeat the following phrase:",
+    "verification-request": "To verify your account, please repeat the following phrase:",
     "verification-confirmation": "Great! Your passphrase has been validated with {confidence}% confidence.",
     "verification-failed": "We were not able to verify your voice. Please try again.",
     "verification-error": "Sorry, you have reached the limit of attempts",
@@ -20,9 +20,9 @@
     "enrol-confirmation": "Great. To complete your registration, we need {remaining, plural, one {# more enrolment} other {# more enrolments}}.",
     "enrolment-complete": "Thanks. Your voice is now registered.",
 
-    "reactivation-welcome": "It looks like your account is deactivated. In way to proceed with your reactivation we must verify your voice. Please repeat the following phrase:",
+    "reactivation-welcome": "It looks like your account is deactivated. In way to proceed with your reactivation we must verify your voice.",
     "reactivation-message": "Great! Your passphrase has been validated with {confidence}% confidence. Welcome back, you account is now reactivated!",
-    "reactivation-confirmation": "Great. Your account is reactivated.",
+    "reactivation-confirmation": "Welcome back, you account is now reactivated!",
 
     "mobile-money": "To access your mobile money account, press {index}.",
     "mobile-money-balance": "To check your mobile money balance, press {index}.",
