@@ -55,6 +55,6 @@ export const post = safeHandle(
     {
         allowEnrolment: false,
         requireVerification: true,
-        allowDeactivated: true,
+        allowDeactivated: false,
     }
 );
