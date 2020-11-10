@@ -29,18 +29,6 @@ export async function requestVerification(
     // construct a request for the user to provide the information provided by the biometrics engine
     const response = new twiml.VoiceResponse();
 
-    if (user.isDeactivated) {
-        response.say(
-            getVoiceParams(language),
-            __('reactivation-welcome', language)
-        );
-    } else {
-        response.say(
-            getVoiceParams(language),
-            __('verification-request', language)
-        );
-    }
-
     response.pause({ length: 1 });
     response.say(getVoiceParams(language), request.phrase);
     response.record({
@@ -52,16 +40,39 @@ export async function requestVerification(
         maxLength: 5,
     });
 
-    return {
-        statusCode: 200,
-        headers: {
-            'Content-Type': 'text/xml',
-            ...makeCookieHeader({
-                state: VerificationState.AUTHENTICATION_REQUESTED,
-                req: request.request,
-                sub: user.id,
-            }),
-        },
-        body: response.toString(),
-    };
+    if (user.isDeactivated) {
+        response.say(
+            getVoiceParams(language),
+            __('reactivation-welcome', language)
+        );
+        return {
+            statusCode: 200,
+            headers: {
+                'Content-Type': 'text/xml',
+                ...makeCookieHeader({
+                    state: VerificationState.REACTIVATION_REQUESTED,
+                    req: request.request,
+                    sub: user.id,
+                }),
+            },
+            body: response.toString(),
+        };
+    } else {
+        response.say(
+            getVoiceParams(language),
+            __('verification-request', language)
+        );
+        return {
+            statusCode: 200,
+            headers: {
+                'Content-Type': 'text/xml',
+                ...makeCookieHeader({
+                    state: VerificationState.AUTHENTICATION_REQUESTED,
+                    req: request.request,
+                    sub: user.id,
+                }),
+            },
+            body: response.toString(),
+        };
+    }
 }
