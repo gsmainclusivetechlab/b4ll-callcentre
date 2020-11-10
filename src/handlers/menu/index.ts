@@ -17,9 +17,9 @@ async function tempAlertHandler({ language }: ParsedRequest) {
     return response;
 }
 
-async function deactivationHandler({ language }: ParsedRequest) {
+async function deactivationHandler() {
     const response = new twiml.VoiceResponse();
-    response.redirect({ method: 'POST' }, `./deactivation`);
+    response.redirect({ method: 'get' }, `./deactivation`);
     return response;
 }
 
@@ -60,7 +60,6 @@ const menu: MenuOption[] = [
 export const get = safeHandle(
     async (request) => {
         const { language } = request;
-
         const response = new twiml.VoiceResponse();
 
         menuToGather(response, request, menu);

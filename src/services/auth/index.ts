@@ -18,7 +18,6 @@ export enum VerificationState {
     REGISTERED = 2,
     AUTHENTICATION_REQUESTED = 3,
     AUTHENTICATED = 4,
-    DEACTIVATED = 5,
 }
 interface BaseCookie {
     /** caller phone number */
@@ -29,8 +28,7 @@ interface PlainCookie extends BaseCookie {
     state:
         | VerificationState.AUTHENTICATED
         | VerificationState.NOT_ENROLLED
-        | VerificationState.REGISTERED
-        | VerificationState.DEACTIVATED;
+        | VerificationState.REGISTERED;
 }
 interface EnrolmentRequestedCookie extends BaseCookie {
     state: VerificationState.ENROLMENT_REQUESTED;
@@ -83,8 +81,6 @@ export async function handleVerification(
             return checkVerification(request, params.loginRedirect);
         case VerificationState.AUTHENTICATED:
             return null;
-        case VerificationState.DEACTIVATED:
-            return requestVerification(request); // proceed to the verification function handler
     }
 
     // currently the only way to arrive here is if enrolment is required but not allowed on the handler

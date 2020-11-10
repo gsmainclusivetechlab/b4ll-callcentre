@@ -3,7 +3,7 @@ import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle } from '../../services/safeHandle';
 import { putItem } from '../../services/dynamodb';
 
-export const post = safeHandle(
+export const get = safeHandle(
     async (request) => {
         const { language, user } = request;
         const response = new twiml.VoiceResponse();
