@@ -28,7 +28,7 @@
     "mobile-money-balance": "To check your mobile money balance, press {index}.",
     "pay-bill": "To pay a bill, press {index}.",
     "transfer": "To make a transfer, press {index}.",
-    "alert": "To simulate an alert, press {index}.",
+    "alert": "To simulate an alert, please visit our webpage!",
     "passphrase-manager": "To record new verification phrases, press {index}",
     "deactivate": "To deactivate your account, press {index}",
 
@@ -49,7 +49,7 @@
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was declined by {error}",
 
-    "deactivate-account": "Your account has been successfully deactivated. We hope to see you soon! Good bye.",
+    "deactivate-account": "Your account has been successfully deactivated. You can reactivate your account in the future using your voice. Good bye, we hope to see you soon!",
 
     "mobile-money-info": "Your account balance is: ${balance}",
     "balance-reset": "Your account balance is $0, for the purposes of this demo it has been reset to $100.",
