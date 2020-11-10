@@ -24,7 +24,12 @@ export async function getPhrases(
     return result.data.phrases || [];
 }
 
-type ArrayEnrolment = [number, string, string, number];
+interface ArrayEnrolment {
+    createdAt: string;
+    contentLanguage: string;
+    voiceEnrollmentId: number;
+    text: string;
+}
 
 export async function getEnrolledPhrases(
     userId: string,
@@ -32,19 +37,6 @@ export async function getEnrolledPhrases(
 ): Promise<Record<string, number>> {
     const results = await api.get(`/enrollments/voice/${userId}`);
     const phrases = (results.data.voiceEnrollments as ArrayEnrolment[])
-        .map(
-            ([
-                id,
-                encodedPhrase,
-                contentLanguage,
-                createdAt,
-            ]): VoiceIt.VoiceEnrolment => ({
-                voiceEnrolmentId: id,
-                contentLanguage,
-                createdAt,
-                text: Buffer.from(encodedPhrase, 'base64').toString('utf8'),
-            })
-        )
         .filter((x) => x.contentLanguage === language)
         .map((x) => x.text);
     return phrases.reduce(

@@ -71,9 +71,13 @@ export const provider: VoiceItProvider = {
             );
         } else {
             const phrases = await getPhrases(language);
+            const enrolledPhrases = Object.keys(phraseCounts);
             const availablePhrases = phrases.map((x) => x.text.toLowerCase());
+            const filteredPhrases = availablePhrases.filter(
+                (f) => !enrolledPhrases.includes(f)
+            );
             phrase =
-                availablePhrases[
+                filteredPhrases[
                     Math.floor(Math.random() * availablePhrases.length)
                 ];
             recordingsRequired = REQUIRED_ENROLMENTS;
