@@ -6,7 +6,6 @@ import { APIGatewayProxyResult } from 'aws-lambda';
 import { BiometricType } from '../../engine/BiometricsProvider';
 import { provider } from '../../engine/voiceit/provider';
 import { VerificationState, makeCookieHeader } from '.';
-import { putItem } from '../dynamodb';
 
 export const checkVerification = async (
     { language, user, event, auth }: ParsedRequest,
@@ -48,44 +47,16 @@ export const checkVerification = async (
 
     // Statement to define if the verification is a normal login or an account reactivation
 
-    if (user.isDeactivated) {
-        response.say(
-            getVoiceParams(language),
-            complete
-                ? __(
-                      'reactivation-message',
-                      { confidence: Math.round(confidence) },
-                      language
-                  )
-                : __('verification-failed', language)
-        );
-        await putItem({
-            ...user,
-            isDeactivated: false,
-        });
-    } else {
-        response.say(
-            getVoiceParams(language),
-            complete
-                ? __(
-                      'verification-confirmation',
-                      { confidence: Math.round(confidence) },
-                      language
-                  )
-                : __('verification-failed', language)
-        );
-    }
-
-    // response.say(
-    //     getVoiceParams(language),
-    //     complete
-    //         ? __(
-    //               'verification-confirmation',
-    //               { confidence: Math.round(confidence) },
-    //               language
-    //           )
-    //         : __('verification-failed', language)
-    // );
+    response.say(
+        getVoiceParams(language),
+        complete
+            ? __(
+                  'verification-confirmation',
+                  { confidence: Math.round(confidence) },
+                  language
+              )
+            : __('verification-failed', language)
+    );
 
     // send the user to the resource they originally tried to access
     response.redirect(

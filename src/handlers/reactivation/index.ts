@@ -20,7 +20,7 @@ export const get = safeHandle(
             response.redirect({ method: 'GET' }, `./menu`);
         } else {
             response.say(getVoiceParams(language), __('error', language));
-            response.redirect({ method: 'GET' }, `./menu`);
+            response.hangup();
         }
 
         return response;

@@ -10,7 +10,7 @@
     "welcome-known": "Hello and welcome to our biometrics showcase.",
 
     "welcome": "Hello again. Welcome to the Biometrics Showcase",
-    "verification-request": "To verify your account, please repeat the following phrase:",
+    "verification-request": "To verify your voice, please repeat the following phrase:",
     "verification-confirmation": "Great! Your passphrase has been validated with {confidence}% confidence.",
     "verification-failed": "We were not able to verify your voice. Please try again.",
     "verification-error": "Sorry, you have reached the limit of attempts",

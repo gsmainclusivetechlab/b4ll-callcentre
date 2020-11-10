@@ -50,9 +50,7 @@ async function parseRequest(
     let auth: AuthCookie = {
         sub: Caller,
         state: user.isEnrolled
-            ? user.isDeactivated
-                ? VerificationState.DEACTIVATED
-                : VerificationState.REGISTERED
+            ? VerificationState.REGISTERED
             : VerificationState.NOT_ENROLLED,
     };
     const cookie = event.headers.Cookie?.split(/;\s?/)
