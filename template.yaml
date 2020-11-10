@@ -193,6 +193,21 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  ReactivationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/reactivation
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/reactivation
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
   ReturnWelcome:
     Type: AWS::Serverless::Function
     Properties:

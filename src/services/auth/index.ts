@@ -3,7 +3,6 @@ import { getVoiceParams, __ } from '../strings';
 import { twiml } from 'twilio';
 import { requestVerification } from './requestVerification';
 import { checkVerification } from './checkVerification';
-import { checkReactivation } from './checkReactivation';
 import { handleEnrolment } from './handleEnrolment';
 import { requestEnrolment } from './requestEnrolment';
 import { ParsedRequest } from '../safeHandle';
@@ -18,9 +17,8 @@ export enum VerificationState {
     ENROLMENT_REQUESTED = 1,
     REGISTERED = 2,
     AUTHENTICATION_REQUESTED = 3,
-    REACTIVATION_REQUESTED = 4,
-    AUTHENTICATED = 5,
-    DEACTIVATED = 6,
+    AUTHENTICATED = 4,
+    DEACTIVATED = 5,
 }
 interface BaseCookie {
     /** caller phone number */
@@ -44,15 +42,10 @@ interface AuthenticationRequestedCookie extends BaseCookie {
     state: VerificationState.AUTHENTICATION_REQUESTED;
     req: VoiceItVerificationData;
 }
-interface ReactivationRequestedCookie extends BaseCookie {
-    state: VerificationState.REACTIVATION_REQUESTED;
-    req: VoiceItVerificationData;
-}
 
 export type AuthCookie =
     | PlainCookie
     | AuthenticationRequestedCookie
-    | ReactivationRequestedCookie
     | EnrolmentRequestedCookie;
 
 export function makeCookieHeader(cookie: AuthCookie): Record<string, string> {
@@ -88,14 +81,10 @@ export async function handleVerification(
             return requestVerification(request);
         case VerificationState.AUTHENTICATION_REQUESTED:
             return checkVerification(request, params.loginRedirect);
-        case VerificationState.REACTIVATION_REQUESTED:
-            return checkReactivation(request, params.loginRedirect);
         case VerificationState.AUTHENTICATED:
             return null;
         case VerificationState.DEACTIVATED:
-            if (params.allowDeactivated === true)
-                return requestVerification(request); // proceed to the verification function handler
-            break; // proceed to the unauthorised handler below
+            return requestVerification(request); // proceed to the verification function handler
     }
 
     // currently the only way to arrive here is if enrolment is required but not allowed on the handler
