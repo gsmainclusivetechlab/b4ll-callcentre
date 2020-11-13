@@ -80,7 +80,7 @@ the supplier's API (or SDK) and the engine handler functions.
 </div>
 
 :::info Data Storage It is important to mention here that the biometric data is
-only stored on the biometri suppliers side. :::
+only stored on the biometric suppliers side. :::
 
 ### Detailed View
 
