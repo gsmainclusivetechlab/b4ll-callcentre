@@ -1,4 +1,4 @@
-import { __, getVoiceParams } from '../strings';
+import { getVoiceParams, __ } from '../strings';
 import { twiml } from 'twilio';
 import { ParsedRequest } from '../safeHandle';
 import { APIGatewayProxyResult } from 'aws-lambda';

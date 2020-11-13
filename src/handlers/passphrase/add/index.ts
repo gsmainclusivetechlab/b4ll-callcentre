@@ -27,12 +27,10 @@ export const get = safeHandle(
             playBeep: true,
             maxLength: 5,
         });
-        return {
-            body: response,
-        };
+        return response;
     },
     {
-        requireVerification: false,
+        requireVerification: true,
         allowEnrolment: false,
     }
 );

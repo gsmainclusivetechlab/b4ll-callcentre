@@ -55,15 +55,23 @@ export const provider: VoiceItProvider = {
 
         // find whichever phrase has most enrolments (if any)
         const unfinishedPhrase = Object.keys(phraseCounts).reduce(
-            (curr, phrase) =>
-                curr.count < phraseCounts[phrase]
-                    ? { count: phraseCounts[phrase], phrase }
-                    : curr,
+            (curr, phrase) => {
+                if (phraseCounts[phrase] >= REQUIRED_ENROLMENTS) {
+                    // this enrolment is already complete, so don't consider it
+                    return curr;
+                }
+                if (curr.count >= phraseCounts[phrase]) {
+                    // we've already found a phrase which is closer to completion, so ignore this one
+                    return curr;
+                }
+                // this is the phrase with the most recordings that we have seen so far
+                return { count: phraseCounts[phrase], phrase };
+            },
             { count: 0, phrase: undefined as string | undefined }
         );
 
         let phrase: string, recordingsRequired: number;
-        if (unfinishedPhrase.phrase && unfinishedPhrase.count < 3) {
+        if (unfinishedPhrase.phrase) {
             phrase = unfinishedPhrase.phrase;
             recordingsRequired = Math.max(
                 1,
@@ -78,7 +86,7 @@ export const provider: VoiceItProvider = {
             );
             phrase =
                 filteredPhrases[
-                    Math.floor(Math.random() * availablePhrases.length)
+                    Math.floor(Math.random() * filteredPhrases.length)
                 ];
             recordingsRequired = REQUIRED_ENROLMENTS;
         }

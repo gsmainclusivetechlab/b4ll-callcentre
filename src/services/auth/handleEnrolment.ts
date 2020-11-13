@@ -74,7 +74,10 @@ export async function handleEnrolment(
 
     if (!success) {
         // TODO: warn the user that something went wrong, before triggering a retry
-        response.say(getVoiceParams(language), __('error', language));
+        response.say(
+            getVoiceParams(language),
+            __('error', { message: '' }, language)
+        );
     }
 
     if (next) {

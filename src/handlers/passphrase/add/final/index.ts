@@ -1,5 +1,4 @@
 import { twiml } from 'twilio';
-import qs from 'querystring';
 import { safeHandle } from '../../../../services/safeHandle';
 import {
     VoiceItEnrolmentData,
@@ -28,18 +27,15 @@ import { getVoiceParams, __ } from '../../../../services/strings';
 // N.B. there is some duplication here with `services/auth/handleEnrolment` but it's tolerable to keep things simple.
 export const get = safeHandle(
     async ({ event, user, language }) => {
-        const body = qs.parse(event.body || '');
-        const {
-            RecordingUrl = event.queryStringParameters?.RecordingUrl,
-        } = body;
+        const RecordingUrl = event.queryStringParameters?.RecordingUrl;
         const { voiceItId, enrolmentRequest } = user;
         let enrolReq: VoiceItEnrolmentData;
+        // const enrolmentRequest = parseEnrolmentRequest(event);
         if (enrolmentRequest) {
             enrolReq = enrolmentRequest.request as VoiceItEnrolmentData;
         } else {
             throw new Error('No enrolment request');
         }
-        // const enrolmentRequest = parseEnrolmentRequest(event);
         if (typeof RecordingUrl !== 'string') {
             throw new Error('Could not retrieve recording URL.');
         }

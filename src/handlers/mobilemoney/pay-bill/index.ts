@@ -21,5 +21,5 @@ export const get = safeHandle(
         response.redirect('../return');
         return response;
     },
-    { requireVerification: false }
+    { requireVerification: true }
 );
