@@ -3,11 +3,11 @@ title: Use Cases
 sidebar_label: Use Cases
 ---
 
-For the voice biometrics showcase it is possible to have access to the use cases
-in the following table and described below. These use cases aim to address
-different possibilities that can be approached with the use of voice
-verification. However, depending on the operator's needs, these solutions can be
-changed and adapted to simulate other everyday situations.
+This section describes the use cases used for the voice biometrics
+showcase.These use cases aim to address different possibilities that can be
+approached with the use of voice verification. However, depending on the
+operator's needs, these solutions can be changed and adapted to simulate other
+everyday situations.
 
 |                        Use Case                         |                                                                      Description                                                                       |
 | :-----------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -17,6 +17,11 @@ changed and adapted to simulate other everyday situations.
 |        [Manage Passphrases](#manage-passphrase)         |                       Register diferent passphrases to the user to show the possibilities of multiple passphrases when necessary                       |
 |        [Deactivate Account](#deactivate-account)        |                           Deactivate the user account to approach the possibility of new use cases, such as SIM reactivation                           |
 |                   [Surveys](#surveys)                   |                            Used to receive user's feedback and highlight the possibilities of using surveys in call centres                            |
+
+:::info Use Cases Variations The use cases presented here try to approach
+different perspectives of using voice verification in a call centre. We believe
+that based on these use cases it is possible to create new ones to different
+approaches and purposes. :::
 
 ## User Verification
 
@@ -30,14 +35,14 @@ the call centre can take three different flows as described flowing:
 This flow means the user is not previously registered in the voice PoC. Thus, it
 will take the user though the enrolment process. During this process one of the
 voice phrases available for the call centre is randomly selected. The users then
-must to record their voice phrase 3 times to the algorithm created the
+must to record their voice passphrase 3 times so the algorithm creates the
 voiceprint. After this quick process, the user is registered in the system.
 
 It is important to mention here that, as discussed previously, we are not making
 the initial enrolment with the mobile operator. We assume the user has already
 created a mobile account and he/she is now enrolling in the voice recognition
 service. There are different approaches the operator could use here, such as
-validating the user with a PIN before enrolling into the voice service.
+validating the user in the current way it is being used.
 
 :::note User Story Include here details about the ID for initial identification
 :::
@@ -147,3 +152,6 @@ gets the higher is the possibility the user gives up without giving the
 feedback. This way 2 or 3 questions would be the best choice. This use case can
 be applied as a feedback survey in any of the previous use cases so we could get
 a user opinion about it.
+
+:::info Use Cases Variations These use cases where initially developed to our
+proof-of-concept. For the final version of B4LL project they may change. :::
