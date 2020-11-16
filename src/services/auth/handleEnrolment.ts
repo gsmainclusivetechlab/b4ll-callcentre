@@ -12,7 +12,6 @@ export async function handleEnrolment(
     input: ParsedRequest,
     redirect?: { method: string; target: string }
 ): Promise<APIGatewayProxyResult> {
-    console.log('Handling enrolment');
     const { event, user, language, auth } = input;
     if (auth.state !== VerificationState.ENROLMENT_REQUESTED) {
         throw new Error('Unexpected verification state');
@@ -26,7 +25,6 @@ export async function handleEnrolment(
     if (!voiceItId) {
         throw new Error('VoiceIT user does not exist');
     }
-    console.log('Got data ', voiceItId, RecordingUrl);
 
     // Make VoiceIt enrolment
     const { success, complete, next } = await provider.handleEnrolmentResponse(
@@ -40,7 +38,6 @@ export async function handleEnrolment(
             language,
         }
     );
-    console.log({ success, complete, next });
 
     const response = new twiml.VoiceResponse();
     if (complete) {
@@ -74,6 +71,10 @@ export async function handleEnrolment(
 
     if (!success) {
         // TODO: warn the user that something went wrong, before triggering a retry
+        response.say(
+            getVoiceParams(language),
+            __('error', { message: '' }, language)
+        );
     }
 
     if (next) {

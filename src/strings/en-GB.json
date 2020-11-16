@@ -32,6 +32,8 @@
     "passphrase-manager": "To record new verification phrases, press {index}",
     "deactivate": "To deactivate your account, press {index}",
 
+    "passphrase-add": "To add a new passphrase, press {index}",
+
     "bill-payment-message": "Please insert the payment number",
     "bill-payment-number": "The payment number you entered is {payment}",
     "bill-payment-error": "Sorry, the payment number you entered is not valid",

@@ -297,6 +297,66 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  PassphraseWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/passphrase
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/passphrase
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  PassphraseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/passphrase
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/passphrase
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  AddPassphraseWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/passphrase/add
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/passphrase/add
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  AddPassphraseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/passphrase/add
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/passphrase/add
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
   AccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:

@@ -1,11 +1,11 @@
 import {
-    APIGatewayProxyHandler,
     APIGatewayProxyEvent,
+    APIGatewayProxyHandler,
     APIGatewayProxyResult,
 } from 'aws-lambda';
 import {
-    getVoiceParams,
     __,
+    getVoiceParams,
     isSupportedLanguage,
     SupportedLanguage,
 } from './strings';
@@ -14,9 +14,9 @@ import { getItem, RecordType } from './dynamodb';
 import qs from 'querystring';
 import * as jwt from 'jsonwebtoken';
 import {
+    AuthCookie,
     HandlerParams,
     handleVerification,
-    AuthCookie,
     VerificationState,
 } from './auth';
 
@@ -30,7 +30,6 @@ export interface ParsedRequest {
 async function parseRequest(
     event: APIGatewayProxyEvent
 ): Promise<ParsedRequest> {
-    console.log('parsing', event);
     const language = event.pathParameters?.lang;
     if (!isSupportedLanguage(language)) {
         throw new Error('Unsupported language');
@@ -38,7 +37,7 @@ async function parseRequest(
     const body = qs.parse(event.body || '');
     const callerKey =
         body.Direction === 'outbound-api' ||
-        event.queryStringParameters?.Direction === 'outbount-api'
+        event.queryStringParameters?.Direction === 'outbound-api'
             ? 'Called'
             : 'Caller';
     const Caller = body[callerKey] || event.queryStringParameters?.[callerKey];
@@ -69,7 +68,6 @@ async function parseRequest(
             // ignore the failure and treat this as an unauthorized user
         }
     }
-    console.log('parse result ', { language, user, event, auth });
 
     // normalise event path
     if (event.requestContext) {
@@ -85,8 +83,15 @@ async function parseRequest(
     };
 }
 
+interface Returnable {
+    toString: () => string;
+}
 export const safeHandle = (
-    f: (e: ParsedRequest) => Promise<{ toString: () => string }>,
+    f: (
+        e: ParsedRequest
+    ) => Promise<
+        Returnable | { body: Returnable; cookie?: Record<string, string> }
+    >,
     params: HandlerParams = {}
 ): APIGatewayProxyHandler => {
     const safeHandler = async function safelyHandledFunction(
@@ -100,6 +105,9 @@ export const safeHandle = (
             }
 
             const response = await f(request);
+            if ('body' in response) {
+                return serialise(response.body, 200, response.cookie);
+            }
             return serialise(response, 200);
         } catch (err) {
             const maybeLang = e.pathParameters?.lang;
@@ -127,8 +135,11 @@ export const safeHandle = (
     return safeHandler;
 };
 
-function serialise(r: unknown, statusCode: number): APIGatewayProxyResult {
-    console.log('Returning ', r);
+function serialise(
+    r: unknown,
+    statusCode: number,
+    cookies?: Record<string, string>
+): APIGatewayProxyResult {
     if (typeof r === 'object' && r !== null) {
         if (r instanceof twiml.VoiceResponse) {
             return {
@@ -136,6 +147,15 @@ function serialise(r: unknown, statusCode: number): APIGatewayProxyResult {
                 headers: {
                     'Content-Type': 'text/xml',
                 },
+                ...(cookies
+                    ? {
+                          multiValueHeaders: {
+                              'Set-Cookie': Object.entries(cookies).map(
+                                  ([name, value]) => `${name}=${value}`
+                              ),
+                          },
+                      }
+                    : {}),
                 body: r.toString(),
             };
         }

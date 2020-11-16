@@ -1,10 +1,6 @@
 module.exports = {
     someSidebar: {
-        'Introduction': [
-            'itl',
-            'about', 
-            'docguide',
-        ],
+        'Introduction': ['itl', 'about', 'docguide'],
         'Architecture': [
             'architecture/overview',
             'architecture/landing',
@@ -18,12 +14,8 @@ module.exports = {
             'voice/usecases',
             'voice/alerts',
         ],
-        'Face': [
-            'face/intro',
-        ],
-        'Fingerprint': [
-            'fingerprint/intro',
-        ],
+        'Face': ['face/intro'],
+        'Fingerprint': ['fingerprint/intro'],
         'User Manuals': ['manual/quickguide'],
         "Contributor's Guide": [
             //'contributors-guide/contributing',
