@@ -18,7 +18,7 @@ everyday situations.
 |        [Deactivate Account](#deactivate-account)        |                           Deactivate the user account to approach the possibility of new use cases, such as SIM reactivation                           |
 |                   [Surveys](#surveys)                   |                            Used to receive user's feedback and highlight the possibilities of using surveys in call centres                            |
 
-:::info Use Cases Variations The use cases presented here try to approach
+:::note Use Cases Variations The use cases presented here try to approach
 different perspectives of using voice verification in a call centre. We believe
 that based on these use cases it is possible to create new ones to different
 approaches and purposes. :::
@@ -38,11 +38,11 @@ voice phrases available for the call centre is randomly selected. The users then
 must to record their voice passphrase 3 times so the algorithm creates the
 voiceprint. After this quick process, the user is registered in the system.
 
-It is important to mention here that, as discussed previously, we are not making
-the initial enrolment with the mobile operator. We assume the user has already
-created a mobile account and he/she is now enrolling in the voice recognition
-service. There are different approaches the operator could use here, such as
-validating the user in the current way it is being used.
+It is important to mention here that we are not making the initial enrolment
+with the mobile operator. We assume the user has already created a mobile
+account and he/she is now enrolling in the voice recognition service. There are
+different approaches the operator could use here, such as validating the user in
+the current way it is being used by the operator.
 
 :::note User Story Include here details about the ID for initial identification
 :::
@@ -104,7 +104,7 @@ This use case simulates a mobile money transference using voice authentication
 to access the service.
 
 **Flow 01:** Invalid Transfer Account: If the user selects an account number
-different of112233 the account number will be invalid.
+different of 112233 the account number will be invalid.
 
 **Flow 02:** Transfer Authorised: If the transfer is to the account number
 112233 and the amount is until \$100 (Current user balance), the transfer will
@@ -123,7 +123,7 @@ situations like an overdraft, a suspicious transaction, a high value
 transference, etc. If necessary, during the calling the user can use voice
 verification to validate a transaction. Currently this use case is being tested
 using a webpage available here:
-https://gsmainclusivetechlab.github.io/bilt-voice/voice-biometric/alerts/
+[simulate an alert](https://gsmainclusivetechlab.github.io/bilt-voice/voice-biometric/alerts/)
 
 ## Manage Passphrase
 
@@ -152,6 +152,3 @@ gets the higher is the possibility the user gives up without giving the
 feedback. This way 2 or 3 questions would be the best choice. This use case can
 be applied as a feedback survey in any of the previous use cases so we could get
 a user opinion about it.
-
-:::info Use Cases Variations These use cases where initially developed to our
-proof-of-concept. For the final version of B4LL project they may change. :::

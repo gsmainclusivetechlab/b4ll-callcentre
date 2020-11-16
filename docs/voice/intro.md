@@ -8,17 +8,17 @@ the strengths of using voice and speech recognition, and therefore, the
 identification and authentication of mobile users to access mobile services.
 
 The voice solution consists of an IVR Server System that allows the user to talk
-to voicebot through a menu of different possibilities. The services available
+to a voicebot through a menu of different possibilities. The services available
 are a simulation of real services and have the purpose of demonstrate the use of
 voice registration and authentication.
 
-Based on the system architecture, the voice solution has three main elements
-(call center, Engine and Biometric Supplier) and works like the figure shown
-below. the user calls the call center to access the menu and the available use
-cases. The call center communicates with the engine that acts as an orchestrator
-between the call center and the biometric supplier, managing the communication
-between them. The biometric supplier in turn provides the solution for voice
-recording and voice recognition.
+Based on the B4LL project architecture, the voice solution has three main
+elements (call center, Engine and Biometric Supplier) and works like the figure
+shown below. the user calls the call center to access the menu and the available
+use cases. The call center communicates with the engine that acts as an
+orchestrator between the call center and the biometric supplier, managing the
+communication between them. The biometric supplier in turn provides the solution
+for voice recording and voice recognition.
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -50,6 +50,6 @@ asset with our architecture.
 <img alt="Voice Biometrics Detailed Architecture"
 src={useBaseUrl('img/VoiceDetailedArch.png')} />
 
-:::warning Note It is important to point out that the proposed demo asset will
-only be available to service providers to test with demo data i.e. no real
-customer data will be used in this project. :::
+:::note Note It is important to point out that the proposed demo asset will only
+be available to mobile operators to see the possibilities of biometrics with
+demo data i.e. no real customer data will be used in this project. :::

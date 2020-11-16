@@ -1,6 +1,6 @@
 ---
 title: Alerts
-sidebar_label: Alerts (Temporary)
+sidebar_label: Alerts
 ---
 
 To demonstrate the ability to verify a user's identity on inbound calls, we have
@@ -13,6 +13,3 @@ import AlertButton from "../../src/frontend/AlertButton"
 
 Note that the number entered must previously have enrolled a voice identity by
 calling the Biometrics For All demonstration number.
-
-:::tip Temporary Solution This solution using the webpage is temporary. We are
-going to include this use case inside our main flow. :::
