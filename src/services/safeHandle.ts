@@ -30,7 +30,6 @@ export interface ParsedRequest {
 async function parseRequest(
     event: APIGatewayProxyEvent
 ): Promise<ParsedRequest> {
-    console.log('parsing', event);
     const language = event.pathParameters?.lang;
     if (!isSupportedLanguage(language)) {
         throw new Error('Unsupported language');
@@ -69,7 +68,6 @@ async function parseRequest(
             // ignore the failure and treat this as an unauthorized user
         }
     }
-    console.log('parse result ', { language, user, event, auth });
 
     // normalise event path
     if (event.requestContext) {
@@ -142,7 +140,6 @@ function serialise(
     statusCode: number,
     cookies?: Record<string, string>
 ): APIGatewayProxyResult {
-    console.log('Returning ', r);
     if (typeof r === 'object' && r !== null) {
         if (r instanceof twiml.VoiceResponse) {
             return {

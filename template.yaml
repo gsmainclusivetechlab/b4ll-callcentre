@@ -342,18 +342,18 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
-  AddPassphraseFinalWelcome:
+  AddPassphraseFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: index.get
-      CodeUri: ./dist/handlers/passphrase/add/final
+      Handler: index.post
+      CodeUri: ./dist/handlers/passphrase/add
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/passphrase/add/final
-            Method: GET
+            Path: /{lang}/passphrase/add
+            Method: POST
             RestApiId:
               Ref: ApiGatewayApi
 

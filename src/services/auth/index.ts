@@ -66,7 +66,6 @@ export async function handleVerification(
     params: HandlerParams
 ): Promise<null | APIGatewayProxyResult> {
     const { auth, language } = request;
-    console.log('Verifying, user is in state ', auth);
     switch (auth?.state) {
         default:
         case VerificationState.NOT_ENROLLED:
