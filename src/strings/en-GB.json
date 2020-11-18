@@ -20,9 +20,9 @@
     "enrol-confirmation": "Great. To complete your registration, we need {remaining, plural, one {# more enrolment} other {# more enrolments}}.",
     "enrolment-complete": "Thanks. Your voice is now registered.",
 
-    "reactivation-welcome": "It looks like your account is deactivated. In way to proceed with your reactivation we must verify your voice.",
-    "reactivation-message": "Great! Your passphrase has been validated with {confidence}% confidence. Welcome back, you account is now reactivated!",
-    "reactivation-confirmation": "Welcome back, you account is now reactivated!",
+    "reactivation-welcome": "It looks like your account is deactivated. To proceed with your reactivation we must verify your voice.",
+    "reactivation-message": "Great! Your passphrase has been validated with {confidence}% confidence. Welcome back, your account is now reactivated!",
+    "reactivation-confirmation": "Welcome back, your account is now reactivated!",
 
     "mobile-money": "To access your mobile money account, press {index}.",
     "mobile-money-balance": "To check your mobile money balance, press {index}.",
@@ -51,7 +51,7 @@
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was declined by {error}",
 
-    "deactivate-account": "Your account has been successfully deactivated. You can reactivate your account in the future using your voice. Good bye, we hope to see you soon!",
+    "deactivate-account": "Your account has been successfully deactivated. You can reactivate your account in the future using your voice. Goodbye, we hope to see you soon!",
 
     "mobile-money-info": "Your account balance is: ${balance}",
     "balance-reset": "Your account balance is $0, for the purposes of this demo it has been reset to $100.",
