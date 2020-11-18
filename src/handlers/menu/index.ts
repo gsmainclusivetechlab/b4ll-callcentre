@@ -3,13 +3,6 @@ import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle, ParsedRequest } from '../../services/safeHandle';
 import { MenuOption, menuToHandler, menuToGather } from '../../services/menu';
 
-async function notImplementedHandler({ language }: ParsedRequest) {
-    const response = new twiml.VoiceResponse();
-    response.say(getVoiceParams(language), __('not-implemented', language));
-    response.redirect({ method: 'GET' }, `./menu`);
-    return response;
-}
-
 async function tempAlertHandler({ language }: ParsedRequest) {
     const response = new twiml.VoiceResponse();
     response.say(getVoiceParams(language), __('alert-message', language));

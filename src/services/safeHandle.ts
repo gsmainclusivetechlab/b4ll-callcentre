@@ -72,6 +72,8 @@ async function parseRequest(
     // normalise event path
     if (event.requestContext) {
         event.path = event.requestContext.path;
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (event as any).domainName = event.requestContext.domainName;
     }
 
