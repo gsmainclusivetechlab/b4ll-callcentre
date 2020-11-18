@@ -12,9 +12,11 @@ import {
     verifyUser,
 } from './api';
 
+import { VoiceIt } from 'voiceit2-nodejs';
+
 interface Params {
     userId: string;
-    language: string;
+    language: VoiceIt.ContentLanguage;
 }
 
 declare const voiceItData: unique symbol;
@@ -80,7 +82,9 @@ export const provider: VoiceItProvider = {
         } else {
             const phrases = await getPhrases(language);
             const enrolledPhrases = Object.keys(phraseCounts);
-            const availablePhrases = phrases.map((x) => x.text.toLowerCase());
+            const availablePhrases = phrases.phrases.map((x) =>
+                x.text.toLowerCase()
+            );
             const filteredPhrases = availablePhrases.filter(
                 (f) => !enrolledPhrases.includes(f)
             );

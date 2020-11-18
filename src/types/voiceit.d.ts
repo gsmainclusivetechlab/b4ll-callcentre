@@ -307,7 +307,7 @@ declare module 'voiceit2-nodejs' {
         export interface VoiceEnrolment {
             createdAt: number;
             contentLanguage: string;
-            voiceEnrolmentId: number;
+            voiceEnrollmentId: number;
             text: string;
         }
 
@@ -329,6 +329,19 @@ declare module 'voiceit2-nodejs' {
         ): void;
 
         /**
+         * Retrieve all phrases for a given language
+         */
+        getPhrases(
+            input: { contentLanguage: VoiceIt.ContentLanguage },
+            callback: (
+                result: VoiceIt.Response<{
+                    count: number;
+                    phrases: VoiceIt.Phrase[];
+                }>
+            ) => void
+        ): void;
+
+        /**
          * Retrieve all voice enrolments for a user
          */
         getAllVoiceEnrollments(
@@ -336,7 +349,7 @@ declare module 'voiceit2-nodejs' {
             callback: (
                 result: VoiceIt.Response<{
                     count: number;
-                    voiceEnrolments: VoiceIt.VoiceEnrolment[];
+                    voiceEnrollments: VoiceIt.VoiceEnrolment[];
                 }>
             ) => void
         ): void;
@@ -350,7 +363,7 @@ declare module 'voiceit2-nodejs' {
                 userId: string;
                 contentLanguage: VoiceIt.ContentLanguage;
                 phrase: string;
-                audioFileUrl: string;
+                audioFileURL: string;
             },
             callback: (
                 result: VoiceIt.Response<
@@ -368,7 +381,7 @@ declare module 'voiceit2-nodejs' {
                 userId: string;
                 contentLanguage: VoiceIt.ContentLanguage;
                 phrase: string;
-                audioFileUrl: string;
+                audioFileURL: string;
             },
             callback: (
                 result: VoiceIt.Response<
