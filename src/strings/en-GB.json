@@ -7,10 +7,10 @@
     "account-prompt": "To update your account details, press {index}.",
     "not-implemented": "Sorry, that service has not been implemented yet. I'll take you back to the main menu so you can make another choice.",
     "welcome-stranger": "It looks like you don't have an account. Let's set one up now.",
-    "welcome-known": "Hello and welcome to our biometrics demo system.",
+    "welcome-known": "Hello and welcome to our biometrics showcase.",
 
-    "welcome": "Hello again. Welcome to the Biometrics for All",
-    "verification-request": "To access your account, please repeat the following phrase:",
+    "welcome": "Hello again. Welcome to the Biometrics Showcase",
+    "verification-request": "To verify your voice, please repeat the following phrase:",
     "verification-confirmation": "Great! Your passphrase has been validated with {confidence}% confidence.",
     "verification-failed": "We were not able to verify your voice. Please try again.",
     "verification-error": "Sorry, you have reached the limit of attempts",
@@ -20,9 +20,9 @@
     "enrol-confirmation": "Great. To complete your registration, we need {remaining, plural, one {# more enrolment} other {# more enrolments}}.",
     "enrolment-complete": "Thanks. Your voice is now registered.",
 
-    "reactivation-welcome": "Hello. It looks like your number is deactivated. In way to proceed with your reactivation you must verify your voice.",
-    "reactivation-message": "Please repeat the following phrase:",
-    "reactivation-confirmation": "Great. Your number is reactivated.",
+    "reactivation-welcome": "It looks like your account is deactivated. To proceed with your reactivation we must verify your voice.",
+    "reactivation-message": "Great! Your passphrase has been validated with {confidence}% confidence. Welcome back, your account is now reactivated!",
+    "reactivation-confirmation": "Welcome back, your account is now reactivated!",
 
     "mobile-money": "To access your mobile money account, press {index}.",
     "mobile-money-balance": "To check your mobile money balance, press {index}.",
@@ -51,13 +51,15 @@
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was declined by {error}",
 
+    "deactivate-account": "Your account has been successfully deactivated. You can reactivate your account in the future using your voice. Goodbye, we hope to see you soon!",
+
     "mobile-money-info": "Your account balance is: ${balance}",
     "balance-reset": "Your account balance is $0, for the purposes of this demo it has been reset to $100.",
 
     "validation": "In way to verify your identity, please repeat the following phrase:",
 
     "alert-welcome": "Hello. This is a demo call from the \"Biometrics For All\" project. Some suspicious activity has been flagged on your account. Please verify your identity to authorise this transaction.",
-    "alert-message": "Thank you for verifying your identity. The transaction has been authorised.",
+    "alert-message": "To simulate an Alert, please visit our web page and follow the instructions.",
     "alert-unregistered": "This phone number has not yet enrolled for voice verification.",
 
     "survey-welcome": "Thank you for evaluating the Biometrics For All. If you could please take our feedback survey, just wait, it won't take longer than one minute!",

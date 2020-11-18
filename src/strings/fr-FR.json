@@ -50,6 +50,7 @@
     "transfer-declined": "Your transfer was declined by {transfer-error}",
 
     "passphrase-add": "To add a new passphrase, press {index}",
+    "deactivate-account": "Your account has been successfully deactivated. We hope to see you soon! Thank you.",
 
     "mobile-money-info": "Your account balance is: {balance}",
     "balance-reset": "balance-reset",

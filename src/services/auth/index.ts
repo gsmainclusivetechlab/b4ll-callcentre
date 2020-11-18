@@ -58,6 +58,7 @@ export function makeCookieHeader(cookie: AuthCookie): Record<string, string> {
 export interface HandlerParams {
     requireVerification?: boolean;
     allowEnrolment?: boolean;
+    allowDeactivated?: boolean;
     loginRedirect?: { method: string; target: string };
 }
 
