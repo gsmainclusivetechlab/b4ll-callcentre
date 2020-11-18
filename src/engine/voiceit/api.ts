@@ -14,12 +14,6 @@ export async function createUser(): Promise<VoiceIt.Response<VoiceIt.User>> {
         });
     });
 }
-interface ArrayEnrolment {
-    createdAt: string;
-    contentLanguage: string;
-    voiceEnrollmentId: number;
-    text: string;
-}
 
 export async function getPhrases(
     language: VoiceIt.ContentLanguage
@@ -55,35 +49,19 @@ export async function getEnrolledPhrases(
             {
                 userId: userId,
             },
-            (callback) => {
-                const phrases = ((callback.voiceEnrollments as unknown) as ArrayEnrolment[])
-                    .map(
-                        ([
-                            id,
-                            encodedPhrase,
-                            contentLanguage,
-                            createdAt,
-                        ]): VoiceIt.VoiceEnrolment => ({
-                            voiceEnrollmentId: id,
-                            contentLanguage,
-                            createdAt,
-                            text: Buffer.from(encodedPhrase, 'base64').toString(
-                                'utf8'
-                            ),
-                        })
-                    )
-                    .filter((x) => x.contentLanguage === language)
-                    .map((x) => x.text);
+            (data) =>
                 resolve(
-                    phrases.reduce(
-                        (acc, curr) => ({
-                            ...acc,
-                            [curr]: (acc[curr] || 0) + 1,
-                        }),
-                        {} as Record<string, number>
-                    )
-                );
-            }
+                    data.voiceEnrollments
+                        .filter((x) => x.contentLanguage === language)
+                        .map((x) => x.text)
+                        .reduce(
+                            (acc, curr) => ({
+                                ...acc,
+                                [curr]: (acc[curr] || 0) + 1,
+                            }),
+                            {} as Record<string, number>
+                        )
+                )
         );
     });
 }
