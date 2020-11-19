@@ -71,5 +71,6 @@
 
     "return-menu": "return-menu",
     "end-call": "end-call",
-    "good-bye": "good-bye"
+    "good-bye": "good-bye",
+    "unapproved-caller": "unapproved-caller"
 }
