@@ -10,4 +10,7 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'prettier/@typescript-eslint',
     ],
+    rules: {
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+    },
 };
