@@ -224,33 +224,18 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
-  SurveyQuestion1:
+  SurveyQuestion:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.get
-      CodeUri: ./dist/handlers/survey/question-1
+      CodeUri: ./dist/handlers/survey/question
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/survey/question-1
+            Path: /{lang}/survey/question/{questionNumber}
             Method: GET
-            RestApiId:
-              Ref: ApiGatewayApi
-
-  SurveyQuestion2:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.post
-      CodeUri: ./dist/handlers/survey/question-2
-      Role: !GetAtt LambdaRole.Arn
-      Events:
-        HTTP:
-          Type: Api
-          Properties:
-            Path: /{lang}/survey/question-2
-            Method: POST
             RestApiId:
               Ref: ApiGatewayApi
 
@@ -258,13 +243,13 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.post
-      CodeUri: ./dist/handlers/survey/final
+      CodeUri: ./dist/handlers/survey/question/final
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/survey/final
+            Path: /{lang}/survey/question/{questionNumber}/final
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi

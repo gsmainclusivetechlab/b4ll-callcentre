@@ -13,13 +13,23 @@ const RecordType = t.intersection([
         voiceItId: t.string,
         isEnrolled: t.boolean,
         balanceAmount: t.number,
-        questionOne: t.number,
-        questionTwo: t.number,
+    }),
+]);
+
+const SurveyResponseType = t.intersection([
+    // required properties
+    t.type({
+        id: t.string,
+    }),
+    // optional properties
+    t.partial({
+        questions: t.array(t.number),
         countryCode: t.string,
     }),
 ]);
 
 export type RecordType = t.TypeOf<typeof RecordType>;
+export type SurveyResponseType = t.TypeOf<typeof SurveyResponseType>;
 
 export const getClient = (): AWS.DynamoDB.DocumentClient =>
     new AWS.DynamoDB.DocumentClient(
@@ -66,7 +76,7 @@ export async function putAccountItem(Item: RecordType): Promise<RecordType> {
     return Promise.reject(new Error('Invalid record structure'));
 }
 
-export function getSurveyItem(id: string): Promise<RecordType> {
+export function getSurveyItem(id: string): Promise<SurveyResponseType> {
     return getClient()
         .get({
             TableName: process.env.TABLE_SURVEY || '',
@@ -85,7 +95,9 @@ export function getSurveyItem(id: string): Promise<RecordType> {
         );
 }
 
-export async function putSurveyItem(Item: RecordType): Promise<RecordType> {
+export async function putSurveyItem(
+    Item: SurveyResponseType
+): Promise<SurveyResponseType> {
     if (RecordType.is(Item)) {
         await getClient()
             .put({

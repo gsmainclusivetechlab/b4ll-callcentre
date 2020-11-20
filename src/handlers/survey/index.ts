@@ -7,7 +7,7 @@ export const get = safeHandle(async (request) => {
 
     const response = new twiml.VoiceResponse();
     response.say(getVoiceParams(language), __('survey-welcome', language));
-    response.redirect({ method: 'GET' }, `./survey/question-1`);
+    response.redirect({ method: 'GET' }, `./survey/question/1`);
 
     return response;
 });
