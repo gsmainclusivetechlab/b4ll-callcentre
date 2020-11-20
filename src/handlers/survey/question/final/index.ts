@@ -33,10 +33,14 @@ export const post = safeHandle(async (request) => {
         }
         case '2': {
             const survey = await getSurveyItem(Caller as string);
-            await putSurveyItem({
-                ...survey,
-                questions: [+Digits],
-            });
+            if (survey.questions) {
+                await putSurveyItem({
+                    ...survey,
+                    questions: [survey.questions[0], +Digits],
+                });
+            } else {
+                throw new Error('first survey answer not registered');
+            }
             break;
         }
     }
