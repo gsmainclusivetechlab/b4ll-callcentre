@@ -13,6 +13,8 @@ const RecordType = t.intersection([
         voiceItId: t.string,
         isEnrolled: t.boolean,
         balanceAmount: t.number,
+        enrolmentRequest: t.UnknownRecord,
+        isDeactivated: t.boolean,
     }),
 ]);
 

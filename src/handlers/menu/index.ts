@@ -3,16 +3,28 @@ import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle, ParsedRequest } from '../../services/safeHandle';
 import { MenuOption, menuToHandler, menuToGather } from '../../services/menu';
 
-async function notImplementedHandler({ language }: ParsedRequest) {
+async function tempAlertHandler({ language }: ParsedRequest) {
     const response = new twiml.VoiceResponse();
-    response.say(getVoiceParams(language), __('not-implemented', language));
-    response.redirect({ method: 'GET' }, `./menu`);
+    response.say(getVoiceParams(language), __('alert-message', language));
+    response.redirect({ method: 'GET' }, `./return`);
+    return response;
+}
+
+async function deactivationHandler() {
+    const response = new twiml.VoiceResponse();
+    response.redirect({ method: 'get' }, `./deactivation`);
     return response;
 }
 
 async function mobileMoneyHandler() {
     const response = new twiml.VoiceResponse();
     response.redirect({ method: 'GET' }, './mobilemoney');
+    return response;
+}
+
+async function passphraseHandler() {
+    const response = new twiml.VoiceResponse();
+    response.redirect({ method: 'GET' }, './passphrase');
     return response;
 }
 
@@ -25,12 +37,12 @@ const menu: MenuOption[] = [
     {
         triggers: ['alert simulation', 'simulation', 'alert'],
         description: 'alert',
-        handler: notImplementedHandler,
+        handler: tempAlertHandler,
     },
     {
         triggers: ['new voice', 'new passphrase', 'passphrase'],
         description: 'passphrase-manager',
-        handler: notImplementedHandler,
+        handler: passphraseHandler,
     },
     {
         triggers: [
@@ -40,14 +52,13 @@ const menu: MenuOption[] = [
             'deactivation',
         ],
         description: 'deactivate',
-        handler: notImplementedHandler,
+        handler: deactivationHandler,
     },
 ];
 
 export const get = safeHandle(
     async (request) => {
         const { language } = request;
-
         const response = new twiml.VoiceResponse();
 
         menuToGather(response, request, menu);
@@ -60,7 +71,7 @@ export const get = safeHandle(
         response.redirect({ method: 'GET' }, `./menu`);
         return response;
     },
-    { requireVerification: true }
+    { requireVerification: true, allowDeactivated: true }
 );
 
 export const post = safeHandle(
@@ -69,6 +80,7 @@ export const post = safeHandle(
     },
     {
         requireVerification: true,
+
         loginRedirect: { method: 'GET', target: './menu' },
     }
 );

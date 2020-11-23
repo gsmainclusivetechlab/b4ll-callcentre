@@ -49,6 +49,9 @@
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was declined by {transfer-error}",
 
+    "passphrase-add": "To add a new passphrase, press {index}",
+    "deactivate-account": "Your account has been successfully deactivated. We hope to see you soon! Thank you.",
+
     "mobile-money-info": "Your account balance is: {balance}",
     "balance-reset": "balance-reset",
 
@@ -69,5 +72,6 @@
     "return-menu": "To return to the main menu, press {index}",
     "survey-option": "To answer our short survey, press {index}",
     "end-call": "To end this call, press {index}",
-    "good-bye": "Thank you for using Biometrics For All, Good bye!"
+    "good-bye": "Thank you for using Biometrics For All, Good bye!",
+    "unapproved-caller": "Please contact the GSMA inclusive tech lab to authorize your telephone number before using this service."
 }

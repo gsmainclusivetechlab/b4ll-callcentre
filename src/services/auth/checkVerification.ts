@@ -44,6 +44,9 @@ export const checkVerification = async (
 
     // TODO: flow for when next is defined - probably extract response construction from `requestVerification`
     const response = new twiml.VoiceResponse();
+
+    // Statement to define if the verification is a normal login or an account reactivation
+
     response.say(
         getVoiceParams(language),
         complete

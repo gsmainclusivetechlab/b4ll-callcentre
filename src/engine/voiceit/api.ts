@@ -1,91 +1,85 @@
-import { VoiceIt } from 'voiceit2-nodejs';
-import axios from 'axios';
+import VoiceIt2, { VoiceIt } from 'voiceit2-nodejs';
 
 export const REQUIRED_ENROLMENTS = 3;
 
-const auth = {
-    username: process.env.VOICEIT_API_KEY || '',
-    password: process.env.VOICEIT_API_TOKEN || '',
-};
-const api = axios.create({
-    baseURL: 'https://api.voiceit.io/',
-    auth,
-});
+const myVoiceIt = new VoiceIt2(
+    process.env.VOICEIT_API_KEY || '',
+    process.env.VOICEIT_API_TOKEN || ''
+);
 
-export async function createUser(): Promise<VoiceIt.Response<VoiceIt.User>> {
-    const result = await api.post('/users');
-    return result.data;
+export const createUser = () =>
+    new Promise<VoiceIt.Response<VoiceIt.User>>(myVoiceIt.createUser);
+
+export async function getPhrases(contentLanguage: VoiceIt.ContentLanguage) {
+    return new Promise<
+        VoiceIt.Response<{
+            count: number;
+            phrases: VoiceIt.Phrase[];
+        }>
+    >((resolve) => myVoiceIt.getPhrases({ contentLanguage }, resolve));
 }
 
-export async function getPhrases(
-    language: string
-): Promise<VoiceIt.VoiceEnrolment[]> {
-    const result = await api.get(`/phrases/${language}`);
-    return result.data.phrases || [];
-}
-
-type ArrayEnrolment = [number, string, string, number];
-
-export async function getEnrolledPhrases(
-    userId: string,
-    language: string
-): Promise<Record<string, number>> {
-    const results = await api.get(`/enrollments/voice/${userId}`);
-    const phrases = (results.data.voiceEnrollments as ArrayEnrolment[])
-        .map(
-            ([
-                id,
-                encodedPhrase,
-                contentLanguage,
-                createdAt,
-            ]): VoiceIt.VoiceEnrolment => ({
-                voiceEnrolmentId: id,
-                contentLanguage,
-                createdAt,
-                text: Buffer.from(encodedPhrase, 'base64').toString('utf8'),
-            })
-        )
-        .filter((x) => x.contentLanguage === language)
-        .map((x) => x.text);
-    return phrases.reduce(
-        (acc, curr) => ({
-            ...acc,
-            [curr]: (acc[curr] || 0) + 1,
-        }),
-        {} as Record<string, number>
-    );
+export async function getEnrolledPhrases(userId: string, language: string) {
+    return new Promise<Record<string, number>>((resolve) => {
+        myVoiceIt.getAllVoiceEnrollments(
+            {
+                userId,
+            },
+            (data) =>
+                resolve(
+                    data.voiceEnrollments
+                        .filter((x) => x.contentLanguage === language)
+                        .map((x) => x.text)
+                        .reduce(
+                            (acc, curr) => ({
+                                ...acc,
+                                [curr]: (acc[curr] || 0) + 1,
+                            }),
+                            {} as Record<string, number>
+                        )
+                )
+        );
+    });
 }
 
 export async function enrolUser(
     userId: string,
-    language: string,
+    contentLanguage: VoiceIt.ContentLanguage,
     enrolment: {
         phrase: string;
         recordingUrl: string;
     }
-): Promise<VoiceIt.Response<VoiceIt.VoiceEnrolment>> {
-    const result = await api.post('/enrollments/voice/byUrl', {
-        userId,
-        phrase: enrolment.phrase,
-        fileUrl: enrolment.recordingUrl,
-        contentLanguage: language,
-    });
-    return result.data;
+) {
+    return new Promise<VoiceIt.Response<VoiceIt.VoiceEnrolment>>((resolve) =>
+        myVoiceIt.createVoiceEnrollmentByUrl(
+            {
+                userId,
+                contentLanguage,
+                phrase: enrolment.phrase,
+                audioFileURL: enrolment.recordingUrl,
+            },
+            resolve
+        )
+    );
 }
 
 export async function verifyUser(
     userId: string,
-    language: string,
+    contentLanguage: VoiceIt.ContentLanguage,
     enrolment: {
         phrase: string;
         recordingUrl: string;
     }
-): Promise<VoiceIt.Response<{ confidence: number }>> {
-    const result = await api.post('/verification/voice/byUrl', {
-        userId,
-        phrase: enrolment.phrase,
-        fileUrl: enrolment.recordingUrl,
-        contentLanguage: language,
-    });
-    return result.data;
+) {
+    return new Promise<VoiceIt.Response<{ confidence: number }>>((resolve) =>
+        myVoiceIt.voiceVerificationByUrl(
+            {
+                userId,
+                contentLanguage,
+                phrase: enrolment.phrase,
+                audioFileURL: enrolment.recordingUrl,
+            },
+            resolve
+        )
+    );
 }

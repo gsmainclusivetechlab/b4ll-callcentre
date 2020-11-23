@@ -48,7 +48,7 @@ export type AuthCookie =
 
 export function makeCookieHeader(cookie: AuthCookie): Record<string, string> {
     const signed = jwt.sign(cookie, process.env.JWT_KEY || '', {
-        expiresIn: '30s',
+        expiresIn: '5m',
     });
     return {
         'Set-Cookie': `Auth=${signed}`,
@@ -58,6 +58,7 @@ export function makeCookieHeader(cookie: AuthCookie): Record<string, string> {
 export interface HandlerParams {
     requireVerification?: boolean;
     allowEnrolment?: boolean;
+    allowDeactivated?: boolean;
     loginRedirect?: { method: string; target: string };
 }
 
@@ -66,7 +67,6 @@ export async function handleVerification(
     params: HandlerParams
 ): Promise<null | APIGatewayProxyResult> {
     const { auth, language } = request;
-    console.log('Verifying, user is in state ', auth);
     switch (auth?.state) {
         default:
         case VerificationState.NOT_ENROLLED:

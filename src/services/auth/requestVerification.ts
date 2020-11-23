@@ -28,10 +28,12 @@ export async function requestVerification(
 
     // construct a request for the user to provide the information provided by the biometrics engine
     const response = new twiml.VoiceResponse();
+
     response.say(
         getVoiceParams(language),
         __('verification-request', language)
     );
+
     response.pause({ length: 1 });
     response.say(getVoiceParams(language), request.phrase);
     response.record({

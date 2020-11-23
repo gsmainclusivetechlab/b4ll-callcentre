@@ -7,7 +7,7 @@
     "account-prompt": "To update your account details, press {index}.",
     "not-implemented": "Sorry, that service has not been implemented yet. I'll take you back to the main menu so you can make another choice.",
     "welcome-stranger": "It looks like you don't have an account. Let's set one up now.",
-    "welcome-known": "Hello and welcome to our biometrics demo system.",
+    "welcome-known": "Hello and welcome to the biometrics for all.",
 
     "welcome": "Hello again. Welcome to the Biometrics for All",
     "verification-request": "To access your account, please repeat the following phrase:",

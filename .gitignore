@@ -27,3 +27,6 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 .DS_Store
+src/.DS_Store
+
+src/numbers.json
