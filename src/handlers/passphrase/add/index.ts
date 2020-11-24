@@ -5,7 +5,7 @@ import {
     provider,
     VoiceItEnrolmentData,
 } from '../../../engine/voiceit/provider';
-import { putItem } from '../../../services/dynamodb';
+import { putAccountItem } from '../../../services/dynamodb';
 import { safeHandle } from '../../../services/safeHandle';
 import { getVoiceParams, __ } from '../../../services/strings';
 
@@ -18,7 +18,7 @@ export const get = safeHandle(
             userId: user.voiceItId,
             language,
         });
-        await putItem({
+        await putAccountItem({
             ...user,
             enrolmentRequest: enrolmentRequest.request,
         });
@@ -89,7 +89,7 @@ export const post = safeHandle(
 
         if (next) {
             // TODO: de-duplicate response construction from `requestEnrolment` (and `handleEnrolment`)
-            await putItem({
+            await putAccountItem({
                 ...user,
                 enrolmentRequest: next.request,
             });

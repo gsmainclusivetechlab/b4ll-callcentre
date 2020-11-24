@@ -20,6 +20,8 @@
     "enrol-confirmation": "Great. To complete your registration, we need {remaining, plural, one {# more enrolment} other {# more enrolments}}.",
     "enrolment-complete": "Thanks. Your voice is now registered.",
 
+    "deactivate-account": "Your account has been successfully deactivated. We hope to see you soon! Thank you.",
+
     "reactivation-welcome": "Hello. It looks like your number is deactivated. In way to proceed with your reactivation you must verify your voice.",
     "reactivation-message": "Please repeat the following phrase:",
     "reactivation-confirmation": "Great. Your number is reactivated.",
@@ -49,6 +51,7 @@
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was declined by {error}",
 
+    "passphrase-add": "To add a new passphrase, press {index}",
     "mobile-money-info": "Your account balance is: ${balance}",
     "balance-reset": "Your account balance is $0, for the purposes of this demo it has been reset to $100.",
 
