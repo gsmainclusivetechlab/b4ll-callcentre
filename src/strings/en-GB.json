@@ -58,7 +58,7 @@
     "validation": "In way to verify your identity, please repeat the following phrase:",
 
     "alert-welcome": "Hello. This is a demo call from the \"Biometrics For All\" project. Some suspicious activity has been flagged on your account. Please verify your identity to authorise this transaction.",
-    "alert-message": "Thank you for verifying your identity. The transaction has been authorised.",
+    "alert-message": "To simulate an Alert, please visit our web page and follow the instructions.",
     "alert-unregistered": "This phone number has not yet enrolled for voice verification.",
 
     "survey-welcome": "Thank you for evaluating Biometrics For All. Please answer the next few questions from 1 to 5, where 1 means very poor and 5 means excellent. You can use the keypad or your voice to answer each question.",
