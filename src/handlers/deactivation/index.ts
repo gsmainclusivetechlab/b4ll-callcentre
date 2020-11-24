@@ -20,7 +20,8 @@ export const get = safeHandle(
                 getVoiceParams(language),
                 __('deactivate-account', language)
             );
-            response.hangup();
+            response.pause({ length: 5 });
+            response.redirect({ method: 'GET' }, './survey');
         }
 
         return response;
