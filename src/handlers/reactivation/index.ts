@@ -1,7 +1,7 @@
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle } from '../../services/safeHandle';
-import { putItem } from '../../services/dynamodb';
+import { putAccountItem } from '../../services/dynamodb';
 
 export const get = safeHandle(
     async (request) => {
@@ -9,7 +9,7 @@ export const get = safeHandle(
         const response = new twiml.VoiceResponse();
 
         if (user.isDeactivated) {
-            await putItem({
+            await putAccountItem({
                 ...user,
                 isDeactivated: false,
             });

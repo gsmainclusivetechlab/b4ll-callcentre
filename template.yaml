@@ -27,7 +27,8 @@ Globals:
     Tracing: Active
     Environment:
       Variables:
-        TABLE_NAME: !Ref AccountsTable
+        TABLE_ACCOUNTS: !Ref AccountsTable
+        TABLE_SURVEY: !Ref SurveyTable
         DYNAMO_HOST: !Ref DynamoHost
         VOICEIT_API_KEY: !Ref VoiceItAPIKey
         VOICEIT_API_TOKEN: !Ref VoiceItAPIToken
@@ -238,6 +239,51 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  SurveyWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/survey
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/survey
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SurveyQuestion:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/survey/question
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/survey/question/{questionNumber}
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SurveyFinal:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/survey/question/final
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/survey/question/{questionNumber}/final
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
   TransferWelcome:
     Type: AWS::Serverless::Function
     Properties:
@@ -389,6 +435,19 @@ Resources:
               Ref: ApiGatewayApi
 
   AccountsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+  SurveyTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:

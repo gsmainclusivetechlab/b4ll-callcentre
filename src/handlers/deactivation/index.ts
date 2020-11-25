@@ -1,7 +1,7 @@
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle } from '../../services/safeHandle';
-import { putItem } from '../../services/dynamodb';
+import { putAccountItem } from '../../services/dynamodb';
 
 export const get = safeHandle(
     async (request) => {
@@ -12,7 +12,7 @@ export const get = safeHandle(
             response.say(getVoiceParams(language), __('error', language));
             response.redirect({ method: 'GET' }, `./menu`);
         } else {
-            await putItem({
+            await putAccountItem({
                 ...user,
                 isDeactivated: true,
             });
@@ -20,7 +20,8 @@ export const get = safeHandle(
                 getVoiceParams(language),
                 __('deactivate-account', language)
             );
-            response.hangup();
+            response.pause({ length: 5 });
+            response.redirect({ method: 'GET' }, './survey');
         }
 
         return response;

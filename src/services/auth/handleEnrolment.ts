@@ -5,7 +5,7 @@ import { ParsedRequest } from '../safeHandle';
 import { APIGatewayProxyResult } from 'aws-lambda';
 import { BiometricType } from '../../engine/BiometricsProvider';
 import { provider } from '../../engine/voiceit/provider';
-import { putItem } from '../dynamodb';
+import { putAccountItem } from '../dynamodb';
 import { VerificationState, makeCookieHeader } from '.';
 
 export async function handleEnrolment(
@@ -41,7 +41,7 @@ export async function handleEnrolment(
 
     const response = new twiml.VoiceResponse();
     if (complete) {
-        await putItem({
+        await putAccountItem({
             ...user,
             isEnrolled: true,
         });

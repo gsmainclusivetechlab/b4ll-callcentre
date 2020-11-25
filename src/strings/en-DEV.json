@@ -65,11 +65,13 @@
     "survey-welcome": "survey-welcome",
     "survey-question-01": "survey-question-01",
     "survey-question-02": "survey-question-02",
+    "survey-finish": "survey-finish",
 
     "did-not-understand": "did-not-understand",
     "error": "error",
 
     "return-menu": "return-menu",
+    "survey-option": "To answer our short survey, press {index}",
     "end-call": "end-call",
     "good-bye": "good-bye",
     "unapproved-caller": "unapproved-caller"

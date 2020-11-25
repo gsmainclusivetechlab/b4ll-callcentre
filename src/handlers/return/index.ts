@@ -9,6 +9,12 @@ async function returnMainMenuHandler() {
     return response;
 }
 
+async function surveyHandler() {
+    const response = new twiml.VoiceResponse();
+    response.redirect({ method: 'GET' }, './survey');
+    return response;
+}
+
 async function endCallHandler() {
     const response = new twiml.VoiceResponse();
     response.hangup();
@@ -20,6 +26,11 @@ const returnMenu: MenuOption[] = [
         triggers: ['return'],
         description: 'return-menu',
         handler: returnMainMenuHandler,
+    },
+    {
+        triggers: ['survey'],
+        description: 'survey-option',
+        handler: surveyHandler,
     },
     {
         triggers: ['end call'],
