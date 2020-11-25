@@ -2,6 +2,7 @@ import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../../services/strings';
 import { safeHandle } from '../../../../../services/safeHandle';
 import querystring from 'querystring';
+import { putAccountItem } from '../../../../../services/dynamodb';
 
 export const post = safeHandle(
     async (request) => {
@@ -15,7 +16,10 @@ export const post = safeHandle(
             if (user.balanceAmount) {
                 if (user.balanceAmount > +value) {
                     user.balanceAmount -= +value;
-
+                    await putAccountItem({
+                        ...user,
+                        balanceAmount: user.balanceAmount,
+                    });
                     const gather = response.gather({
                         input: ['dtmf'],
                         numDigits: 1,
