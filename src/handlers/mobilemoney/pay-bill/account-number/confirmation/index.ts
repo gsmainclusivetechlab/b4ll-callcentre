@@ -2,6 +2,7 @@ import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../../services/strings';
 import { safeHandle } from '../../../../../services/safeHandle';
 import querystring from 'querystring';
+import { putAccountItem } from '../../../../../services/dynamodb';
 
 export const post = safeHandle(
     async (request) => {
@@ -16,6 +17,10 @@ export const post = safeHandle(
                     if (user.balanceAmount) {
                         if (user.balanceAmount > 50) {
                             user.balanceAmount -= 50;
+                            await putAccountItem({
+                                ...user,
+                                balanceAmount: user.balanceAmount,
+                            });
                             response.say(
                                 getVoiceParams(request.language),
                                 __('bill-payment-approved', request.language)
