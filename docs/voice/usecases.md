@@ -44,9 +44,6 @@ account and he/she is now enrolling in the voice recognition service. There are
 different approaches the operator could use here, such as validating the user in
 the current way it is being used by the operator.
 
-:::note User Story Include here details about the ID for initial identification
-:::
-
 ### Verification
 
 If the number of the caller is recognised in our data base and the account is
@@ -104,15 +101,15 @@ This use case simulates a mobile money transference using voice authentication
 to access the service.
 
 **Flow 01:** Invalid Transfer Account: If the user selects an account number
-different of 112233 the account number will be invalid.
+different of 112233 the account number will be **invalid**.
 
 **Flow 02:** Transfer Authorised: If the transfer is to the account number
-112233 and the amount is until \$100 (Current user balance), the transfer will
-be authorised.
+112233 and the the user account has sufficient balance, the transfer will be
+**authorised**.
 
 **Flow 03:** Transfer Declined: If the transfer is to the account number 112233
-and the amount is more \$100 (Current user balance), the transfer will be
-declined.
+and the amount is more than current user balance, the transfer will be
+**declined**.
 
 ## Simulate Alert
 

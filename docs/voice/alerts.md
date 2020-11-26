@@ -11,5 +11,5 @@ import AlertButton from "../../src/frontend/AlertButton"
 
 <AlertButton /> <br/>
 
-Note that the number entered must previously have enrolled a voice identity by
-calling the Biometrics For All demonstration number.
+:::note Note The number used here must previously have enrolled a voice asset by
+calling the Biometrics For All call centre. :::
