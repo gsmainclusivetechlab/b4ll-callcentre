@@ -12,9 +12,11 @@ import {
     verifyUser,
 } from './api';
 
+import { VoiceIt } from 'voiceit2-nodejs';
+
 interface Params {
     userId: string;
-    language: string;
+    language: VoiceIt.ContentLanguage;
 }
 
 declare const voiceItData: unique symbol;
@@ -55,10 +57,18 @@ export const provider: VoiceItProvider = {
 
         // find whichever phrase has most enrolments (if any)
         const unfinishedPhrase = Object.keys(phraseCounts).reduce(
-            (curr, phrase) =>
-                curr.count < phraseCounts[phrase]
-                    ? { count: phraseCounts[phrase], phrase }
-                    : curr,
+            (curr, phrase) => {
+                if (phraseCounts[phrase] >= REQUIRED_ENROLMENTS) {
+                    // this enrolment is already complete, so don't consider it
+                    return curr;
+                }
+                if (curr.count >= phraseCounts[phrase]) {
+                    // we've already found a phrase which is closer to completion, so ignore this one
+                    return curr;
+                }
+                // this is the phrase with the most recordings that we have seen so far
+                return { count: phraseCounts[phrase], phrase };
+            },
             { count: 0, phrase: undefined as string | undefined }
         );
 
@@ -71,10 +81,16 @@ export const provider: VoiceItProvider = {
             );
         } else {
             const phrases = await getPhrases(language);
-            const availablePhrases = phrases.map((x) => x.text.toLowerCase());
+            const enrolledPhrases = Object.keys(phraseCounts);
+            const availablePhrases = phrases.phrases.map((x) =>
+                x.text.toLowerCase()
+            );
+            const filteredPhrases = availablePhrases.filter(
+                (f) => !enrolledPhrases.includes(f)
+            );
             phrase =
-                availablePhrases[
-                    Math.floor(Math.random() * availablePhrases.length)
+                filteredPhrases[
+                    Math.floor(Math.random() * filteredPhrases.length)
                 ];
             recordingsRequired = REQUIRED_ENROLMENTS;
         }

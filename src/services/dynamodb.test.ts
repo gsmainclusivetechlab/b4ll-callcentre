@@ -1,4 +1,9 @@
-import { getItem, putItem, RecordType, getClient } from './dynamodb';
+import {
+    getAccountItem,
+    putAccountItem,
+    RecordType,
+    getClient,
+} from './dynamodb';
 
 describe('dynamodb', () => {
     const OLD_ENV = process.env;
@@ -13,14 +18,14 @@ describe('dynamodb', () => {
     });
 
     test('fetches items correctly', async () => {
-        await expect(getItem('foo')).resolves.toEqual({ id: 'foo' });
-        await expect(putItem({ id: 'foo', isEnrolled: true })).resolves.toEqual(
-            {
-                id: 'foo',
-                isEnrolled: true,
-            }
-        );
-        await expect(getItem('foo')).resolves.toEqual({
+        await expect(getAccountItem('foo')).resolves.toEqual({ id: 'foo' });
+        await expect(
+            putAccountItem({ id: 'foo', isEnrolled: true })
+        ).resolves.toEqual({
+            id: 'foo',
+            isEnrolled: true,
+        });
+        await expect(getAccountItem('foo')).resolves.toEqual({
             id: 'foo',
             isEnrolled: true,
         });
@@ -37,19 +42,19 @@ describe('dynamodb', () => {
     });
 
     test('reads table name from environment', async () => {
-        process.env.TABLE_NAME = undefined;
-        await expect(getItem('foo')).rejects.toMatchObject({
+        process.env.TABLE_ACCOUNTS = undefined;
+        await expect(getAccountItem('foo')).rejects.toMatchObject({
             message: expect.stringContaining('Invalid table/index name.'),
         });
-        await expect(putItem({ id: 'foo' })).rejects.toMatchObject({
+        await expect(putAccountItem({ id: 'foo' })).rejects.toMatchObject({
             message: expect.stringContaining('Invalid table/index name.'),
         });
     });
 
     test('rejects invalid items', async () => {
-        process.env.TABLE_NAME = undefined;
-        await expect(putItem(({} as unknown) as RecordType)).rejects.toThrow(
-            `Invalid record structure`
-        );
+        process.env.TABLE_ACCOUNTS = undefined;
+        await expect(
+            putAccountItem(({} as unknown) as RecordType)
+        ).rejects.toThrow(`Invalid record structure`);
     });
 });

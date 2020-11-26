@@ -7,9 +7,9 @@
     "account-prompt": "To update your account details, press {index}.",
     "not-implemented": "Sorry, that service has not been implemented yet. I'll take you back to the main menu so you can make another choice.",
     "welcome-stranger": "It looks like you don't have an account. Let's set one up now.",
-    "welcome-known": "Hello and welcome to our biometrics demo system.",
+    "welcome-known": "Hello and welcome to the biometrics for all.",
 
-    "welcome": "Hello again. Welcome to the Biometrics for All",
+    "welcome": "Hello again. Welcome to the Biometrics project",
     "verification-request": "To access your account, please repeat the following phrase:",
     "verification-confirmation": "Great! Your passphrase has been validated with {confidence}% confidence.",
     "verification-failed": "We were not able to verify your voice. Please try again.",
@@ -20,9 +20,11 @@
     "enrol-confirmation": "Great. To complete your registration, we need {remaining, plural, one {# more enrolment} other {# more enrolments}}.",
     "enrolment-complete": "Thanks. Your voice is now registered.",
 
+    "deactivate-account": "Your account has been successfully deactivated. Please hold to answer our short survey, or we hope to see you soon! Thank you.",
+
     "reactivation-welcome": "Hello. It looks like your number is deactivated. In way to proceed with your reactivation you must verify your voice.",
     "reactivation-message": "Please repeat the following phrase:",
-    "reactivation-confirmation": "Great. Your number is reactivated.",
+    "reactivation-confirmation": "Welcome back,, your number is reactivated.",
 
     "mobile-money": "To access your mobile money account, press {index}.",
     "mobile-money-balance": "To check your mobile money balance, press {index}.",
@@ -49,23 +51,27 @@
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was declined by {error}",
 
+    "passphrase-add": "To add a new passphrase, press {index}",
     "mobile-money-info": "Your account balance is: ${balance}",
     "balance-reset": "Your account balance is $0, for the purposes of this demo it has been reset to $100.",
 
     "validation": "In way to verify your identity, please repeat the following phrase:",
 
     "alert-welcome": "Hello. This is a demo call from the \"Biometrics For All\" project. Some suspicious activity has been flagged on your account. Please verify your identity to authorise this transaction.",
-    "alert-message": "Thank you for verifying your identity. The transaction has been authorised.",
+    "alert-message": "To simulate an Alert, please visit our web page and follow the instructions.",
     "alert-unregistered": "This phone number has not yet enrolled for voice verification.",
 
-    "survey-welcome": "Thank you for evaluating the Biometrics For All. If you could please take our feedback survey, just wait, it won't take longer than one minute!",
-    "survey-question-01": "How would you evaluate the voice verification process? Press a number from 1 to 5 where 1 means very poor and 5 means excellent",
-    "survey-question-02": "Do you think the menu flow was easy to understand? Press a number from 1 to 5 where 1 means very poor and 5 means excellent",
+    "survey-welcome": "Thank you for evaluating Biometrics For All. Please answer the next questions using your keypad or your voice.",
+    "survey-question-01": "How would you evaluate the expecience using a voice verification process? Press a number from 1 to 5., where 1 means very poor and 5 means excellent.",
+    "survey-question-02": "Did you think the menu flow was easy to understand? Press a number from 1 to 5, where 1 means very difficult and 5 means very easy.",
+    "survey-finish": "Thank you. Your answers have been recorded.",
 
     "did-not-understand": "Sorry, I didn't get that.",
     "error": "An error occurred. {message}",
 
     "return-menu": "To return to the main menu, press {index}",
+    "survey-option": "To answer our short survey, press {index}",
     "end-call": "To end this call, press {index}",
-    "good-bye": "Thank you for using Biometrics For All, Good bye!"
+    "good-bye": "Thank you for using Biometrics For All, Good bye!",
+    "unapproved-caller": "Welcome to the showcase: Biometrics for All,,, To test this call centre, please contact the GSMA inclusive tech lab to authorize your telephone."
 }

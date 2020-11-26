@@ -4,7 +4,7 @@ import { ParsedRequest } from '../safeHandle';
 import { APIGatewayProxyResult } from 'aws-lambda';
 import { BiometricType } from '../../engine/BiometricsProvider';
 import { provider } from '../../engine/voiceit/provider';
-import { putItem } from '../dynamodb';
+import { putAccountItem } from '../dynamodb';
 import { makeCookieHeader, VerificationState } from '.';
 
 export async function requestEnrolment(
@@ -27,8 +27,9 @@ export async function requestEnrolment(
             ...user,
             voiceItId: enrolmentReq.request.userId,
             balanceAmount: 100,
+            isDeactivated: false,
         };
-        await putItem(user);
+        await putAccountItem(user);
     }
 
     const { phrase } = enrolmentReq;

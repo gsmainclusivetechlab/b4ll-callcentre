@@ -27,7 +27,8 @@ Globals:
     Tracing: Active
     Environment:
       Variables:
-        TABLE_NAME: !Ref AccountsTable
+        TABLE_ACCOUNTS: !Ref AccountsTable
+        TABLE_SURVEY: !Ref SurveyTable
         DYNAMO_HOST: !Ref DynamoHost
         VOICEIT_API_KEY: !Ref VoiceItAPIKey
         VOICEIT_API_TOKEN: !Ref VoiceItAPIToken
@@ -178,6 +179,36 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  DeactivationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/deactivation
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/deactivation
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  ReactivationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/reactivation
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/reactivation
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
   ReturnWelcome:
     Type: AWS::Serverless::Function
     Properties:
@@ -204,6 +235,51 @@ Resources:
           Type: Api
           Properties:
             Path: /{lang}/return
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SurveyWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/survey
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/survey
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SurveyQuestion:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/survey/question
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/survey/question/{questionNumber}
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SurveyFinal:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/survey/question/final
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/survey/question/{questionNumber}/final
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi
@@ -282,6 +358,7 @@ Resources:
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
+
   CallbackFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -297,7 +374,80 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  PassphraseWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/passphrase
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/passphrase
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  PassphraseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/passphrase
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/passphrase
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  AddPassphraseWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/passphrase/add
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/passphrase/add
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  AddPassphraseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/passphrase/add
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/passphrase/add
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
   AccountsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+  SurveyTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
