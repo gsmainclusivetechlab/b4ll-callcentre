@@ -15,7 +15,7 @@ export const post = safeHandle(
             switch (answer) {
                 case '1': {
                     if (user.balanceAmount) {
-                        if (user.balanceAmount > 50) {
+                        if (user.balanceAmount >= 50) {
                             user.balanceAmount -= 50;
                             await putAccountItem({
                                 ...user,

@@ -14,7 +14,7 @@ export const post = safeHandle(
 
         if (typeof value === 'string') {
             if (user.balanceAmount) {
-                if (user.balanceAmount > +value) {
+                if (user.balanceAmount >= +value) {
                     user.balanceAmount -= +value;
                     await putAccountItem({
                         ...user,
