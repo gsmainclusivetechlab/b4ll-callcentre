@@ -47,5 +47,5 @@ and response calls through an API gateway.
 
 Our main objective is to demonstrate the potential of biometrics in emerging
 markets in order to provide financial inclusion. Because of this, the target
-operating systems in this first moment are Android, Android Go, KaiOS and iOS.
-Also, whenever possible, the feature phones are being considered.
+operating systems in this first moment are Android, Android Go and iOS. Also,
+whenever possible, the feature phones are being considered.

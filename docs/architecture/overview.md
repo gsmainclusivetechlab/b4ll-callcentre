@@ -10,17 +10,12 @@ This section describes the architecture proposed for the B4LL project. The
 project was thought to be modular, allowing to offer, when necessary, new use
 cases, types of biometrics and biometrics suppliers.
 
-The architecture is divided in four main parts: the landing page, the
-communication channels (mostly represented by the application), the engine, and
-the biometrics suppliers. Each part is briefly described below. More details can
-be found in the following sections
+The architecture is divided in three main parts: the communication channels
+(mostly represented by the application), the engine, and the biometrics
+suppliers. Each part is briefly described below. More details can be found in
+the following sections<sup>[1](#landingpage)</sup>:
 
-1. **Landing page:** B4LL project page containing relevant information for a
-   better understanding of the use of biometrics and how the B4ll project can
-   support mobile operators in the implementation of biometric technologies. The
-   landing page can be accessed here: [B4ll Project](https://www.gsma.com/lab).
-
-2. **Communication Channels:** The communication channels are responsible for
+1. **Communication Channels:** The communication channels are responsible for
    the communication interface between the user and the b4ll system. The main
    communication channel is the mobile application, however, these channels can
    use external communication providers to supply new forms of interaction. The
@@ -31,11 +26,11 @@ be found in the following sections
     project. The mobile application will provide access to all types of
     biometrics.
 
-3. **Engine:** This part orchestrates the connection between the other parts of
+2. **Engine:** This part orchestrates the connection between the other parts of
    the architecture handling the data received from the communication channels
    and providing it to the engine.
 
-4. **Biometric Suppliers:** Biometric solutions available on the market. The
+3. **Biometric Suppliers:** Biometric solutions available on the market. The
    connection with the suppliers takes place through an SDK or API and allows
    access to biometric recognition solutions.
 
@@ -80,7 +75,7 @@ the supplier's API (or SDK) and the engine handler functions.
 </div>
 
 :::info Data Storage It is important to mention here that the biometric data is
-only stored on the biometri suppliers side. :::
+only stored on the biometric suppliers side. :::
 
 ### Detailed View
 
@@ -99,9 +94,7 @@ Other services can also be used to enhance the user experience – for example
 DynamoDB may be used to store user data and preferences within the communication
 channel business logic – or for other technical reasons, such as using an S3
 bucket in the biometrics engine to store image data prior to biometric
-verification. Also shown is a simple deployment for the landing page. The
-content of this landing page will be static, so an object storage-based
-deployment is appropriate.
+verification.
 
 ### Technological Considerations
 
@@ -111,3 +104,12 @@ deployment is appropriate.
     using AWS CloudFormation and AWS SAM.
 -   The main language used for the project is TypeScript
 -   The API's follow the API Specification 3.0
+
+    ***
+
+##### Footnotes
+
+-   <a name="landingpage">1 </a>: B4LL project page contains relevant
+    information for a better understanding of the use of biometrics and how the
+    B4ll project can support mobile operators in the implementation of biometric
+    technologies.

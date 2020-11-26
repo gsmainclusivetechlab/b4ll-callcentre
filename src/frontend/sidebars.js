@@ -1,9 +1,11 @@
 module.exports = {
     someSidebar: {
-        'Introduction': ['itl', 'about', 'docguide'],
+        'Introduction': [
+            'about', 
+            'docguide',
+        ],
         'Architecture': [
             'architecture/overview',
-            'architecture/landing',
             'architecture/app',
             'architecture/engine',
             'architecture/suppliers',
