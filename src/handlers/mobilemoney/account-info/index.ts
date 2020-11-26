@@ -18,6 +18,8 @@ export const get = safeHandle(
                 ...user,
                 balanceAmount: 100,
             });
+            response.redirect({ method: 'GET' }, `../return`);
+            return response;
         }
 
         response.say(

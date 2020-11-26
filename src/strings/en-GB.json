@@ -61,8 +61,8 @@
     "alert-message": "To simulate an Alert, please visit our web page and follow the instructions.",
     "alert-unregistered": "This phone number has not yet enrolled for voice verification.",
 
-    "survey-welcome": "Thank you for evaluating Biometrics For All. Please answer the next questions using your keypad or your voice.",
-    "survey-question-01": "How would you evaluate the expecience using a voice verification process? Press a number from 1 to 5., where 1 means very poor and 5 means excellent.",
+    "survey-welcome": "Thank you for evaluating Biometrics For All. Please answer the next questions using your keypad.",
+    "survey-question-01": "How would you evaluate the experience using a voice verification process? Press a number from 1 to 5., where 1 means very poor and 5 means excellent.",
     "survey-question-02": "Did you think the menu flow was easy to understand? Press a number from 1 to 5, where 1 means very difficult and 5 means very easy.",
     "survey-finish": "Thank you. Your answers have been recorded.",
 
