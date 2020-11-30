@@ -6,7 +6,6 @@ import querystring from 'querystring';
 export const post = safeHandle(
     async (request) => {
         const response = new twiml.VoiceResponse();
-        const { language } = request;
         const { Digits } = querystring.parse(request.event.body || '');
         const answer = Digits || null;
 
@@ -17,8 +16,8 @@ export const post = safeHandle(
                         getVoiceParams(request.language),
                         __('transfer-approved', request.language)
                     );
-                    response.redirect({ method: 'GET' }, `/${language}/return`);
-                    break;
+                    response.redirect({ method: 'GET' }, `../../../../return`);
+                    return response;
                 }
                 case '2': {
                     response.say(
@@ -29,7 +28,7 @@ export const post = safeHandle(
                             request.language
                         )
                     );
-                    response.redirect({ method: 'GET' }, `/${language}/return`);
+                    response.redirect({ method: 'GET' }, `../../../../return`);
                     break;
                 }
                 default: {
@@ -37,7 +36,7 @@ export const post = safeHandle(
                         getVoiceParams(request.language),
                         __('did-not-understand', request.language)
                     );
-                    response.redirect({ method: 'GET' }, `/${language}/return`);
+                    response.redirect({ method: 'GET' }, `../../../../return`);
                     break;
                 }
             }
@@ -46,7 +45,7 @@ export const post = safeHandle(
                 getVoiceParams(request.language),
                 __('did-not-understand', request.language)
             );
-            response.redirect({ method: 'GET' }, `/${language}/return`);
+            response.redirect({ method: 'GET' }, `../../../../return`);
         }
         return response;
     },

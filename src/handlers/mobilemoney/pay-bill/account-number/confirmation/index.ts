@@ -7,7 +7,7 @@ import { putAccountItem } from '../../../../../services/dynamodb';
 export const post = safeHandle(
     async (request) => {
         const response = new twiml.VoiceResponse();
-        const { language, user } = request;
+        const { user } = request;
         const { Digits } = querystring.parse(request.event.body || '');
         const answer = Digits || null;
 
@@ -38,13 +38,12 @@ export const post = safeHandle(
                         response.say(
                             getVoiceParams(request.language),
                             __(
-                                'error',
-                                { error: 'user has no balance' },
+                                'transfer-account-invalid-value',
                                 request.language
                             )
                         );
                     }
-                    response.redirect({ method: 'GET' }, `/${language}/return`);
+                    response.redirect({ method: 'GET' }, `../../../return`);
                     break;
                 }
                 case '2': {
@@ -56,7 +55,7 @@ export const post = safeHandle(
                             request.language
                         )
                     );
-                    response.redirect({ method: 'GET' }, `/${language}/return`);
+                    response.redirect({ method: 'GET' }, `../../../return`);
                     break;
                 }
                 default: {
@@ -64,7 +63,7 @@ export const post = safeHandle(
                         getVoiceParams(request.language),
                         __('did-not-understand', request.language)
                     );
-                    response.redirect({ method: 'GET' }, `/${language}/return`);
+                    response.redirect({ method: 'GET' }, `../../../return`);
                     break;
                 }
             }
@@ -73,7 +72,7 @@ export const post = safeHandle(
                 getVoiceParams(request.language),
                 __('did-not-understand', request.language)
             );
-            response.redirect({ method: 'GET' }, `/${language}/return`);
+            response.redirect({ method: 'GET' }, `../../../return`);
         }
         return response;
     },

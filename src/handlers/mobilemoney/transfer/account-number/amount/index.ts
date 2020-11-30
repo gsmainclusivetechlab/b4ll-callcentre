@@ -7,7 +7,7 @@ import { putAccountItem } from '../../../../../services/dynamodb';
 export const post = safeHandle(
     async (request) => {
         const response = new twiml.VoiceResponse();
-        const { language, user } = request;
+        const { user } = request;
         const accountNumber = '112233';
         const { Digits } = querystring.parse(request.event.body || '');
         const value = Digits || null;
@@ -41,25 +41,28 @@ export const post = safeHandle(
                         getVoiceParams(request.language),
                         __('transfer-account-invalid-value', request.language)
                     );
-                    response.redirect({ method: 'GET' }, `/${language}/return`);
+                    response.redirect({ method: 'GET' }, `../../../return`);
                 }
             } else {
                 response.say(
                     getVoiceParams(request.language),
                     __(
                         'error',
-                        { error: 'no account balance' },
+                        {
+                            message:
+                                'Your account balance is 0. Please check your balance to reset it.',
+                        },
                         request.language
                     )
                 );
-                response.redirect({ method: 'GET' }, `/${language}/return`);
+                response.redirect({ method: 'GET' }, `../../../return`);
             }
         } else {
             response.say(
                 getVoiceParams(request.language),
                 __('did-not-understand', request.language)
             );
-            response.redirect({ method: 'GET' }, `/${language}/return`);
+            response.redirect({ method: 'GET' }, `../../../return`);
         }
 
         return response;

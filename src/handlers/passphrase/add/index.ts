@@ -78,7 +78,7 @@ export const post = safeHandle(
                 __('enrolment-complete', language)
             );
             // send the user back to the main menu
-            response.redirect({ method: 'GET' }, `/${language}/menu`);
+            response.redirect({ method: 'GET' }, `../../${language}/menu`);
 
             return response;
         }

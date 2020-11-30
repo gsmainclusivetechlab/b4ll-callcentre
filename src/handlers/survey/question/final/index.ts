@@ -25,10 +25,7 @@ export const post = safeHandle(async (request) => {
                 countryCode: CallerCountry as string,
             };
             await putSurveyItem(initialSurvey);
-            response.redirect(
-                { method: 'GET' },
-                `/${language}/survey/question/2`
-            );
+            response.redirect({ method: 'GET' }, `../2`);
             return response;
         }
         case '2': {
