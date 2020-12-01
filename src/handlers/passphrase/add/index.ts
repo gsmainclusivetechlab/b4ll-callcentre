@@ -84,7 +84,11 @@ export const post = safeHandle(
         }
 
         if (!success) {
-            // TODO: warn the user that something went wrong and trigger a retry
+            // TODO: warn the user that something went wrong, before triggering a retry
+            response.say(
+                getVoiceParams(language),
+                __('enrol-confidence-low', language)
+            );
         }
 
         if (next) {
@@ -93,14 +97,16 @@ export const post = safeHandle(
                 ...user,
                 enrolmentRequest: next.request,
             });
-            response.say(
-                getVoiceParams(language),
-                __(
-                    'enrol-confirmation',
-                    { remaining: next.request.recordingsRequired },
-                    language
-                )
-            );
+            if (success) {
+                response.say(
+                    getVoiceParams(language),
+                    __(
+                        'enrol-confirmation',
+                        { remaining: next.request.recordingsRequired },
+                        language
+                    )
+                );
+            }
             response.say(
                 getVoiceParams(language),
                 __('enrol-message', language)

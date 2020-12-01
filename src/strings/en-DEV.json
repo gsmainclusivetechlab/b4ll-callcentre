@@ -18,6 +18,7 @@
     "enrol-welcome": "enrol-welcome",
     "enrol-message": "enrol-message",
     "enrol-confirmation": "enrol-confirmation: {remaining} remaining",
+    "enrol-confidence-low": "enrol-confidence-low: {remaining} remaining",
     "enrolment-complete": "enrolment-complete",
 
     "reactivation-welcome": "reactivation-welcome",

@@ -18,6 +18,7 @@
     "enrol-welcome": "Hello. It looks like you don't have an account. In way to proceed with your registration you must record your voice.",
     "enrol-message": "Veuillez répéter la phrase suivante",
     "enrol-confirmation": "Génial. Pour terminer votre inscription, nous avons besoin {remaining, plural, one {d'une inscription supplementaire} other {de # inscriptions supplémentaires}}",
+    "enrol-confidence-low": "Sorry, the recording was not clear. Please try again.",
     "enrolment-complete": "Merci. Votre voix est maintenant enregistrée.",
 
     "reactivation-welcome": "Hello. It looks like your number is deactivated. In way to proceed with your reactivation you must verify your voice.",

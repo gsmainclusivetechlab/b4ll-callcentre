@@ -73,20 +73,22 @@ export async function handleEnrolment(
         // TODO: warn the user that something went wrong, before triggering a retry
         response.say(
             getVoiceParams(language),
-            __('error', { message: '' }, language)
+            __('enrol-confidence-low', language)
         );
     }
 
     if (next) {
         // TODO: de-duplicate response construction from `requestEnrolment`
-        response.say(
-            getVoiceParams(language),
-            __(
-                'enrol-confirmation',
-                { remaining: next.request.recordingsRequired },
-                language
-            )
-        );
+        if (success) {
+            response.say(
+                getVoiceParams(language),
+                __(
+                    'enrol-confirmation',
+                    { remaining: next.request.recordingsRequired },
+                    language
+                )
+            );
+        }
         response.say(getVoiceParams(language), __('enrol-message', language));
         response.pause({ length: 1 });
         response.say(getVoiceParams(language), next.phrase);
