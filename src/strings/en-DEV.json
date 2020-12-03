@@ -66,6 +66,7 @@
     "survey-welcome": "survey-welcome",
     "survey-question-01": "survey-question-01",
     "survey-question-02": "survey-question-02",
+    "survey-invalid": "survey-invalid",
     "survey-finish": "survey-finish",
 
     "did-not-understand": "did-not-understand",
