@@ -18,6 +18,14 @@ export const get = safeHandle(
             userId: user.voiceItId,
             language,
         });
+        if (!enrolmentRequest.phrase) {
+            response.say(
+                getVoiceParams(language),
+                __('enrol-no-phrase', language)
+            );
+            response.redirect({ method: 'GET' }, '../../return');
+            return response;
+        }
         await putAccountItem({
             ...user,
             enrolmentRequest: enrolmentRequest.request,

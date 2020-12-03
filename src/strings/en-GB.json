@@ -19,6 +19,7 @@
     "enrol-message": "Please repeat the following phrase:",
     "enrol-confirmation": "Great. To complete your registration, we need {remaining, plural, one {# more enrolment} other {# more enrolments}}.",
     "enrol-confidence-low": "Sorry, the recording was not clear. Please try again.",
+    "enrol-no-phrase": "There are no more available phrases to enrol with.",
     "enrolment-complete": "Thanks. Your voice is now registered.",
 
     "deactivate-account": "Your account has been successfully deactivated. Please hold to answer our short survey, or we hope to see you soon! Thank you.",
