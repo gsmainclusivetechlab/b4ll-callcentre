@@ -23,7 +23,7 @@ export const get = safeHandle(
                 getVoiceParams(language),
                 __('enrol-no-phrase', language)
             );
-            response.redirect({ method: 'GET' }, '../../return');
+            response.redirect({ method: 'GET' }, `../../${language}/return`);
             return response;
         }
         await putAccountItem({
