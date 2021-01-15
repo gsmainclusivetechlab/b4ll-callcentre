@@ -50,6 +50,10 @@ asset with our architecture.
 <img alt="Voice Biometrics Detailed Architecture"
 src={useBaseUrl('img/VoiceDetailedArch.png')} />
 
-:::note Note It is important to point out that the proposed demo asset will only
-be available to mobile operators to see the possibilities of biometrics with
-demo data i.e. no real customer data will be used in this project. :::
+:::note Note
+
+It is important to point out that the proposed demo asset will only be available
+to mobile operators to see the possibilities of biometrics with demo data i.e.
+no real customer data will be used in this project.
+
+:::

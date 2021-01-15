@@ -24,6 +24,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <img alt="Call Centre Flow" src={useBaseUrl('img/VoiceFlowchart.svg')} />
 
-:::note Different Languages Currently our call centre is operating in English,
-but we will make it available in other languages soon. Please contact our team
-if you have interest in adapting the project to your current language. :::
+:::note Different Languages
+
+Currently our call centre is operating in English, but we will make it available
+in other languages soon. Please contact our team if you have interest in
+adapting the project to your current language.
+
+:::

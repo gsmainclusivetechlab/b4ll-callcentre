@@ -18,10 +18,13 @@ everyday situations.
 |        [Deactivate Account](#deactivate-account)        |                           Deactivate the user account to approach the possibility of new use cases, such as SIM reactivation                           |
 |                   [Surveys](#surveys)                   |                            Used to receive user's feedback and highlight the possibilities of using surveys in call centres                            |
 
-:::note Use Cases Variations The use cases presented here try to approach
-different perspectives of using voice verification in a call centre. We believe
-that based on these use cases it is possible to create new ones to different
-approaches and purposes. :::
+:::note Use Cases Variations
+
+The use cases presented here try to approach different perspectives of using
+voice verification in a call centre. We believe that based on these use cases it
+is possible to create new ones to different approaches and purposes.
+
+:::
 
 ## User Verification
 
