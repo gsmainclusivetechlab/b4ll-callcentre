@@ -94,7 +94,6 @@ export const provider: VoiceItProvider = {
                 ];
             recordingsRequired = REQUIRED_ENROLMENTS;
         }
-        if (!phrase) throw new Error('No phrases available for enrolment');
         return {
             biometricType: BiometricType.VOICE,
             phrase: phrase,

@@ -17,32 +17,35 @@ export const post = safeHandle(async (request) => {
 
     const response = new twiml.VoiceResponse();
 
-    switch (questionNumber) {
-        case '1': {
-            const initialSurvey: SurveyResponseType = {
-                id: Caller as string,
-                questions: [+Digits],
-                countryCode: CallerCountry as string,
-            };
-            await putSurveyItem(initialSurvey);
-            response.redirect(
-                { method: 'GET' },
-                `/${language}/survey/question/2`
-            );
-            return response;
-        }
-        case '2': {
-            const survey = await getSurveyItem(Caller as string);
-            if (survey.questions) {
-                await putSurveyItem({
-                    ...survey,
-                    questions: [survey.questions[0], +Digits],
-                });
-            } else {
-                throw new Error('first survey answer not registered');
+    if (+Digits >= 1 && +Digits <= 5) {
+        switch (questionNumber) {
+            case '1': {
+                const initialSurvey: SurveyResponseType = {
+                    id: Caller as string,
+                    questions: [+Digits],
+                    countryCode: CallerCountry as string,
+                };
+                await putSurveyItem(initialSurvey);
+                response.redirect({ method: 'GET' }, `../2`);
+                return response;
             }
-            break;
+            case '2': {
+                const survey = await getSurveyItem(Caller as string);
+                if (survey.questions) {
+                    await putSurveyItem({
+                        ...survey,
+                        questions: [survey.questions[0], +Digits],
+                    });
+                } else {
+                    throw new Error('first survey answer not registered');
+                }
+                break;
+            }
         }
+    } else {
+        response.say(getVoiceParams(language), __('survey-invalid', language));
+        response.redirect({ method: 'GET' }, `../${questionNumber}`);
+        return response;
     }
     response.say(getVoiceParams(language), __('survey-finish', language));
     response.hangup();

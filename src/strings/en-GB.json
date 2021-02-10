@@ -18,6 +18,8 @@
     "enrol-welcome": "Hello. It looks like you don't have an account. In way to proceed with your registration you must record your voice.",
     "enrol-message": "Please repeat the following phrase:",
     "enrol-confirmation": "Great. To complete your registration, we need {remaining, plural, one {# more enrolment} other {# more enrolments}}.",
+    "enrol-confidence-low": "Sorry, the recording was not clear. Please try again.",
+    "enrol-no-phrase": "There are no more available phrases to enrol with.",
     "enrolment-complete": "Thanks. Your voice is now registered.",
 
     "deactivate-account": "Your account has been successfully deactivated. Please hold to answer our short survey, or we hope to see you soon! Thank you.",
@@ -40,7 +42,7 @@
     "bill-payment-value": "The payment will cost you ${paymentValue}, press 1 if you want to proceed or 2 to cancel the payment",
     "bill-payment-invalid-value": "Sorry, you do not have the required funds in your account to make this transaction.",
     "bill-payment-approved": "Your payment was authorised successfully",
-    "bill-payment-declined": "Your payment was declined by {payment-error}",
+    "bill-payment-declined": "Your payment has been cancelled.",
 
     "transfer-message": "Please insert the payee's account number",
     "transfer-account-number": "The account number you entered is {account}",
@@ -64,7 +66,8 @@
     "survey-welcome": "Thank you for evaluating Biometrics For All. Please answer the next questions using your keypad.",
     "survey-question-01": "How would you evaluate the experience using a voice verification process? Press a number from 1 to 5., where 1 means very poor and 5 means excellent.",
     "survey-question-02": "Did you think the menu flow was easy to understand? Press a number from 1 to 5, where 1 means very difficult and 5 means very easy.",
-    "survey-finish": "Thank you. Your answers have been recorded.",
+    "survey-invalid": "Sorry, your answer was invalid.",
+    "survey-finish": "Thank you. Your answers have been recorded. Good bye!",
 
     "did-not-understand": "Sorry, I didn't get that.",
     "error": "An error occurred. {message}",

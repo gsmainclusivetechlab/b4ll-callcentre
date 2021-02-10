@@ -18,6 +18,14 @@ export const get = safeHandle(
             userId: user.voiceItId,
             language,
         });
+        if (!enrolmentRequest.phrase) {
+            response.say(
+                getVoiceParams(language),
+                __('enrol-no-phrase', language)
+            );
+            response.redirect({ method: 'GET' }, `../../${language}/return`);
+            return response;
+        }
         await putAccountItem({
             ...user,
             enrolmentRequest: enrolmentRequest.request,
@@ -78,13 +86,17 @@ export const post = safeHandle(
                 __('enrolment-complete', language)
             );
             // send the user back to the main menu
-            response.redirect({ method: 'GET' }, `/${language}/menu`);
+            response.redirect({ method: 'GET' }, `../../${language}/menu`);
 
             return response;
         }
 
         if (!success) {
-            // TODO: warn the user that something went wrong and trigger a retry
+            // TODO: warn the user that something went wrong, before triggering a retry
+            response.say(
+                getVoiceParams(language),
+                __('enrol-confidence-low', language)
+            );
         }
 
         if (next) {
@@ -93,14 +105,16 @@ export const post = safeHandle(
                 ...user,
                 enrolmentRequest: next.request,
             });
-            response.say(
-                getVoiceParams(language),
-                __(
-                    'enrol-confirmation',
-                    { remaining: next.request.recordingsRequired },
-                    language
-                )
-            );
+            if (success) {
+                response.say(
+                    getVoiceParams(language),
+                    __(
+                        'enrol-confirmation',
+                        { remaining: next.request.recordingsRequired },
+                        language
+                    )
+                );
+            }
             response.say(
                 getVoiceParams(language),
                 __('enrol-message', language)

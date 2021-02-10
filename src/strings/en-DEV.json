@@ -18,6 +18,8 @@
     "enrol-welcome": "enrol-welcome",
     "enrol-message": "enrol-message",
     "enrol-confirmation": "enrol-confirmation: {remaining} remaining",
+    "enrol-confidence-low": "enrol-confidence-low: {remaining} remaining",
+    "enrol-no-phrase": "enrol-no-phrase",
     "enrolment-complete": "enrolment-complete",
 
     "reactivation-welcome": "reactivation-welcome",
@@ -65,6 +67,7 @@
     "survey-welcome": "survey-welcome",
     "survey-question-01": "survey-question-01",
     "survey-question-02": "survey-question-02",
+    "survey-invalid": "survey-invalid",
     "survey-finish": "survey-finish",
 
     "did-not-understand": "did-not-understand",
