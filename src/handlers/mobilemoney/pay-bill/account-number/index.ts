@@ -11,8 +11,8 @@ export const post = safeHandle(
         const { Digits } = querystring.parse(request.event.body || '');
         const answer = Digits || null;
 
-        if (typeof answer === 'string' && answer.length === 5) {
-            if (answer === '12345' || answer === '54321') {
+        switch (answer) {
+            case '12345': {
                 response.say(
                     getVoiceParams(request.language),
                     __(
@@ -21,19 +21,10 @@ export const post = safeHandle(
                         request.language
                     )
                 );
-            } else {
-                response.say(
-                    getVoiceParams(request.language),
-                    __('bill-payment-error', request.language)
-                );
-                response.redirect({ method: 'GET' }, `../../return`);
-            }
-            // 12345 = happy flow
-            if (answer === '12345') {
                 const gather = response.gather({
                     input: ['dtmf'],
                     numDigits: 1,
-                    action: 'account-number/confirmation',
+                    action: 'account-number/50-confirmation',
                 });
                 gather.say(
                     getVoiceParams(request.language),
@@ -43,12 +34,21 @@ export const post = safeHandle(
                         request.language
                     )
                 );
+                break;
             }
-            // 54321 = unhappy flow
-            if (answer === '54321') {
+            case '54321': {
+                response.say(
+                    getVoiceParams(request.language),
+                    __(
+                        'bill-payment-number',
+                        { payment: answer.split('').join(' ') },
+                        request.language
+                    )
+                );
                 const gather = response.gather({
                     input: ['dtmf'],
                     numDigits: 1,
+                    action: 'account-number/150-confirmation',
                 });
                 gather.say(
                     getVoiceParams(request.language),
@@ -58,23 +58,16 @@ export const post = safeHandle(
                         request.language
                     )
                 );
+                break;
             }
-        } else if (
-            typeof answer === 'string' &&
-            answer.length === 1 &&
-            answer === '1'
-        ) {
-            response.say(
-                getVoiceParams(request.language),
-                __('bill-payment-invalid-value', request.language)
-            );
-            response.redirect({ method: 'GET' }, `../../return`);
-        } else {
-            response.say(
-                getVoiceParams(request.language),
-                __('bill-payment-error', request.language)
-            );
-            response.redirect({ method: 'GET' }, `../../return`);
+            default: {
+                response.say(
+                    getVoiceParams(request.language),
+                    __('bill-payment-error', request.language)
+                );
+                response.redirect({ method: 'GET' }, `../../return`);
+                break;
+            }
         }
         return response;
     },

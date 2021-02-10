@@ -34,14 +34,6 @@ export const post = safeHandle(
                                 )
                             );
                         }
-                    } else {
-                        response.say(
-                            getVoiceParams(request.language),
-                            __(
-                                'transfer-account-invalid-value',
-                                request.language
-                            )
-                        );
                     }
                     response.redirect({ method: 'GET' }, `../../../return`);
                     break;
