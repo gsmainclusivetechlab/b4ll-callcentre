@@ -9,7 +9,7 @@ export const get = safeHandle(
         const balance = user.balanceAmount;
         const response = new twiml.VoiceResponse();
 
-        if (balance === 0) {
+        if (!balance || balance <= 10) {
             response.say(
                 getVoiceParams(language),
                 __('balance-reset', language)
