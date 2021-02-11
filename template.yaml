@@ -503,7 +503,9 @@ Resources:
                   - 'dynamodb:GetItem'
                   - 'dynamodb:PutItem'
                   - 'dynamodb:UpdateItem'
-                Resource: !GetAtt AccountsTable.Arn
+                Resource:
+                  - !GetAtt AccountsTable.Arn
+                  - !GetAtt SurveyTable.Arn
       PermissionsBoundary: arn:aws:iam::736485099071:policy/LambdaRoleBoundaries
 
 Outputs:
