@@ -15,6 +15,7 @@ const RecordType = t.intersection([
         balanceAmount: t.number,
         enrolmentRequest: t.UnknownRecord,
         isDeactivated: t.boolean,
+        transferValue: t.number,
     }),
 ]);
 

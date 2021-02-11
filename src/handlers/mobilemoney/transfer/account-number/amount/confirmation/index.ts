@@ -2,16 +2,25 @@ import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../../../services/strings';
 import { safeHandle } from '../../../../../../services/safeHandle';
 import querystring from 'querystring';
+import { putAccountItem } from '../../../../../../services/dynamodb';
 
 export const post = safeHandle(
     async (request) => {
         const response = new twiml.VoiceResponse();
+        const { user } = request;
         const { Digits } = querystring.parse(request.event.body || '');
         const answer = Digits || null;
 
         if (typeof answer === 'string' && answer.length === 1) {
             switch (answer) {
                 case '1': {
+                    if (user.balanceAmount && user.transferValue) {
+                        user.balanceAmount -= user.transferValue;
+                        await putAccountItem({
+                            ...user,
+                            balanceAmount: user.balanceAmount,
+                        });
+                    }
                     response.say(
                         getVoiceParams(request.language),
                         __('transfer-approved', request.language)
