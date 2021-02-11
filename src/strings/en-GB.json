@@ -51,7 +51,7 @@
     "transfer-account-invalid-value": "Sorry, you do not have the required funds in your account to make this transaction.",
     "transfer-account-confirmation": "You are transferring ${value} to {account}, press 1 if you want to proceed or 2 to cancel",
     "transfer-approved": "Your transfer was authorised successfully",
-    "transfer-declined": "Your transfer was declined by {error}",
+    "transfer-declined": "Your transfer was successfully cancelled",
 
     "passphrase-add": "To add a new passphrase, press {index}",
     "mobile-money-info": "Your account balance is: ${balance}",

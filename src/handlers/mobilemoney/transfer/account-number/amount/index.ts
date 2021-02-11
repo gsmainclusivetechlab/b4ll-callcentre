@@ -15,10 +15,9 @@ export const post = safeHandle(
         if (typeof value === 'string') {
             if (user.balanceAmount) {
                 if (user.balanceAmount >= +value) {
-                    user.balanceAmount -= +value;
                     await putAccountItem({
                         ...user,
-                        balanceAmount: user.balanceAmount,
+                        transferValue: +value,
                     });
                     const gather = response.gather({
                         input: ['dtmf'],
