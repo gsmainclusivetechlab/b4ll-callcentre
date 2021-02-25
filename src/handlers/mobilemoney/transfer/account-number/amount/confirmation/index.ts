@@ -7,7 +7,7 @@ import { putAccountItem } from '../../../../../../services/dynamodb';
 export const post = safeHandle(
     async (request) => {
         const response = new twiml.VoiceResponse();
-        const { user } = request;
+        const { user, language } = request;
         const { Digits } = querystring.parse(request.event.body || '');
         const answer = Digits || null;
 
@@ -45,7 +45,7 @@ export const post = safeHandle(
                         getVoiceParams(request.language),
                         __('did-not-understand', request.language)
                     );
-                    response.redirect({ method: 'GET' }, `../../../../return`);
+                    response.redirect({ method: 'GET' }, `../../../transfer`);
                     break;
                 }
             }
@@ -54,8 +54,15 @@ export const post = safeHandle(
                 getVoiceParams(request.language),
                 __('did-not-understand', request.language)
             );
-            response.redirect({ method: 'GET' }, `../../../../return`);
+            response.redirect({ method: 'GET' }, `./confirmation)`);
         }
+
+        // If the user doesn't enter input, loop
+        response.say(
+            getVoiceParams(language),
+            __('did-not-understand', language)
+        );
+        response.redirect({ method: 'GET' }, '../../../transfer');
         return response;
     },
     {
