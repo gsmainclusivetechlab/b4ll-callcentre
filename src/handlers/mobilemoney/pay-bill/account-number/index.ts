@@ -8,6 +8,7 @@ export const post = safeHandle(
         const paymentValue = 50;
         const paymentValue2 = 150;
         const response = new twiml.VoiceResponse();
+        const { language } = request;
         const { Digits } = querystring.parse(request.event.body || '');
         const answer = Digits || null;
 
@@ -65,10 +66,17 @@ export const post = safeHandle(
                     getVoiceParams(request.language),
                     __('bill-payment-error', request.language)
                 );
-                response.redirect({ method: 'GET' }, `../../return`);
+                response.redirect({ method: 'GET' }, `./`);
                 break;
             }
         }
+
+        // If the user doesn't enter input, loop
+        response.say(
+            getVoiceParams(language),
+            __('did-not-understand', language)
+        );
+        response.redirect({ method: 'GET' }, '../pay-bill');
         return response;
     },
     {

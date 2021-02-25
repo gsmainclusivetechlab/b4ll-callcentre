@@ -18,7 +18,11 @@ export const get = safeHandle(
         gather.say(voice, __('bill-payment-message', language));
 
         // If the user doesn't enter input, loop
-        response.redirect('../return');
+        response.say(
+            getVoiceParams(language),
+            __('did-not-understand', language)
+        );
+        response.redirect({ method: 'GET' }, './pay-bill');
         return response;
     },
     { requireVerification: true }

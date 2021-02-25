@@ -69,7 +69,7 @@
     "survey-invalid": "Sorry, your answer was invalid.",
     "survey-finish": "Thank you. Your answers have been recorded. Good bye!",
 
-    "did-not-understand": "Sorry, I didn't get that.",
+    "did-not-understand": "Sorry, I didn't get that. Please try again.",
     "error": "An error occurred. {message}",
 
     "return-menu": "To return to the main menu, press {index}",

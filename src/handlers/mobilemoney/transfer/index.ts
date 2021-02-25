@@ -18,7 +18,11 @@ export const get = safeHandle(
         gather.say(voice, __('transfer-message', language));
 
         // If the user doesn't enter input, loop
-        response.redirect('../return');
+        response.say(
+            getVoiceParams(language),
+            __('did-not-understand', language)
+        );
+        response.redirect({ method: 'GET' }, './transfer');
         return response;
     },
     { requireVerification: true }
