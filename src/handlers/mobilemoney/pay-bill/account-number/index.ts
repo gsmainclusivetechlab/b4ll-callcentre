@@ -66,7 +66,7 @@ export const post = safeHandle(
                     getVoiceParams(request.language),
                     __('bill-payment-error', request.language)
                 );
-                response.redirect({ method: 'GET' }, `./`);
+                response.redirect({ method: 'GET' }, `../pay-bill`);
                 break;
             }
         }
