@@ -34,14 +34,6 @@ export const post = safeHandle(
                                 )
                             );
                         }
-                    } else {
-                        response.say(
-                            getVoiceParams(request.language),
-                            __(
-                                'transfer-account-invalid-value',
-                                request.language
-                            )
-                        );
                     }
                     response.redirect({ method: 'GET' }, `../../../return`);
                     break;
@@ -49,11 +41,7 @@ export const post = safeHandle(
                 case '2': {
                     response.say(
                         getVoiceParams(request.language),
-                        __(
-                            'bill-payment-declined',
-                            { error: 'cancellation' },
-                            request.language
-                        )
+                        __('bill-payment-declined', request.language)
                     );
                     response.redirect({ method: 'GET' }, `../../../return`);
                     break;
@@ -63,7 +51,7 @@ export const post = safeHandle(
                         getVoiceParams(request.language),
                         __('did-not-understand', request.language)
                     );
-                    response.redirect({ method: 'GET' }, `../../../return`);
+                    response.redirect({ method: 'GET' }, `../../pay-bill`);
                     break;
                 }
             }
@@ -72,7 +60,7 @@ export const post = safeHandle(
                 getVoiceParams(request.language),
                 __('did-not-understand', request.language)
             );
-            response.redirect({ method: 'GET' }, `../../../return`);
+            response.redirect({ method: 'GET' }, `../../pay-bill`);
         }
         return response;
     },

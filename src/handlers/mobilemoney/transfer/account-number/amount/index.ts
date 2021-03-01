@@ -7,7 +7,7 @@ import { putAccountItem } from '../../../../../services/dynamodb';
 export const post = safeHandle(
     async (request) => {
         const response = new twiml.VoiceResponse();
-        const { user } = request;
+        const { user, language } = request;
         const accountNumber = '112233';
         const { Digits } = querystring.parse(request.event.body || '');
         const value = Digits || null;
@@ -15,10 +15,9 @@ export const post = safeHandle(
         if (typeof value === 'string') {
             if (user.balanceAmount) {
                 if (user.balanceAmount >= +value) {
-                    user.balanceAmount -= +value;
                     await putAccountItem({
                         ...user,
-                        balanceAmount: user.balanceAmount,
+                        transferValue: +value,
                     });
                     const gather = response.gather({
                         input: ['dtmf'],
@@ -62,9 +61,15 @@ export const post = safeHandle(
                 getVoiceParams(request.language),
                 __('did-not-understand', request.language)
             );
-            response.redirect({ method: 'GET' }, `../../../return`);
+            response.redirect({ method: 'GET' }, `./transfer`);
         }
 
+        // If the user doesn't enter input, loop
+        response.say(
+            getVoiceParams(language),
+            __('did-not-understand', language)
+        );
+        response.redirect({ method: 'GET' }, '../../transfer');
         return response;
     },
     {

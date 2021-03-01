@@ -35,5 +35,9 @@ export const get = safeHandle(async (request) => {
         numDigits: 1,
     });
 
+    // if no response, loop back
+    response.say(getVoiceParams(language), __('did-not-understand', language));
+    response.redirect({ method: 'GET' }, `./${questionNumber}`);
+
     return response;
 });

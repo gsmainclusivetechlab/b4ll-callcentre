@@ -164,17 +164,32 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
-  PayABillConfirmationFunction:
+  PayABill50ConfirmationFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.post
-      CodeUri: ./dist/handlers/mobilemoney/pay-bill/account-number/confirmation
+      CodeUri: ./dist/handlers/mobilemoney/pay-bill/account-number/50-confirmation
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/mobilemoney/pay-bill/account-number/confirmation
+            Path: /{lang}/mobilemoney/pay-bill/account-number/50-confirmation
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  PayABill150ConfirmationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/mobilemoney/pay-bill/account-number/150-confirmation
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/mobilemoney/pay-bill/account-number/150-confirmation
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi
@@ -488,7 +503,9 @@ Resources:
                   - 'dynamodb:GetItem'
                   - 'dynamodb:PutItem'
                   - 'dynamodb:UpdateItem'
-                Resource: !GetAtt AccountsTable.Arn
+                Resource:
+                  - !GetAtt AccountsTable.Arn
+                  - !GetAtt SurveyTable.Arn
       PermissionsBoundary: arn:aws:iam::736485099071:policy/LambdaRoleBoundaries
 
 Outputs:
