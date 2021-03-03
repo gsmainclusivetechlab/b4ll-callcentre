@@ -12,63 +12,63 @@ export const post = safeHandle(
         const { Digits } = querystring.parse(request.event.body || '');
         const answer = Digits || null;
 
-        switch (answer) {
-            case '12345': {
-                response.say(
-                    getVoiceParams(request.language),
-                    __(
-                        'bill-payment-number',
-                        { payment: answer.split('').join(' ') },
-                        request.language
-                    )
-                );
-                const gather = response.gather({
-                    input: ['dtmf'],
-                    numDigits: 1,
-                    action: 'account-number/50-confirmation',
-                });
-                gather.say(
-                    getVoiceParams(request.language),
-                    __(
-                        'bill-payment-value',
-                        { paymentValue: paymentValue },
-                        request.language
-                    )
-                );
-                break;
+        if (typeof answer == 'string' && answer.length >= 5) {
+            switch (answer) {
+                case '54321': {
+                    response.say(
+                        getVoiceParams(request.language),
+                        __(
+                            'bill-payment-number',
+                            { payment: answer.split('').join(' ') },
+                            request.language
+                        )
+                    );
+                    const gather = response.gather({
+                        input: ['dtmf'],
+                        numDigits: 1,
+                        action: 'account-number/150-confirmation',
+                    });
+                    gather.say(
+                        getVoiceParams(request.language),
+                        __(
+                            'bill-payment-value',
+                            { paymentValue: paymentValue2 },
+                            request.language
+                        )
+                    );
+                    break;
+                }
+                default: {
+                    response.say(
+                        getVoiceParams(request.language),
+                        __(
+                            'bill-payment-number',
+                            { payment: answer.split('').join(' ') },
+                            request.language
+                        )
+                    );
+                    const gather = response.gather({
+                        input: ['dtmf'],
+                        numDigits: 1,
+                        action: 'account-number/50-confirmation',
+                    });
+                    gather.say(
+                        getVoiceParams(request.language),
+                        __(
+                            'bill-payment-value',
+                            { paymentValue: paymentValue },
+                            request.language
+                        )
+                    );
+                    break;
+                }
             }
-            case '54321': {
-                response.say(
-                    getVoiceParams(request.language),
-                    __(
-                        'bill-payment-number',
-                        { payment: answer.split('').join(' ') },
-                        request.language
-                    )
-                );
-                const gather = response.gather({
-                    input: ['dtmf'],
-                    numDigits: 1,
-                    action: 'account-number/150-confirmation',
-                });
-                gather.say(
-                    getVoiceParams(request.language),
-                    __(
-                        'bill-payment-value',
-                        { paymentValue: paymentValue2 },
-                        request.language
-                    )
-                );
-                break;
-            }
-            default: {
-                response.say(
-                    getVoiceParams(request.language),
-                    __('bill-payment-error', request.language)
-                );
-                response.redirect({ method: 'GET' }, `../pay-bill`);
-                break;
-            }
+        } else {
+            response.say(
+                getVoiceParams(request.language),
+                __('bill-payment-error', request.language)
+            );
+            response.redirect({ method: 'GET' }, `../pay-bill`);
         }
 
         // If the user doesn't enter input, loop
