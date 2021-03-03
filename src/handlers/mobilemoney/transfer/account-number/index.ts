@@ -2,23 +2,28 @@ import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../services/strings';
 import { safeHandle } from '../../../../services/safeHandle';
 import querystring from 'querystring';
+import { putAccountItem } from '../../../../services/dynamodb';
 
 export const post = safeHandle(
     async (request) => {
         const response = new twiml.VoiceResponse();
-        const { language } = request;
+        const { language, user } = request;
         const { Digits } = querystring.parse(request.event.body || '');
-        const answer = Digits || null;
+        const accountNumber = Digits || null;
 
-        if (typeof answer === 'string' && answer.length >= 5) {
+        if (typeof accountNumber === 'string' && accountNumber.length >= 5) {
             response.say(
                 getVoiceParams(request.language),
                 __(
                     'transfer-account-number',
-                    { account: answer.split('').join(' ') },
+                    { account: accountNumber.split('').join(' ') },
                     request.language
                 )
             );
+            await putAccountItem({
+                ...user,
+                transferAccount: accountNumber,
+            });
             const gather = response.gather({
                 input: ['dtmf'],
                 action: 'account-number/amount',

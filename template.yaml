@@ -29,6 +29,7 @@ Globals:
       Variables:
         TABLE_ACCOUNTS: !Ref AccountsTable
         TABLE_SURVEY: !Ref SurveyTable
+        TABLE_APPROVED: !Ref ApprovedUsersTable
         DYNAMO_HOST: !Ref DynamoHost
         VOICEIT_API_KEY: !Ref VoiceItAPIKey
         VOICEIT_API_TOKEN: !Ref VoiceItAPIToken
@@ -475,6 +476,19 @@ Resources:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
 
+  ApprovedUsersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
   LambdaRole:
     Type: AWS::IAM::Role
     Properties:
@@ -506,6 +520,7 @@ Resources:
                 Resource:
                   - !GetAtt AccountsTable.Arn
                   - !GetAtt SurveyTable.Arn
+                  - !GetAtt ApprovedUsers.Arn
       PermissionsBoundary: arn:aws:iam::736485099071:policy/LambdaRoleBoundaries
 
 Outputs:

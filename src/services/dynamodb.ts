@@ -16,6 +16,7 @@ const RecordType = t.intersection([
         enrolmentRequest: t.UnknownRecord,
         isDeactivated: t.boolean,
         transferValue: t.number,
+        transferAccount: t.string,
     }),
 ]);
 
@@ -31,8 +32,19 @@ const SurveyResponseType = t.intersection([
     }),
 ]);
 
+const ApprovedUsersType = t.intersection([
+    // required properties
+    t.type({
+        id: t.string,
+    }),
+    t.partial({
+        countryCode: t.string,
+    }),
+]);
+
 export type RecordType = t.TypeOf<typeof RecordType>;
 export type SurveyResponseType = t.TypeOf<typeof SurveyResponseType>;
+export type ApprovedUsersType = t.TypeOf<typeof ApprovedUsersType>;
 
 export const getClient = (): AWS.DynamoDB.DocumentClient =>
     new AWS.DynamoDB.DocumentClient(
@@ -106,6 +118,32 @@ export async function putSurveyItem(
             .put({
                 Item,
                 TableName: process.env.TABLE_SURVEY || '',
+            })
+            .promise();
+        return Item;
+    }
+    return Promise.reject(new Error('Invalid record structure'));
+}
+
+export async function getApprovedUserItem(id: string) {
+    return getClient()
+        .get({
+            TableName: process.env.TABLE_APPROVED || '',
+            Key: {
+                id,
+            },
+        })
+        .promise();
+}
+
+export async function putApprovedUserItem(
+    Item: ApprovedUsersType
+): Promise<ApprovedUsersType> {
+    if (RecordType.is(Item)) {
+        await getClient()
+            .put({
+                Item,
+                TableName: process.env.TABLE_APPROVED || '',
             })
             .promise();
         return Item;

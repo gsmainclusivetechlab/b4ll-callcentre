@@ -2,13 +2,15 @@ import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../../services/strings';
 import { safeHandle } from '../../../../../services/safeHandle';
 import querystring from 'querystring';
-import { putAccountItem } from '../../../../../services/dynamodb';
+import {
+    getAccountItem,
+    putAccountItem,
+} from '../../../../../services/dynamodb';
 
 export const post = safeHandle(
     async (request) => {
         const response = new twiml.VoiceResponse();
         const { user, language } = request;
-        const accountNumber = '112233';
         const { Digits } = querystring.parse(request.event.body || '');
         const value = Digits || null;
 
@@ -30,7 +32,9 @@ export const post = safeHandle(
                             'transfer-account-confirmation',
                             {
                                 value: +value,
-                                account: accountNumber.split('').join(' '),
+                                account: user.transferAccount
+                                    ?.split('')
+                                    .join(' '),
                             },
                             request.language
                         )
