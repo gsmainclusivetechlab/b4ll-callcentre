@@ -19,6 +19,9 @@ Parameters:
   DynamoHost:
     Type: String
     Default: ''
+  AppEnv:
+    Type: String
+    Default: 'production'
 
 Globals:
   Function:
@@ -31,6 +34,7 @@ Globals:
         TABLE_SURVEY: !Ref SurveyTable
         TABLE_APPROVED: !Ref ApprovedUsersTable
         DYNAMO_HOST: !Ref DynamoHost
+        APPENV: !Ref AppEnv
         VOICEIT_API_KEY: !Ref VoiceItAPIKey
         VOICEIT_API_TOKEN: !Ref VoiceItAPIToken
         TWILIO_ACCOUNT_SID: !Ref TwilioAccountSid
@@ -520,7 +524,7 @@ Resources:
                 Resource:
                   - !GetAtt AccountsTable.Arn
                   - !GetAtt SurveyTable.Arn
-                  - !GetAtt ApprovedUsers.Arn
+                  - !GetAtt ApprovedUsersTable.Arn
       PermissionsBoundary: arn:aws:iam::736485099071:policy/LambdaRoleBoundaries
 
 Outputs:

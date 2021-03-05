@@ -135,18 +135,3 @@ export async function getApprovedUserItem(id: string) {
         })
         .promise();
 }
-
-export async function putApprovedUserItem(
-    Item: ApprovedUsersType
-): Promise<ApprovedUsersType> {
-    if (RecordType.is(Item)) {
-        await getClient()
-            .put({
-                Item,
-                TableName: process.env.TABLE_APPROVED || '',
-            })
-            .promise();
-        return Item;
-    }
-    return Promise.reject(new Error('Invalid record structure'));
-}
