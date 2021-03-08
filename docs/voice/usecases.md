@@ -88,29 +88,29 @@ technologies are not available. Using voice for payment authentication would
 speed the payment process and improve the safety for users. To use this
 simulation the user has three different flows to test.
 
-**Flow 01:** Invalid Payment Number: Any number different of 12345 or 54321 will
-be considered as an invalid payment number.
+**Flow 01:** Invalid Payment Number: Any number that is not 5 digits will be
+considered an invalid payment number.
 
-**Flow 02:** Payment Successful: The payment number 12345 will let the user to
-pay a bill of \$50.
+**Flow 02:** Payment Successful: Any 5 digit payment number **except 54321**
+will let the user pay a bill of \$50.
 
 **Flow 03:** Payment Declined: The payment number 54321 will lead the user to
 try a payment of $150. Since the balance is $100 the payment will be declined
-for insufficient funds.
+due to insufficient funds.
 
 ### Make a Transfer
 
 This use case simulates a mobile money transference using voice authentication
 to access the service.
 
-**Flow 01:** Invalid Transfer Account: If the user selects an account number
-different of 112233 the account number will be **invalid**.
+**Flow 01:** Invalid Payment Number: Any number that is not 5 digits will be
+considered an invalid payment number.
 
-**Flow 02:** Transfer Authorised: If the transfer is to the account number
-112233 and the the user account has sufficient balance, the transfer will be
+**Flow 02:** Transfer Authorised: If the transfer is to a 5-digit account number
+and the user account has sufficient balance, the transfer will be
 **authorised**.
 
-**Flow 03:** Transfer Declined: If the transfer is to the account number 112233
+**Flow 03:** Transfer Declined: If the transfer is to a 5-digit account number
 and the amount is more than current user balance, the transfer will be
 **declined**.
 
