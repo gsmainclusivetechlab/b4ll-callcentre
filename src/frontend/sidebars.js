@@ -15,6 +15,7 @@ module.exports = {
             'voice/flow',
             'voice/usecases',
             'voice/alerts',
+            'voice/callcentre',
         ],
         'Face': ['face/intro'],
         'Fingerprint': ['fingerprint/intro'],
