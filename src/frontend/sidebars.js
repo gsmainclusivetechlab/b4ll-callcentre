@@ -10,14 +10,15 @@ module.exports = {
             'architecture/engine',
             'architecture/suppliers',
         ],
-        'Voice': [
+        'Call Centre': [
             'voice/intro',
             'voice/flow',
             'voice/usecases',
             'voice/alerts',
         ],
-        'Face': ['face/intro'],
-        'Fingerprint': ['fingerprint/intro'],
+        'Application': ['app/info'],
+        //'Face': ['face/intro'],
+        //'Fingerprint': ['fingerprint/intro'],
         'User Manuals': ['manual/quickguide'],
         "Contributor's Guide": [
             //'contributors-guide/contributing',
