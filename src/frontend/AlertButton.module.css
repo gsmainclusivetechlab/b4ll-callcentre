@@ -35,3 +35,7 @@
 .button:hover {
   border-color: var(--ifm-color-primary);
 }
+
+.button:disabled {
+  color: #999;
+}

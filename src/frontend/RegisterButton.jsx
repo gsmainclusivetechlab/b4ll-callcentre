@@ -16,7 +16,7 @@ const useInput = (init) => {
     return { value, onChange, onFocus };
 };
 
-const useAlertTrigger = (phone) => {
+const useRegisterTrigger = (phone) => {
     const [state, setState] = React.useState({ state: 'INIT' });
     const trigger = React.useCallback(async () => {
         setState({ state: 'PENDING' });
@@ -26,7 +26,6 @@ const useAlertTrigger = (phone) => {
                     process.env.API_HOST
                 }/en-GB/register?Caller=${encodeURIComponent(phone)}`
             ).then(function (response) {
-                console.log(response)
                 if (response.data.status == 'OK') {
                     setState({ state: 'SUCCESS' });
                 } else {
@@ -43,9 +42,17 @@ const useAlertTrigger = (phone) => {
     return { state, trigger };
 };
 
-export default function TermsButton() {
+export default function RegisterButton() {
+    const [agree, setAgree] = React.useState(false);
     const phoneNumber = useInput('+44...');
-    const { trigger, state } = useAlertTrigger(phoneNumber.value);
+    const { trigger, state } = useRegisterTrigger(phoneNumber.value);
+
+    const checkboxHandler = () => {
+        // if agree === true, it will be set to false
+        // if agree === false, it will be set to true
+        setAgree(!agree);
+        // Don't miss the exclamation mark
+      }
 
     switch (state.state) {
         case 'PENDING':
@@ -59,23 +66,36 @@ export default function TermsButton() {
     let message = state.error || null;
     return (
         <div>
-            <input
-                className={style.input}
-                type="text"
-                placeholder="+44"
-                {...phoneNumber}
-            />
-            <button className={style.button} onClick={trigger}>
-                Register
-            </button>
-            <br />
-            {message ? (
-                <div className="admonition admonition-danger alert alert--danger">
-                    <div className="admonition-content">
-                        <p>{message}</p>
+            <div>
+                <input
+                    className={style.input}
+                    type="text"
+                    placeholder="+44"
+                    {...phoneNumber}
+                />
+                <button disabled={!agree} className={style.button} onClick={trigger}>
+                    Register
+                </button>
+                <br />
+                {message ? (
+                    <div className="admonition admonition-danger alert alert--danger">
+                        <div className="admonition-content">
+                            <p>{message}</p>
+                        </div>
+                    </div>
+                ) : null}
+            </div>
+            <br></br>
+            <br></br>
+            <div className="TermsButton">
+                <div className="container">
+                    <div>
+                        <input type="checkbox" id="agree" onChange={checkboxHandler} />
+                        <label htmlFor="agree"> I have read and agreed to the <a href="https://gsmainclusivetechlab.github.io/bilt-voice/voice/terms">terms and conditions.</a></label>
                     </div>
                 </div>
-            ) : null}
+            </div>
         </div>
+        
     );
 }
