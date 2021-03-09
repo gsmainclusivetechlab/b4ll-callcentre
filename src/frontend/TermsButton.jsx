@@ -24,9 +24,15 @@ const useAlertTrigger = (phone) => {
             await axios.get(
                 `${
                     process.env.API_HOST
-                }/en-GB/callback?Caller=${encodeURIComponent(phone)}`
-            );
-            setState({ state: 'SUCCESS' });
+                }/en-GB/register?Caller=${encodeURIComponent(phone)}`
+            ).then(function (response) {
+                console.log(response)
+                if (response.data.status == 'OK') {
+                    setState({ state: 'SUCCESS' });
+                } else {
+                    setState({ state: 'ERROR' });
+                }
+            });
         } catch (e) {
             setState({
                 state: 'ERROR',
@@ -45,7 +51,9 @@ export default function TermsButton() {
         case 'PENDING':
             return <div>Please wait...</div>;
         case 'SUCCESS':
-            return <div>Successfully requested! Please await your call...</div>;
+            return <div>Your number has been successfully approved! You may now call and use the call centre.</div>;
+        case 'ERROR':
+            return <div>There was a problem adding your number. It may already be approved or the format is incorrect. Please verify your number is correct and try again.</div>
     }
 
     let message = state.error || null;

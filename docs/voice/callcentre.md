@@ -7,9 +7,9 @@ To demonstrate test the Call Centre showcase register in our database the number
 you will use to reach the call centre. Please read carefully the terms and
 conditions before testing this asset.
 
-import AlertButton from "../../src/frontend/AlertButton"
+import TermsButton from "../../src/frontend/TermsButton"
 
-<AlertButton /> <br/>
+<TermsButton /> <br/>
 
 <!-- <input type="checkbox" id="tc" name="tc"checked>  -->
 
