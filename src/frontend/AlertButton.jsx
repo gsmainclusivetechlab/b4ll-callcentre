@@ -25,7 +25,7 @@ const useAlertTrigger = (phone) => {
                 `${
                     process.env.API_HOST
                 }/en-GB/callback?Caller=${encodeURIComponent(phone)}`
-            );
+            , { crossdomain: true });
             setState({ state: 'SUCCESS' });
         } catch (e) {
             setState({
