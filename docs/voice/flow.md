@@ -1,6 +1,6 @@
 ---
 title: Call Centre Flow
-sidebar_label: Call Centre Flow
+sidebar_label: Navigation Flow
 ---
 
 The call centre has the purpose to present the main use cases scenarios for
