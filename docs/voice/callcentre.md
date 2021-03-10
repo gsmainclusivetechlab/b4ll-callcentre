@@ -1,6 +1,6 @@
 ---
-title: Call Centre
-sidebar_label: Call Centre
+title: Call Centre Enrolment
+sidebar_label: Enrolment
 ---
 
 To demonstrate test the Call Centre showcase register in our database the number
