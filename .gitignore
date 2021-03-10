@@ -29,3 +29,4 @@ yarn-error.log*
 .DS_Store
 src/.DS_Store
 src/numbers.json
+.DS_Store
