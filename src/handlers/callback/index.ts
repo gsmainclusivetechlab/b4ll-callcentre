@@ -49,7 +49,7 @@ export const get = safeHandle(async ({ language, user, auth }) => {
 export const post = safeHandle(
     async ({ language }) => {
         const message = new twiml.VoiceResponse();
-        message.say(getVoiceParams(language), __('alert-message', language));
+        message.say(getVoiceParams(language), __('alert-authorised', language));
         return message;
     },
     {

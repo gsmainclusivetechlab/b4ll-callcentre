@@ -61,6 +61,7 @@
     "validation": "validation",
 
     "alert-welcome": "alert-welcome",
+    "alert-authorised": "alert-authorised",
     "alert-message": "alert-message",
     "alert-unregistered": "alert-unregistered",
 

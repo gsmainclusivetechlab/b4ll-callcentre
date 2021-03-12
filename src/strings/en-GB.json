@@ -60,6 +60,7 @@
     "validation": "In way to verify your identity, please repeat the following phrase:",
 
     "alert-welcome": "Hello. This is a demo call from the \"Biometrics For All\" project. Some suspicious activity has been flagged on your account. Please verify your identity to authorise this transaction.",
+    "alert-authorised": "Thank you. Your transaction has been approved. Goodbye!",
     "alert-message": "To simulate an Alert, please visit our web page and follow the instructions.",
     "alert-unregistered": "This phone number has not yet enrolled for voice verification.",
 
