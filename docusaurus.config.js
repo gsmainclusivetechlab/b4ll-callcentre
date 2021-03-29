@@ -3,8 +3,8 @@ const path = require('path');
 module.exports = {
     title: 'Biometrics 4 All',
     tagline: '',
-    url: 'https://gsmainclusivetechlab.github.io',
-    baseUrl: '/bilt-voice/',
+    url: 'https://docs.biometrics.gsmainclusivetechlab.io',
+    baseUrl: '/',
     onBrokenLinks: 'throw',
     favicon: 'img/favicon.ico',
     organizationName: 'gsmainclusivetechlab', // Usually your GitHub org/user name.
@@ -14,7 +14,15 @@ module.exports = {
             additionalLanguages: ['properties', 'ini'],
         },
         navbar: {
-            title: 'B4ALL - Biometrics For All - Documentation',
+            //title: 'B4ALL - Biometrics For All - Documentation',
+            
+            items: [
+                {
+                  href: 'https://biometrics.gsmainclusivetechlab.io/',
+                  label: 'B4LL - Biometrics 4 All',
+                  position: 'left', // or 'right'
+                },
+            ]
         },
         footer: {
             style: 'dark',
