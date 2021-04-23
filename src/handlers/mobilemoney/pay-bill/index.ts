@@ -11,7 +11,7 @@ export const get = safeHandle(
 
         const gather = response.gather({
             input: ['dtmf'],
-            numDigits: 5,
+            numDigits: 6,
             action: `pay-bill/account-number`,
         });
 
