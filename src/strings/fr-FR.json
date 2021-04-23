@@ -6,7 +6,7 @@
     "bill-prompt": "Pour payer une facture, appuyez sur {index}.",
     "account-prompt": "Pour mettre à jour votre compte, appuyez sur {index}.",
     "not-implemented": "Désolé, ce service n'a pas encore été mis en œuvre. Je vous ramène au menu principal pour que vous puissiez faire un autre choix.",
-    "welcome-stranger": "Bonjour. Il semble que vous n'avez pas de message enregistré.",
+    "welcome-stranger": "Il semble que vous n'avez pas de phrase enregistré.",
     "welcome-known": "Bonjour et bienvenue sur notre système de démonstration biométrique.",
 
     "welcome": "Re-bonjour. Bienvenue à Biometrics For All.",
@@ -15,14 +15,14 @@
     "verification-failed": "Nous n'avons pas pu vérifier votre voix. Veuillez réessayer.",
     "verification-error": "Vous avez atteint la limite d’essaie.",
 
-    "enrol-welcome": "Bonjour, il semble que vous n’avez pas de compte, pour procéder, veuillez enregistrez votre voix.",
+    "enrol-welcome": "Il semble que vous n’avez pas de compte, pour procéder, veuillez enregistrez votre voix.",
     "enrol-message": "Veuillez répéter la phrase suivante",
     "enrol-confirmation": "Génial. Pour terminer votre inscription, nous avons besoin {remaining, plural, one {d'une inscription supplementaire} other {de # inscriptions supplémentaires}}",
     "enrol-confidence-low": "Désolé, l'enregistrement n'était pas clair. Veuillez réessayer.",
     "enrol-no-phrase": "Il n’y a plus de phrase disponible pour votre adhésion.",
     "enrolment-complete": "Merci. Votre voix est maintenant enregistrée.",
 
-    "reactivation-welcome": "Bonjour ; votre numéro parait désactivé, vous devez vérifier l’enregistrement de votre voix pour le réactiver.",
+    "reactivation-welcome": "Votre numéro parait désactivé, vous devez vérifier l’enregistrement de votre voix pour le réactiver.",
     "reactivation-message": "Veuillez répéter la phrase suivante:",
     "reactivation-confirmation": "Super! Votre numéro a été réactiver",
 
@@ -31,7 +31,7 @@
     "pay-bill": "Pour payer une facture, appuyez sur {index}.",
     "transfer": "Pour effectuer un virement, appuyez sur {index}.",
     "alert": "Pour simuler une alerte, appuyez sur {index}.",
-    "passphrase-manager": "Pour enregistrer une nouvelle phrase secrète de vérification, press {index}",
+    "passphrase-manager": "Pour enregistrer une nouvelle phrase secrète de vérification, appuyez sur {index}",
     "deactivate": "Pour désactiver votre compte, appuyez sur {index}",
 
     "bill-payment-message": "Veuillez saisir votre numéro de paiement",
@@ -40,21 +40,21 @@
     "bill-payment-value": "Le paiement vous coûtera ${paymentValue}, appuyez sur 1 pour continuer ou 2 pour annuler le paiement.",
     "bill-payment-invalid-value": "Désolé, vous n’avez pas assez de fonds pour effectuer cette transaction.",
     "bill-payment-approved": "Votre paiement a été autorisé avec succès.",
-    "bill-payment-declined": "Votre paiement a été refusé par {payment-error}",
+    "bill-payment-declined": "Votre paiement a été refusé.",
 
     "transfer-message": "Veuillez saisir le numéro de compte du bénéficiaire",
-    "transfer-account-number": "Le numéro de compte que vous avez saisi est {transfer-account}",
+    "transfer-account-number": "Le numéro de compte que vous avez saisi est {account}",
     "transfer-account-error": "Désolé, le numéro de compte n'est pas valide.",
     "transfer-account-value": "Veuillez saisir le montant d’argent que vous voulez transférer.",
     "transfer-account-invalid-value": "Désolé, vous n’avez pas assez de fonds pour effectuer cette transaction.",
-    "transfer-account-confirmation": "Vous êtes sur le point de transférer ${transfer-value} vers {transfer-account}, appuyez sur 1 pour continuer ou 2 pour annuler le transfers.",
+    "transfer-account-confirmation": "Vous êtes sur le point de transférer ${value} vers {account}, appuyez sur 1 pour continuer ou 2 pour annuler le transfers.",
     "transfer-approved": "Votre transfert a été autorisé avec succès.",
-    "transfer-declined": "Votre paiement a été refusé par {transfer-error}",
+    "transfer-declined": "Votre paiement a été refusé.",
 
     "passphrase-add": "Pour ajouter une nouvelle phrase secrète, appuyez sur {index}",
     "deactivate-account": "Votre compte a été désactiver avec succès. Nous vous remercions et nous souhaitons vous revoir bientôt. Au revoir.",
 
-    "mobile-money-info": "Votre solde est de: ${balance}",
+    "mobile-money-info": "Le solde de votre compte est: ${balance}",
     "balance-reset": "Le solde de votre compte est de $0, pour les besoins de cette démo, il a été réinitialisé à $100",
 
     "validation": "Afin de vérifier votre identité, veuillez répéter la phrase suivante:",
@@ -64,8 +64,8 @@
     "alert-unregistered": "Ce numéro de téléphone n'est pas encore inscrit pour la vérification vocale.",
 
     "survey-welcome": "Nous vous remercions pour votre évaluation sur Biometrics For All. Si vous pouviez répondre à notre sondage, attendez, cela ne prendra pas plus d'une minute!",
-    "survey-question-01": "Comment évalueriez-vous l'expérience en utilisant un processus de vérification vocale? Appuyez sur un nombre de 1 à 5, où 1 signifie très mauvais et 5 signifie excellent",
-    "survey-question-02": "Pensez-vous que le déroulement du menu était facile à comprendre? Appuyez sur un nombre de 1 à 5, où 1 signifie très mauvais et 5 signifie excellent",
+    "survey-question-01": "Comment évalueriez-vous l'expérience en utilisant un processus de vérification vocale? Appuyez sur un nombre de 1 à 5, où: 1 signifie très mauvais et 5 signifie excellent",
+    "survey-question-02": "Pensez-vous que le déroulement du menu était facile à comprendre? Appuyez sur un nombre de 1 à 5, où: 1 signifie très mauvais et 5 signifie excellent",
     "survey-invalid": "Désolé, votre réponse est invalide.",
     "survey-finish": "Nous vous remercions, votre évaluation a été enregistré.",
 
