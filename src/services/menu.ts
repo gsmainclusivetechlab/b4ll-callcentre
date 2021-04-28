@@ -42,14 +42,12 @@ export async function menuToGather(
 ): Promise<VoiceResponse.Gather> {
     const voice = getVoiceParams(request.language);
     const gather = response.gather({
-        input: ['dtmf', 'speech'],
+        input: ['dtmf'],
         method: 'POST',
         language: voice.language,
         hints: menu.flatMap((o) => o.triggers).join(','),
-        speechTimeout: 'auto',
         numDigits: 1,
         timeout: 5,
-        speechModel: 'numbers_and_commands',
     });
 
     // TODO: consider better behaviour in empty menu case and > 9 items case

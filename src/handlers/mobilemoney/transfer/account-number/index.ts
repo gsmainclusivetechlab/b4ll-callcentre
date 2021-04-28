@@ -11,7 +11,7 @@ export const post = safeHandle(
         const { Digits } = querystring.parse(request.event.body || '');
         const accountNumber = Digits || null;
 
-        if (typeof accountNumber === 'string' && accountNumber.length >= 5) {
+        if (typeof accountNumber === 'string' && accountNumber.length == 5) {
             response.say(
                 getVoiceParams(request.language),
                 __(

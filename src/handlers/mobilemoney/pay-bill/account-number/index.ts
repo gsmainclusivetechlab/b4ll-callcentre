@@ -12,7 +12,7 @@ export const post = safeHandle(
         const { Digits } = querystring.parse(request.event.body || '');
         const answer = Digits || null;
 
-        if (typeof answer == 'string' && answer.length >= 5) {
+        if (typeof answer == 'string' && answer.length == 5) {
             switch (answer) {
                 case '54321': {
                     response.say(

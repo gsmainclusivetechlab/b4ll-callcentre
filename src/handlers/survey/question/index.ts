@@ -30,7 +30,7 @@ export const get = safeHandle(async (request) => {
             return response;
     }
     response.gather({
-        input: ['dtmf', 'speech'],
+        input: ['dtmf'],
         action: `${questionNumber}/final`,
         numDigits: 1,
     });
