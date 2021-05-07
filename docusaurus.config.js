@@ -8,7 +8,7 @@ module.exports = {
     onBrokenLinks: 'throw',
     favicon: 'img/favicon.ico',
     organizationName: 'gsmainclusivetechlab', // Usually your GitHub org/user name.
-    projectName: 'bilt-voice', // Usually your repo name.
+    projectName: 'b4ll-voice', // Usually your repo name.
     themeConfig: {
         prism: {
             additionalLanguages: ['properties', 'ini'],
@@ -30,7 +30,7 @@ module.exports = {
                     sidebarPath: require.resolve('./src/frontend/sidebars.js'),
                     routeBasePath: '/',
                     // editUrl:
-                    //     'https://github.com/gsmainclusivetechlab/bilt-voice/tree/docs',
+                    //     'https://github.com/gsmainclusivetechlab/b4ll-voice/tree/docs',
                 },
                 theme: {
                     customCss: require.resolve('./src/frontend/custom.css'),

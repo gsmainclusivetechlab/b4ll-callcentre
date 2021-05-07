@@ -123,7 +123,7 @@ situations like an overdraft, a suspicious transaction, a high value
 transference, etc. If necessary, during the calling the user can use voice
 verification to validate a transaction. Currently this use case is being tested
 using a webpage available here:
-[simulate an alert](https://gsmainclusivetechlab.github.io/bilt-voice/voice-biometric/alerts/)
+[simulate an alert](https://gsmainclusivetechlab.github.io/b4ll-voice/voice-biometric/alerts/)
 
 ## Manage Passphrase
 
