@@ -91,7 +91,7 @@ export default function RegisterButton() {
                 <div className="container">
                     <div>
                         <input type="checkbox" id="agree" onChange={checkboxHandler} />
-                        <label htmlFor="agree"> I have read and agreed to the <a href="https://gsmainclusivetechlab.github.io/b4ll-voice/voice/terms">terms and conditions.</a></label>
+                        <label htmlFor="agree"> I have read and agreed to the <a href="https://gsmainclusivetechlab.github.io/b4ll-callcentre/voice/terms">terms and conditions.</a></label>
                     </div>
                 </div>
             </div>

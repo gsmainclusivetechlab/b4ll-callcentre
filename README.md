@@ -2,8 +2,8 @@
 
 ## Part of the Biometrics In Low-Tech Environments project
 
-![CI](https://github.com/gsmainclusivetechlab/b4ll-voice/workflows/CI/badge.svg)
-[![codecov](https://codecov.io/gh/gsmainclusivetechlab/b4ll-voice/branch/feature/gh-actions/graph/badge.svg?token=CKB8C9RSXR)](https://codecov.io/gh/gsmainclusivetechlab/b4ll-voice)
+![CI](https://github.com/gsmainclusivetechlab/b4ll-callcentre/workflows/CI/badge.svg)
+[![codecov](https://codecov.io/gh/gsmainclusivetechlab/b4ll-callcentre/branch/feature/gh-actions/graph/badge.svg?token=CKB8C9RSXR)](https://codecov.io/gh/gsmainclusivetechlab/b4ll-callcentre)
 
 ## Setup Guide
 
