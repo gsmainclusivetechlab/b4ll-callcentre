@@ -52,9 +52,6 @@ machine:
 
 1. Run `yarn build` to build the latest code
 2. Run `yarn deploy` to create/update the cloudformation stack
-3. Run `yarn deploy:docs` to deploy the static site to github pages
-    - you may need to run `USE_SSH=true GIT_USER=<your-user> yarn deploy:docs`
-      depending on how your local repository is configured.
 
 ### Cleanup
 
