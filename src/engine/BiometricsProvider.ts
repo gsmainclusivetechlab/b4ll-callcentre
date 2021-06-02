@@ -1,6 +1,5 @@
 export enum BiometricType {
     VOICE,
-    FACIAL_IMAGE,
 }
 
 export interface EnrolmentRequest<EnrolmentData> {
@@ -9,10 +8,6 @@ export interface EnrolmentRequest<EnrolmentData> {
         /** opaque data structure to pass to response handler */
         request: EnrolmentData;
         phrase: string;
-    };
-    [BiometricType.FACIAL_IMAGE]: {
-        biometricType: BiometricType.FACIAL_IMAGE;
-        // TODO...
     };
 }
 
@@ -24,10 +19,6 @@ export interface EnrolmentResponse<EnrolmentData> {
         /** opaque data structure to be passed from request */
         request: EnrolmentData;
     };
-    [BiometricType.FACIAL_IMAGE]: {
-        biometricType: BiometricType.FACIAL_IMAGE;
-        // TODO...
-    };
 }
 
 export interface VerificationRequest<VerificationData> {
@@ -36,10 +27,6 @@ export interface VerificationRequest<VerificationData> {
         /** opaque data structure to pass to response handler */
         request: VerificationData;
         phrase: string;
-    };
-    [BiometricType.FACIAL_IMAGE]: {
-        biometricType: BiometricType.FACIAL_IMAGE;
-        // TODO...
     };
 }
 
@@ -50,10 +37,6 @@ export interface VerificationResponse<VerificationData> {
         recordingUrl: string;
         /** opaque data structure to be passed from request */
         request: VerificationData;
-    };
-    [BiometricType.FACIAL_IMAGE]: {
-        biometricType: BiometricType.FACIAL_IMAGE;
-        // TODO...
     };
 }
 
