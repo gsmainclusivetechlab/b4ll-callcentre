@@ -2,20 +2,14 @@
     "test": "Hello there!",
     "unauthorised": "You are not authorised to access this resource",
     "test-indexed": "Number: {count, selectordinal, one{#st} two{#nd} few{#rd} other{#th}}",
-    "mobile-money-prompt": "To access your mobile money account information, press {index}.",
     "bill-prompt": "To pay a bill, press {index}.",
-    "account-prompt": "To update your account details, press {index}.",
-    "not-implemented": "Sorry, that service has not been implemented yet. I'll take you back to the main menu so you can make another choice.",
     "welcome-stranger": "It looks like you don't have an account. Let's set one up now.",
     "welcome-known": "Hello and welcome to the biometrics for all.",
 
-    "welcome": "Hello again. Welcome to the Biometrics project",
     "verification-request": "To access your account, please repeat the following phrase:",
     "verification-confirmation": "Great! Your passphrase has been validated with {confidence}% confidence.",
     "verification-failed": "We were not able to verify your voice. Please try again.",
-    "verification-error": "Sorry, you have reached the limit of attempts",
 
-    "enrol-welcome": "Hello. It looks like you don't have an account. In way to proceed with your registration you must record your voice.",
     "enrol-message": "Please repeat the following phrase:",
     "enrol-confirmation": "Great. To complete your registration, we need {remaining, plural, one {# more enrolment} other {# more enrolments}}.",
     "enrol-confidence-low": "Sorry, the recording was not clear. Please try again.",
@@ -25,7 +19,6 @@
     "deactivate-account": "Your account has been successfully deactivated. Please hold to answer our short survey, or we hope to see you soon! Thank you.",
 
     "reactivation-welcome": "Hello. It looks like your number is deactivated. In way to proceed with your reactivation you must verify your voice.",
-    "reactivation-message": "Please repeat the following phrase:",
     "reactivation-confirmation": "Welcome back,, your number is reactivated.",
 
     "mobile-money": "To access your mobile money account, press {index}.",
@@ -56,8 +49,6 @@
     "passphrase-add": "To add a new passphrase, press {index}",
     "mobile-money-info": "Your account balance is: ${balance}",
     "balance-reset": "Your account balance is $0, for the purposes of this demo it has been reset to $100.",
-
-    "validation": "In way to verify your identity, please repeat the following phrase:",
 
     "alert-welcome": "Hello. This is a demo call from the \"Biometrics For All\" project. Some suspicious activity has been flagged on your account. Please verify your identity to authorise this transaction.",
     "alert-message": "To simulate an Alert, please visit our web page and follow the instructions.",

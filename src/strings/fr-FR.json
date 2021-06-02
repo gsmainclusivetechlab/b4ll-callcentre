@@ -2,20 +2,14 @@
     "test": "Bonjour!",
     "unauthorised": "Vous n'êtes pas autorisé à accéder à cette ressource",
     "test-indexed": "Numero: {count, selectordinal, one{première} other{#ème}}",
-    "mobile-money-prompt": "Pour accéder a votre compte mobile money, appuyez sur {index}.",
     "bill-prompt": "Pour payer une facture, appuyez sur {index}.",
-    "account-prompt": "Pour mettre à jour votre compte, appuyez sur {index}.",
-    "not-implemented": "Désolé, ce service n'a pas encore été mis en œuvre. Je vous ramène au menu principal pour que vous puissiez faire un autre choix.",
     "welcome-stranger": "Il semble que vous n'avez pas de phrase enregistré.",
     "welcome-known": "Bonjour et bienvenue sur notre système de démonstration biométrique.",
 
-    "welcome": "Re-bonjour. Bienvenue à Biometrics For All.",
     "verification-request": "Pour accéder à votre compte, veuillez répéter la phrase suivante:",
     "verification-confirmation": "Génial! Votre phrase secrète a été validée avec {confidence}% de confiance.",
     "verification-failed": "Nous n'avons pas pu vérifier votre voix. Veuillez réessayer.",
-    "verification-error": "Vous avez atteint la limite d’essaie.",
 
-    "enrol-welcome": "Il semble que vous n’avez pas de compte, pour procéder, veuillez enregistrez votre voix.",
     "enrol-message": "Veuillez répéter la phrase suivante",
     "enrol-confirmation": "Génial. Pour terminer votre inscription, nous avons besoin {remaining, plural, one {d'une inscription supplementaire} other {de # inscriptions supplémentaires}}",
     "enrol-confidence-low": "Désolé, l'enregistrement n'était pas clair. Veuillez réessayer.",
@@ -23,7 +17,6 @@
     "enrolment-complete": "Merci. Votre voix est maintenant enregistrée.",
 
     "reactivation-welcome": "Votre numéro parait désactivé, vous devez vérifier l’enregistrement de votre voix pour le réactiver.",
-    "reactivation-message": "Veuillez répéter la phrase suivante:",
     "reactivation-confirmation": "Super! Votre numéro a été réactiver",
 
     "mobile-money": "Pour accéder votre compte Mobile Money, appuyez sur {index}.",
@@ -56,8 +49,6 @@
 
     "mobile-money-info": "Le solde de votre compte est: ${balance}",
     "balance-reset": "Le solde de votre compte est de $0, pour les besoins de cette démo, il a été réinitialisé à $100",
-
-    "validation": "Afin de vérifier votre identité, veuillez répéter la phrase suivante:",
 
     "alert-welcome": "Bonjour. Ceci est un appel de démonstration du projet Biometrics For All. Une activité suspecte a été signalée sur votre compte. Veuillez vérifier votre identité pour autoriser cette transaction.",
     "alert-message": "Merci d'avoir vérifié votre identité. La transaction a été autorisée.",
