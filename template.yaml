@@ -513,7 +513,7 @@ Resources:
     Properties:
       Tags:
         - Key: project
-          Value: bilt
+          Value: b4ll
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
