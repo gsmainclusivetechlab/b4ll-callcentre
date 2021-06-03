@@ -2,20 +2,14 @@
     "test": "test",
     "unauthorised": "unauthorised",
     "test-indexed": "test-{index}",
-    "mobile-money-prompt": "mobile-money-prompt",
     "bill-prompt": "bill-prompt",
-    "account-prompt": "account-prompt",
-    "not-implemented": "not-implemented",
     "welcome-stranger": "welcome-stranger",
     "welcome-known": "welcome-known",
 
-    "welcome": "welcome",
     "verification-request": "verification-request",
     "verification-confirmation": "verification-confirmation: confidence {confidence}%",
     "verification-failed": "verification-failed",
-    "verification-error": "verification-error",
 
-    "enrol-welcome": "enrol-welcome",
     "enrol-message": "enrol-message",
     "enrol-confirmation": "enrol-confirmation: {remaining} remaining",
     "enrol-confidence-low": "enrol-confidence-low: {remaining} remaining",
@@ -23,7 +17,6 @@
     "enrolment-complete": "enrolment-complete",
 
     "reactivation-welcome": "reactivation-welcome",
-    "reactivation-message": "reactivation-message",
     "reactivation-confirmation": "reactivation-confirmation",
 
     "mobile-money": "mobile-money",
@@ -57,8 +50,6 @@
 
     "mobile-money-info": "mobile-money-info {balance}",
     "balance-reset": "balance-reset",
-
-    "validation": "validation",
 
     "alert-welcome": "alert-welcome",
     "alert-message": "alert-message",
