@@ -7,11 +7,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install modules
         run: yarn
-      - name: Run tests
-        run: yarn test --coverage
-        env: # Or as an environment variable
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
