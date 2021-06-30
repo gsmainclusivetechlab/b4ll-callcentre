@@ -20,7 +20,7 @@ export const get = safeHandle(async (request) => {
 
     console.log(process.env.APPENV);
 
-    if (process.env.APPENV !== 'development') {
+    if (process.env.APPENV !== 'development' && language !== 'en-DEV') {
         const approvedCaller = await getApprovedUserItem(user.id);
         console.log(approvedCaller);
 

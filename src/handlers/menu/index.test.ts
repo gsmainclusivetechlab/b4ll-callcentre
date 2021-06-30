@@ -18,16 +18,11 @@ describe('menu', () => {
         expect(result.toString()).toMatchSnapshot();
     });
     test.each`
-        option                                    | result
-        ${{ Digits: '1' }}                        | ${'./mobilemoney'}
-        ${{ Digits: '2' }}                        | ${'not-implemented'}
-        ${{ Digits: '3' }}                        | ${'not-implemented'}
-        ${{ Digits: '4' }}                        | ${'not-implemented'}
-        ${{ SpeechResult: 'mobile money' }}       | ${'./mobilemoney'}
-        ${{ SpeechResult: 'alert simulation' }}   | ${'not-implemented'}
-        ${{ SpeechResult: 'new voice' }}          | ${'not-implemented'}
-        ${{ SpeechResult: 'deactivate account' }} | ${'not-implemented'}
-        ${{ SpeechResult: 'go swimming' }}        | ${'did-not-understand'}
+        option             | result
+        ${{ Digits: '1' }} | ${'./mobilemoney'}
+        ${{ Digits: '2' }} | ${'alert-message'}
+        ${{ Digits: '3' }} | ${'./passphrase'}
+        ${{ Digits: '4' }} | ${'./deactivation'}
     `('should respond to $option', async ({ option, result }) => {
         const response = await post({
             language: 'en-DEV',

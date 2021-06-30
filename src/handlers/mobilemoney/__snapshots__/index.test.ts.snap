@@ -3,7 +3,7 @@
 exports[`mobileMoneyMenu should list correct options 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Gather input="dtmf speech" method="POST" language="en-GB" hints="account information,account,information,pay bill,pay,bill,make transfer,transfer" speechTimeout="auto" numDigits="1" timeout="5" speechModel="numbers_and_commands">
+    <Gather input="dtmf" method="POST" language="en-GB" hints="account information,account,information,pay bill,pay,bill,make transfer,transfer" numDigits="1" timeout="5">
         <Say language="en-GB" voice="Polly.Emma-Neural">
             mobile-money-balance
         </Say>
