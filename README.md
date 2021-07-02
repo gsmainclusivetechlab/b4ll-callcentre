@@ -30,16 +30,6 @@ machine:
 
 ## Development
 
-### Testing
-
--   Run `yarn test` to run unit tests
--   Run `yarn test --watch` to run unit tests and automatically re-run tests on
-    code changes
--   Add `--coverage` to the command to also calculate test coverage for your
-    code
--   Add `--updateSnapshot` to automatically update any changed snapshots (but
-    ensure to check the changes are correct before committing the code!)
-
 ### Running Locally
 
 -   Run `yarn dev` to watch for file changes and start a fast local server
