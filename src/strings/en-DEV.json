@@ -55,6 +55,11 @@
     "alert-message": "alert-message",
     "alert-unregistered": "alert-unregistered",
 
+    "reset-pin-welcome": "Please key in your current PIN number.",
+    "reset-pin-current-successful": "Great. Now please key in your new PIN number.",
+    "reset-pin-current-unsuccessful": "The PIN number provided does not match our records. Please try again.",
+    "reset-pin-new-successful": "Your PIN number has been updated.",
+
     "survey-welcome": "survey-welcome",
     "survey-question-01": "survey-question-01",
     "survey-question-02": "survey-question-02",

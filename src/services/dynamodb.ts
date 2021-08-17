@@ -17,6 +17,7 @@ const RecordType = t.intersection([
         isDeactivated: t.boolean,
         transferValue: t.number,
         transferAccount: t.string,
+        pinNumber: t.number,
     }),
 ]);
 

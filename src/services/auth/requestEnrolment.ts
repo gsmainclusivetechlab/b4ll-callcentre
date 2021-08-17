@@ -28,6 +28,7 @@ export async function requestEnrolment(
             voiceItId: enrolmentReq.request.userId,
             balanceAmount: 100,
             isDeactivated: false,
+            pinNumber: 1234,
         };
         await putAccountItem(user);
     }
