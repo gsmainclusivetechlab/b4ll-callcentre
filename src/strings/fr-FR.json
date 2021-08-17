@@ -54,6 +54,11 @@
     "alert-message": "Merci d'avoir vérifié votre identité. La transaction a été autorisée.",
     "alert-unregistered": "Ce numéro de téléphone n'est pas encore inscrit pour la vérification vocale.",
 
+    "reset-pin-welcome": "Please key in your current PIN number.",
+    "reset-pin-current-successful": "Great. Now please key in your new PIN number.",
+    "reset-pin-current-unsuccessful": "The PIN number provided does not match our records. Please try again.",
+    "reset-pin-new-successful": "Your PIN number has been updated.",
+
     "survey-welcome": "Nous vous remercions pour votre évaluation sur Biometrics For All. Si vous pouviez répondre à notre sondage, attendez, cela ne prendra pas plus d'une minute!",
     "survey-question-01": "Comment évalueriez-vous l'expérience en utilisant un processus de vérification vocale? Appuyez sur un nombre de 1 à 5, où: 1 signifie très mauvais et 5 signifie excellent",
     "survey-question-02": "Pensez-vous que le déroulement du menu était facile à comprendre? Appuyez sur un nombre de 1 à 5, où: 1 signifie très mauvais et 5 signifie excellent",
