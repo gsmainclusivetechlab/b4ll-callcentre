@@ -14,6 +14,7 @@ describe('menu', () => {
         expect(result.toString()).toContain('mobile-money');
         expect(result.toString()).toContain('alert');
         expect(result.toString()).toContain('passphrase-manager');
+        expect(result.toString()).toContain('reset-pin');
         expect(result.toString()).toContain('deactivate');
         expect(result.toString()).toMatchSnapshot();
     });
@@ -22,7 +23,8 @@ describe('menu', () => {
         ${{ Digits: '1' }} | ${'./mobilemoney'}
         ${{ Digits: '2' }} | ${'alert-message'}
         ${{ Digits: '3' }} | ${'./passphrase'}
-        ${{ Digits: '4' }} | ${'./deactivation'}
+        ${{ Digits: '4' }} | ${'./reset-pin'}
+        ${{ Digits: '5' }} | ${'./deactivation'}
     `('should respond to $option', async ({ option, result }) => {
         const response = await post({
             language: 'en-DEV',

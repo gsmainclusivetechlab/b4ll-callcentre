@@ -3,7 +3,7 @@
 exports[`menu should list correct options 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Gather input="dtmf" method="POST" language="en-GB" hints="mobile money,money,alert simulation,simulation,alert,new voice,new passphrase,passphrase,deactivate,deactivate account,account deactivation,deactivation" numDigits="1" timeout="5">
+    <Gather input="dtmf" method="POST" language="en-GB" hints="mobile money,money,alert simulation,simulation,alert,new voice,new passphrase,passphrase,reset,pin,reset pin,deactivate,deactivate account,account deactivation,deactivation" numDigits="1" timeout="5">
         <Say language="en-GB" voice="Polly.Emma-Neural">
             mobile-money
         </Say>
@@ -12,6 +12,9 @@ exports[`menu should list correct options 1`] = `
         </Say>
         <Say language="en-GB" voice="Polly.Emma-Neural">
             passphrase-manager
+        </Say>
+        <Say language="en-GB" voice="Polly.Emma-Neural">
+            reset-pin
         </Say>
         <Say language="en-GB" voice="Polly.Emma-Neural">
             deactivate
@@ -57,6 +60,15 @@ exports[`menu should respond to {"Digits": "3"} 1`] = `
 `;
 
 exports[`menu should respond to {"Digits": "4"} 1`] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Redirect method="GET">
+        ./reset-pin
+    </Redirect>
+</Response>
+`;
+
+exports[`menu should respond to {"Digits": "5"} 1`] = `
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Redirect method="get">
