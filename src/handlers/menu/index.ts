@@ -28,6 +28,12 @@ async function passphraseHandler() {
     return response;
 }
 
+async function resetPINHandler() {
+    const response = new twiml.VoiceResponse();
+    response.redirect({ method: 'GET' }, './reset-pin');
+    return response;
+}
+
 const menu: MenuOption[] = [
     {
         triggers: ['mobile money', 'money'],
@@ -43,6 +49,11 @@ const menu: MenuOption[] = [
         triggers: ['new voice', 'new passphrase', 'passphrase'],
         description: 'passphrase-manager',
         handler: passphraseHandler,
+    },
+    {
+        triggers: ['reset', 'pin', 'reset pin'],
+        description: 'reset-pin',
+        handler: resetPINHandler,
     },
     {
         triggers: [

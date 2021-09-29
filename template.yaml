@@ -484,6 +484,36 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  ResetPinCurrentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/reset-pin/current
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/reset-pin/current
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  ResetPinNewFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/reset-pin/new
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/reset-pin/new
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
   AccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:
