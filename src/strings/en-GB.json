@@ -27,6 +27,7 @@
     "transfer": "To make a transfer, press {index}.",
     "alert": "To simulate an alert, press {index}.",
     "passphrase-manager": "To record new verification phrases, press {index}",
+    "reset-pin": "To change or reset your PIN number, press {index}",
     "deactivate": "To deactivate your account, press {index}",
 
     "bill-payment-message": "Please insert the payment number",
@@ -55,7 +56,7 @@
     "alert-unregistered": "This phone number has not yet enrolled for voice verification.",
 
     "reset-pin-welcome": "Please key in your current PIN number.",
-    "reset-pin-current-successful": "Great. Now please key in your new PIN number.",
+    "reset-pin-current-successful": "Great. Your PIN has been verified. Please key in your new PIN number.",
     "reset-pin-current-unsuccessful": "The PIN number provided does not match our records. Please try again.",
     "reset-pin-new-successful": "Your PIN number has been updated.",
 

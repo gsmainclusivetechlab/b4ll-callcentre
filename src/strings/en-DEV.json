@@ -25,6 +25,7 @@
     "transfer": "transfer",
     "alert": "alert",
     "passphrase-manager": "passphrase-manager",
+    "reset-pin": "reset-pin",
     "deactivate": "deactivate",
 
     "bill-payment-message": "bill-payment-message",

@@ -25,6 +25,7 @@
     "transfer": "Pour effectuer un virement, appuyez sur {index}.",
     "alert": "Pour simuler une alerte, appuyez sur {index}.",
     "passphrase-manager": "Pour enregistrer une nouvelle phrase secrète de vérification, appuyez sur {index}",
+    "reset-pin": "Pour changer votre numero PIN, appuyez sur {index}",
     "deactivate": "Pour désactiver votre compte, appuyez sur {index}",
 
     "bill-payment-message": "Veuillez saisir votre numéro de paiement",
