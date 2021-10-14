@@ -65,6 +65,21 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  RootFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/root
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
   MenuWelcome:
     Type: AWS::Serverless::Function
     Properties:
@@ -510,6 +525,36 @@ Resources:
           Type: Api
           Properties:
             Path: /{lang}/reset-pin/new
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SMSResetPinWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/sms/reset-pin
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/reset-pin
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SMSResetPinFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/sms/reset-pin
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/reset-pin
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi

@@ -30,6 +30,7 @@ export interface ParsedRequest {
 async function parseRequest(
     event: APIGatewayProxyEvent
 ): Promise<ParsedRequest> {
+    console.log('parsing', event);
     const language = event.pathParameters?.lang;
     if (!isSupportedLanguage(language)) {
         throw new Error('Unsupported language');
@@ -40,7 +41,12 @@ async function parseRequest(
         event.queryStringParameters?.Direction === 'outbound-api'
             ? 'Called'
             : 'Caller';
-    const Caller = body[callerKey] || event.queryStringParameters?.[callerKey];
+    const Caller =
+        body[callerKey] ||
+        event.queryStringParameters?.[callerKey] ||
+        body['From'] ||
+        event.queryStringParameters?.['From'];
+    console.log('Caller - ', Caller);
     if (typeof Caller !== 'string' || Caller.length < 3) {
         throw new Error('Unable to identify caller');
     }
@@ -100,6 +106,7 @@ export const safeHandle = (
         e: APIGatewayProxyEvent
     ) {
         try {
+            console.log('trying...');
             const request = await parseRequest(e);
             if (params.requireVerification) {
                 const result = await handleVerification(request, params);
@@ -112,6 +119,7 @@ export const safeHandle = (
             }
             return serialise(response, 200);
         } catch (err) {
+            console.log('err-> ', err);
             const maybeLang = e.pathParameters?.lang;
             const language = isSupportedLanguage(maybeLang)
                 ? maybeLang
@@ -144,6 +152,24 @@ function serialise(
 ): APIGatewayProxyResult {
     if (typeof r === 'object' && r !== null) {
         if (r instanceof twiml.VoiceResponse) {
+            return {
+                statusCode,
+                headers: {
+                    'Content-Type': 'text/xml',
+                },
+                ...(cookies
+                    ? {
+                          multiValueHeaders: {
+                              'Set-Cookie': Object.entries(cookies).map(
+                                  ([name, value]) => `${name}=${value}`
+                              ),
+                          },
+                      }
+                    : {}),
+                body: r.toString(),
+            };
+        }
+        if (r instanceof twiml.MessagingResponse) {
             return {
                 statusCode,
                 headers: {

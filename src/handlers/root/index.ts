@@ -48,3 +48,24 @@ export const get = safeHandle(async (request) => {
 
     return response;
 });
+
+export const post = safeHandle(async (request) => {
+    const { language, event } = request;
+    const body = qs.parse(event.body || '');
+    const Caller = body['From'];
+    const message = body['Body'];
+
+    console.log(Caller, message);
+    const response = new twiml.MessagingResponse();
+
+    if (typeof message === 'string') {
+        switch (message) {
+            case 'RESETPIN':
+                response.redirect(
+                    { method: 'GET' },
+                    `./${language}/sms/reset-pin`
+                );
+        }
+    }
+    return response;
+});
