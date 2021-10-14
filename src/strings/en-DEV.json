@@ -56,10 +56,12 @@
     "alert-message": "alert-message",
     "alert-unregistered": "alert-unregistered",
 
-    "reset-pin-welcome": "Please key in your current PIN number.",
-    "reset-pin-current-successful": "Great. Now please key in your new PIN number.",
-    "reset-pin-current-unsuccessful": "The PIN number provided does not match our records. Please try again.",
-    "reset-pin-new-successful": "Your PIN number has been updated.",
+    "reset-pin-welcome": "reset-pin-welcome",
+    "reset-pin-current-successful": "reset-pin-current-successful",
+    "reset-pin-current-unsuccessful": "reset-pin-current-unsuccessful",
+    "reset-pin-new-successful": "reset-pin-new-successful",
+
+    "sms-reset-pin-welcome": "sms-reset-pin-welcome",
 
     "survey-welcome": "survey-welcome",
     "survey-question-01": "survey-question-01",
@@ -71,7 +73,7 @@
     "error": "error",
 
     "return-menu": "return-menu",
-    "survey-option": "To answer our short survey, press {index}",
+    "survey-option": "survey-option",
     "end-call": "end-call",
     "good-bye": "good-bye",
     "unapproved-caller": "unapproved-caller"

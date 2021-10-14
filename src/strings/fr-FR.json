@@ -60,6 +60,8 @@
     "reset-pin-current-unsuccessful": "The PIN number provided does not match our records. Please try again.",
     "reset-pin-new-successful": "Your PIN number has been updated.",
 
+    "sms-reset-pin-welcome": "Hello. This is a demo call from the \"Biometrics For All \" project. You have requested to reset your PIN. Before doing so, please verify your identity.",
+
     "survey-welcome": "Nous vous remercions pour votre évaluation sur Biometrics For All. Si vous pouviez répondre à notre sondage, attendez, cela ne prendra pas plus d'une minute!",
     "survey-question-01": "Comment évalueriez-vous l'expérience en utilisant un processus de vérification vocale? Appuyez sur un nombre de 1 à 5, où: 1 signifie très mauvais et 5 signifie excellent",
     "survey-question-02": "Pensez-vous que le déroulement du menu était facile à comprendre? Appuyez sur un nombre de 1 à 5, où: 1 signifie très mauvais et 5 signifie excellent",
