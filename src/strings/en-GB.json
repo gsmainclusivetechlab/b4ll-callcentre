@@ -60,6 +60,9 @@
     "reset-pin-current-unsuccessful": "The PIN number provided does not match our records. Please try again.",
     "reset-pin-new-successful": "Your PIN number has been updated.",
 
+    "sms-unregistered": "It looks like you don't have an account. Please contact the call centre directly to enrol before using SMS services.",
+    "sms-did-not-understand": "This option does not match any of our SMS terms. Please try again.",
+
     "sms-reset-pin-welcome": "Hello. This is a demo call from the \"Biometrics For All \" project. You have requested to reset your PIN. Before doing so, please verify your identity.",
 
     "survey-welcome": "Thank you for evaluating Biometrics For All. Please answer the next questions using your keypad.",

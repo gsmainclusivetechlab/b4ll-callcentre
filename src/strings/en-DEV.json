@@ -61,6 +61,9 @@
     "reset-pin-current-unsuccessful": "reset-pin-current-unsuccessful",
     "reset-pin-new-successful": "reset-pin-new-successful",
 
+    "sms-unregistered": "sms-unregistered",
+    "sms-did-not-understand": "sms-did-not-understand",
+
     "sms-reset-pin-welcome": "sms-reset-pin-welcome",
 
     "survey-welcome": "survey-welcome",
