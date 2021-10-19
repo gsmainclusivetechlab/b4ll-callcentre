@@ -50,14 +50,22 @@ export const get = safeHandle(async (request) => {
 });
 
 export const post = safeHandle(async (request) => {
-    const { language, event } = request;
+    const { user, language, event } = request;
     const body = qs.parse(event.body || '');
     const Caller = body['From'];
     const message = body['Body'];
 
     console.log(Caller, message);
+
     const response = new twiml.MessagingResponse();
 
+    // Not enrolled
+    if (!user.isEnrolled) {
+        response.message(__('sms-unregistered', language));
+        return response;
+    }
+
+    // Enrolled and valid SMS term
     if (typeof message === 'string') {
         switch (message) {
             case 'RESETPIN':
@@ -65,7 +73,14 @@ export const post = safeHandle(async (request) => {
                     { method: 'GET' },
                     `./${language}/sms/reset-pin`
                 );
+                return response;
+            default:
+                break;
         }
     }
+
+    // Enroled but SMS doesn't match any terms
+    response.message(__('sms-did-not-understand', language));
+
     return response;
 });
