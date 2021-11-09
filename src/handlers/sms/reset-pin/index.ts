@@ -53,7 +53,7 @@ export const get = safeHandle(async ({ language, user, auth }) => {
         from: numbers[0].phoneNumber,
     });
 
-    return { status: 'OK' };
+    return message;
 });
 
 export const post = safeHandle(

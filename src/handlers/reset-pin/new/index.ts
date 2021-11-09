@@ -24,6 +24,12 @@ export const post = safeHandle(
             } else {
                 throw new Error('no pin number');
             }
+        } else {
+            response.say(
+                getVoiceParams(language),
+                __('reset-pin-new-unsuccessful', language)
+            );
+            response.redirect({ method: 'GET' }, `../reset-pin/current`);
         }
 
         // If the user doesn't enter input, loop
@@ -31,7 +37,7 @@ export const post = safeHandle(
             getVoiceParams(language),
             __('did-not-understand', language)
         );
-        response.redirect({ method: 'GET' }, '/reset-pin');
+        response.redirect({ method: 'GET' }, '../reset-pin/current');
         return response;
     },
     { requireVerification: true }

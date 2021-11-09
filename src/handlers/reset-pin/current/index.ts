@@ -14,7 +14,6 @@ export const post = safeHandle(
                 if (Digits === user.pinNumber.toString()) {
                     const gather = response.gather({
                         input: ['dtmf'],
-                        numDigits: 4,
                         action: `new`,
                     });
 
@@ -32,6 +31,12 @@ export const post = safeHandle(
             } else {
                 throw new Error('no current pin number');
             }
+        } else {
+            response.say(
+                getVoiceParams(language),
+                __('reset-pin-current-error', language)
+            );
+            response.redirect({ method: 'GET' }, '../reset-pin');
         }
 
         // If the user doesn't enter input, loop
