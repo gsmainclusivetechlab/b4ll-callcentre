@@ -11,7 +11,6 @@ export const get = safeHandle(
 
         const gather = response.gather({
             input: ['dtmf'],
-            numDigits: 4,
             action: `reset-pin/current`,
         });
 
