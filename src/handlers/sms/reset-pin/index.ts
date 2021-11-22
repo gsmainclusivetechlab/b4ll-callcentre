@@ -34,10 +34,7 @@ export const get = safeHandle(async ({ language, user, auth }) => {
         getVoiceParams(language),
         __('sms-reset-pin-welcome', language)
     );
-    message.redirect(
-        { method: 'POST' },
-        `${apiHost}/${language}/sms/reset-pin`
-    );
+    message.redirect({ method: 'POST' }, `${apiHost}${language}/sms/reset-pin`);
 
     // TODO: pick a phone number in a region that matches the user's
     const numbers = await twilioClient.incomingPhoneNumbers.list({
@@ -59,7 +56,10 @@ export const get = safeHandle(async ({ language, user, auth }) => {
 export const post = safeHandle(
     async ({ language }) => {
         const message = new twiml.VoiceResponse();
-        message.redirect({ method: 'GET' }, `${apiHost}/${language}/reset-pin`);
+        message.redirect(
+            { method: 'GET' },
+            `${apiHost}${language}/reset-pin/current`
+        );
         return message;
     },
     {

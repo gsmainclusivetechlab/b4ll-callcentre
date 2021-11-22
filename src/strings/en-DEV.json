@@ -56,7 +56,11 @@
     "alert-message": "alert-message",
     "alert-unregistered": "alert-unregistered",
 
+    "reset-pin-change": "reset-pin-change",
+    "reset-pin-reset": "reset-pin-reset",
+
     "reset-pin-welcome": "reset-pin-welcome",
+    "reset-pin-current-welcome": "reset-pin-current-welcome",
     "reset-pin-current-successful": "reset-pin-current-successful",
     "reset-pin-current-unsuccessful": "reset-pin-current-unsuccessful",
     "reset-pin-current-error": "reset-pin-current-error",
