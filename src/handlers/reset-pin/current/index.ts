@@ -26,7 +26,7 @@ export const post = safeHandle(
                         getVoiceParams(language),
                         __('reset-pin-current-unsuccessful', language)
                     );
-                    response.redirect({ method: 'GET' }, '../reset-pin');
+                    response.redirect({ method: 'GET' }, '../reset-pin/change');
                 }
             } else {
                 throw new Error('no current pin number');
@@ -36,7 +36,7 @@ export const post = safeHandle(
                 getVoiceParams(language),
                 __('reset-pin-current-error', language)
             );
-            response.redirect({ method: 'GET' }, '../reset-pin');
+            response.redirect({ method: 'GET' }, '../reset-pin/change');
         }
 
         // If the user doesn't enter input, loop
@@ -44,7 +44,31 @@ export const post = safeHandle(
             getVoiceParams(language),
             __('did-not-understand', language)
         );
-        response.redirect({ method: 'GET' }, '../reset-pin');
+        response.redirect({ method: 'GET' }, '../reset-pin/change');
+        return response;
+    },
+    { requireVerification: true }
+);
+
+export const get = safeHandle(
+    async (request) => {
+        const { language } = request;
+        const response = new twiml.VoiceResponse();
+        const gather = response.gather({
+            input: ['dtmf'],
+            action: `new`,
+        });
+        gather.say(
+            getVoiceParams(language),
+            __('reset-pin-current-welcome', language)
+        );
+
+        // If the user doesn't enter input, loop
+        response.say(
+            getVoiceParams(language),
+            __('did-not-understand', language)
+        );
+        response.redirect({ method: 'GET' }, '../reset-pin/current');
         return response;
     },
     { requireVerification: true }

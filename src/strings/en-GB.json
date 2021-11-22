@@ -55,7 +55,11 @@
     "alert-message": "To simulate an Alert, please visit our web page and follow the instructions.",
     "alert-unregistered": "This phone number has not yet enrolled for voice verification.",
 
+    "reset-pin-change": "To change your PIN number, press {index}",
+    "reset-pin-reset": "To reset your PIN number, press {index}",
+
     "reset-pin-welcome": "Please key in your current PIN number.",
+    "reset-pin-current-welcome": "Please key in your new PIN number.",
     "reset-pin-current-successful": "Great. Your PIN has been verified. Please key in your new PIN number.",
     "reset-pin-current-unsuccessful": "The PIN number provided does not match our records. Please try again.",
     "reset-pin-current-error": "Sorry, we couldn't process your pin. Please make sure it is 4 digits long.",

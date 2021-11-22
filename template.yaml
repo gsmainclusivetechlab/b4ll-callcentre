@@ -499,6 +499,51 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  ResetPinFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/reset-pin
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/reset-pin
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  ResetPinChangeWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/reset-pin/change
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/reset-pin/change
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  ResetPinCurrentWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/reset-pin/current
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/reset-pin/current
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
   ResetPinCurrentFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -603,7 +648,7 @@ Resources:
     Properties:
       Tags:
         - Key: project
-          Value: b4ll
+          Value: bilt
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
