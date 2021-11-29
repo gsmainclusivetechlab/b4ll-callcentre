@@ -27,7 +27,7 @@
     "transfer": "To make a transfer, press {index}.",
     "alert": "To simulate an alert, press {index}.",
     "passphrase-manager": "To record new verification phrases, press {index}",
-    "reset-pin": "To change or reset your PIN number, press {index}",
+    "reset-pin": "To change your PIN number, press {index}",
     "deactivate": "To deactivate your account, press {index}",
 
     "bill-payment-message": "Please insert the payment number",
