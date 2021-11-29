@@ -30,7 +30,7 @@ async function passphraseHandler() {
 
 async function resetPINHandler() {
     const response = new twiml.VoiceResponse();
-    response.redirect({ method: 'GET' }, './reset-pin');
+    response.redirect({ method: 'GET' }, './reset-pin/change');
     return response;
 }
 
