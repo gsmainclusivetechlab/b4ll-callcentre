@@ -27,7 +27,7 @@ export const get = safeHandle(async ({ language, user, auth }) => {
     }
     const message = new twiml.VoiceResponse();
     message.say(getVoiceParams(language), __('alert-welcome', language));
-    message.redirect({ method: 'POST' }, `${apiHost}/${language}/callback`);
+    message.redirect({ method: 'POST' }, `${apiHost}${language}/callback`);
 
     // TODO: pick a phone number in a region that matches the user's
     const numbers = await twilioClient.incomingPhoneNumbers.list({

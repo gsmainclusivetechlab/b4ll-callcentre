@@ -58,12 +58,12 @@
     "reset-pin-change": "To change your PIN number, press {index}",
     "reset-pin-reset": "To reset your PIN number, press {index}",
 
-    "reset-pin-welcome": "Please key in your current PIN number.",
-    "reset-pin-current-welcome": "Please key in your new PIN number.",
-    "reset-pin-current-successful": "Great. Your PIN has been verified. Please key in your new PIN number.",
+    "reset-pin-welcome": "Please type in your current PIN number.",
+    "reset-pin-current-welcome": "Please type in your new PIN number.",
+    "reset-pin-current-successful": "Great. Your PIN has been verified. Please type in your new PIN number.",
     "reset-pin-current-unsuccessful": "The PIN number provided does not match our records. Please try again.",
     "reset-pin-current-error": "Sorry, we couldn't process your pin. Please make sure it is 4 digits long.",
-    "reset-pin-new-successful": "Your PIN number has been updated.",
+    "reset-pin-new-successful": "Your PIN number has been successfully updated.",
     "reset-pin-new-unsuccessful": "Sorry, we couldn't process your new pin. Please make sure it is 4 digits long.",
 
     "sms-unregistered": "It looks like you don't have an account. Please contact the call centre directly to enrol before using SMS services.",
