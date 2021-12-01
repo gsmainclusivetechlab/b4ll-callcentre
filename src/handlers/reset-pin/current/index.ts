@@ -15,6 +15,7 @@ export const post = safeHandle(
                     const gather = response.gather({
                         input: ['dtmf'],
                         action: `new`,
+                        finishOnKey: '#',
                     });
 
                     gather.say(
@@ -26,7 +27,10 @@ export const post = safeHandle(
                         getVoiceParams(language),
                         __('reset-pin-current-unsuccessful', language)
                     );
-                    response.redirect({ method: 'GET' }, '../reset-pin/change');
+                    response.redirect(
+                        { method: 'GET' },
+                        '../reset-pin/current'
+                    );
                 }
             } else {
                 throw new Error('no current pin number');
@@ -36,7 +40,7 @@ export const post = safeHandle(
                 getVoiceParams(language),
                 __('reset-pin-current-error', language)
             );
-            response.redirect({ method: 'GET' }, '../reset-pin/change');
+            response.redirect({ method: 'GET' }, '../reset-pin/current');
         }
 
         // If the user doesn't enter input, loop
@@ -44,7 +48,7 @@ export const post = safeHandle(
             getVoiceParams(language),
             __('did-not-understand', language)
         );
-        response.redirect({ method: 'GET' }, '../reset-pin/change');
+        response.redirect({ method: 'GET' }, '../reset-pin/current');
         return response;
     },
     { requireVerification: true }
@@ -57,6 +61,7 @@ export const get = safeHandle(
         const gather = response.gather({
             input: ['dtmf'],
             action: `new`,
+            finishOnKey: '#',
         });
         gather.say(
             getVoiceParams(language),

@@ -12,6 +12,7 @@ export const get = safeHandle(
         const gather = response.gather({
             input: ['dtmf'],
             action: `current`,
+            finishOnKey: '#',
         });
 
         gather.say(voice, __('reset-pin-welcome', language));

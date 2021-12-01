@@ -67,10 +67,11 @@ export const post = safeHandle(async (request) => {
 
     // Enrolled and valid SMS term
     if (typeof message === 'string') {
-        message.toLowerCase();
-        switch (message) {
-            case 'resetpin':
+        const term = message.toLowerCase();
+        console.log(term);
+        switch (term) {
             case '**42*033':
+            case 'resetpin':
                 response.redirect(
                     { method: 'GET' },
                     `./${language}/sms/reset-pin`

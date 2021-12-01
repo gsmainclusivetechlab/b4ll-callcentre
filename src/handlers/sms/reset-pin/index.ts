@@ -22,13 +22,7 @@ const prefixByLanguage = (language: SupportedLanguage) => {
     }
 };
 
-export const get = safeHandle(async ({ language, user, auth }) => {
-    if (auth.state !== VerificationState.REGISTERED) {
-        throw {
-            statusCode: 500,
-            error: __('alert-unregistered', language),
-        };
-    }
+export const get = safeHandle(async ({ language, user }) => {
     const message = new twiml.VoiceResponse();
     message.say(
         getVoiceParams(language),
