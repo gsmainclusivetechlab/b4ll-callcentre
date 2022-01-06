@@ -5,7 +5,7 @@ import {
     __,
 } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';
-import { VerificationState } from '../../../services/auth';
+import qs from 'qs';
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -22,8 +22,10 @@ const prefixByLanguage = (language: SupportedLanguage) => {
     }
 };
 
-export const get = safeHandle(async ({ language, user }) => {
+export const get = safeHandle(async ({ language, user, event }) => {
     const message = new twiml.VoiceResponse();
+    const ivrNumber = event.queryStringParameters?.To;
+
     message.say(
         getVoiceParams(language),
         __('sms-reset-pin-welcome', language)
@@ -33,15 +35,19 @@ export const get = safeHandle(async ({ language, user }) => {
     // TODO: pick a phone number in a region that matches the user's
     const numbers = await twilioClient.incomingPhoneNumbers.list({
         phoneNumber: prefixByLanguage(language),
-        limit: 1,
     });
-    if (!numbers[0])
+
+    const twilioNumber = numbers.find((i) => i.phoneNumber === ivrNumber);
+
+    console.log(ivrNumber, twilioNumber);
+
+    if (!twilioNumber)
         throw new Error('Could not find a corresponding number to call from');
 
     await twilioClient.calls.create({
         twiml: message.toString(),
         to: user.id,
-        from: numbers[0].phoneNumber,
+        from: twilioNumber.phoneNumber,
     });
 
     return message;
