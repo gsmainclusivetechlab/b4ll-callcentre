@@ -51,7 +51,7 @@
     "mobile-money-info": "Your account balance is: ${balance}",
     "balance-reset": "Your account balance is $0, for the purposes of this demo it has been reset to $100.",
 
-    "alert-welcome": "Hello. This is a demo call from the \"Biometrics For All\" project. Some suspicious activity has been flagged on your account. Please verify your identity to authorise this transaction.",
+    "alert-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab's \"Biometrics For All\" project. Some suspicious activity has been flagged on your account. Please verify your identity to authorise this transaction.",
     "alert-message": "To simulate an Alert, please visit our web page and follow the instructions.",
     "alert-unregistered": "This phone number has not yet enrolled for voice verification.",
 
@@ -69,7 +69,7 @@
     "sms-unregistered": "It looks like you don't have an account. Please contact the call centre directly to enrol before using SMS services.",
     "sms-did-not-understand": "This option does not match any of our SMS terms. Please try again.",
 
-    "sms-reset-pin-welcome": "Hello. This is a demo call from the \"Biometrics For All \" project. You have requested to reset your PIN. Before doing so, please verify your identity.",
+    "sms-reset-pin-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab's \"Biometrics For All \" project. You have requested to reset your PIN. Before doing so, please verify your identity.",
 
     "survey-welcome": "Thank you for evaluating Biometrics For All. Please answer the next questions using your keypad.",
     "survey-question-01": "How would you evaluate the experience using a voice verification process? Press a number from 1 to 5., where 1 means very poor and 5 means excellent.",
