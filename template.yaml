@@ -499,6 +499,21 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  AgentTransferWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/agent/transfer
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/agent/transfer
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
   ResetPinFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -514,6 +529,21 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  AgentTransferConfirmationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/agent/transfer/confirmation
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/agent/transfer/confirmation
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
   ResetPinChangeWelcome:
     Type: AWS::Serverless::Function
     Properties:
@@ -525,6 +555,21 @@ Resources:
           Type: Api
           Properties:
             Path: /{lang}/reset-pin/change
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsAgentWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/sms/agent
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/agent
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
@@ -600,6 +645,21 @@ Resources:
           Type: Api
           Properties:
             Path: /{lang}/sms/reset-pin
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsAgentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/sms/agent
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/agent
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi

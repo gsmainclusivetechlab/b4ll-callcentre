@@ -45,6 +45,7 @@
     "transfer-account-confirmation": "transfer-account-confirmation",
     "transfer-approved": "transfer-approved",
     "transfer-declined": "transfer-declined",
+    "transfer-value-error": "There was an issue retrieving your transfer value. Please try again or contact the GSMA Inclusive Tech Lab.",
 
     "passphrase-add": "passphrase-add",
     "deactivate-account": "deactivate-account",
@@ -71,6 +72,8 @@
     "sms-did-not-understand": "sms-did-not-understand",
 
     "sms-reset-pin-welcome": "sms-reset-pin-welcome",
+
+    "sms-agent-welcome": "Hello. This is a demo call from the \"Biometrics For All \" project. You have requested to make a merchant payment. Before doing so, please verify your identity.",
 
     "survey-welcome": "survey-welcome",
     "survey-question-01": "survey-question-01",
