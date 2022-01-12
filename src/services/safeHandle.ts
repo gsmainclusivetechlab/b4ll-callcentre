@@ -151,7 +151,10 @@ function serialise(
     cookies?: Record<string, string>
 ): APIGatewayProxyResult {
     if (typeof r === 'object' && r !== null) {
-        if (r instanceof twiml.VoiceResponse) {
+        if (
+            r instanceof twiml.VoiceResponse ||
+            r instanceof twiml.MessagingResponse
+        ) {
             return {
                 statusCode,
                 headers: {

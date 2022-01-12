@@ -2,7 +2,7 @@ import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle } from '../../services/safeHandle';
 import qs from 'querystring';
-import { getApprovedUserItem } from '../../services/dynamodb';
+import { getApprovedUserItem, putAccountItem } from '../../services/dynamodb';
 
 export const get = safeHandle(async (request) => {
     const { language, user, event } = request;
@@ -68,17 +68,27 @@ export const post = safeHandle(async (request) => {
     // Enrolled and valid SMS term
     if (typeof message === 'string') {
         const term = message.toLowerCase();
-        console.log(term);
-        switch (term) {
-            case '**42*033':
-            case 'resetpin':
-                response.redirect(
-                    { method: 'GET' },
-                    `./${language}/sms/reset-pin`
-                );
+        const arr = term.split(/\s+/).filter(Boolean);
+        console.log(arr);
+        if (arr[0] === 'merchantpay') {
+            if (arr[1] === '123456') {
+                const amount = arr[2];
+                const merchantCode = arr[1];
+                await putAccountItem({
+                    ...user,
+                    transferValue: +amount,
+                    transferAccount: merchantCode,
+                });
+                response.redirect({ method: 'GET' }, `./${language}/sms/agent`);
                 return response;
-            default:
-                break;
+            } else {
+                // merchant code invalid
+            }
+        } else if (arr[0] === 'resetpin' || arr[0] === '**42*033') {
+            response.redirect({ method: 'GET' }, `./${language}/sms/reset-pin`);
+            return response;
+        } else {
+            // term invalid
         }
     }
 

@@ -46,6 +46,7 @@
     "transfer-account-confirmation": "You are transferring ${value} to {account}, press 1 if you want to proceed or 2 to cancel",
     "transfer-approved": "Your transfer was authorised successfully",
     "transfer-declined": "Your transfer was successfully cancelled",
+    "transfer-value-error": "There was an issue retrieving your transfer value. Please try again or contact the GSMA Inclusive Tech Lab.",
 
     "passphrase-add": "To add a new passphrase, press {index}",
     "mobile-money-info": "Your account balance is: ${balance}",
@@ -68,8 +69,8 @@
 
     "sms-unregistered": "It looks like you don't have an account. Please contact the call centre directly to enrol before using SMS services.",
     "sms-did-not-understand": "This option does not match any of our SMS terms. Please try again.",
-
     "sms-reset-pin-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab's \"Biometrics For All \" project. You have requested to reset your PIN. Before doing so, please verify your identity.",
+    "sms-agent-welcome": "Hello. This is a demo call from the \"Biometrics For All \" project. You have requested to make a merchant payment. Before doing so, please verify your identity.",
 
     "survey-welcome": "Thank you for evaluating Biometrics For All. Please answer the next questions using your keypad.",
     "survey-question-01": "How would you evaluate the experience using a voice verification process? Press a number from 1 to 5., where 1 means very poor and 5 means excellent.",

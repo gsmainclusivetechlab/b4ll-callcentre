@@ -44,6 +44,7 @@
     "transfer-account-confirmation": "Vous êtes sur le point de transférer ${value} vers {account}, appuyez sur 1 pour continuer ou 2 pour annuler le transfers.",
     "transfer-approved": "Votre transfert a été autorisé avec succès.",
     "transfer-declined": "Votre paiement a été refusé.",
+    "transfer-value-error": "There was an issue retrieving your transfer value. Please try again or contact the GSMA Inclusive Tech Lab.",
 
     "passphrase-add": "Pour ajouter une nouvelle phrase secrète, appuyez sur {index}",
     "deactivate-account": "Votre compte a été désactiver avec succès. Nous vous remercions et nous souhaitons vous revoir bientôt. Au revoir.",
@@ -70,6 +71,8 @@
     "sms-did-not-understand": "This option does not match any of our SMS terms. Please try again.",
 
     "sms-reset-pin-welcome": "Hello. This is a demo call from the \"Biometrics For All \" project. You have requested to reset your PIN. Before doing so, please verify your identity.",
+
+    "sms-agent-welcome": "Hello. This is a demo call from the \"Biometrics For All \" project. You have requested to make a merchant payment. Before doing so, please verify your identity.",
 
     "survey-welcome": "Nous vous remercions pour votre évaluation sur Biometrics For All. Si vous pouviez répondre à notre sondage, attendez, cela ne prendra pas plus d'une minute!",
     "survey-question-01": "Comment évalueriez-vous l'expérience en utilisant un processus de vérification vocale? Appuyez sur un nombre de 1 à 5, où: 1 signifie très mauvais et 5 signifie excellent",
