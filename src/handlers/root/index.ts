@@ -68,32 +68,41 @@ export const post = safeHandle(async (request) => {
     // Enrolled and valid SMS term
     if (typeof message === 'string') {
         const term = message.toLowerCase();
-        const arr = term.split(/\s+/).filter(Boolean);
+        const arr =
+            message[0] === '*'
+                ? term.split('*').filter(Boolean)
+                : term.split(/\s+/).filter(Boolean);
         console.log(arr);
-        if (arr[0] === 'merchantpay') {
-            if (arr[1] === '123456') {
-                const amount = arr[2];
-                const merchantCode = arr[1];
-                await putAccountItem({
-                    ...user,
-                    transferValue: +amount,
-                    transferAccount: merchantCode,
-                });
-                response.redirect({ method: 'GET' }, `./${language}/sms/agent`);
-                return response;
+        if (arr[0] === 'merchantpay' || arr[0] === '12') {
+            if (arr[1] === '12345') {
+                if (arr[2]) {
+                    const amount = arr[2];
+                    const merchantCode = arr[1];
+                    await putAccountItem({
+                        ...user,
+                        transferValue: +amount,
+                        transferAccount: merchantCode,
+                    });
+                    response.redirect(
+                        { method: 'GET' },
+                        `./${language}/sms/agent`
+                    );
+                } else {
+                    response.message(__('sms-amount-error', language));
+                }
             } else {
-                // merchant code invalid
+                response.message(__('sms-merchant-error', language));
             }
-        } else if (arr[0] === 'resetpin' || arr[0] === '**42*033') {
+        } else if (
+            arr[0] === 'resetpin' ||
+            (arr[0] === '42' && arr[1] === '033')
+        ) {
             response.redirect({ method: 'GET' }, `./${language}/sms/reset-pin`);
-            return response;
         } else {
-            // term invalid
+            response.message(__('sms-did-not-understand', language));
         }
+    } else {
+        response.message(__('sms-did-not-understand', language));
     }
-
-    // Enroled but SMS doesn't match any terms
-    response.message(__('sms-did-not-understand', language));
-
     return response;
 });

@@ -25,7 +25,7 @@ export const post = safeHandle(
                         getVoiceParams(request.language),
                         __('transfer-approved', request.language)
                     );
-                    response.redirect({ method: 'GET' }, `../../return`);
+                    response.hangup();
                     return response;
                 }
                 case '2': {
@@ -37,7 +37,7 @@ export const post = safeHandle(
                             request.language
                         )
                     );
-                    response.redirect({ method: 'GET' }, `../../return`);
+                    response.hangup();
                     break;
                 }
                 default: {
