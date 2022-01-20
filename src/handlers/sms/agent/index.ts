@@ -22,7 +22,7 @@ const prefixByLanguage = (language: SupportedLanguage) => {
     }
 };
 
-export const get = safeHandle(async ({ language, user, auth }) => {
+export const get = safeHandle(async ({ language, user, auth, event }) => {
     if (auth.state !== VerificationState.REGISTERED) {
         throw {
             statusCode: 500,
@@ -30,21 +30,31 @@ export const get = safeHandle(async ({ language, user, auth }) => {
         };
     }
     const message = new twiml.VoiceResponse();
-    message.say(getVoiceParams(language), __('sms-agent-welcome', language));
+    const ivrNumber = event.queryStringParameters?.To;
+    const transferAmount = user.transferValue;
+
+    message.say(
+        getVoiceParams(language),
+        __('sms-agent-welcome', { amount: transferAmount }, language)
+    );
     message.redirect({ method: 'POST' }, `${apiHost}${language}/sms/agent`);
 
     // TODO: pick a phone number in a region that matches the user's
     const numbers = await twilioClient.incomingPhoneNumbers.list({
         phoneNumber: prefixByLanguage(language),
-        limit: 1,
     });
-    if (!numbers[0])
+
+    const twilioNumber = numbers.find((i) => i.phoneNumber === ivrNumber);
+
+    console.log(ivrNumber, twilioNumber);
+
+    if (!twilioNumber)
         throw new Error('Could not find a corresponding number to call from');
 
     await twilioClient.calls.create({
         twiml: message.toString(),
         to: user.id,
-        from: numbers[0].phoneNumber,
+        from: twilioNumber.phoneNumber,
     });
 
     return message;

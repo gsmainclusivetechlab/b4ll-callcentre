@@ -29,6 +29,14 @@ export const get = safeHandle(
                             language
                         )
                     );
+
+                    // If the user doesn't enter input, loop
+                    response.say(
+                        getVoiceParams(language),
+                        __('did-not-understand', language)
+                    );
+                    response.redirect({ method: 'GET' }, '../transfer');
+                    return response;
                 } else {
                     response.say(
                         getVoiceParams(language),

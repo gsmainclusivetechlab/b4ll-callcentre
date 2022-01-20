@@ -69,9 +69,9 @@
 
     "sms-unregistered": "It looks like you don't have an account. Please contact the call centre directly to enrol before using SMS services.",
     "sms-did-not-understand": "This option does not match any of our SMS terms. Please try again.",
-
+    "sms-merchant-error": "The merchant code provided does not match any of our records. Please try again.",
+    "sms-amount-error": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project. You have not specified an amount to pay. The format for a merchant payment is as follows: \"MERCHANTPAY 12345 {AMOUNT}\". Please try again.",
     "sms-reset-pin-welcome": "Hello. This is a demo call from the \"Biometrics For All \" project. You have requested to reset your PIN. Before doing so, please verify your identity.",
-
     "sms-agent-welcome": "Hello. This is a demo call from the \"Biometrics For All \" project. You have requested to make a merchant payment. Before doing so, please verify your identity.",
 
     "survey-welcome": "Nous vous remercions pour votre évaluation sur Biometrics For All. Si vous pouviez répondre à notre sondage, attendez, cela ne prendra pas plus d'une minute!",

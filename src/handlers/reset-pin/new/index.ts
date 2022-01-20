@@ -20,7 +20,7 @@ export const post = safeHandle(
                     getVoiceParams(language),
                     __('reset-pin-new-successful', language)
                 );
-                response.redirect({ method: 'GET' }, `../return`);
+                response.hangup();
             } else {
                 throw new Error('no pin number');
             }
