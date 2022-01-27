@@ -32,23 +32,42 @@ export const get = safeHandle(async ({ language, user, event }) => {
     );
     message.redirect({ method: 'POST' }, `${apiHost}${language}/sms/reset-pin`);
 
-    // TODO: pick a phone number in a region that matches the user's
-    const numbers = await twilioClient.incomingPhoneNumbers.list({
-        phoneNumber: prefixByLanguage(language),
-    });
+    if (!ivrNumber) {
+        const numbers = await twilioClient.incomingPhoneNumbers.list({
+            phoneNumber: prefixByLanguage(language),
+            limit: 1,
+        });
+        if (!numbers[0])
+            throw new Error(
+                'Could not find a corresponding number to call from'
+            );
 
-    const twilioNumber = numbers.find((i) => i.phoneNumber === ivrNumber);
+        await twilioClient.calls.create({
+            twiml: message.toString(),
+            to: user.id,
+            from: numbers[0].phoneNumber,
+        });
+    } else {
+        // TODO: pick a phone number in a region that matches the user's
+        const numbers = await twilioClient.incomingPhoneNumbers.list({
+            phoneNumber: prefixByLanguage(language),
+        });
 
-    console.log(ivrNumber, twilioNumber);
+        const twilioNumber = numbers.find((i) => i.phoneNumber === ivrNumber);
 
-    if (!twilioNumber)
-        throw new Error('Could not find a corresponding number to call from');
+        console.log(ivrNumber, twilioNumber);
 
-    await twilioClient.calls.create({
-        twiml: message.toString(),
-        to: user.id,
-        from: twilioNumber.phoneNumber,
-    });
+        if (!twilioNumber)
+            throw new Error(
+                'Could not find a corresponding number to call from'
+            );
+
+        await twilioClient.calls.create({
+            twiml: message.toString(),
+            to: user.id,
+            from: twilioNumber.phoneNumber,
+        });
+    }
 
     return message;
 });
