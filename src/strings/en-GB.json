@@ -48,6 +48,16 @@
     "transfer-declined": "Your transfer was successfully cancelled",
     "transfer-value-error": "There was an issue retrieving your transfer value. Please try again or contact the GSMA Inclusive Tech Lab.",
 
+    "cash-in-confirmation": "You are making a cash-in request for ${value}, press 1 if you want to proceed to 2 to cancel",
+    "cash-in-approved": "Your cash-in request was authorised successfully",
+    "cash-in-declined": "Your cash-in request was successfully cancelled",
+    "cash-in-value-error": "There was an issue retrieving your cash-in request. Please try again or contact the GSMA Inclusive Tech Lab.",
+
+    "cash-out-confirmation": "You are making a cash-out request for ${value}, press 1 if you want to proceed to 2 to cancel",
+    "cash-out-approved": "Your cash-out request was authorised successfully",
+    "cash-out-declined": "Your cash-out request was successfully cancelled",
+    "cash-out-value-error": "There was an issue retrieving your cash-out request. Please try again or contact the GSMA Inclusive Tech Lab.",
+
     "passphrase-add": "To add a new passphrase, press {index}",
     "mobile-money-info": "Your account balance is: ${balance}",
     "balance-reset": "Your account balance is $0, for the purposes of this demo it has been reset to $100.",
@@ -73,6 +83,8 @@
     "sms-amount-error": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project. You have not specified an amount to pay. The format for a merchant payment is as follows: \"MERCHANTPAY 12345 {AMOUNT}\". Please try again.",
     "sms-reset-pin-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab's \"Biometrics For All \" project. You have requested to reset your PIN. Before doing so, please verify your identity.",
     "sms-agent-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab\"Biometrics For All \" project. You have requested to make a merchant payment for ${amount}. Before doing so, please verify your identity.",
+    "sms-agent-cash-in-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab\"Biometrics For All \" project. You have made a Cash-in request for ${amount}. Before doing so, please verify your identity.",
+    "sms-agent-cash-out-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab\"Biometrics For All \" project. You have made a Cash-out request for ${amount}. Before doing so, please verify your identity.",
 
     "survey-welcome": "Thank you for evaluating Biometrics For All. Please answer the next questions using your keypad.",
     "survey-question-01": "How would you evaluate the experience using a voice verification process? Press a number from 1 to 5., where 1 means very poor and 5 means excellent.",

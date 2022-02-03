@@ -27,10 +27,7 @@ export const post = safeHandle(
                         getVoiceParams(language),
                         __('reset-pin-current-unsuccessful', language)
                     );
-                    response.redirect(
-                        { method: 'GET' },
-                        '../reset-pin/current'
-                    );
+                    response.redirect({ method: 'GET' }, '../reset-pin/change');
                 }
             } else {
                 throw new Error('no current pin number');

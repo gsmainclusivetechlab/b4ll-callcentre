@@ -47,6 +47,16 @@
     "transfer-declined": "transfer-declined",
     "transfer-value-error": "There was an issue retrieving your transfer value. Please try again or contact the GSMA Inclusive Tech Lab.",
 
+    "cash-in-confirmation": "You are making a cash-in request for ${value}, press 1 if you want to proceed to 2 to cancel",
+    "cash-in-approved": "Your cash-in request was authorised successfully",
+    "cash-in-declined": "Your cash-in request was successfully cancelled",
+    "cash-in-value-error": "There was an issue retrieving your cash-in request. Please try again or contact the GSMA Inclusive Tech Lab.",
+
+    "cash-out-confirmation": "You are making a cash-in request for ${value}, press 1 if you want to proceed to 2 to cancel",
+    "cash-out-approved": "Your cash-in request was authorised successfully",
+    "cash-out-declined": "Your cash-in request was successfully cancelled",
+    "cash-out-value-error": "There was an issue retrieving your cash-in request. Please try again or contact the GSMA Inclusive Tech Lab.",
+
     "passphrase-add": "passphrase-add",
     "deactivate-account": "deactivate-account",
 
@@ -74,6 +84,8 @@
     "sms-merchant-error": "The merchant code provided does not match any of our records. Please try again.",
     "sms-amount-error": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project. You have not specified an amount to pay. The format for a merchant payment is as follows: \"MERCHANTPAY 12345 {AMOUNT}\". Please try again.",
     "sms-agent-welcome": "Hello. This is a demo call from the \"Biometrics For All \" project. You have requested to make a merchant payment. Before doing so, please verify your identity.",
+    "sms-agent-cash-in-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab\"Biometrics For All \" project. You have made a Cash-in request for ${amount}. Before doing so, please verify your identity.",
+    "sms-agent-cash-out-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab\"Biometrics For All \" project. You have made a Cash-out request for ${amount}. Before doing so, please verify your identity.",
 
     "survey-welcome": "survey-welcome",
     "survey-question-01": "survey-question-01",
