@@ -12,6 +12,7 @@ export const get = safeHandle(
         const gather = response.gather({
             input: ['dtmf'],
             action: `current`,
+            numDigits: 4,
             finishOnKey: '#',
         });
 

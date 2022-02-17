@@ -15,6 +15,7 @@ export const post = safeHandle(
                     const gather = response.gather({
                         input: ['dtmf'],
                         action: `new`,
+                        numDigits: 4,
                         finishOnKey: '#',
                     });
 
@@ -37,7 +38,7 @@ export const post = safeHandle(
                 getVoiceParams(language),
                 __('reset-pin-current-error', language)
             );
-            response.redirect({ method: 'GET' }, '../reset-pin/current');
+            response.redirect({ method: 'POST' }, '../reset-pin/current');
         }
 
         // If the user doesn't enter input, loop
@@ -45,7 +46,7 @@ export const post = safeHandle(
             getVoiceParams(language),
             __('did-not-understand', language)
         );
-        response.redirect({ method: 'GET' }, '../reset-pin/current');
+        response.redirect({ method: 'POST' }, '../reset-pin/current');
         return response;
     },
     { requireVerification: true }
@@ -57,6 +58,7 @@ export const get = safeHandle(
         const response = new twiml.VoiceResponse();
         const gather = response.gather({
             input: ['dtmf'],
+            numDigits: 4,
             action: `new`,
             finishOnKey: '#',
         });
