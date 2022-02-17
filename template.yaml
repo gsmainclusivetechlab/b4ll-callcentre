@@ -604,6 +604,36 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  AgentCashToCashWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/agent/cash-to-cash
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/agent/cash-to-cash
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  AgentCashToCashConfirmationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/agent/cash-to-cash/confirmation
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/agent/cash-to-cash/confirmation
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
   ResetPinChangeWelcome:
     Type: AWS::Serverless::Function
     Properties:
@@ -780,6 +810,36 @@ Resources:
           Type: Api
           Properties:
             Path: /{lang}/sms/agent/cash-out
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsAgentCashToCashWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/sms/agent/cash-to-cash
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/agent/cash-to-cash
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsAgentCashToCashFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/sms/agent/cash-to-cash
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/agent/cash-to-cash
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi

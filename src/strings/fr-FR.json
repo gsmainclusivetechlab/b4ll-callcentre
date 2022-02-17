@@ -56,6 +56,11 @@
     "cash-out-declined": "Your cash-in request was successfully cancelled",
     "cash-out-value-error": "There was an issue retrieving your cash-in request. Please try again or contact the GSMA Inclusive Tech Lab.",
 
+    "cash-to-cash-confirmation": "You are making a cash-out request for ${value}, press 1 if you want to proceed to 2 to cancel",
+    "cash-to-cash-approved": "Your cash-out request was authorised successfully",
+    "cash-to-cash-declined": "Your cash-out request was successfully cancelled",
+    "cash-to-cash-value-error": "There was an issue retrieving your cash-out request. Please try again or contact the GSMA Inclusive Tech Lab.",
+
     "passphrase-add": "Pour ajouter une nouvelle phrase secrète, appuyez sur {index}",
     "deactivate-account": "Votre compte a été désactiver avec succès. Nous vous remercions et nous souhaitons vous revoir bientôt. Au revoir.",
 
@@ -85,6 +90,8 @@
     "sms-agent-welcome": "Hello. This is a demo call from the \"Biometrics For All \" project. You have requested to make a merchant payment. Before doing so, please verify your identity.",
     "sms-agent-cash-in-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab\"Biometrics For All \" project. You have made a Cash-in request for ${amount}. Before doing so, please verify your identity.",
     "sms-agent-cash-out-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab\"Biometrics For All \" project. You have made a Cash-out request for ${amount}. Before doing so, please verify your identity.",
+    "sms-agent-cash-to-cash-welcome": "Hello. This is a demo call from the GSMA Inclusive Tech Lab\"Biometrics For All \" project. You have made a Cash-to-cash request for ${amount}. Before doing so, please verify your identity.",
+    "sms-agent-cash-to-cash-approved": "Your cash-to-cash request was successfully authorised.",
 
     "survey-welcome": "Nous vous remercions pour votre évaluation sur Biometrics For All. Si vous pouviez répondre à notre sondage, attendez, cela ne prendra pas plus d'une minute!",
     "survey-question-01": "Comment évalueriez-vous l'expérience en utilisant un processus de vérification vocale? Appuyez sur un nombre de 1 à 5, où: 1 signifie très mauvais et 5 signifie excellent",
