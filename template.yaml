@@ -604,32 +604,32 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
-  AgentCashToCashWelcome:
+  AgentP2PTransferWelcome:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.get
-      CodeUri: ./dist/handlers/agent/cash-to-cash
+      CodeUri: ./dist/handlers/agent/p2p-transfer
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/agent/cash-to-cash
+            Path: /{lang}/agent/p2p-transfer
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
 
-  AgentCashToCashConfirmationFunction:
+  AgentP2PTransferConfirmationFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.post
-      CodeUri: ./dist/handlers/agent/cash-to-cash/confirmation
+      CodeUri: ./dist/handlers/agent/p2p-transfer/confirmation
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/agent/cash-to-cash/confirmation
+            Path: /{lang}/agent/p2p-transfer/confirmation
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi
@@ -814,32 +814,32 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
-  SmsAgentCashToCashWelcome:
+  SmsAgentP2PTransferWelcome:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.get
-      CodeUri: ./dist/handlers/sms/agent/cash-to-cash
+      CodeUri: ./dist/handlers/sms/agent/p2p-transfer
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/sms/agent/cash-to-cash
+            Path: /{lang}/sms/agent/p2p-transfer
             Method: GET
             RestApiId:
               Ref: ApiGatewayApi
 
-  SmsAgentCashToCashFunction:
+  SmsAgentP2PTransferFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.post
-      CodeUri: ./dist/handlers/sms/agent/cash-to-cash
+      CodeUri: ./dist/handlers/sms/agent/p2p-transfer
       Role: !GetAtt LambdaRole.Arn
       Events:
         HTTP:
           Type: Api
           Properties:
-            Path: /{lang}/sms/agent/cash-to-cash
+            Path: /{lang}/sms/agent/p2p-transfer
             Method: POST
             RestApiId:
               Ref: ApiGatewayApi

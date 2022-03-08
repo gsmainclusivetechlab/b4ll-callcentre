@@ -36,14 +36,14 @@ export const get = safeHandle(async ({ language, user, auth, event }) => {
     message.say(
         getVoiceParams(language),
         __(
-            'sms-agent-cash-to-cash-welcome',
+            'sms-agent-p2p-transfer-welcome',
             { amount: transferAmount },
             language
         )
     );
     message.redirect(
         { method: 'POST' },
-        `${apiHost}${language}/sms/agent/cash-to-cash`
+        `${apiHost}${language}/sms/agent/p2p-transfer`
     );
 
     if (!ivrNumber) {
@@ -91,7 +91,7 @@ export const post = safeHandle(
         const message = new twiml.VoiceResponse();
         message.redirect(
             { method: 'GET' },
-            `${apiHost}${language}/agent/cash-to-cash`
+            `${apiHost}${language}/agent/p2p-transfer`
         );
         return message;
     },
