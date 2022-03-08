@@ -54,9 +54,44 @@ export const post = safeHandle(async (request) => {
     const body = qs.parse(event.body || '');
     const Caller = body['From'];
     const message = body['Body'];
+    enum msgType {
+        SMS,
+        USSD,
+    }
+
+    async function hasOnlyDigits(value: string) {
+        return /^\d+$/.test(value);
+    }
 
     console.log(Caller, message);
 
+    async function resetPINHandler() {
+        console.log('resetpinHandler');
+        const response = new twiml.MessagingResponse();
+        response.redirect({ method: 'GET' }, `./${language}/sms/reset-pin`);
+        return response;
+    }
+
+    async function merchantHandler(arr: Array<string>, type: number) {
+        console.log('merchantHandler');
+        const response = new twiml.MessagingResponse();
+
+        if (type === msgType.USSD) {
+            arr = arr[0].split('*').filter(Boolean);
+        }
+        const amount = arr[2];
+        const merchantCode = arr[1];
+
+        await putAccountItem({
+            ...user,
+            transferValue: +amount,
+            transferAccount: merchantCode,
+        });
+        response.redirect({ method: 'GET' }, `./${language}/sms/agent`);
+        console.log('end of merchant', amount, merchantCode);
+
+        return response;
+    }
     const response = new twiml.MessagingResponse();
 
     // Not enrolled
@@ -65,44 +100,49 @@ export const post = safeHandle(async (request) => {
         return response;
     }
 
-    // Enrolled and valid SMS term
     if (typeof message === 'string') {
-        const term = message.toLowerCase();
-        const arr =
-            message[0] === '*'
-                ? term.split('*').filter(Boolean)
-                : term.split(/\s+/).filter(Boolean);
-        console.log(arr);
-        if (arr[0] === 'merchantpay' || arr[0] === '12') {
-            if (arr[1] === '12345') {
-                if (arr[2]) {
-                    const amount = arr[2];
-                    const merchantCode = arr[1];
-                    await putAccountItem({
-                        ...user,
-                        transferValue: +amount,
-                        transferAccount: merchantCode,
-                    });
-                    response.redirect(
-                        { method: 'GET' },
-                        `./${language}/sms/agent`
-                    );
-                } else {
-                    response.message(__('sms-amount-error', language));
-                }
-            } else {
-                response.message(__('sms-merchant-error', language));
+        let finalResponse;
+
+        const reg = /\*(160(\*12345)+)\*[0-9]+\*#/i; // regex for merchant ussd
+        const term = message.toLowerCase(); // e.g "resetpin" "*160*12345*10*#"
+        const arr = term.split(/\s+/).filter(Boolean);
+        if (arr[0][0] === '*') {
+            // USSD code
+            if (term === '*104#') {
+                finalResponse = await resetPINHandler();
+                return finalResponse;
             }
-        } else if (
-            arr[0] === 'resetpin' ||
-            (arr[0] === '42' && arr[1] === '033')
-        ) {
-            response.redirect({ method: 'GET' }, `./${language}/sms/reset-pin`);
+            if (reg.test(term)) {
+                finalResponse = await merchantHandler(arr, msgType.USSD);
+                console.log('after merchantHandler ussd');
+                return finalResponse;
+            }
+            response.message(__('ussd-did-not-understand', language));
+            return response;
         } else {
+            // SMS code
+            if (arr[0] == 'resetpin') {
+                finalResponse = await resetPINHandler();
+                return finalResponse;
+            }
+            if (arr[0] == 'merchantpay') {
+                if (arr[1] == '12345') {
+                    if (await hasOnlyDigits(arr[2])) {
+                        finalResponse = await merchantHandler(arr, msgType.SMS);
+                        console.log('after merchantHandler');
+                        return finalResponse;
+                    } else {
+                        response.message(__('sms-amount-error', language));
+                        return response;
+                    }
+                } else {
+                    response.message(__('sms-merchant-error', language));
+                    return response;
+                }
+            }
             response.message(__('sms-did-not-understand', language));
+            return response;
         }
-    } else {
-        response.message(__('sms-did-not-understand', language));
     }
     return response;
 });

@@ -24,10 +24,10 @@ export const post = safeHandle(
                     }
                     response.say(
                         getVoiceParams(request.language),
-                        __('cash-to-cash-approved', request.language)
+                        __('p2p-transfer-approved', request.language)
                     );
                     msgResponse.message(
-                        __('sms-agent-cash-to-cash-approved', language)
+                        __('sms-agent-p2p-transfer-approved', language)
                     );
                     response.hangup();
                     return response;
@@ -36,7 +36,7 @@ export const post = safeHandle(
                     response.say(
                         getVoiceParams(request.language),
                         __(
-                            'cash-to-cash-declined',
+                            'p2p-transfer-declined',
                             { error: 'cancellation' },
                             request.language
                         )
@@ -49,7 +49,7 @@ export const post = safeHandle(
                         getVoiceParams(request.language),
                         __('did-not-understand', request.language)
                     );
-                    response.redirect({ method: 'GET' }, `../../cash-to-cash`);
+                    response.redirect({ method: 'GET' }, `../../p2p-transfer`);
                     break;
                 }
             }
@@ -66,7 +66,7 @@ export const post = safeHandle(
             getVoiceParams(language),
             __('did-not-understand', language)
         );
-        response.redirect({ method: 'GET' }, '../../../cash-to-cash');
+        response.redirect({ method: 'GET' }, '../../../p2p-transfer');
         return response;
     },
     {

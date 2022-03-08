@@ -14,12 +14,12 @@ export const get = safeHandle(
                     const gather = response.gather({
                         input: ['dtmf'],
                         numDigits: 1,
-                        action: 'cash-to-cash/confirmation',
+                        action: 'p2p-transfer/confirmation',
                     });
                     gather.say(
                         getVoiceParams(language),
                         __(
-                            'cash-to-cash-confirmation',
+                            'p2p-transfer-confirmation',
                             {
                                 value: transferAmount,
                                 account: user.transferAccount
@@ -37,7 +37,7 @@ export const get = safeHandle(
                     );
                     response.redirect(
                         { method: 'GET' },
-                        '../agent/cash-to-cash'
+                        '../agent/p2p-transfer'
                     );
                     return response;
                 } else {
@@ -64,7 +64,7 @@ export const get = safeHandle(
         } else {
             response.say(
                 getVoiceParams(language),
-                __('cash-to-cash-value-error', language)
+                __('p2p-transfer-value-error', language)
             );
             response.hangup();
         }
