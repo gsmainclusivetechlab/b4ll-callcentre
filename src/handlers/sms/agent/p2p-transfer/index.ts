@@ -15,10 +15,9 @@ const twilioClient = twilio(accountSid, authToken);
 const prefixByLanguage = (language: SupportedLanguage) => {
     switch (language) {
         case 'en-DEV':
+        case 'fr-FR':
         case 'en-GB':
             return '+44';
-        case 'fr-FR':
-            return '+33';
     }
 };
 
