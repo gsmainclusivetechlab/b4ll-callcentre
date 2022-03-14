@@ -46,20 +46,20 @@
     "transfer-declined": "Votre paiement a été refusé.",
     "transfer-value-error": "Un problème est survenu lors de la récupération de la valeur de votre transfert. Veuillez réessayer ou contacter le GSMA Inclusive Tech Lab.",
 
-    "cash-in-confirmation": "Vous faites une demande d'encaissement pour $ {value}, appuyez sur 1 pour continuer ou 2 pour annuler le paiement.",
+    "cash-in-confirmation": "Vous faites une demande d'encaissement pour ${value}, appuyez sur 1 pour continuer ou 2 pour annuler le paiement.",
     "cash-in-approved": "Votre demande d'encaissement a été autorisée avec succès",
     "cash-in-declined": "Votre demande d'encaissement a été annulée avec succès",
     "cash-in-value-error": "Un problème est survenu lors de votre demande d'encaissement. Veuillez réessayer ou contacter le GSMA Inclusive Tech Lab.",
 
-    "cash-out-confirmation": "Vous faites une demande de retrait d'argent pour $ {valeur}, appuyez sur 1 pour continuer ou 2 pour annuler le paiement.",
+    "cash-out-confirmation": "Vous faites une demande de retrait d'argent pour ${value}, appuyez sur 1 pour continuer ou 2 pour annuler le paiement.",
     "cash-out-approved": "Votre demande de retrait a été autorisée avec succès",
     "cash-out-declined": "Votre demande de retrait a été annulée avec succès",
     "cash-out-value-error": "Un probleme est surbenu lors de votre demande de retrait. Veuillez réessayer ou contacter le GSMA Inclusive Tech Lab.",
 
-    "p2p-transfer-confirmation": "Vous faites une demande de retrait d'argent pour $ {valeur}, appuyez sur 1 pour continuer ou 2 pour annuler le paiement.",
-    "p2p-transfer-approved": "Votre demande de retrait d'argent a été autorisée avec succès",
-    "p2p-transfer-declined": "Votre demande de retrait d'argent a été annulée",
-    "p2p-transfer-value-error": "Un problème est survenu lors de votre demande d'encaissement. Veuillez réessayer ou contacter le GSMA Inclusive Tech Lab.",
+    "p2p-transfer-confirmation": "Vous faites une demande de transfert pour ${value}, appuyez sur 1 pour continuer ou 2 pour annuler le paiement.",
+    "p2p-transfer-approved": "Votre demande de transfert a été autorisée avec succès",
+    "p2p-transfer-declined": "Votre demande de transfert a été annulée",
+    "p2p-transfer-value-error": "Un problème est survenu lors de votre demande de transfert. Veuillez réessayer ou contacter le GSMA Inclusive Tech Lab.",
 
     "passphrase-add": "Pour ajouter une nouvelle phrase secrète, appuyez sur {index}",
     "deactivate-account": "Votre compte a été désactiver avec succès. Nous vous remercions et nous souhaitons vous revoir bientôt. Au revoir.",
