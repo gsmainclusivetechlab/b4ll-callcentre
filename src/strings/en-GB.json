@@ -95,6 +95,18 @@
 
     "ussd-did-not-understand": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project.\n\nThis option does not match any of our USSD terms. Please try again.",
 
+    "sms-confirmation-merchant": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project.\n\nYour merchant payment request has been completed successfully.",
+    "sms-confirmation-reset-pin": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project.\n\nYour reset PIN request has been completed successfully.",
+    "sms-confirmation-cash-in": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project.\n\nYour cash-in request has been completed successfully.",
+    "sms-confirmation-cash-out": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project.\n\nYour cash-out request has been completed successfully.",
+    "sms-confirmation-p2p-transfer": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project.\n\nYour transfer request has been completed successfully.",
+
+    "sms-rejection-merchant": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project.\n\nYour merchant payment request has been completed successfully.",
+    "sms-rejection-reset-pin": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project.\n\nYour reset PIN request has been completed successfully.",
+    "sms-rejection-cash-in": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project.\n\nYour cash-in request has been completed successfully.",
+    "sms-rejection-cash-out": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project.\n\nYour cash-out request has been completed successfully.",
+    "sms-rejection-p2p-transfer": "This is a text from the GSMA Inclusive Tech Lab's Biometrics 4 All project.\n\nYour transfer request has been completed successfully.",
+
     "survey-welcome": "Thank you for evaluating Biometrics For All. Please answer the next questions using your keypad.",
     "survey-question-01": "How would you evaluate the experience using a voice verification process? Press a number from 1 to 5., where 1 means very poor and 5 means excellent.",
     "survey-question-02": "Did you think the menu flow was easy to understand? Press a number from 1 to 5, where 1 means very difficult and 5 means very easy.",

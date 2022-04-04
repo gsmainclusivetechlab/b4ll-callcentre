@@ -32,6 +32,8 @@ export const get = safeHandle(async ({ language, user, auth, event }) => {
     const ivrNumber = event.queryStringParameters?.To;
     const transferAmount = user.transferValue;
 
+    console.log('ivr num - ', ivrNumber);
+
     message.say(
         getVoiceParams(language),
         __('sms-agent-welcome', { amount: transferAmount }, language)
@@ -40,13 +42,15 @@ export const get = safeHandle(async ({ language, user, auth, event }) => {
 
     if (!ivrNumber) {
         const numbers = await twilioClient.incomingPhoneNumbers.list({
-            phoneNumber: prefixByLanguage(language),
+            phoneNumber: '+447',
             limit: 1,
         });
         if (!numbers[0])
             throw new Error(
                 'Could not find a corresponding number to call from'
             );
+
+        console.log('numbers - ', numbers);
 
         await twilioClient.calls.create({
             twiml: message.toString(),

@@ -25,7 +25,10 @@ export const post = safeHandle(
                         getVoiceParams(request.language),
                         __('cash-in-approved', request.language)
                     );
-                    response.hangup();
+                    response.redirect(
+                        { method: 'GET' },
+                        `../../sms/confirmation/cash-in`
+                    );
                     return response;
                 }
                 case '2': {
@@ -37,7 +40,10 @@ export const post = safeHandle(
                             request.language
                         )
                     );
-                    response.hangup();
+                    response.redirect(
+                        { method: 'POST' },
+                        `../../sms/confirmation/cash-in`
+                    );
                     break;
                 }
                 default: {

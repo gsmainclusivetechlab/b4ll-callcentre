@@ -33,7 +33,7 @@ export const get = safeHandle(async ({ language, user, event }) => {
 
     if (!ivrNumber) {
         const numbers = await twilioClient.incomingPhoneNumbers.list({
-            phoneNumber: prefixByLanguage(language),
+            phoneNumber: '+447',
             limit: 1,
         });
         if (!numbers[0])
