@@ -5,7 +5,6 @@ import {
     __,
 } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';
-import qs from 'qs';
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
