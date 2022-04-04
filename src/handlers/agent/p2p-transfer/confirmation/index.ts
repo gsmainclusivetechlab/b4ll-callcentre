@@ -29,7 +29,10 @@ export const post = safeHandle(
                     msgResponse.message(
                         __('sms-agent-p2p-transfer-approved', language)
                     );
-                    response.hangup();
+                    response.redirect(
+                        { method: 'GET' },
+                        `../../sms/confirmation/p2p-transfer`
+                    );
                     return response;
                 }
                 case '2': {
@@ -41,7 +44,10 @@ export const post = safeHandle(
                             request.language
                         )
                     );
-                    response.hangup();
+                    response.redirect(
+                        { method: 'POST' },
+                        `../../sms/confirmation/p2p-transfer`
+                    );
                     break;
                 }
                 default: {

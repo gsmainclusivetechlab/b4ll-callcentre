@@ -844,6 +844,141 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
+  SmsConfirmationCashInWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/sms/confirmation/cash-in
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/confirmation/cash-in
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsRejectionCashInFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/sms/confirmation/cash-in
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/confirmation/cash-in
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsConfirmationCashOutWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/sms/confirmation/cash-out
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/confirmation/cash-out
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsRejectionCashOutFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/sms/confirmation/cash-out
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/confirmation/cash-out
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsConfirmationP2PTransferWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/sms/confirmation/p2p-transfer
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/confirmation/p2p-transfer
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsRejectionP2PTransferFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/sms/confirmation/p2p-transfer
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/confirmation/p2p-transfer
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsConfirmationMerchantWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/sms/confirmation/merchant
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/confirmation/merchant
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsRejectionMerchantFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.post
+      CodeUri: ./dist/handlers/sms/confirmation/merchant
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/confirmation/merchant
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+
+  SmsConfirmationResetPinWelcome:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.get
+      CodeUri: ./dist/handlers/sms/confirmation/reset-pin
+      Role: !GetAtt LambdaRole.Arn
+      Events:
+        HTTP:
+          Type: Api
+          Properties:
+            Path: /{lang}/sms/confirmation/reset-pin
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+
   AccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:

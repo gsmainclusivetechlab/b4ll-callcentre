@@ -22,9 +22,6 @@ export const get = safeHandle(
                             'cash-out-confirmation',
                             {
                                 value: cashInAmount,
-                                account: user.transferAccount
-                                    ?.split('')
-                                    .join(' '),
                             },
                             language
                         )

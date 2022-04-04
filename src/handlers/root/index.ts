@@ -92,6 +92,7 @@ export const post = safeHandle(async (request) => {
 
         return response;
     }
+
     const response = new twiml.MessagingResponse();
 
     // Not enrolled

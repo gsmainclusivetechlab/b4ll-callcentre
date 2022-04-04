@@ -19,12 +19,9 @@ export const get = safeHandle(
                     gather.say(
                         getVoiceParams(language),
                         __(
-                            'transfer-account-confirmation',
+                            'bill-payment-value',
                             {
-                                value: paymentAmount,
-                                account: user.transferAccount
-                                    ?.split('')
-                                    .join(' '),
+                                paymentValue: paymentAmount,
                             },
                             language
                         )
@@ -40,7 +37,7 @@ export const get = safeHandle(
                 } else {
                     response.say(
                         getVoiceParams(language),
-                        __('transfer-account-invalid-value', language)
+                        __('bill-payment-invalid-value', language)
                     );
                     response.hangup();
                 }
