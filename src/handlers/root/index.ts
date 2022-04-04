@@ -6,23 +6,11 @@ import { getApprovedUserItem, putAccountItem } from '../../services/dynamodb';
 
 export const get = safeHandle(async (request) => {
     const { language, user, event } = request;
-    const body = qs.parse(event.body || '');
-    const callerKey =
-        body.Direction === 'outbound-api' ||
-        event.queryStringParameters?.Direction === 'outbound-api'
-            ? 'Called'
-            : 'Caller';
-    const Caller = body[callerKey] || event.queryStringParameters?.[callerKey];
-
-    console.log(Caller);
 
     const response = new twiml.VoiceResponse();
 
-    console.log(process.env.APPENV);
-
     if (process.env.APPENV !== 'development' && language !== 'en-DEV') {
         const approvedCaller = await getApprovedUserItem(user.id);
-        console.log(approvedCaller);
 
         if (approvedCaller.Item == null || approvedCaller.Item == undefined) {
             response.say(
