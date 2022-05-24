@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Agent Conformation Cash-In Handler
+
+ * GET  = sends confirmation text to caller
+ 
+===================================================================================================================
+*/
 import twilio, { twiml } from 'twilio';
 import { safeHandle } from '../../../../services/safeHandle';
 import { __ } from '../../../../services/strings';

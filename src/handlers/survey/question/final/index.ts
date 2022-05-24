@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Survey Final Handler
+
+ * POST  = if 1, saves answer and redirects to 2. If 2, saves answer.
+                                                
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../services/strings';
 import { safeHandle } from '../../../../services/safeHandle';

@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Pay a bill Handler
+
+ * POST = validates account number, asks confirmation to caller & redirects to either /50-confirmation or /150-confirmation
+ 
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../services/strings';
 import { safeHandle } from '../../../../services/safeHandle';

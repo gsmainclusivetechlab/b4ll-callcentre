@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Pay a bill Handler
+
+ * GET = asks caller for account number, redirects to /account-number
+ 
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';

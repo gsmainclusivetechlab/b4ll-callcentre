@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Agent P2P Handler
+
+ * GET  = retrieves transferValue, asks caller for confirmation, redirect to /confirmation
+                                                
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';

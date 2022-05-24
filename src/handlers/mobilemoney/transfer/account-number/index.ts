@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Transfer Handler
+
+ * POST  =  validates account number, adds to DB, asks for amount & redirect to /amount
+ 
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../services/strings';
 import { safeHandle } from '../../../../services/safeHandle';

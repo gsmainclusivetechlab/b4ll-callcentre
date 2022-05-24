@@ -1,3 +1,12 @@
+/**
+===================================================================================================================
+                                                Passphrase Handler
+
+ * GET  = get new phrase, inserts into DB, redirects to POST /add 
+ * POST = processes enrolmentRequest, re loops for 3 enrolments of phrase
+ 
+===================================================================================================================
+*/
 import qs from 'qs';
 import { twiml } from 'twilio';
 import { BiometricType } from '../../../engine/BiometricsProvider';

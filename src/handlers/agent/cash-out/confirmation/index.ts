@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Agent Cash-Out Conformation Handler
+
+ * POST  = if 1, subtracts transferValue from balance, redirect to sms confirmation. if 2, redirect to sms rejection
+                                                
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../services/strings';
 import { safeHandle } from '../../../../services/safeHandle';

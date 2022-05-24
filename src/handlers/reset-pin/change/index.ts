@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Reset Pin Change Handler
+
+ * GET  = gets current pin from caller, redirects to /reset-pin/change
+ 
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';
