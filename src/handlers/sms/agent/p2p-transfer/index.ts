@@ -1,3 +1,12 @@
+/**
+===================================================================================================================
+                                                SMS Agent P2P Handler
+
+ * GET  = checks if request from webpage/ivr call, redirects to POST
+ * POST = redirects to agent/p2p-transfer
+ 
+===================================================================================================================
+*/
 import twilio, { twiml } from 'twilio';
 import {
     SupportedLanguage,

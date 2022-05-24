@@ -1,3 +1,12 @@
+/**
+===================================================================================================================
+                                                Callback Handler
+
+ * GET  = simulates an alert and sends to POST
+ * POST = alerts caller to use web page to test alerts
+                                                
+===================================================================================================================
+*/
 import twilio, { twiml } from 'twilio';
 import { SupportedLanguage, getVoiceParams, __ } from '../../services/strings';
 import { safeHandle } from '../../services/safeHandle';

@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Pay a bill Handler
+                                                
+ * POST = if answer is 1, checks balance and substracts. if 2 sends to /return
+ 
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../../services/strings';
 import { safeHandle } from '../../../../../services/safeHandle';

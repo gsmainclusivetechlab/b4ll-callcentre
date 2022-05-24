@@ -1,3 +1,12 @@
+/**
+===================================================================================================================
+                                                Agent Conformation P2P Handler
+
+ * GET  = sends confirmation text to caller
+ * POST = sends rejection text to caller
+ 
+===================================================================================================================
+*/
 import twilio, { twiml } from 'twilio';
 import { safeHandle } from '../../../../services/safeHandle';
 import { __ } from '../../../../services/strings';

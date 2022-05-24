@@ -1,3 +1,12 @@
+/**
+===================================================================================================================
+                                                SMS Agent Handler
+
+ * GET  = checks if request from webpage/ivr call, redirects to POST
+ * POST = redirects to agent/transfer
+ 
+===================================================================================================================
+*/
 import twilio, { twiml } from 'twilio';
 import {
     SupportedLanguage,
@@ -31,8 +40,6 @@ export const get = safeHandle(async ({ language, user, auth, event }) => {
     const message = new twiml.VoiceResponse();
     const ivrNumber = event.queryStringParameters?.To;
     const transferAmount = user.transferValue;
-
-    console.log('ivr num - ', ivrNumber);
 
     message.say(
         getVoiceParams(language),

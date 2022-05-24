@@ -1,3 +1,12 @@
+/**
+===================================================================================================================
+                                                Root Handler
+
+ * GET = Voice call instance | checks if caller is in approvedUsers table and isn't deactivated -> sends to menu
+ * POST = Text message instance | checks if user is enrolled, if message is SMS/USSD and redirects accordingly 
+ 
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle } from '../../services/safeHandle';
@@ -5,7 +14,7 @@ import qs from 'querystring';
 import { getApprovedUserItem, putAccountItem } from '../../services/dynamodb';
 
 export const get = safeHandle(async (request) => {
-    const { language, user, event } = request;
+    const { language, user } = request;
 
     const response = new twiml.VoiceResponse();
 

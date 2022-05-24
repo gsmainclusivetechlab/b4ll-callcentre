@@ -1,3 +1,12 @@
+/**
+===================================================================================================================
+                                                Return Handler
+
+ * GET = lists return options to caller and sends key input to POST
+ * POST = redirects to corresponding handler based on key input 
+ 
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle } from '../../services/safeHandle';

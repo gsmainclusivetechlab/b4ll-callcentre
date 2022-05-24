@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Account Balance Handler
+
+ * GET = informs caller of current balance, resets balance to 100 if below 10
+ 
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';

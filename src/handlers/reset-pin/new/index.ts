@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Reset Pin New Handler
+
+ * POST  = gets new pin from caller/sms/ussd, validates and saves new PIN in DB. redirects to confirmation
+ 
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';

@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Deactivation Handler
+
+ * GET  = sets isDeactivated flag to true
+                                                
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle } from '../../services/safeHandle';

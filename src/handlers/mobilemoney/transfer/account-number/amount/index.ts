@@ -1,11 +1,16 @@
+/**
+===================================================================================================================
+                                                Transfer Handler
+
+ * POST  =  checks balance, asks caller for confirmation, redirect to /confirmation
+ 
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../../services/strings';
 import { safeHandle } from '../../../../../services/safeHandle';
 import querystring from 'querystring';
-import {
-    getAccountItem,
-    putAccountItem,
-} from '../../../../../services/dynamodb';
+import { putAccountItem } from '../../../../../services/dynamodb';
 
 export const post = safeHandle(
     async (request) => {

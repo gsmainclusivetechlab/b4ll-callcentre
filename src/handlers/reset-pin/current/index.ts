@@ -1,3 +1,12 @@
+/**
+===================================================================================================================
+                                                Reset Pin Change Handler
+
+ * POST  = validates current PIN, asks caller for new PIN & redirects to /reset-pin/new
+ * GET   = from sms/ussd, asks for new PIN & redirects to /reset-pin/new
+ 
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';

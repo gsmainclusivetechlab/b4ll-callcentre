@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Agent Cash-Out Handler
+
+ * GET  = retrieves transferValue, asks caller for confirmation, redirect to /confirmation
+                                                
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';
@@ -6,11 +14,11 @@ export const get = safeHandle(
     async (request) => {
         const response = new twiml.VoiceResponse();
         const { user, language } = request;
-        const cashInAmount = user.transferValue;
+        const cashOutAmount = user.transferValue;
 
-        if (typeof cashInAmount === 'number') {
+        if (typeof cashOutAmount === 'number') {
             if (user.balanceAmount) {
-                if (user.balanceAmount >= cashInAmount) {
+                if (user.balanceAmount >= cashOutAmount) {
                     const gather = response.gather({
                         input: ['dtmf'],
                         numDigits: 1,
@@ -21,7 +29,7 @@ export const get = safeHandle(
                         __(
                             'cash-out-confirmation',
                             {
-                                value: cashInAmount,
+                                value: cashOutAmount,
                             },
                             language
                         )

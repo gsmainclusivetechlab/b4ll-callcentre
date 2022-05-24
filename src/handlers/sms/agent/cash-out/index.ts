@@ -1,3 +1,12 @@
+/**
+===================================================================================================================
+                                                SMS Agent Cash-Out Handler
+
+ * GET  = checks if request from webpage/ivr call, redirects to POST
+ * POST = redirects to agent/cash-out
+ 
+===================================================================================================================
+*/
 import twilio, { twiml } from 'twilio';
 import {
     SupportedLanguage,

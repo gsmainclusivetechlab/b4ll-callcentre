@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Survey Question Handler
+
+ * GET  = parses question number, redirect to /final
+                                                
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../services/strings';
 import { safeHandle } from '../../../services/safeHandle';

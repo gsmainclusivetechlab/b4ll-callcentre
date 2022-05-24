@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Survey Handler
+
+ * GET  = redirects to first question 1
+
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../services/strings';
 import { safeHandle } from '../../services/safeHandle';

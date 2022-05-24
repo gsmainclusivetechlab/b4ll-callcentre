@@ -1,3 +1,12 @@
+/**
+===================================================================================================================
+                                                SMS Agent Cash-In Handler
+
+ * GET  = checks if request from webpage/ivr call, redirects to POST
+ * POST = redirects to agent/cash-in
+ 
+===================================================================================================================
+*/
 import twilio, { twiml } from 'twilio';
 import {
     SupportedLanguage,

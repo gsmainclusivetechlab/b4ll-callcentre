@@ -1,3 +1,12 @@
+/**
+===================================================================================================================
+                                                SMS Agent Reset-Pin Handler
+
+ * GET  = checks if request from webpage/ivr call, redirects to POST
+ * POST = redirects to reset-pin/current
+ 
+===================================================================================================================
+*/
 import twilio, { twiml } from 'twilio';
 import {
     SupportedLanguage,

@@ -1,3 +1,11 @@
+/**
+===================================================================================================================
+                                                Transfer Handler
+
+ * POST  =  if 1, subtracts amount from balance & redirect to return. if 2 redirect to /return
+                                                
+===================================================================================================================
+*/
 import { twiml } from 'twilio';
 import { getVoiceParams, __ } from '../../../../../../services/strings';
 import { safeHandle } from '../../../../../../services/safeHandle';
