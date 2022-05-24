@@ -409,21 +409,6 @@ Resources:
             RestApiId:
               Ref: ApiGatewayApi
 
-  RegisterWelcome:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.get
-      CodeUri: ./dist/handlers/register
-      Role: !GetAtt LambdaRole.Arn
-      Events:
-        HTTP:
-          Type: Api
-          Properties:
-            Path: /{lang}/register
-            Method: GET
-            RestApiId:
-              Ref: ApiGatewayApi
-
   PassphraseWelcome:
     Type: AWS::Serverless::Function
     Properties:
