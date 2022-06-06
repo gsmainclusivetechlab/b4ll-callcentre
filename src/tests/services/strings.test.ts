@@ -1,4 +1,8 @@
-import { isSupportedLanguage, __, getVoiceParams } from './strings';
+import {
+    isSupportedLanguage,
+    __,
+    getVoiceParams,
+} from '../../services/strings';
 
 describe('isSupportedLangage', () => {
     it.each`

@@ -1,4 +1,4 @@
-import { menuToGather, MenuOption, menuToHandler } from './menu';
+import { menuToGather, MenuOption, menuToHandler } from '../../services/menu';
 import { twiml } from 'twilio';
 import qs from 'querystring';
 
