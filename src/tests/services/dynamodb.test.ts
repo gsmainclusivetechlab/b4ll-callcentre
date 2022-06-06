@@ -3,7 +3,7 @@ import {
     putAccountItem,
     RecordType,
     getClient,
-} from './dynamodb';
+} from '../../services/dynamodb';
 
 describe('dynamodb', () => {
     const OLD_ENV = process.env;

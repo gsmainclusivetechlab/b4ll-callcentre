@@ -1,5 +1,5 @@
-import * as handler from '.';
-import { mockHandlerFn } from '../../../dev/mockHandlerFn';
+import * as handler from '../../../handlers/mobilemoney';
+import { mockHandlerFn } from '../../../../dev/mockHandlerFn';
 import qs from 'querystring';
 
 const get = mockHandlerFn(handler.get);

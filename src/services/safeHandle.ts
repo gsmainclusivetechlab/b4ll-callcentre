@@ -1,3 +1,13 @@
+/**
+===================================================================================================================
+                                                SafeHandle
+                                        Parses all requests to handlers.
+
+ * parseRequest: Identifies Caller, sets Auth cookie
+ * safeHandle: Invokes parseRequest, checks if verification needed, sends to serialise
+ 
+===================================================================================================================
+*/
 import {
     APIGatewayProxyEvent,
     APIGatewayProxyHandler,

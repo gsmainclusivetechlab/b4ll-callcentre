@@ -1,5 +1,5 @@
-import * as handler from '.';
-import { mockHandlerFn } from '../../../dev/mockHandlerFn';
+import * as handler from '../../../handlers/root';
+import { mockHandlerFn } from '../../../../dev/mockHandlerFn';
 
 const get = mockHandlerFn(handler.get);
 
