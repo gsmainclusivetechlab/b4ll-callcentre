@@ -1,6 +1,24 @@
+<img src='src/images/b4ll_banner.png' alt="banner"></img>
+
 # Account Management PoC using Voice Biometrics
 
 ## Part of the Biometrics In Low-Tech Environments project
+
+-   [Setup Guide](#setup-guide)
+    -   [Development Dependencies](#development-dependencies)
+    -   [Project Setup](#project-setup)
+-   [Development](#development)
+    -   [Running Locally](#running-locally)
+    -   [Handlers](#handlers)
+    -   [Testing](#testing)
+-   [Deployment](#deployment)
+    -   [Cleanup](#cleanup)
+-   [Twilio Setup](#twilio-setup)
+-   [Troubleshooting](#troubleshooting)
+    -   [`Error: EACCES: permission denied, open '{...}/dist/handlers/{someFunction}/index.js`](#error-eacces-permission-denied-open-disthandlerssomefunctionindexjs)
+    -   [`The security token included in the request is invalid.`](#the-security-token-included-in-the-request-is-invalid)
+    -   [`Missing credentials in config, if using AWS_CONFIG_FILE, set AWS_SDK_LOAD_CONFIG=1`](#missing-credentials-in-config-if-using-aws_config_file-set-aws_sdk_load_config1)
+    -   [`Lambda responded with undefined status code` or `index.get is undefined or not exported`](#lambda-responded-with-undefined-status-code-or-indexget-is-undefined-or-not-exported)
 
 ![CI](https://github.com/gsmainclusivetechlab/b4ll-callcentre/workflows/CI/badge.svg)
 [![codecov](https://codecov.io/gh/gsmainclusivetechlab/b4ll-callcentre/branch/feature/gh-actions/graph/badge.svg?token=CKB8C9RSXR)](https://codecov.io/gh/gsmainclusivetechlab/b4ll-callcentre)
@@ -37,6 +55,14 @@ machine:
     session
 
     If necessary, run aws config to insert your information.
+
+### Handlers
+
+Documentation for handlers can be found [here](./src/handlers/HANDLERS.md)
+
+### Testing
+
+Documentation for tests can be found [here](./src/tests/TESTING.md)
 
 ## Deployment
 
@@ -75,14 +101,14 @@ are created first, and they implicitly create a volume (owned by `root`) where
 our code should go. To resolve this, you can `chown -R` the `dist` directory to
 give webpack permission to write there again.
 
-#### The security token included in the request is invalid.
+#### `The security token included in the request is invalid.`
 
 This is an error normally caused when a function can't find the DynamoDB table.
 Generally this is caused when the `TABLE_NAME` variable is incorrectly set -
 check [`dev/envVars.json`](./dev/envVars.json) to ensure your function is
 receiving it correctly.
 
-#### Missing credentials in config, if using AWS_CONFIG_FILE, set AWS_SDK_LOAD_CONFIG=1
+#### `Missing credentials in config, if using AWS_CONFIG_FILE, set AWS_SDK_LOAD_CONFIG=1`
 
 The AWS SDK is unable to authenticate you. This is normally caused by a similar
 error as above (`TABLE_NAME` incorrectly set). Add `AWS_ACCESS_KEY_ID` and
