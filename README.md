@@ -4,21 +4,22 @@
 
 ## Part of the Biometrics In Low-Tech Environments project
 
--   [Setup Guide](#setup-guide)
-    -   [Development Dependencies](#development-dependencies)
-    -   [Project Setup](#project-setup)
--   [Development](#development)
-    -   [Running Locally](#running-locally)
-    -   [Handlers](#handlers)
-    -   [Testing](#testing)
--   [Deployment](#deployment)
-    -   [Cleanup](#cleanup)
--   [Twilio Setup](#twilio-setup)
--   [Troubleshooting](#troubleshooting)
-    -   [`Error: EACCES: permission denied, open '{...}/dist/handlers/{someFunction}/index.js`](#error-eacces-permission-denied-open-disthandlerssomefunctionindexjs)
-    -   [`The security token included in the request is invalid.`](#the-security-token-included-in-the-request-is-invalid)
-    -   [`Missing credentials in config, if using AWS_CONFIG_FILE, set AWS_SDK_LOAD_CONFIG=1`](#missing-credentials-in-config-if-using-aws_config_file-set-aws_sdk_load_config1)
-    -   [`Lambda responded with undefined status code` or `index.get is undefined or not exported`](#lambda-responded-with-undefined-status-code-or-indexget-is-undefined-or-not-exported)
+-   [Account Management PoC using Voice Biometrics](#account-management-poc-using-voice-biometrics)
+    -   [Part of the Biometrics In Low-Tech Environments project](#part-of-the-biometrics-in-low-tech-environments-project)
+    -   [Setup Guide](#setup-guide)
+        -   [Development Dependencies](#development-dependencies)
+        -   [Project Setup](#project-setup)
+    -   [Development](#development)
+        -   [Running Locally](#running-locally)
+        -   [Handlers](#handlers)
+        -   [Testing](#testing)
+    -   [Deployment](#deployment)
+    -   [Twilio Setup](#twilio-setup)
+    -   [Troubleshooting](#troubleshooting)
+        -   [`Error: EACCES: permission denied, open '{...}/dist/handlers/{someFunction}/index.js`](#error-eacces-permission-denied-open-disthandlerssomefunctionindexjs)
+        -   [`The security token included in the request is invalid.`](#the-security-token-included-in-the-request-is-invalid)
+        -   [`Missing credentials in config, if using AWS_CONFIG_FILE, set AWS_SDK_LOAD_CONFIG=1`](#missing-credentials-in-config-if-using-aws_config_file-set-aws_sdk_load_config1)
+        -   [`Lambda responded with undefined status code` or `index.get is undefined or not exported`](#lambda-responded-with-undefined-status-code-or-indexget-is-undefined-or-not-exported)
 
 ![CI](https://github.com/gsmainclusivetechlab/b4ll-callcentre/workflows/CI/badge.svg)
 [![codecov](https://codecov.io/gh/gsmainclusivetechlab/b4ll-callcentre/branch/feature/gh-actions/graph/badge.svg?token=CKB8C9RSXR)](https://codecov.io/gh/gsmainclusivetechlab/b4ll-callcentre)
@@ -66,12 +67,7 @@ Documentation for tests can be found [here](./src/tests/TESTING.md)
 
 ## Deployment
 
-1. Run `yarn build` to build the latest code
-2. Run `yarn deploy` to create/update the cloudformation stack
-
-### Cleanup
-
-1. Run `yarn deploy:clean` to remove the whole AWS stack
+Deployment information can be found [here](./DEPLOYMENT.md)
 
 ## Twilio Setup
 
