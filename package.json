@@ -77,7 +77,7 @@
         "ts-jest": "^27.0.3",
         "ts-loader": "^4.2.0",
         "ts-node": "^8.10.2",
-        "twilio": "^3.48.1",
+        "twilio": "^3.77.3",
         "typescript": "^3.9.7",
         "uglifyjs-webpack-plugin": "^1.2.5",
         "voiceit2-nodejs": "^2.5.0",
