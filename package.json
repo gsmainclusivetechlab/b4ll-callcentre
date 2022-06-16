@@ -96,7 +96,7 @@
         "@types/jsonwebtoken": "^8.5.0",
         "axios": "^0.21.2",
         "clsx": "^1.1.1",
-        "dotenv-webpack": "2",
+        "dotenv-webpack": "7",
         "jsonwebtoken": "^8.5.1",
         "react": "^16.8.4",
         "react-dom": "^16.8.4"
