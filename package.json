@@ -57,7 +57,7 @@
         "aws-sam-api-proxy": "https://github.com/cjol/aws-sam-api-proxy#npm",
         "aws-sdk": "^2.234.1",
         "concurrently": "^5.2.0",
-        "docker-compose": "^0.23.5",
+        "docker-compose": "^0.23.17",
         "dotenv": "^8.2.0",
         "env-cmd": "^10.1.0",
         "eslint": "^7.5.0",
