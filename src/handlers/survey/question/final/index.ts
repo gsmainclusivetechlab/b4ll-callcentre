@@ -25,6 +25,12 @@ export const post = safeHandle(async (request) => {
 
     const response = new twiml.VoiceResponse();
 
+    if (!Digits) {
+        response.say(getVoiceParams(language), __('survey-invalid', language));
+        response.redirect({ method: 'GET' }, `../${questionNumber}`);
+        return response;
+    }
+
     if (+Digits >= 1 && +Digits <= 5) {
         switch (questionNumber) {
             case '1': {
