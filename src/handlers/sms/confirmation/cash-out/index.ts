@@ -23,7 +23,7 @@ export const get = safeHandle(async (request) => {
     const body = qs.parse(event.body || '');
     let From = body['From'] || event.queryStringParameters?.['From'];
 
-    if (!From) {
+    if (!From || From === Caller) {
         const numbers = await twilioClient.incomingPhoneNumbers.list({
             phoneNumber: '+447',
             limit: 1,
@@ -59,7 +59,7 @@ export const post = safeHandle(async (request) => {
     const body = qs.parse(event.body || '');
     let From = body['From'] || event.queryStringParameters?.['From'];
 
-    if (!From) {
+    if (!From || From === Caller) {
         const numbers = await twilioClient.incomingPhoneNumbers.list({
             phoneNumber: '+447',
             limit: 1,

@@ -22,7 +22,7 @@ export const get = safeHandle(async (request) => {
     const body = qs.parse(event.body || '');
     let From = body['From'] || event.queryStringParameters?.['From'];
 
-    if (!From) {
+    if (!From || From === Caller) {
         const numbers = await twilioClient.incomingPhoneNumbers.list({
             phoneNumber: '+447',
             limit: 1,
@@ -33,6 +33,8 @@ export const get = safeHandle(async (request) => {
             );
         From = numbers[0].phoneNumber;
     }
+
+    console.log(From as string, Caller);
 
     await twilioClient.messages.create({
         body: __('sms-confirmation-reset-pin', language),
