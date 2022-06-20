@@ -73,7 +73,7 @@
         "jest": "^28.1.1",
         "jest-serializer-xml": "^0.1.15",
         "lint-staged": ">=10",
-        "message-format": "^6.2.3",
+        "message-format": "^6.2.4",
         "prettier": "^2.0.5",
         "terser-webpack-plugin": "^5.3.3",
         "ts-jest": "^28.0.5",
