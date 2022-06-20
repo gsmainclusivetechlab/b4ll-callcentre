@@ -13,7 +13,7 @@ import {
     getVoiceParams,
     __,
 } from '../../../services/strings';
-import { safeHandle } from '../../../services/safeHandle';
+import { BaseError, safeHandle } from '../../../services/safeHandle';
 import { VerificationState } from '../../../services/auth';
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -32,10 +32,8 @@ const prefixByLanguage = (language: SupportedLanguage) => {
 
 export const get = safeHandle(async ({ language, user, auth, event }) => {
     if (auth.state !== VerificationState.REGISTERED) {
-        throw {
-            statusCode: 500,
-            error: __('alert-unregistered', language),
-        };
+        const err = new BaseError(500, __('alert-unregistered', language));
+        throw err;
     }
     const message = new twiml.VoiceResponse();
     const ivrNumber = event.queryStringParameters?.To;

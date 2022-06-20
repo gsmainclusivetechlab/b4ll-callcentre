@@ -1,7 +1,8 @@
 import * as path from 'path';
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
+import UglifyJsPlugin from 'terser-webpack-plugin';
 import { getTemplate, ServerlessFunctionTemplate } from './dev/parseTemplate';
 import { Configuration } from 'webpack';
+import TerserPlugin from 'terser-webpack-plugin';
 
 const conf = {
     prodMode: process.env.NODE_ENV === 'production',
@@ -64,10 +65,9 @@ const config: Configuration = {
     optimization: {
         minimizer: conf.prodMode
             ? [
-                  new UglifyJsPlugin({
+                  new TerserPlugin({
                       parallel: true,
                       extractComments: true,
-                      sourceMap: false,
                   }),
               ]
             : [],

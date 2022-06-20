@@ -30,6 +30,19 @@ import {
     VerificationState,
 } from './auth';
 
+export class BaseError extends Error {
+    statusCode: number;
+
+    constructor(statusCode: number, message: string) {
+        super(message);
+
+        Object.setPrototypeOf(this, new.target.prototype);
+        this.name = Error.name;
+        this.statusCode = statusCode;
+        Error.captureStackTrace(this);
+    }
+}
+
 export interface ParsedRequest {
     language: SupportedLanguage;
     user: RecordType;
@@ -134,16 +147,11 @@ export const safeHandle = (
             const language = isSupportedLanguage(maybeLang)
                 ? maybeLang
                 : 'en-GB';
-            if (typeof err === 'object') {
-                return serialise(err, err.statusCode || 500);
+            if (err instanceof BaseError) {
+                return serialise(err, err?.statusCode || 500);
             }
             const response = new twiml.VoiceResponse();
-            const message =
-                typeof err === 'string'
-                    ? err
-                    : typeof err.message === 'string'
-                    ? err.message
-                    : '';
+            const message = err instanceof BaseError ? err.message : '';
             response.say(
                 getVoiceParams(language),
                 __('error', { message }, language)
