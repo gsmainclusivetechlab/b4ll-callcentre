@@ -59,7 +59,7 @@
         "aws-sdk": "^2.234.1",
         "concurrently": "^5.2.0",
         "docker-compose": "^0.23.5",
-        "dotenv": "^8.2.0",
+        "dotenv": "^16.0.1",
         "env-cmd": "^10.1.0",
         "eslint": "^7.5.0",
         "eslint-config-prettier": "^6.11.0",
