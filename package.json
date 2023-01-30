@@ -94,7 +94,7 @@
     "dependencies": {
         "@mdx-js/react": "^1.5.8",
         "@types/jsonwebtoken": "^8.5.0",
-        "axios": "^0.21.2",
+        "axios": "^1.2.6",
         "clsx": "^1.1.1",
         "dotenv-webpack": "^7.1.0",
         "jsonwebtoken": "^8.5.1",
